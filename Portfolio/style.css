@@ -1,0 +1,698 @@
+
+* /* Reset & Body */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  background: radial-gradient(circle at top left, rgba(124, 58, 237, 0.15), transparent 60%),
+              radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.15), transparent 60%),
+              #0f172a; /* main dark background */
+  background-attachment: fixed;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  user-select: none;
+  overflow: hidden;
+  /* subtle grid overlay */
+  background-image:
+    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px),
+    radial-gradient(circle at top left, rgba(124,58,237,0.15), transparent 60%),
+    radial-gradient(circle at bottom right, rgba(59,130,246,0.15), transparent 60%);
+  background-size: 40px 40px, 40px 40px, auto, auto;
+}
+header {
+  position: fixed;
+  top: 0%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 550px;
+  padding: 1.4rem 0.6rem;
+
+  /* Glassmorphism */
+  background: rgba(15, 23, 42, 0.25);
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Navbar container */
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
+  width: 90%;
+  flex-wrap: wrap; 
+}
+
+/* Nav links */
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-size: 1.2rem;
+  color: #cbd5e1;
+  font-weight: 520;
+  position: relative;
+  padding: 1px 2px; /* smaller padding for mobile */
+  transition: color 0.3s;
+  white-space: nowrap; /* prevent line breaks in link text */
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 5px;
+  background-color: #7c3aed;
+  transition: width 0.3s;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: #fff;
+}
+
+/* Hero Section */
+.hero {
+  min-height: 70vh;
+  padding: 6rem 10% 5rem;
+  display: flex;
+  justify-content: space-between;   /* puts them closer together */
+  align-items: center;
+  gap: 10m; /* adjust this para sa tamang lapit */
+}
+.hero-content {
+  max-width: 500%; 
+}
+.hero-content h1 {
+  font-size: 2.1rem;
+  color: #a855f7;
+  white-space: nowrap;  /* para laging nasa isang linya */
+  display: inline-block; /* needed for transform */
+  transition: transform 0.3s ease;
+}
+
+.hero-content h1:hover {
+  transform: scale(1.04); /* zoom in on hover */
+}
+.hero-content .quote {
+  color: #cbd5e1;
+  margin: 1rem 0;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  max-width: 420px;   /* adjust width para mag-break sa 2 lines */
+  white-space: normal;
+  overflow: hidden;
+
+  /* remove line-clamp para hindi maputol */
+  display: block;
+}
+.hero {
+  min-height: 100vh;
+  max-width: 1200px;      /* limit the total width */
+  margin: 0 auto;         /* center horizontally */
+  padding: 14rem 2rem 1.5rem;  /* fixed side padding, not percentage */
+  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: clamp(2rem, 5vw, 6rem);  /* balanced spacing */
+}
+.contact-info p {
+  margin: 0.5rem 0;
+}
+.contact-info i {
+  margin-right: 8px;
+  color: #38bdf8;
+}
+.buttons {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 1rem; /* space sa pagitan ng buttons */
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.9rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 500;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+/* Gradient button */
+.primary {
+  background: linear-gradient(90deg, #7c3aed, #9333ea);
+  color: #fff;
+  box-shadow: 0 0 15px rgba(147, 51, 234, 0.6);
+}
+.primary:hover {
+  background: linear-gradient(90deg, #9333ea, #a855f7);
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.8);
+}
+
+/* Dark button */
+.secondary {
+  background: #1e293b;
+  color: #fff;
+  border: 1px solid #334155;
+}
+.secondary:hover {
+  background: #334155;
+  transform: translateY(-2px);
+}
+.hero-img img {
+  width: clamp(200px, 25vw, 320px); /* maliit sa phone, medium sa tablet, 320px max */
+  animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+/* ABOUT SECTION */
+.about {
+  padding: 14rem 2rem 1.5rem;
+  text-align: center;
+  color: #fff;
+}
+.about h2 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  color: #a06bff; /* Purple accent */
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.about h2:hover {
+  transform: scale(1.1); /* zoom in on hover */
+}
+
+.about-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;   /* para pantay sa taas yung profile at text */
+  gap: clamp(1rem, 4vw, 3rem);
+  background: rgba(255,255,255,0.05);
+  padding: 15px 10px;        /* mas maliit left-right padding */
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+  max-width: 1000px;         /* limit lapad */
+  margin: 0 auto;
+  flex-wrap: wrap;            /* center horizontally */
+}
+/* Profile Side */
+.about-profile {
+  text-align: center;
+  flex: 1 1 250px;
+  max-width: 280px; /* pwede mong dagdagan para mas malaki pa */
+}
+.profile-img {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  margin: 0 auto 20px;
+}
+.profile-img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2.5px solid #a06bff;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  display: block; /* para gumana ang transform */
+  transition: transform 0.3s ease; /* smooth zoom */
+}
+
+.profile-img img:hover {
+  transform: scale(1.1); /* zoom in on hover */
+}
+.about-profile h3 {
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+  display: inline-block;
+  transition: transform 0.3s ease;
+  color: #a06bff;
+}
+.about-profile h3:hover {
+  transform: scale(1.04); /* zoom in on hover */
+}
+.about-profile .role {
+  font-size: 1rem;
+  color: #bbb;
+  display: inline-block;       /* needed for transform */
+  transition: transform 0.3s ease; /* smooth zoom */
+}
+
+.about-profile .role:hover {
+  transform: scale(1.04); /* zoom in on hover */
+}
+
+/* Text Side */
+.about-text {
+  flex: 2 1 300px;                   /* mas malaki yung text area */
+  max-width: 600px;
+  text-align: left;
+}
+
+.about-text p {
+  font-size: 1.1rem;
+  margin-bottom: 13px;
+  line-height: 1.6;
+  color: #ddd;
+}
+
+.about-divider {
+  border: 5;
+  height: 4px;
+  background: #a06bff;
+  margin-top: 20px;
+}
+
+/* Skills Section */
+.skills {
+  min-height: 1500vh;
+  padding: 8rem 10%;
+  text-align: center;
+}
+.skills h2 {
+  font-size: 2rem;
+  color: #a855f7;
+  margin-bottom: 1rem;
+  display: inline-block; /* needed for transform */
+  transition: transform 0.3s ease;
+}
+.skills h2:hover {
+  transform: scale(1.1); /* zoom in on hover */
+}
+.skills-subtitle {
+  color: #94a3b8;
+  margin-bottom: 3rem;
+}
+
+.skills-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+.skills-card {
+  background: rgba(255, 255, 255, 0.05); /* same as about-container */
+  backdrop-filter: blur(10px);           /* same blur */
+  padding: 2rem;
+  border-radius: 15px;
+  text-align: left;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2); /* same shadow */
+  transition: transform 0.3s, background 0.3s;
+}
+
+.skills-card h3 {
+  color: #38bdf8;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.3s ease; /* smooth zoom */
+}
+.skills-card h3:hover {
+  transform: scale(1.04); /* lumaki ang h3 text at icon */
+}
+.skills-card ul {
+  list-style: none;
+  padding: 0;
+}
+.skills-card li {
+  display: flex;
+  align-items: center;
+  margin: 0.8rem 0;
+  color: #cbd5e1;
+  font-size: 1rem;
+  gap: 10px;
+  transition: transform 0.3s ease; /* smooth zoom for the whole li */
+  cursor: pointer; /* optional, para makita na hoverable */
+}
+.skills-card li:hover {
+  transform: scale(1.05); /* zoom in entire li including img, icon, text */
+}
+.skills-card li img,
+.skills-card li i {
+  display: inline-block; /* needed for transform */
+  transition: transform 0.3s ease; /* optional, smooth zoom for individual */
+}
+
+.skills-card li img {
+  width: 24px;
+  height: 24px;
+}
+
+.skills-card li i {
+  font-size: 2rem;
+  color: #a855f7;
+}
+/* Hover effect */
+.skills-card li img:hover,
+.skills-card li i:hover {
+  transform: scale(1.2); /* zoom in on hover */
+}
+
+/* Technologies & Tools */
+.technologies {
+  padding: 1rem 10%;
+  text-align: center;
+}
+.technologies h2 {
+  font-size: 1.5rem;
+  color: #a855f7;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: inline-block; /* needed for transform */
+  transition: transform 0.3s ease;
+}
+.technologies h2:hover {
+  transform: scale(1.04); /* zoom in on hover */
+}
+
+.tech-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-direction: row;
+  flex-wrap: nowrap; /* para isang linya lang */
+  overflow-x: visible;  /* scrollable kung di kasya */
+  padding-bottom: 1rem;
+}
+.tech-card {
+  background: #1e293b;
+  padding: 0.6rem 0.8rem;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-width: 80px;
+  max-width: 90px;
+  flex: 0 0 auto; /* fixed width per card */
+  cursor: pointer; /* para obvious na interactive */
+}
+
+.tech-card:hover {
+  transform: scale(1.1); /* zoom in */
+  box-shadow: 0 0 15px rgba(168, 85, 247, 0.4); /* purple glow */
+}
+
+.tech-card img {
+  width: 35px;
+  height: 35px;
+  margin-bottom: 0.5rem;
+  transition: transform 0.3s ease; 
+}
+
+.tech-card p {
+  font-size: 0.75rem;
+  color: #cbd5e1;
+  margin: 0;
+  transition: transform 0.3s ease; 
+}
+
+.tech-card:hover img,
+.tech-card:hover p {
+  transform: scale(1.1); 
+}
+/* ===== PROJECTS SECTION ===== */
+.projects {
+  padding: 80px 20px;
+  background: #0d1117; /* dark bg */
+  color: #fff;
+  text-align: center;
+}
+
+.projects h2 {
+  font-size: 2.5rem;
+  margin-bottom: 50px;
+  font-weight: bold;
+  color: #00d4ff;
+}
+
+/* Swiper base */
+.swiper {
+  width: 100%;
+  padding-top: 30px;
+  padding-bottom: 60px;
+}
+
+.swiper-wrapper {
+  align-items: center;
+}
+
+/* Project Card */
+.project-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 30px 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+  backdrop-filter: blur(10px);
+  max-width: 300px;
+}
+
+.project-card .project-icon {
+  font-size: 3rem;
+  color: #00d4ff;
+  margin-bottom: 15px;
+}
+
+.project-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.project-card p {
+  font-size: 0.95rem;
+  color: #ddd;
+  margin-bottom: 15px;
+}
+
+.project-card .tags {
+  margin-bottom: 15px;
+}
+
+.project-card .tags span {
+  display: inline-block;
+  background: #00d4ff22;
+  color: #00d4ff;
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: 10px;
+  margin: 3px;
+}
+
+.project-btn {
+  display: inline-block;
+  padding: 8px 16px;
+  background: #00d4ff;
+  color: #000;
+  font-weight: 600;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.project-btn:hover {
+  background: #00bfe6;
+}
+/* Swiper Pagination Dots */
+.swiper-pagination-bullet {
+  width: 10px;   /* dati 8px */
+  height: 10px;
+  background: #00d4ff;
+  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+  width: 18px;   /* mas malaki yung active */
+  height: 18px;
+  background: #fff;
+  opacity: 1;
+}
+
+
+/* Contact */
+.contact {
+  padding: 11rem 5%;
+  text-align: center;
+}
+.contact h2 {
+  font-size: 2rem;
+  color: #a855f7;
+  margin-bottom: 0.5rem;
+  display: inline-block; 
+  transition: transform 0.3s ease;
+}
+
+.contact h2:hover {
+  transform: scale(1.1); 
+}
+.contact-subtitle {
+  color: #94a3b8;
+  margin-bottom: 3rem;
+  transition: transform 0.3s ease, color 0.3s ease; /* animation settings */
+}
+
+.contact-subtitle:hover {
+  transform: scale(1.05); /* bahagyang laki kapag hover */
+  color: #94a3b8; /* optional: magbago ng kulay kapag hover */
+}
+.contact-container {
+  display: flex;
+  align-items: center;       /* para pantay vertically */
+  justify-content: center;   /* ilapit sa gitna imbes na space-between */
+  gap: 40px;                 /* kontrolado yung layo ng image at form */
+  max-width: 1200px;         /* para hindi lumaki ng sobra sa malalaking screen */
+  margin: 0 auto;            /* center sa page */
+  padding: 20px;
+}
+.contact-container img {
+  max-width: 300px;  /* para hindi masyadong lumaki yung picture */
+  height: auto;
+}
+
+.contact-img {
+  flex: 1;
+  display: flex;
+  justify-content: center;   /* para nasa gitna lang yung image */
+}
+.contact-img img {
+  width: 100%;          /* palaging sakop yung container */
+  max-width: 300px;     /* hindi lalampas ng 350px kahit malaki screen */
+  min-width: 300px;     /* hindi bababa sa 200px kahit maliit screen */
+  height: auto;         /* maintain aspect ratio */
+}
+.contact-form {
+  flex: 1;
+  min-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: center;
+}
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;          /* auto-center horizontally */
+  padding: 1rem;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  background-color: #1e293b;
+  color: #f1f5f9;
+  font-size: 1rem;
+  box-sizing: border-box;
+  display: block;          /* needed for margin auto */
+}
+
+.contact-form textarea {
+  height: 150px;
+  resize: none;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: #64748b;
+  font-style: italic;
+}
+.submit-btn {
+  background: linear-gradient(135deg, #7c3aed, #9333ea);
+  border: none;
+  color: #fff;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+
+  width: 100%;
+  max-width: 500px;             /* same width as inputs */
+  margin: 0 auto;         /* center horizontally */
+  text-align: center;
+  display: block;         /* needed for margin auto */
+}
+
+.submit-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
+}
+/* Responsive adjustment */
+@media (max-width: 768px) {
+  .contact-form input,
+  .contact-form textarea,
+  .submit-btn {
+    width: 90%;   /* almost full width on smaller screens */
+  }
+}
+
+.contact-socials {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.contact-socials p {
+  color: #94a3b8;
+  margin-bottom: 1rem;
+}
+
+.social-icons a {
+  display: inline-block;
+  margin: 0 10px;
+  font-size: 2rem;
+  color: #94a3b8;
+  transition: color 0.3s, transform 0.3s;
+}
+.social-icons a:hover {
+  color: #a855f7;
+  transform: scale(1.2);
+}
+.contact-img img {
+  width: 380px;
+  max-width: 100%;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
