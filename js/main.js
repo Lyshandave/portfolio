@@ -1157,33 +1157,37 @@ if (scrollTopBtn) {
     }
 })();
 
-/* ── Skills tab switcher ─────────────────────────────────────────────── */
+/* ── Generic tab switcher (Skills & Portfolio) ───────────────────────── */
 (function () {
-    const tabs = document.querySelectorAll('.skills-tab');
-    const panels = document.querySelectorAll('.skills-panel');
-    if (!tabs.length) return;
+    const tabContainers = [
+        { tabs: '.skills-tab',    panels: '.skills-panel',    prefix: 'tab-' },
+        { tabs: '.portfolio-tab', panels: '.portfolio-panel', prefix: 'tab-' }
+    ];
 
-    tabs.forEach(function (tab) {
-        tab.addEventListener('click', function () {
-            var target = tab.dataset.tab;
+    tabContainers.forEach(cfg => {
+        const tabs = document.querySelectorAll(cfg.tabs);
+        const panels = document.querySelectorAll(cfg.panels);
+        if (!tabs.length) return;
 
-            // Update tabs
-            tabs.forEach(function (t) {
-                t.classList.remove('active');
-                t.setAttribute('aria-selected', 'false');
-            });
-            tab.classList.add('active');
-            tab.setAttribute('aria-selected', 'true');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const target = tab.dataset.tab;
+                tabs.forEach(t => {
+                    t.classList.remove('active');
+                    t.setAttribute('aria-selected', 'false');
+                });
+                tab.classList.add('active');
+                tab.setAttribute('aria-selected', 'true');
 
-            // Update panels
-            panels.forEach(function (p) {
-                if (p.id === 'tab-' + target) {
-                    p.removeAttribute('hidden');
-                    p.classList.add('active');
-                } else {
-                    p.setAttribute('hidden', '');
-                    p.classList.remove('active');
-                }
+                panels.forEach(p => {
+                    if (p.id === cfg.prefix + target) {
+                        p.removeAttribute('hidden');
+                        p.classList.add('active');
+                    } else {
+                        p.setAttribute('hidden', '');
+                        p.classList.remove('active');
+                    }
+                });
             });
         });
     });

@@ -27,7 +27,6 @@
                 <a href="#about"        class="nav-link">About</a>
                 <a href="#skills"       class="nav-link">Skills</a>
                 <a href="#projects"     class="nav-link">Projects</a>
-                <a href="#certificates" class="nav-link">Certificates</a>
                 <a href="#contact"      class="nav-link">Contact</a>
                 <a href="#comments"     class="nav-link">Comments</a>
             </div>
@@ -127,7 +126,7 @@
                                 <img class="profile-img profile-light" src="images/profile-light.jpg" alt="Lyshan Dave - Light Mode" draggable="false">
                                 <img class="profile-img profile-dark"  src="images/profile-dark.png"  alt="Lyshan Dave - Dark Mode"  draggable="false">
                             </div>
-                            <div class="image-decoration" aria-hidden="true"></div>
+
                         </div>
                     </div>
                     <div class="about-text">
@@ -265,126 +264,135 @@
             <div class="container">
                 <div class="section-header">
                     <span class="section-subtitle">Portfolio</span>
-                    <h2 class="section-title">Featured Projects</h2>
+                    <h2 class="section-title">Projects & Certificates</h2>
                     <div class="section-line" aria-hidden="true"></div>
                 </div>
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <div class="project-image">
-                            <img src="images/project1.jpg" alt="Network Simulator" loading="lazy">
-                            <div class="project-overlay"><div class="project-actions">
-                                <a href="http://network-simulator.wuaze.com" class="project-btn btn-live" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt" aria-hidden="true"></i> Live Demo</a>
-                                <button class="project-btn btn-details" onclick="showProjectModal('project1')"><i class="fas fa-info-circle" aria-hidden="true"></i> Details</button>
-                            </div></div>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">Network Simulator</h3>
-                            <p class="project-desc">Interactive network topology visualization with drag-and-drop components, VLAN configuration, and real-time packet simulation.</p>
-                            <div class="project-tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <div class="project-image">
-                            <img src="images/project2.jpg" alt="Server Monitor Dashboard" loading="lazy">
-                            <div class="project-overlay"><div class="project-actions">
-                                <a href="http://server-dashboard.wuaze.com" class="project-btn btn-live" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt" aria-hidden="true"></i> Live Demo</a>
-                                <button class="project-btn btn-details" onclick="showProjectModal('project2')"><i class="fas fa-info-circle" aria-hidden="true"></i> Details</button>
-                            </div></div>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">Server Monitor Dashboard</h3>
-                            <p class="project-desc">Real-time server monitoring dashboard with CPU, memory, disk space, and network traffic animated charts.</p>
-                            <div class="project-tags"><span class="tag">JavaScript</span><span class="tag">Canvas API</span><span class="tag">CSS3</span></div>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <div class="project-image">
-                            <img src="images/project4.jpg" alt="PC Diagnostic Tool" loading="lazy">
-                            <div class="project-overlay"><div class="project-actions">
-                                <a href="http://pc-diagnostic.wuaze.com" class="project-btn btn-live" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt" aria-hidden="true"></i> Live Demo</a>
-                                <button class="project-btn btn-details" onclick="showProjectModal('project4')"><i class="fas fa-info-circle" aria-hidden="true"></i> Details</button>
-                            </div></div>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">PC Diagnostic Tool</h3>
-                            <p class="project-desc">Interactive PC hardware diagnostic simulator with component testing, error detection, and repair recommendations.</p>
-                            <div class="project-tags"><span class="tag">JavaScript</span><span class="tag">HTML5</span><span class="tag">CSS3</span></div>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <div class="project-image">
-                            <img src="images/project_cisco1.png" alt="Multi-Branch Office Network" loading="lazy">
-                            <div class="project-overlay"><div class="project-actions">
-                                <button class="project-btn btn-details" onclick="showProjectModal('project_cisco1')"><i class="fas fa-info-circle" aria-hidden="true"></i> Details</button>
-                            </div></div>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">Multi-Branch Office Network</h3>
-                            <p class="project-desc">Cisco Packet Tracer — multi-branch office with routers, switches, wireless APs, and inter-branch routing across 3 buildings.</p>
-                            <div class="project-tags"><span class="tag">Cisco</span><span class="tag">Networking</span><span class="tag">IP Addressing</span></div>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <div class="project-image">
-                            <img src="images/project_cisco2.png" alt="Multi-Area Network with Firewall" loading="lazy">
-                            <div class="project-overlay"><div class="project-actions">
-                                <button class="project-btn btn-details" onclick="showProjectModal('project_cisco2')"><i class="fas fa-info-circle" aria-hidden="true"></i> Details</button>
-                            </div></div>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">Multi-Area Network with Firewall</h3>
-                            <p class="project-desc">3-area hierarchical network with ISP, firewalls (550X), routers, and distribution/access layer switching.</p>
-                            <div class="project-tags"><span class="tag">Cisco</span><span class="tag">VLAN</span><span class="tag">Routing</span></div>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <div class="project-image">
-                            <img src="images/project_cisco3.png" alt="Office Floor Plan Network" loading="lazy">
-                            <div class="project-overlay"><div class="project-actions">
-                                <button class="project-btn btn-details" onclick="showProjectModal('project_cisco3')"><i class="fas fa-info-circle" aria-hidden="true"></i> Details</button>
-                            </div></div>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">Office Floor Plan Network</h3>
-                            <p class="project-desc">Full office floor plan with department VLANs, IP phones, wireless APs, and DNS/DHCP/Mail servers.</p>
-                            <div class="project-tags"><span class="tag">Cisco</span><span class="tag">DHCP</span><span class="tag">DNS</span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <section id="certificates" class="certificates">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-subtitle">Achievements</span>
-                    <h2 class="section-title">My Certificates</h2>
-                    <div class="section-line" aria-hidden="true"></div>
+                <!-- Portfolio Tabs -->
+                <div class="portfolio-tabs" role="tablist" aria-label="Portfolio categories">
+                    <button class="portfolio-tab active" role="tab" aria-selected="true"  data-tab="featured"    aria-controls="tab-featured">
+                        <i class="fas fa-rocket" aria-hidden="true"></i> Projects
+                    </button>
+                    <button class="portfolio-tab"        role="tab" aria-selected="false" data-tab="certs"       aria-controls="tab-certs">
+                        <i class="fas fa-certificate" aria-hidden="true"></i> Certificates
+                    </button>
                 </div>
-                <div class="certificates-grid">
-                    <div class="certificate-card" onclick="openLightbox('cert1')" role="button" tabindex="0" aria-label="View Networking Basics certificate" onkeydown="if(event.key==='Enter'||event.key===' ')openLightbox('cert1')">
-                        <div class="certificate-image">
-                            <img src="images/cert1.png" alt="Networking Basics Certificate — Cisco Networking Academy" loading="lazy">
-                            <div class="certificate-overlay" aria-hidden="true"><i class="fas fa-expand"></i><span>Click to Enlarge</span></div>
+
+                <!-- Projects Panel -->
+                <div id="tab-featured" class="portfolio-panel active" role="tabpanel">
+                    <div class="projects-grid">
+                        <div class="project-card">
+                            <div class="project-image">
+                                <img src="images/project1.jpg" alt="Network Simulator" loading="lazy">
+                                <div class="project-overlay"><div class="project-actions">
+                                    <a href="http://network-simulator.wuaze.com" class="project-btn btn-live" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt" aria-hidden="true"></i> Live Demo</a>
+                                    <button class="project-btn btn-details" onclick="showProjectModal('project1')"><i class="fas fa-info-circle" aria-hidden="true"></i> Details</button>
+                                </div></div>
+                            </div>
+                            <div class="project-content">
+                                <h3 class="project-title">Network Simulator</h3>
+                                <p class="project-desc">Interactive network topology visualization with drag-and-drop components, VLAN configuration, and real-time packet simulation.</p>
+                                <div class="project-tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+                            </div>
                         </div>
-                        <div class="certificate-info">
-                            <h3>Networking Basics</h3>
-                            <p>Cisco Networking Academy</p>
-                            <span class="cert-date">Dec 2025</span>
+                        <div class="project-card">
+                            <div class="project-image">
+                                <img src="images/project2.jpg" alt="Server Monitor Dashboard" loading="lazy">
+                                <div class="project-overlay"><div class="project-actions">
+                                    <a href="http://server-dashboard.wuaze.com" class="project-btn btn-live" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt" aria-hidden="true"></i> Live Demo</a>
+                                    <button class="project-btn btn-details" onclick="showProjectModal('project2')"><i class="fas fa-info-circle" aria-hidden="true"></i> Details</button>
+                                </div></div>
+                            </div>
+                            <div class="project-content">
+                                <h3 class="project-title">Server Monitor Dashboard</h3>
+                                <p class="project-desc">Real-time server monitoring dashboard with CPU, memory, disk space, and network traffic animated charts.</p>
+                                <div class="project-tags"><span class="tag">JavaScript</span><span class="tag">Canvas API</span><span class="tag">CSS3</span></div>
+                            </div>
+                        </div>
+                        <div class="project-card">
+                            <div class="project-image">
+                                <img src="images/project4.jpg" alt="PC Diagnostic Tool" loading="lazy">
+                                <div class="project-overlay"><div class="project-actions">
+                                    <a href="http://pc-diagnostic.wuaze.com" class="project-btn btn-live" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt" aria-hidden="true"></i> Live Demo</a>
+                                    <button class="project-btn btn-details" onclick="showProjectModal('project4')"><i class="fas fa-info-circle" aria-hidden="true"></i> Details</button>
+                                </div></div>
+                            </div>
+                            <div class="project-content">
+                                <h3 class="project-title">PC Diagnostic Tool</h3>
+                                <p class="project-desc">Interactive PC hardware diagnostic simulator with component testing, error detection, and repair recommendations.</p>
+                                <div class="project-tags"><span class="tag">JavaScript</span><span class="tag">HTML5</span><span class="tag">CSS3</span></div>
+                            </div>
+                        </div>
+                        <div class="project-card">
+                            <div class="project-image">
+                                <img src="images/project_cisco1.png" alt="Multi-Branch Office Network" loading="lazy">
+                                <div class="project-overlay"><div class="project-actions">
+                                    <button class="project-btn btn-details" onclick="showProjectModal('project_cisco1')"><i class="fas fa-info-circle" aria-hidden="true"></i> Details</button>
+                                </div></div>
+                            </div>
+                            <div class="project-content">
+                                <h3 class="project-title">Multi-Branch Office Network</h3>
+                                <p class="project-desc">Cisco Packet Tracer — multi-branch office with routers, switches, wireless APs, and inter-branch routing across 3 buildings.</p>
+                                <div class="project-tags"><span class="tag">Cisco</span><span class="tag">Networking</span><span class="tag">IP Addressing</span></div>
+                            </div>
+                        </div>
+                        <div class="project-card">
+                            <div class="project-image">
+                                <img src="images/project_cisco2.png" alt="Multi-Area Network with Firewall" loading="lazy">
+                                <div class="project-overlay"><div class="project-actions">
+                                    <button class="project-btn btn-details" onclick="showProjectModal('project_cisco2')"><i class="fas fa-info-circle" aria-hidden="true"></i> Details</button>
+                                </div></div>
+                            </div>
+                            <div class="project-content">
+                                <h3 class="project-title">Multi-Area Network with Firewall</h3>
+                                <p class="project-desc">3-area hierarchical network with ISP, firewalls (550X), routers, and distribution/access layer switching.</p>
+                                <div class="project-tags"><span class="tag">Cisco</span><span class="tag">VLAN</span><span class="tag">Routing</span></div>
+                            </div>
+                        </div>
+                        <div class="project-card">
+                            <div class="project-image">
+                                <img src="images/project_cisco3.png" alt="Office Floor Plan Network" loading="lazy">
+                                <div class="project-overlay"><div class="project-actions">
+                                    <button class="project-btn btn-details" onclick="showProjectModal('project_cisco3')"><i class="fas fa-info-circle" aria-hidden="true"></i> Details</button>
+                                </div></div>
+                            </div>
+                            <div class="project-content">
+                                <h3 class="project-title">Office Floor Plan Network</h3>
+                                <p class="project-desc">Full office floor plan with department VLANs, IP phones, wireless APs, and DNS/DHCP/Mail servers.</p>
+                                <div class="project-tags"><span class="tag">Cisco</span><span class="tag">DHCP</span><span class="tag">DNS</span></div>
+                            </div>
                         </div>
                     </div>
-                    <div class="certificate-card" onclick="openLightbox('cert2')" role="button" tabindex="0" aria-label="View Computer Systems Servicing certificate" onkeydown="if(event.key==='Enter'||event.key===' ')openLightbox('cert2')">
-                        <div class="certificate-image">
-                            <img src="images/cert2.png" alt="Computer Systems Servicing Certificate — TESDA NC II" loading="lazy">
-                            <div class="certificate-overlay" aria-hidden="true"><i class="fas fa-expand"></i><span>Click to Enlarge</span></div>
+                </div>
+
+                <!-- Certificates Panel -->
+                <div id="tab-certs" class="portfolio-panel" role="tabpanel" hidden>
+                    <div class="certificates-grid">
+                        <div class="certificate-card" onclick="openLightbox('cert1')" role="button" tabindex="0" aria-label="View Networking Basics certificate" onkeydown="if(event.key==='Enter'||event.key===' ')openLightbox('cert1')">
+                            <div class="certificate-image">
+                                <img src="images/cert1.png" alt="Networking Basics Certificate — Cisco Networking Academy" loading="lazy">
+                                <div class="certificate-overlay" aria-hidden="true"><i class="fas fa-expand"></i><span>Click to Enlarge</span></div>
+                            </div>
+                            <div class="certificate-info">
+                                <h3>Networking Basics</h3>
+                                <p>Cisco Networking Academy</p>
+                                <span class="cert-date">Dec 2025</span>
+                            </div>
                         </div>
-                        <div class="certificate-info">
-                            <h3>Computer Systems Servicing</h3>
-                            <p>TESDA NC II — CSS</p>
-                            <span class="cert-date">Apr 2024</span>
+                        <div class="certificate-card" onclick="openLightbox('cert2')" role="button" tabindex="0" aria-label="View Computer Systems Servicing certificate" onkeydown="if(event.key==='Enter'||event.key===' ')openLightbox('cert2')">
+                            <div class="certificate-image">
+                                <img src="images/cert2.png" alt="Computer Systems Servicing Certificate — TESDA NC II" loading="lazy">
+                                <div class="certificate-overlay" aria-hidden="true"><i class="fas fa-expand"></i><span>Click to Enlarge</span></div>
+                            </div>
+                            <div class="certificate-info">
+                                <h3>Computer Systems Servicing</h3>
+                                <p>TESDA NC II — CSS</p>
+                                <span class="cert-date">Apr 2024</span>
+                            </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </section>
 
