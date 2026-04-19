@@ -16,7 +16,7 @@ ini_set('display_errors', 0);
 define('SMTP_HOST',      'smtp.gmail.com');
 define('SMTP_PORT',      587);
 define('SMTP_USER',      'lyshandavet@gmail.com');
-define('SMTP_PASS',      'sbzmjtypmfceduyg'); // Matches 16-char app password format
+define('SMTP_PASS',      'shhhkwfyqidizyfv'); // Updated to the latest app password
 define('MAIL_TO',        'lyshandavet@gmail.com');
 define('MAIL_FROM_NAME', 'Portfolio Contact Form');
 // ─────────────────────────────────────────────────────────────────────
@@ -73,12 +73,14 @@ if (class_exists('PHPMailer\PHPMailer\PHPMailer')) {
         $mail->Password   = SMTP_PASS;
         $mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = SMTP_PORT;
-        $mail->Timeout    = 15;
-        $mail->SMTPOptions = ['ssl' => [
-            'verify_peer'       => false,
-            'verify_peer_name'  => false,
-            'allow_self_signed' => true,
-        ]];
+        $mail->Timeout    = 20;
+        $mail->SMTPOptions = [
+            'ssl' => [
+                'verify_peer'       => false,
+                'verify_peer_name'  => false,
+                'allow_self_signed' => true,
+            ]
+        ];
         $mail->setFrom(SMTP_USER, MAIL_FROM_NAME);
         $mail->addAddress(MAIL_TO);
         $mail->addReplyTo($email, $name);

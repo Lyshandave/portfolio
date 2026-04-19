@@ -267,7 +267,7 @@ async function handleContactSubmit(e) {
 
 async function sendViaPHP(formData) {
     const ctrl  = new AbortController();
-    const timer = setTimeout(() => ctrl.abort(), 8000);
+    const timer = setTimeout(() => ctrl.abort(), 15000); // 15s timeout for SMTP operations
     try {
         const res  = await fetch('send.php', { method: 'POST', body: formData, signal: ctrl.signal });
         clearTimeout(timer);
@@ -362,21 +362,21 @@ const projectData = {
         desc: 'Interactive network topology visualization with drag-and-drop components, real-time packet simulation, and VLAN configuration.',
         features: ['Drag and drop network components', 'Real-time packet flow visualization', 'Sample topology templates', 'Interactive device connections'],
         tech: ['HTML5 Canvas', 'JavaScript', 'CSS3'],
-        demo: 'projects/network-simulator/', code: 'https://github.com/Lyshandave?tab=repositories'
+        demo: 'projects/network-simulator/', code: 'https://github.com/Lyshandave/network-simulator'
     },
     project2: {
         title: 'Server Monitor Dashboard', image: 'images/project2.jpg',
         desc: 'Real-time server monitoring dashboard with CPU, memory, disk, and network traffic animated charts.',
         features: ['Real-time CPU and memory monitoring', 'Animated charts and graphs', 'Service status tracking', 'Disk usage visualization'],
         tech: ['JavaScript', 'Canvas API', 'CSS3'],
-        demo: 'projects/server-dashboard/', code: 'https://github.com/Lyshandave?tab=repositories'
+        demo: 'projects/server-dashboard/', code: 'https://github.com/Lyshandave/server-dashboard'
     },
     project4: {
         title: 'PC Diagnostic Tool', image: 'images/project4.jpg',
         desc: 'Interactive PC hardware diagnostic simulator with component testing, error detection, and repair recommendations.',
         features: ['Visual PC component layout', 'Individual component tests', 'Diagnostic logging', 'Report generation'],
         tech: ['JavaScript', 'HTML5', 'CSS3'],
-        demo: 'projects/pc-diagnostic/', code: 'https://github.com/Lyshandave?tab=repositories'
+        demo: 'projects/pc-diagnostic/', code: 'https://github.com/Lyshandave/pc-diagnostic'
     },
     project_cisco1: {
         title: 'Multi-Branch Office Network', image: 'images/project_cisco1.png',

@@ -333,7 +333,7 @@ section { padding: 100px 0; position: relative; }
 
 /* Orbit */
 .hero-visual  { display: -webkit-flex; display: flex; -webkit-justify-content: center; justify-content: center; -webkit-align-items: center; align-items: center; }
-.tech-orbit   { position: relative; width: 350px; height: 350px; }
+.tech-orbit   { position: relative; width: 350px; height: 350px; transform-style: preserve-3d; will-change: transform; }
 .orbit-center {
   position: absolute; top: 50%; left: 50%;
   transform: translate(-50%,-50%);
@@ -347,16 +347,16 @@ section { padding: 100px 0; position: relative; }
   font-size: 2.5rem;
   color: #fff;
   box-shadow: var(--shadow-glow);
-  z-index: 2;
+  z-index: 5;
 }
 .orbit-ring {
   position: absolute; top: 50%; left: 50%;
-  transform: translate(-50%,-50%);
   border: 1px dashed var(--border-color);
   border-radius: 50%;
+  z-index: 1;
 }
-.ring-1 { width: 220px; height: 220px; -webkit-animation: orbit 15s linear infinite;         animation: orbit 15s linear infinite; }
-.ring-2 { width: 320px; height: 320px; -webkit-animation: orbit 20s linear infinite reverse; animation: orbit 20s linear infinite reverse; }
+.ring-1 { width: 220px; height: 220px; -webkit-animation: orbit 20s linear infinite;         animation: orbit 20s linear infinite; }
+.ring-2 { width: 320px; height: 320px; -webkit-animation: orbit 30s linear infinite reverse; animation: orbit 30s linear infinite reverse; }
 @-webkit-keyframes orbit { from { -webkit-transform: translate(-50%,-50%) rotate(0deg); } to { -webkit-transform: translate(-50%,-50%) rotate(360deg); } }
 @keyframes          orbit { from { transform: translate(-50%,-50%) rotate(0deg); } to { transform: translate(-50%,-50%) rotate(360deg); } }
 
@@ -1401,12 +1401,12 @@ section { padding: 100px 0; position: relative; }
   }
 
   /* Hero — orbit visible on mobile now */
-  .hero-visual      { display: -webkit-flex; display: flex; -webkit-justify-content: center; justify-content: center; margin-top: 32px; }
-  .tech-orbit       { width: 240px; height: 240px; }
+  .hero-visual      { display: -webkit-flex; display: flex; -webkit-justify-content: center; justify-content: center; margin-top: 32px; width: 100%; overflow: visible; }
+  .tech-orbit       { width: 240px; height: 240px; margin: 0 auto; }
   .orbit-center     { width: 70px; height: 70px; font-size: 1.8rem; }
   .ring-1           { width: 145px; height: 145px; }
   .ring-2           { width: 215px; height: 215px; }
-  .orbit-ring i     { font-size: 1.2rem; padding: 7px; }
+  .orbit-ring i     { font-size: 1.1rem; padding: 7px; }
   .hero-stats       { -webkit-flex-direction: row; flex-direction: row; gap: 28px; -webkit-justify-content: center; justify-content: center; }
   .stat-item        { -webkit-align-items: center; align-items: center; }
   .hero-actions     { -webkit-flex-direction: column; flex-direction: column; width: 100%; gap: 10px; }
@@ -1471,17 +1471,10 @@ section { padding: 100px 0; position: relative; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .gradient-orb,
-  .orbit-ring,
-  .ring-1,
-  .ring-2,
-  .orbit-ring i,
   .scroll-indicator,
   .wheel,
   .badge-dot,
-  .cursor,
-  .skill-card-v2,
-  .project-card,
-  .certificate-card {
+  .cursor {
     -webkit-animation: none !important;
     animation: none !important;
   }
@@ -1557,7 +1550,11 @@ section { padding: 100px 0; position: relative; }
 .hero-description { -webkit-animation: fadeUp 0.6s ease 0.5s both; animation: fadeUp 0.6s ease 0.5s both; }
 .hero-actions     { -webkit-animation: fadeUp 0.6s ease 0.6s both; animation: fadeUp 0.6s ease 0.6s both; }
 .hero-stats       { -webkit-animation: fadeUp 0.6s ease 0.7s both; animation: fadeUp 0.6s ease 0.7s both; }
-.hero-visual      { -webkit-animation: fadeUp 0.7s ease 0.5s both; animation: fadeUp 0.7s ease 0.5s both; }
+.hero-visual      { opacity: 1; transform: translateY(0); }
+/* Trigger entrance separately if needed, but avoid blocking with a delay-based animation on visual */
+@media (min-width: 1025px) {
+  .hero-visual { -webkit-animation: fadeUp 0.8s ease 0.4s both; animation: fadeUp 0.8s ease 0.4s both; }
+}
 @-webkit-keyframes fadeUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
 @keyframes          fadeUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
 
