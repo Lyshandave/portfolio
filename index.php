@@ -609,6 +609,7 @@
     <button class="scroll-top" id="scrollTop" aria-label="Scroll to top"><i class="fas fa-arrow-up" aria-hidden="true"></i></button>
 
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="js/projects.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
