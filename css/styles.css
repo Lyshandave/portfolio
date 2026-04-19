@@ -398,20 +398,7 @@ section { padding: 100px 0; position: relative; }
 @keyframes          co2c { from { transform:translateY(50%)  rotate(0deg);  } to { transform:translateY(50%)  rotate(360deg);  } }
 
 /* Scroll indicator */
-.scroll-indicator {
-  position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
-  display: -webkit-flex; display: flex;
-  -webkit-flex-direction: column; flex-direction: column;
-  -webkit-align-items: center; align-items: center;
-  gap: 10px; color: var(--text-muted); font-size: 0.75rem;
-  -webkit-animation: bounce 2s infinite; animation: bounce 2s infinite;
-}
-.mouse { width:24px; height:40px; border:2px solid var(--border-color); border-radius:50px; display:-webkit-flex; display:flex; -webkit-justify-content:center; justify-content:center; padding-top:8px; }
-.wheel { width:4px; height:8px; background:var(--primary); border-radius:50px; -webkit-animation:scrollwheel 2s infinite; animation:scrollwheel 2s infinite; }
-@-webkit-keyframes bounce { 0%,100% { transform:translateX(-50%) translateY(0); } 50% { transform:translateX(-50%) translateY(10px); } }
-@keyframes bounce          { 0%,100% { transform:translateX(-50%) translateY(0); } 50% { transform:translateX(-50%) translateY(10px); } }
-@-webkit-keyframes scrollwheel { 0% { opacity:1; transform:translateY(0);   } 100% { opacity:0; transform:translateY(10px); } }
-@keyframes scrollwheel          { 0% { opacity:1; transform:translateY(0);   } 100% { opacity:0; transform:translateY(10px); } }
+
 
 /* ── 7. Section headers ────────────────────────────────────────────────────── */
 .section-header { text-align: center; margin-bottom: clamp(36px, 6vw, 60px); }
