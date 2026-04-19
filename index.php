@@ -273,7 +273,7 @@
                         <div class="project-image">
                             <img src="images/project1.jpg" alt="Network Simulator" loading="lazy">
                             <div class="project-overlay"><div class="project-actions">
-                                <a href="projects/network-simulator/" class="project-btn btn-live"><i class="fas fa-external-link-alt" aria-hidden="true"></i> Live Demo</a>
+                                <a href="http://network-simulator.wuaze.com" class="project-btn btn-live" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt" aria-hidden="true"></i> Live Demo</a>
                                 <button class="project-btn btn-details" onclick="showProjectModal('project1')"><i class="fas fa-info-circle" aria-hidden="true"></i> Details</button>
                             </div></div>
                         </div>
@@ -287,7 +287,7 @@
                         <div class="project-image">
                             <img src="images/project2.jpg" alt="Server Monitor Dashboard" loading="lazy">
                             <div class="project-overlay"><div class="project-actions">
-                                <a href="projects/server-dashboard/" class="project-btn btn-live"><i class="fas fa-external-link-alt" aria-hidden="true"></i> Live Demo</a>
+                                <a href="http://server-dashboard.wuaze.com" class="project-btn btn-live" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt" aria-hidden="true"></i> Live Demo</a>
                                 <button class="project-btn btn-details" onclick="showProjectModal('project2')"><i class="fas fa-info-circle" aria-hidden="true"></i> Details</button>
                             </div></div>
                         </div>
@@ -301,7 +301,7 @@
                         <div class="project-image">
                             <img src="images/project4.jpg" alt="PC Diagnostic Tool" loading="lazy">
                             <div class="project-overlay"><div class="project-actions">
-                                <a href="projects/pc-diagnostic/" class="project-btn btn-live"><i class="fas fa-external-link-alt" aria-hidden="true"></i> Live Demo</a>
+                                <a href="http://pc-diagnostic.wuaze.com" class="project-btn btn-live" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt" aria-hidden="true"></i> Live Demo</a>
                                 <button class="project-btn btn-details" onclick="showProjectModal('project4')"><i class="fas fa-info-circle" aria-hidden="true"></i> Details</button>
                             </div></div>
                         </div>
