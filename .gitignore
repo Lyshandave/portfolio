@@ -1,0 +1,9 @@
+# Private config — contains API key
+config.php
+
+# Data files (user content)
+data/
+
+# System files
+.DS_Store
+Thumbs.db

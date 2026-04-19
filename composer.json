@@ -1,0 +1,8 @@
+{
+    "name": "lyshan/portfolio",
+    "description": "Portfolio website with PHPMailer contact form",
+    "require": {
+        "phpmailer/phpmailer": "^7.0",
+        "psr/log": "^3.0"
+    }
+}

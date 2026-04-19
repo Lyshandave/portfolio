@@ -1,0 +1,237 @@
+/* IT Ticket System — style.css */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg:      #f1f5f9;
+  --white:   #ffffff;
+  --primary: #0ea5e9;
+  --primary-dk: #0284c7;
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --danger:  #ef4444;
+  --text:    #1e293b;
+  --muted:   #64748b;
+  --border:  #e2e8f0;
+  --hover:   #f8fafc;
+  --radius:  12px;
+  --tr:      0.25s ease;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--bg);
+  min-height: 100vh;
+  color: var(--text);
+}
+
+/* ── Header ─────────────────────────────── */
+.header {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dk));
+  padding: 14px 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.header h1 { font-size: 1.4rem; }
+.back-btn {
+  background: #fff;
+  color: var(--primary);
+  padding: 9px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: opacity var(--tr);
+}
+.back-btn:hover { opacity: 0.85; }
+
+/* ── Container ──────────────────────────── */
+.container { max-width: 1200px; margin: 0 auto; padding: 28px 24px; }
+
+/* ── Stats bar ──────────────────────────── */
+.stats-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-bottom: 28px;
+}
+.stat-card {
+  background: var(--white);
+  padding: 22px;
+  border-radius: var(--radius);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.stat-card h3 { font-size: 0.85rem; color: var(--muted); margin-bottom: 8px; }
+.stat-card .number { font-size: 2.4rem; font-weight: 700; }
+.stat-card.open     .number { color: var(--primary); }
+.stat-card.pending  .number { color: var(--warning); }
+.stat-card.resolved .number { color: var(--success); }
+.stat-card.high     .number { color: var(--danger);  }
+
+/* ── Actions bar ────────────────────────── */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+.btn {
+  padding: 11px 22px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.92rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  transition: all var(--tr);
+  font-family: inherit;
+}
+.btn-primary   { background: var(--primary); color: #fff; }
+.btn-primary:hover   { background: var(--primary-dk); }
+.btn-secondary { background: var(--white); color: #475569; border: 1px solid var(--border); }
+.btn-secondary:hover { background: var(--hover); }
+
+/* ── Ticket list ────────────────────────── */
+.ticket-list {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  overflow: hidden;
+}
+.ticket-header,
+.ticket-item {
+  display: grid;
+  grid-template-columns: 72px 2fr 1fr 90px 110px 110px;
+  padding: 16px 20px;
+  align-items: center;
+  gap: 12px;
+}
+.ticket-header {
+  background: var(--hover);
+  border-bottom: 1px solid var(--border);
+  font-weight: 600;
+  color: #475569;
+  font-size: 0.85rem;
+}
+.ticket-item {
+  border-bottom: 1px solid #f1f5f9;
+  transition: background var(--tr);
+  font-size: 0.9rem;
+}
+.ticket-item:last-child { border-bottom: none; }
+.ticket-item:hover { background: var(--hover); }
+
+.ticket-id    { font-family: monospace; color: var(--primary); font-weight: 600; }
+.ticket-title { font-weight: 600; color: var(--text); margin-bottom: 3px; }
+.ticket-desc  { font-size: 0.8rem; color: var(--muted); }
+
+/* ── Badges ─────────────────────────────── */
+.priority, .status {
+  padding: 4px 11px;
+  border-radius: 20px;
+  font-size: 0.73rem;
+  font-weight: 600;
+  display: inline-block;
+  text-transform: capitalize;
+}
+.priority.high   { background: #fef2f2; color: var(--danger);  }
+.priority.medium { background: #fffbeb; color: var(--warning); }
+.priority.low    { background: #f0fdf4; color: var(--success); }
+.status.open        { background: #e0f2fe; color: var(--primary); }
+.status.in-progress { background: #fef3c7; color: var(--warning); }
+.status.resolved    { background: #dcfce7; color: var(--success); }
+
+/* ── Assignee ───────────────────────────── */
+.assignee { display: flex; align-items: center; gap: 8px; }
+.avatar {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), #8b5cf6);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 0.75rem; font-weight: 600;
+  flex-shrink: 0;
+}
+
+/* ── Modal ──────────────────────────────── */
+.modal {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.modal.active { display: flex; }
+.modal-content {
+  background: var(--white);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 480px;
+  padding: 28px;
+  animation: fadeIn 0.2s ease;
+}
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.modal-header h2 { font-size: 1.2rem; color: var(--text); }
+.close-btn {
+  background: none; border: none;
+  font-size: 1.4rem; cursor: pointer; color: var(--muted);
+  line-height: 1; padding: 4px;
+}
+.close-btn:hover { color: var(--danger); }
+
+/* ── Form ───────────────────────────────── */
+.form-group { margin-bottom: 18px; }
+.form-group label { display: block; margin-bottom: 7px; color: #475569; font-weight: 500; font-size: 0.9rem; }
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 11px 13px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.92rem;
+  font-family: inherit;
+  color: var(--text);
+  background: var(--white);
+  transition: border-color var(--tr);
+}
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(14,165,233,0.12);
+}
+.form-group textarea { resize: vertical; min-height: 100px; }
+
+/* ── Responsive ─────────────────────────── */
+@media (max-width: 900px) {
+  .stats-bar { grid-template-columns: repeat(2, 1fr); }
+  .ticket-header,
+  .ticket-item { grid-template-columns: 60px 1fr 80px; gap: 8px; font-size: 0.85rem; }
+  .ticket-header > *:nth-child(n+4),
+  .ticket-item  > *:nth-child(n+4) { display: none; }
+}
+@media (max-width: 480px) {
+  .container  { padding: 16px; }
+  .stats-bar  { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .stat-card  { padding: 16px; }
+  .stat-card .number { font-size: 2rem; }
+  .actions    { flex-direction: column; }
+  .btn        { width: 100%; justify-content: center; }
+}
