@@ -1423,7 +1423,7 @@ section { padding: 100px 0; position: relative; }
   }
 
   /* Hero — orbit visible on mobile now */
-  .hero-visual      { display: -webkit-flex; display: flex; -webkit-justify-content: center; justify-content: center; margin-top: 32px; width: 100%; overflow: visible; }
+  .hero-visual      { display: -webkit-flex; display: flex; -webkit-justify-content: center; justify-content: center; margin-top: 10px; width: 100%; overflow: visible; }
   .tech-orbit       { width: 240px; height: 240px; margin: 0 auto; }
   .orbit-center     { width: 70px; height: 70px; font-size: 1.8rem; }
   .ring-1           { width: 145px; height: 145px; }
@@ -1431,8 +1431,9 @@ section { padding: 100px 0; position: relative; }
   .orbit-ring i     { font-size: 1.1rem; padding: 7px; }
   .hero-stats       { -webkit-flex-direction: row; flex-direction: row; gap: 28px; -webkit-justify-content: center; justify-content: center; }
   .stat-item        { -webkit-align-items: center; align-items: center; }
-  .hero-actions     { -webkit-flex-direction: column; flex-direction: column; width: 100%; gap: 10px; }
-  .hero-actions .btn { width: 100%; -webkit-justify-content: center; justify-content: center; }
+  .hero-actions     { -webkit-flex-direction: row; flex-direction: row; gap: 10px; -webkit-justify-content: center; justify-content: center; width: 100%; }
+  .hero-actions .btn { -webkit-flex: 1; flex: 1; padding: 12px 10px; font-size: 0.85rem; -webkit-justify-content: center; justify-content: center; min-width: 140px; }
+  .scroll-indicator { display: none !important; }
   .stat-label       { white-space: normal; text-align: center; }
 
   /* Image */
@@ -1471,7 +1472,8 @@ section { padding: 100px 0; position: relative; }
   .skills-grid-v2 { gap: 10px; }
 
   /* Hero */
-  .hero-actions   { gap: 10px; }
+  .hero-actions   { gap: 8px; -webkit-flex-direction: row; flex-direction: row; }
+  .hero-actions .btn { padding: 11px 6px; font-size: 0.72rem; min-width: 0; -webkit-flex: 1; flex: 1; }
   .tech-orbit     { width: 200px; height: 200px; }
   .orbit-center   { width: 60px; height: 60px; font-size: 1.5rem; }
   .ring-1         { width: 120px; height: 120px; }
