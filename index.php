@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -18,21 +19,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
 
     <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
         <div class="nav-container">
             <div class="nav-menu" id="navMenu">
-                <a href="#home"         class="nav-link active">Home</a>
-                <a href="#about"        class="nav-link">About</a>
-                <a href="#skills"       class="nav-link">Skills</a>
-                <a href="#projects"     class="nav-link">Projects</a>
-                <a href="#contact"      class="nav-link">Contact</a>
-                <a href="#comments"     class="nav-link">Comments</a>
+                <a href="#home" class="nav-link active"><i class="fas fa-home" aria-hidden="true"></i> <span>Home</span></a>
+                <a href="#about" class="nav-link"><i class="fas fa-user" aria-hidden="true"></i> <span>About</span></a>
+                <a href="#skills" class="nav-link"><i class="fas fa-laptop-code" aria-hidden="true"></i> <span>Skills</span></a>
+                <a href="#projects" class="nav-link"><i class="fas fa-project-diagram" aria-hidden="true"></i> <span>Projects</span></a>
+                <a href="#contact" class="nav-link"><i class="fas fa-paper-plane" aria-hidden="true"></i> <span>Contact</span></a>
+                <a href="#comments" class="nav-link"><i class="fas fa-comments" aria-hidden="true"></i> <span>Comments</span></a>
             </div>
             <div class="nav-actions">
                 <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-                    <i class="fas fa-sun"  aria-hidden="true"></i>
+                    <i class="fas fa-sun" aria-hidden="true"></i>
                     <i class="fas fa-moon" aria-hidden="true"></i>
                 </button>
                 <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMenu">
@@ -121,7 +123,7 @@
                         <div class="image-frame">
                             <div class="profile-img-wrap" id="profileImgWrap" aria-label="Profile photo">
                                 <img class="profile-img profile-light" src="images/profile-light.jpg" alt="Lyshan Dave - Light Mode" draggable="false">
-                                <img class="profile-img profile-dark"  src="images/profile-dark.png"  alt="Lyshan Dave - Dark Mode"  draggable="false">
+                                <img class="profile-img profile-dark" src="images/profile-dark.png" alt="Lyshan Dave - Dark Mode" draggable="false">
                             </div>
 
                         </div>
@@ -153,13 +155,13 @@
 
                 <!-- Category Tabs -->
                 <div class="skills-tabs" role="tablist" aria-label="Skill categories">
-                    <button class="skills-tab active" role="tab" aria-selected="true"  data-tab="frontend"    aria-controls="tab-frontend">
+                    <button class="skills-tab active" role="tab" aria-selected="true" data-tab="frontend" aria-controls="tab-frontend">
                         <i class="fas fa-code" aria-hidden="true"></i> Frontend
                     </button>
-                    <button class="skills-tab"        role="tab" aria-selected="false" data-tab="backend"     aria-controls="tab-backend">
+                    <button class="skills-tab" role="tab" aria-selected="false" data-tab="backend" aria-controls="tab-backend">
                         <i class="fas fa-database" aria-hidden="true"></i> Backend
                     </button>
-                    <button class="skills-tab"        role="tab" aria-selected="false" data-tab="networking"  aria-controls="tab-networking">
+                    <button class="skills-tab" role="tab" aria-selected="false" data-tab="networking" aria-controls="tab-networking">
                         <i class="fas fa-network-wired" aria-hidden="true"></i> Network
                     </button>
                 </div>
@@ -267,10 +269,10 @@
 
                 <!-- Portfolio Tabs -->
                 <div class="portfolio-tabs" role="tablist" aria-label="Portfolio categories">
-                    <button class="portfolio-tab active" role="tab" aria-selected="true"  data-tab="featured"    aria-controls="tab-featured">
+                    <button class="portfolio-tab active" role="tab" aria-selected="true" data-tab="featured" aria-controls="tab-featured">
                         <i class="fas fa-rocket" aria-hidden="true"></i> Projects
                     </button>
-                    <button class="portfolio-tab"        role="tab" aria-selected="false" data-tab="certs"       aria-controls="tab-certs">
+                    <button class="portfolio-tab" role="tab" aria-selected="false" data-tab="certs" aria-controls="tab-certs">
                         <i class="fas fa-certificate" aria-hidden="true"></i> Certificates
                     </button>
                 </div>
@@ -281,10 +283,12 @@
                         <div class="project-card">
                             <div class="project-image">
                                 <img src="images/project1.jpg" alt="Network Simulator" loading="lazy">
-                                <div class="project-overlay"><div class="project-actions">
-                                    <a href="http://network-simulator.wuaze.com" class="project-btn btn-live" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt" aria-hidden="true"></i> Live Demo</a>
-                                    <button class="project-btn btn-details" onclick="showProjectModal('project1')"><i class="fas fa-info-circle" aria-hidden="true"></i> Details</button>
-                                </div></div>
+                                <div class="project-overlay">
+                                    <div class="project-actions">
+                                        <a href="http://network-simulator.wuaze.com" class="project-btn btn-live" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt" aria-hidden="true"></i> Live Demo</a>
+                                        <button class="project-btn btn-details" onclick="showProjectModal('project1')"><i class="fas fa-info-circle" aria-hidden="true"></i> Details</button>
+                                    </div>
+                                </div>
                             </div>
                             <div class="project-content">
                                 <h3 class="project-title">Network Simulator</h3>
@@ -295,10 +299,12 @@
                         <div class="project-card">
                             <div class="project-image">
                                 <img src="images/project2.jpg" alt="Server Monitor Dashboard" loading="lazy">
-                                <div class="project-overlay"><div class="project-actions">
-                                    <a href="http://server-dashboard.wuaze.com" class="project-btn btn-live" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt" aria-hidden="true"></i> Live Demo</a>
-                                    <button class="project-btn btn-details" onclick="showProjectModal('project2')"><i class="fas fa-info-circle" aria-hidden="true"></i> Details</button>
-                                </div></div>
+                                <div class="project-overlay">
+                                    <div class="project-actions">
+                                        <a href="http://server-dashboard.wuaze.com" class="project-btn btn-live" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt" aria-hidden="true"></i> Live Demo</a>
+                                        <button class="project-btn btn-details" onclick="showProjectModal('project2')"><i class="fas fa-info-circle" aria-hidden="true"></i> Details</button>
+                                    </div>
+                                </div>
                             </div>
                             <div class="project-content">
                                 <h3 class="project-title">Server Monitor Dashboard</h3>
@@ -309,10 +315,12 @@
                         <div class="project-card">
                             <div class="project-image">
                                 <img src="images/project4.jpg" alt="PC Diagnostic Tool" loading="lazy">
-                                <div class="project-overlay"><div class="project-actions">
-                                    <a href="http://pc-diagnostic.wuaze.com" class="project-btn btn-live" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt" aria-hidden="true"></i> Live Demo</a>
-                                    <button class="project-btn btn-details" onclick="showProjectModal('project4')"><i class="fas fa-info-circle" aria-hidden="true"></i> Details</button>
-                                </div></div>
+                                <div class="project-overlay">
+                                    <div class="project-actions">
+                                        <a href="http://pc-diagnostic.wuaze.com" class="project-btn btn-live" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt" aria-hidden="true"></i> Live Demo</a>
+                                        <button class="project-btn btn-details" onclick="showProjectModal('project4')"><i class="fas fa-info-circle" aria-hidden="true"></i> Details</button>
+                                    </div>
+                                </div>
                             </div>
                             <div class="project-content">
                                 <h3 class="project-title">PC Diagnostic Tool</h3>
@@ -323,9 +331,11 @@
                         <div class="project-card">
                             <div class="project-image">
                                 <img src="images/project_cisco1.png" alt="Multi-Branch Office Network" loading="lazy">
-                                <div class="project-overlay"><div class="project-actions">
-                                    <button class="project-btn btn-details" onclick="showProjectModal('project_cisco1')"><i class="fas fa-info-circle" aria-hidden="true"></i> Details</button>
-                                </div></div>
+                                <div class="project-overlay">
+                                    <div class="project-actions">
+                                        <button class="project-btn btn-details" onclick="showProjectModal('project_cisco1')"><i class="fas fa-info-circle" aria-hidden="true"></i> Details</button>
+                                    </div>
+                                </div>
                             </div>
                             <div class="project-content">
                                 <h3 class="project-title">Multi-Branch Office Network</h3>
@@ -336,9 +346,11 @@
                         <div class="project-card">
                             <div class="project-image">
                                 <img src="images/project_cisco2.png" alt="Multi-Area Network with Firewall" loading="lazy">
-                                <div class="project-overlay"><div class="project-actions">
-                                    <button class="project-btn btn-details" onclick="showProjectModal('project_cisco2')"><i class="fas fa-info-circle" aria-hidden="true"></i> Details</button>
-                                </div></div>
+                                <div class="project-overlay">
+                                    <div class="project-actions">
+                                        <button class="project-btn btn-details" onclick="showProjectModal('project_cisco2')"><i class="fas fa-info-circle" aria-hidden="true"></i> Details</button>
+                                    </div>
+                                </div>
                             </div>
                             <div class="project-content">
                                 <h3 class="project-title">Multi-Area Network with Firewall</h3>
@@ -349,9 +361,11 @@
                         <div class="project-card">
                             <div class="project-image">
                                 <img src="images/project_cisco3.png" alt="Office Floor Plan Network" loading="lazy">
-                                <div class="project-overlay"><div class="project-actions">
-                                    <button class="project-btn btn-details" onclick="showProjectModal('project_cisco3')"><i class="fas fa-info-circle" aria-hidden="true"></i> Details</button>
-                                </div></div>
+                                <div class="project-overlay">
+                                    <div class="project-actions">
+                                        <button class="project-btn btn-details" onclick="showProjectModal('project_cisco3')"><i class="fas fa-info-circle" aria-hidden="true"></i> Details</button>
+                                    </div>
+                                </div>
                             </div>
                             <div class="project-content">
                                 <h3 class="project-title">Office Floor Plan Network</h3>
@@ -428,9 +442,9 @@
                             </div>
                         </div>
                         <div class="contact-social">
-                            <a href="https://www.facebook.com/Dave062"           class="social-link" aria-label="Facebook"  target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"  aria-hidden="true"></i></a>
-                            <a href="https://github.com/Lyshandave"              class="social-link" aria-label="GitHub"    target="_blank" rel="noopener noreferrer"><i class="fab fa-github"      aria-hidden="true"></i></a>
-                            <a href="https://www.instagram.com/lyshan_dave/"     class="social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"   aria-hidden="true"></i></a>
+                            <a href="https://www.facebook.com/Dave062" class="social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+                            <a href="https://github.com/Lyshandave" class="social-link" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i></a>
+                            <a href="https://www.instagram.com/lyshan_dave/" class="social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram" aria-hidden="true"></i></a>
                             <a href="https://www.linkedin.com/in/lyshan-dave-tomo-09166337b/" class="social-link" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
                         </div>
                     </div>
@@ -485,7 +499,7 @@
                             <div class="inline-rating-right">
                                 <div class="star-picker" id="starPicker" role="group" aria-label="Select a star rating">
                                     <?php for ($i = 1; $i <= 5; $i++): ?>
-                                    <button class="star-btn" data-value="<?= $i ?>" aria-label="<?= $i ?> star<?= $i > 1 ? 's' : '' ?>" type="button">&#9733;</button>
+                                        <button class="star-btn" data-value="<?= $i ?>" aria-label="<?= $i ?> star<?= $i > 1 ? 's' : '' ?>" type="button">&#9733;</button>
                                     <?php endfor; ?>
                                 </div>
                                 <button class="rating-submit-btn" id="ratingSubmitBtn" disabled type="button">Submit</button>
@@ -519,12 +533,14 @@
                                 <span class="rating-total" id="ratingTotal">No ratings yet</span>
                             </div>
                             <div class="rating-bars" id="ratingBars">
-                                <?php foreach ([5,4,3,2,1] as $n): ?>
-                                <div class="rating-bar-row">
-                                    <span class="rating-bar-label"><?= $n ?> <i class="fas fa-star" aria-hidden="true"></i></span>
-                                    <div class="rating-bar-track"><div class="rating-bar-fill" id="ratingBar<?= $n ?>"></div></div>
-                                    <span class="rating-bar-count" id="ratingCount<?= $n ?>">0</span>
-                                </div>
+                                <?php foreach ([5, 4, 3, 2, 1] as $n): ?>
+                                    <div class="rating-bar-row">
+                                        <span class="rating-bar-label"><?= $n ?> <i class="fas fa-star" aria-hidden="true"></i></span>
+                                        <div class="rating-bar-track">
+                                            <div class="rating-bar-fill" id="ratingBar<?= $n ?>"></div>
+                                        </div>
+                                        <span class="rating-bar-count" id="ratingCount<?= $n ?>">0</span>
+                                    </div>
                                 <?php endforeach; ?>
                             </div>
                         </div>
@@ -556,10 +572,6 @@
             <button class="modal-close" onclick="closeModal('resumeModal')" aria-label="Close resume"><i class="fas fa-times" aria-hidden="true"></i></button>
             <div class="resume-modal-inner">
                 <img src="images/resume.png" alt="Resume — Lyshan Dave B. Tomo">
-                <div class="resume-modal-actions">
-                    <a href="images/resume.png" download="Resume-Lyshan-Dave-Tomo.png" class="btn btn-primary"><i class="fas fa-download" aria-hidden="true"></i> Download</a>
-                    <button class="btn btn-secondary" onclick="closeModal('resumeModal')"><i class="fas fa-arrow-left" aria-hidden="true"></i> Back</button>
-                </div>
             </div>
         </div>
     </div>
@@ -600,6 +612,12 @@
                 <div class="chat-bubble">Hey! I'm Dave's assistant. Ask me anything about his skills, projects, or contact info — in English or Tagalog! 😊</div>
             </div>
         </div>
+        <div class="chatbot-suggestions" id="chatbotSuggestions">
+            <button class="suggestion-chip" data-query="Sino si Dave?">Sino si Dave?</button>
+            <button class="suggestion-chip" data-query="What are your skills?">Skills</button>
+            <button class="suggestion-chip" data-query="Show me your projects">Projects</button>
+            <button class="suggestion-chip" data-query="How to contact you?">Contact</button>
+        </div>
         <div class="chatbot-input-row">
             <input type="text" id="chatbotInput" placeholder="Ask something…" autocomplete="off" maxlength="300" aria-label="Chat message">
             <button id="chatbotSend" aria-label="Send message"><i class="fas fa-paper-plane" aria-hidden="true"></i></button>
@@ -617,4 +635,5 @@
     <script src="js/projects.js"></script>
     <script src="js/main.js"></script>
 </body>
+
 </html>

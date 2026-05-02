@@ -847,6 +847,10 @@ if (scrollTopBtn) {
     let isOpen   = false;
     let isTyping = false;
     let turnCount = 0;
+    
+    // ── Persistent History ──
+    const HISTORY_KEY = 'chatbot_history_v2';
+    let chatHistory = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
 
     // ── Knowledge base about Dave ──────────────────────────
     const daveFacts = {
@@ -909,7 +913,8 @@ if (scrollTopBtn) {
 
     // ── Human-like response delays ─────────────────────────
     function thinkTime(text) {
-        return Math.min(1800, 600 + text.length * 12 + Math.random() * 500);
+        // Faster: min 300ms, max 1200ms
+        return Math.min(1200, 300 + text.length * 5 + Math.random() * 200);
     }
 
     // ── Response engine ────────────────────────────────────
@@ -934,7 +939,7 @@ if (scrollTopBtn) {
         }
 
         // ── Skills ──
-        if (/\b(skill|marunong|alam|expert|speciali|technology|tech|stack|programming|coding|tools)\b/.test(msg)) {
+        if (/\b(skill|marunong|alam|expert|speciali|technology|tech|stack|programming|coding|tools)/.test(msg)) {
             const skillList = daveFacts.skills.slice(0, 8).join(', ');
             const en = `Dave's tech arsenal is impressive! 💪 He's skilled in: ${skillList}, and more! He's especially strong in Cisco networking, Linux systems, and full-stack web dev. Want details on any specific skill?`;
             const tg = `Maraming skills si Dave! 💪 Kabilang ang: ${skillList}, at marami pa! Pinaka-malakas siya sa Cisco networking, Linux systems, at web development. Gusto mo bang malaman ang detalye ng isang partikular na skill?`;
@@ -942,7 +947,7 @@ if (scrollTopBtn) {
         }
 
         // ── Projects ──
-        if (/\b(project|gawa|built|created|portfolio|work|sample|demo)\b/.test(msg)) {
+        if (/\b(project|gawa|built|created|portfolio|work|sample|demo)/.test(msg)) {
             const projNames = daveFacts.projects.map(p => p.name).join(', ');
             const en = `Dave has built some really cool stuff! 🚀 His projects include: ${projNames}. His Cisco networking projects show deep knowledge of enterprise networks. Want to know more about any specific project?`;
             const tg = `Maraming magagandang projects si Dave! 🚀 Kasama ang: ${projNames}. Ang kanyang Cisco projects ay nagpapakita ng malalim na kaalaman sa enterprise networks. Gusto mo bang malaman pa ang tungkol sa isang specific na project?`;
@@ -1099,7 +1104,12 @@ if (scrollTopBtn) {
         container.classList.toggle('open', isOpen);
         container.setAttribute('aria-hidden', !isOpen);
         toggle.setAttribute('aria-expanded', isOpen);
-        if (isOpen) { badge.style.display = 'none'; input.focus(); }
+        if (isOpen) { 
+            badge.style.display = 'none'; 
+            input.focus();
+            // Scroll to bottom when opening if there is history
+            messages.scrollTop = messages.scrollHeight;
+        }
     });
 
     closeBtn.addEventListener('click', () => {
@@ -1109,42 +1119,120 @@ if (scrollTopBtn) {
         toggle.setAttribute('aria-expanded', 'false');
     });
 
-    sendBtn.addEventListener('click', sendMessage);
+    sendBtn.addEventListener('click', () => sendMessage());
     input.addEventListener('keydown', e => {
         if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
     });
 
-    async function sendMessage() {
-        const text = input.value.trim();
+    const suggestions = document.getElementById('chatbotSuggestions');
+    if (suggestions) {
+        suggestions.addEventListener('click', e => {
+            const chip = e.target.closest('.suggestion-chip');
+            if (chip && !isTyping) sendMessage(chip.dataset.query);
+        });
+    }
+
+    async function sendMessage(overrideText) {
+        const text = (typeof overrideText === 'string' ? overrideText : input.value).trim();
         if (!text || isTyping) return;
 
         appendMessage(text, 'user');
-        input.value = '';
+        if (!overrideText) input.value = '';
         turnCount++;
         isTyping = true;
 
         const typingEl = appendTyping();
-        const reply    = getResponse(text);
-        const delay    = thinkTime(reply);
+        
+        // 1. Try local rules for instant speed (greetings, simple facts)
+        let reply = getLocalResponse(text);
+        let usedAI = false;
 
-        await new Promise(r => setTimeout(r, delay));
+        // 2. If no specific local rule, use Gemini AI
+        if (!reply) {
+            try {
+                const aiRes = await fetch('gemini.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ messages: chatHistory.slice(-10) }) // send last 10 msgs for context
+                });
+                const data = await aiRes.json();
+                if (data.reply) {
+                    reply = data.reply;
+                    usedAI = true;
+                } else {
+                    reply = "I'm having a bit of trouble: " + (data.error || "Brain fog! 🧠") + " Try again in a second!";
+                }
+            } catch (err) {
+                reply = "I'm offline for a moment. Please check your connection! 🌐";
+            }
+        }
+
+        const delay = usedAI ? 200 : thinkTime(reply); // Gemini already has network delay
+        if (delay > 0) await new Promise(r => setTimeout(r, delay));
+        
         typingEl.remove();
         appendMessage(reply, 'bot');
         isTyping = false;
     }
 
+    // Rename original getResponse to getLocalResponse and filter out fallbacks
+    function getLocalResponse(userMsg) {
+        const msg = userMsg.toLowerCase().trim();
+        const tl  = isTagalog(userMsg);
+
+        // Greetings
+        if (/^(hi|hello|hey|good\s*(morning|afternoon|evening|day)|sup|yo)\b/.test(msg) ||
+            /^(hoy|oy|helo|kamusta|kumusta|magandang\s*(umaga|hapon|gabi|araw))/.test(msg)) {
+            const en = ["Hey there! 👋 I'm Dave's assistant. What can I help you with?", "Hello! 😊 How can I help you today?", "Hey! Great to see you. Any questions about Dave?"];
+            const tg = ["Hoy! 👋 Ako ang assistant ni Dave. Anong maipaglilingkod ko?", "Kamusta! 😊 Paano kita matutulungan ngayon?", "Hello! May mga tanong ka ba tungkol kay Dave?"];
+            return tl ? pick(tg) : pick(en);
+        }
+
+        // Only return specific facts, return null for general questions to trigger AI
+        const response = getResponse(userMsg);
+        
+        // If the response is one of the generic fallbacks, return null to use AI instead
+        const fallbacks = [
+            "Hindi ako sigurado tungkol sa iyon", "Kawili-wiling tanong!", "Maaaring wala akong specific na info",
+            "Hmm, I'm not sure", "That's an interesting question!", "I might not have that specific info"
+        ];
+        
+        const isFallback = fallbacks.some(f => response.includes(f));
+        return isFallback ? null : response;
+    }
+
     function appendMessage(text, role) {
+        // Save to history
+        chatHistory.push({ role, content: text });
+        if (chatHistory.length > 50) chatHistory.shift(); // Limit history size
+        localStorage.setItem(HISTORY_KEY, JSON.stringify(chatHistory));
+
         const div    = document.createElement('div');
         div.className = 'chat-msg ' + role;
         const bubble = document.createElement('div');
         bubble.className = 'chat-bubble';
-        // Support line breaks in bot messages
         bubble.style.whiteSpace = 'pre-line';
         bubble.textContent = text;
         div.appendChild(bubble);
         messages.appendChild(div);
         messages.scrollTop = messages.scrollHeight;
         return div;
+    }
+
+    // ── Load History on Init ──
+    if (chatHistory.length > 0) {
+        messages.innerHTML = ''; // clear initial msg if history exists
+        chatHistory.forEach(m => {
+            const div = document.createElement('div');
+            div.className = 'chat-msg ' + m.role;
+            const bubble = document.createElement('div');
+            bubble.className = 'chat-bubble';
+            bubble.style.whiteSpace = 'pre-line';
+            bubble.textContent = m.content;
+            div.appendChild(bubble);
+            messages.appendChild(div);
+        });
+        messages.scrollTop = messages.scrollHeight;
     }
 
     function appendTyping() {
