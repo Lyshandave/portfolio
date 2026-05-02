@@ -5,12 +5,21 @@
  */
 
 header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Origin: *'); // Consider restricting this to your own domain for high security
 header('Access-Control-Allow-Methods: POST');
+header('X-Frame-Options: DENY');
+header('X-Content-Type-Options: nosniff');
+header('Referrer-Policy: same-origin');
+header('Strict-Transport-Security: max-age=31536000; includeSubDomains');
 
 // Hide errors from output
 error_reporting(0);
 ini_set('display_errors', 0);
+
+// ── Rate Limiting Setup ───────────────────────────────────
+define('DATA_DIR', __DIR__ . '/data');
+define('LIMITS_FILE', DATA_DIR . '/limits.json');
+if (!is_dir(DATA_DIR)) mkdir(DATA_DIR, 0755, true);
 
 // ── Load API key ──────────────────────────────────────────
 $configFile = __DIR__ . '/config.php';
@@ -46,22 +55,62 @@ if (!isset($body['messages']) || !is_array($body['messages'])) {
     exit;
 }
 
+// ── Rate Limit Check ──────────────────────────────────────
+$ip = clientIp();
+if (rateLimited(LIMITS_FILE, $ip, 3600, 50)) { // 50 requests per hour
+    http_response_code(429);
+    echo json_encode(['error' => 'Too many requests. Please take a break! ☕']);
+    exit;
+}
+
 // ── Convert messages to Gemini format ─────────────────────
 $contents = [];
 $lastRole = null;
 foreach ($body['messages'] as $msg) {
+    // Sanitize input text
+    $text = htmlspecialchars(trim(mb_substr($msg['content'] ?? '', 0, 1000)), ENT_QUOTES, 'UTF-8');
+    if (empty($text)) continue;
+
     // Client uses 'user' and 'bot'
     $role = ($msg['role'] === 'bot' || $msg['role'] === 'assistant' || $msg['role'] === 'model') ? 'model' : 'user';
     
-    // Gemini requires alternating roles. If same role as last, skip or combine? 
-    // Usually user and model alternate in chat.
+    // Gemini requires alternating roles.
     if ($role === $lastRole) continue; 
     
     $contents[] = [
         'role'  => $role,
-        'parts' => [['text' => $msg['content']]]
+        'parts' => [['text' => $text]]
     ];
     $lastRole = $role;
+}
+
+// ── Helper Functions ──────────────────────────────────────
+function clientIp(): string {
+    foreach (['HTTP_CF_CONNECTING_IP','HTTP_X_FORWARDED_FOR','REMOTE_ADDR'] as $key) {
+        if (!empty($_SERVER[$key])) {
+            $ip = trim(explode(',', $_SERVER[$key])[0]);
+            if (filter_var($ip, FILTER_VALIDATE_IP)) return $ip;
+        }
+    }
+    return 'unknown';
+}
+
+function rateLimited(string $file, string $ip, int $windowSec, int $maxHits): bool {
+    $data = file_exists($file) ? json_decode(file_get_contents($file), true) : [];
+    $key  = md5($ip);
+    $now  = time();
+    $entry = $data[$key] ?? ['hits' => 0, 'start' => $now];
+
+    if ($now - $entry['start'] > $windowSec) {
+        $entry = ['hits' => 0, 'start' => $now];
+    }
+
+    if ($entry['hits'] >= $maxHits) return true;
+
+    $entry['hits']++;
+    $data[$key] = $entry;
+    file_put_contents($file, json_encode($data));
+    return false;
 }
 
 // Gemini requires the first message to be from 'user' (usually)

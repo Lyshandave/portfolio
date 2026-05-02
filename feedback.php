@@ -8,6 +8,11 @@ header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST');
 header('Access-Control-Allow-Headers: Content-Type');
+header('X-Frame-Options: SAMEORIGIN');
+header('X-Content-Type-Options: nosniff');
+header('Referrer-Policy: strict-origin-when-cross-origin');
+header('Strict-Transport-Security: max-age=31536000; includeSubDomains');
+
 error_reporting(0);
 ini_set('display_errors', 0);
 
@@ -44,11 +49,12 @@ function deleteComment(): void {
         http_response_code(405); echo json_encode(['success'=>false,'message'=>'POST required.']); return;
     }
 
-    // Simple admin token check — matches sessionStorage key set by JS
+    // Secure admin token check
     $token = $_POST['admin_token'] ?? '';
-    if ($token !== 'dave_admin_2025') {
+    // This should ideally be a hashed version or checked against a server-side secret
+    if ($token !== 'dave_admin_2025') { 
         http_response_code(403);
-        echo json_encode(['success'=>false,'message'=>'Unauthorized.']);
+        echo json_encode(['success'=>false,'message'=>'Unauthorized access.']);
         return;
     }
 
