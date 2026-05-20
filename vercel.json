@@ -1,6 +1,7 @@
 {
     "version": 2,
     "framework": null,
+    "outputDirectory": ".",
     "functions": {
         "api/index.php": {
             "runtime": "vercel-php@0.7.3"
@@ -13,7 +14,7 @@
         },
         {
             "src": "/(css|js|images|profile-frames|card)/(.*)",
-            "dest": "/public/$2"
+            "dest": "/public/$1/$2"
         },
         {
             "src": "/favicon.ico",
