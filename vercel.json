@@ -1,6 +1,7 @@
 {
     "version": 2,
     "framework": null,
+    "outputDirectory": "public",
     "buildCommand": "npm run build",
     "env": {
         "APP_ENV": "production",
@@ -24,21 +25,7 @@
         }
     },
     "routes": [
-        {
-            "src": "/build/(.*)",
-            "dest": "/public/build/$1"
-        },
-        {
-            "src": "/(css|js|images|profile-frames|card|certs)/(.*)",
-            "dest": "/public/$1/$2"
-        },
-        {
-            "src": "/favicon.ico",
-            "dest": "/public/favicon.ico"
-        },
-        {
-            "src": "/(.*)",
-            "dest": "/api/index.php"
-        }
+        { "handle": "filesystem" },
+        { "src": "/(.*)", "dest": "/api/index.php" }
     ]
 }
