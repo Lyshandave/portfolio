@@ -64,7 +64,7 @@
 
         <!-- HEADER NAVIGATION -->
         <header class="mb-8 flex flex-col items-start">
-            <a href="/" class="inline-flex items-center gap-1.5 text-xs text-foreground/60 hover:text-indigo-500 font-semibold transition-colors cursor-pointer" aria-label="Back to portfolio home">
+            <a href="/" class="inline-flex items-center gap-1.5 text-xs text-slate-600 dark:text-slate-400 hover:text-indigo-600 font-semibold transition-colors cursor-pointer" aria-label="Back to portfolio home">
                 <i class="fas fa-arrow-left text-[10px]"></i>
                 <span>Back to Home</span>
             </a>
