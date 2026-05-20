@@ -260,55 +260,31 @@
                         </p>
                     </div>
 
-                    <!-- Call to Action Buttons (Desktop & Tablet) -->
-                    <div class="hidden md:flex flex-wrap gap-2 mt-4">
+                    <!-- Call to Action Buttons -->
+                    <div class="flex flex-nowrap gap-2 mt-4">
                         @foreach($speakingContact as $contact)
                             @if(str_contains($contact['url'], 'calendly'))
-                                <a target="_blank" rel="noopener noreferrer" class="inline-flex h-8 items-center rounded-lg bg-indigo-600 hover:bg-indigo-500 px-4 text-xs font-bold text-white gap-1.5 cursor-pointer border-b-2 border-indigo-800 shadow-[0_3px_6px_rgba(79,70,229,0.25)] hover:shadow-[0_5px_10px_rgba(79,70,229,0.35)] transition-all duration-100 transform hover:-translate-y-0.5 active:translate-y-0 active:border-b-0 active:mt-[2px]" href="{{ $contact['url'] }}">
+                                <a target="_blank" rel="noopener noreferrer" class="inline-flex h-7 md:h-8 items-center rounded-lg bg-indigo-600 hover:bg-indigo-500 px-2.5 md:px-4 text-[10px] md:text-xs font-bold text-white gap-1 md:gap-1.5 cursor-pointer border-b-2 border-indigo-800 shadow-[0_3px_6px_rgba(79,70,229,0.25)] hover:shadow-[0_5px_10px_rgba(79,70,229,0.35)] transition-all duration-100 transform hover:-translate-y-0.5 active:translate-y-0 active:border-b-0 active:mt-[2px] whitespace-nowrap" href="{{ $contact['url'] }}">
                                     <i class="far fa-calendar-alt"></i>
                                     <span>Schedule a Call</span>
-                                    <i class="fas fa-chevron-right text-[10px] opacity-75"></i>
+                                    <i class="fas fa-chevron-right text-[8px] md:text-[10px] opacity-75"></i>
                                 </a>
                             @elseif(str_contains($contact['url'], 'mailto'))
-                                <a class="inline-flex h-8 items-center rounded-lg bg-white dark:bg-slate-800 px-4 text-xs font-bold text-slate-800 dark:text-slate-100 gap-1.5 cursor-pointer border border-slate-200 dark:border-slate-700 border-b-2 border-b-slate-300 dark:border-b-slate-900/80 shadow-[0_3px_6px_rgba(0,0,0,0.05)] hover:shadow-[0_5px_10px_rgba(0,0,0,0.08)] transition-all duration-100 transform hover:-translate-y-0.5 active:translate-y-0 active:border-b-[1px] active:mt-[1px]" href="{{ $contact['url'] }}">
+                                <a class="inline-flex h-7 md:h-8 items-center rounded-lg bg-white dark:bg-slate-800 px-2.5 md:px-4 text-[10px] md:text-xs font-bold text-slate-800 dark:text-slate-100 gap-1 md:gap-1.5 cursor-pointer border border-slate-200 dark:border-slate-700 border-b-2 border-b-slate-300 dark:border-b-slate-900/80 shadow-[0_3px_6px_rgba(0,0,0,0.05)] hover:shadow-[0_5px_10px_rgba(0,0,0,0.08)] transition-all duration-100 transform hover:-translate-y-0.5 active:translate-y-0 active:border-b-[1px] active:mt-[1px] whitespace-nowrap" href="{{ $contact['url'] }}">
                                     <i class="far fa-envelope text-indigo-500"></i>
                                     <span>Send Email</span>
                                 </a>
                             @elseif(str_contains($contact['url'], 'blog'))
-                                <a target="_blank" rel="noopener noreferrer" class="inline-flex h-8 items-center rounded-lg bg-white dark:bg-slate-800 px-4 text-xs font-bold text-slate-800 dark:text-slate-100 gap-1.5 flex-1 md:flex-none justify-between cursor-pointer border border-slate-200 dark:border-slate-700 border-b-2 border-b-slate-300 dark:border-b-slate-900/80 shadow-[0_3px_6px_rgba(0,0,0,0.05)] hover:shadow-[0_5px_10px_rgba(0,0,0,0.08)] transition-all duration-100 transform hover:-translate-y-0.5 active:translate-y-0 active:border-b-[1px] active:mt-[1px]" href="{{ $contact['url'] }}">
+                                <a target="_blank" rel="noopener noreferrer" class="inline-flex h-7 md:h-8 items-center rounded-lg bg-white dark:bg-slate-800 px-2.5 md:px-4 text-[10px] md:text-xs font-bold text-slate-800 dark:text-slate-100 gap-1 md:gap-1.5 flex-1 md:flex-none justify-between cursor-pointer border border-slate-200 dark:border-slate-700 border-b-2 border-b-slate-300 dark:border-b-slate-900/80 shadow-[0_3px_6px_rgba(0,0,0,0.05)] hover:shadow-[0_5px_10px_rgba(0,0,0,0.08)] transition-all duration-100 transform hover:-translate-y-0.5 active:translate-y-0 active:border-b-[1px] active:mt-[1px] whitespace-nowrap" href="{{ $contact['url'] }}">
                                     <i class="fas fa-book-open text-indigo-500"></i>
                                     <span>Read my blog</span>
-                                    <i class="fas fa-arrow-right text-[10px] opacity-75"></i>
+                                    <i class="fas fa-arrow-right text-[8px] md:text-[10px] opacity-75"></i>
                                 </a>
                             @endif
                         @endforeach
                     </div>
 
                 </div>
-            </div>
-
-            <!-- Call to Action Buttons (Mobile only, spans full width in one line) -->
-            <div class="flex md:hidden items-center gap-2 mt-4 w-full">
-                @foreach($speakingContact as $contact)
-                    @if(str_contains($contact['url'], 'calendly'))
-                        <a target="_blank" rel="noopener noreferrer" class="flex-1 inline-flex h-8 items-center justify-center rounded-lg bg-indigo-600 hover:bg-indigo-500 px-3 text-[11px] font-bold text-white gap-1.5 cursor-pointer border-b-2 border-indigo-800 shadow-[0_3px_6px_rgba(79,70,229,0.25)] hover:shadow-[0_5px_10px_rgba(79,70,229,0.35)] transition-all duration-100 transform hover:-translate-y-0.5 active:translate-y-0 active:border-b-0 active:mt-[2px]" href="{{ $contact['url'] }}">
-                            <i class="far fa-calendar-alt"></i>
-                            <span>Schedule a Call</span>
-                            <i class="fas fa-chevron-right text-[9px] opacity-75"></i>
-                        </a>
-                    @elseif(str_contains($contact['url'], 'mailto'))
-                        <a class="flex-1 inline-flex h-8 items-center justify-center rounded-lg bg-white dark:bg-slate-800 px-3 text-[11px] font-bold text-slate-800 dark:text-slate-100 gap-1.5 cursor-pointer border border-slate-200 dark:border-slate-700 border-b-2 border-b-slate-300 dark:border-b-slate-900/80 shadow-[0_3px_6px_rgba(0,0,0,0.05)] hover:shadow-[0_5px_10px_rgba(0,0,0,0.08)] transition-all duration-100 transform hover:-translate-y-0.5 active:translate-y-0 active:border-b-[1px] active:mt-[1px]" href="{{ $contact['url'] }}">
-                            <i class="far fa-envelope text-indigo-500"></i>
-                            <span>Send Email</span>
-                        </a>
-                    @elseif(str_contains($contact['url'], 'blog'))
-                        <a target="_blank" rel="noopener noreferrer" class="flex-1 inline-flex h-8 items-center justify-center rounded-lg bg-white dark:bg-slate-800 px-3 text-[11px] font-bold text-slate-800 dark:text-slate-100 gap-1.5 cursor-pointer border border-slate-200 dark:border-slate-700 border-b-2 border-b-slate-300 dark:border-b-slate-900/80 shadow-[0_3px_6px_rgba(0,0,0,0.05)] hover:shadow-[0_5px_10px_rgba(0,0,0,0.08)] transition-all duration-100 transform hover:-translate-y-0.5 active:translate-y-0 active:border-b-[1px] active:mt-[1px]" href="{{ $contact['url'] }}">
-                            <i class="fas fa-book-open text-indigo-500"></i>
-                            <span>Read my blog</span>
-                            <i class="fas fa-arrow-right text-[9px] opacity-75"></i>
-                        </a>
-                    @endif
-                @endforeach
             </div>
         </section>
 
