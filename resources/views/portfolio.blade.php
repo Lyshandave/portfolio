@@ -207,7 +207,7 @@
         <div class="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-emerald-400/10 blur-[120px]"></div>
     </div>
 
-    <div class="max-w-4xl mx-auto px-4 pt-8 pb-4 relative z-10 flex flex-col min-h-screen">
+    <div id="app-container" class="max-w-4xl mx-auto px-4 pt-8 pb-4 relative z-10 flex flex-col min-h-screen">
 
         <!-- PROFILE HERO SECTION -->
         <section class="mb-8 fade-in-section is-visible">
