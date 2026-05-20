@@ -61,7 +61,7 @@
         }
     </style>
 </head>
-<body class="bg-[#f9fafb] dark:bg-dark-bg text-[#111827] dark:text-dark-text min-h-screen transition-colors duration-300 relative overflow-x-hidden w-full selection:bg-indigo-500 selection:text-white">
+<body class="bg-[#f9fafb] dark:bg-dark-bg text-[#111827] dark:text-dark-text min-h-screen transition-colors duration-300 relative w-full selection:bg-indigo-500 selection:text-white">
 
     <!-- Background Decorative Blobs Container -->
     <div class="fixed inset-0 overflow-hidden pointer-events-none z-0 hidden dark:block">

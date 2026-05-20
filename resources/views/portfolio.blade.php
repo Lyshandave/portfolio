@@ -193,7 +193,7 @@
         }
     </style>
 </head>
-<body class="preload bg-light-bg text-light-text dark:bg-dark-bg dark:text-dark-text min-h-screen transition-colors duration-300 relative overflow-x-hidden w-full selection:bg-indigo-500 selection:text-white">
+<body class="preload bg-light-bg text-light-text dark:bg-dark-bg dark:text-dark-text min-h-screen transition-colors duration-300 relative w-full selection:bg-indigo-500 selection:text-white">
     <!-- Remove preload class when page has loaded to re-enable transitions -->
     <script>
         window.addEventListener('load', function() {
