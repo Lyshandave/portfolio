@@ -67,6 +67,7 @@
 @layer base {
     html {
         scroll-behavior: smooth;
+        overflow-y: scroll !important; /* Force vertical scrollbar to be always visible to prevent layout shift */
     }
     body {
         transition: background-color 0.3s ease, color 0.3s ease;

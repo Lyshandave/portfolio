@@ -423,6 +423,7 @@ async function navigateTo(url, pushState = true) {
 
         // Swap content INSTANTLY
         appContainer.innerHTML = newContainer.innerHTML;
+        document.body.style.overflow = ''; // Reset scroll locking
 
         // Update page title
         if (newTitle) {
@@ -434,19 +435,39 @@ async function navigateTo(url, pushState = true) {
             window.history.pushState({ url: path }, '', url);
         }
 
-        // Scroll instantly to top
-        window.scrollTo(0, 0);
+        // Scroll instantly to top, sync with Lenis smooth scroll instance if active
+        window.scrollTo({ top: 0, behavior: 'instant' });
+        if (window.lenisInstance) {
+            window.lenisInstance.scrollTo(0, { immediate: true });
+            window.lenisInstance.resize();
+        }
 
         // Bring opacity back instantly with a super-fast 120ms animation
         requestAnimationFrame(() => {
             appContainer.style.transition = 'opacity 0.12s cubic-bezier(0.16, 1, 0.3, 1), transform 0.12s cubic-bezier(0.16, 1, 0.3, 1)';
             appContainer.style.opacity = '1';
             appContainer.style.transform = 'translateY(0)';
+            
+            // Double check scroll to top after repaint completes
+            window.scrollTo({ top: 0, behavior: 'instant' });
+            if (window.lenisInstance) {
+                window.lenisInstance.scrollTo(0, { immediate: true });
+                window.lenisInstance.resize();
+            }
         });
 
         // Re-initialize all dynamic libraries and UI elements
         initializeAnimations();
         initializeOtherScripts();
+
+        // Final safety scroll reset after all libraries and height adjustments settle
+        setTimeout(() => {
+            window.scrollTo({ top: 0, behavior: 'instant' });
+            if (window.lenisInstance) {
+                window.lenisInstance.scrollTo(0, { immediate: true });
+                window.lenisInstance.resize();
+            }
+        }, 50);
     } else {
         window.location.href = url;
     }
@@ -454,6 +475,11 @@ async function navigateTo(url, pushState = true) {
 
 // Intercept clicks on internal links for zero-latency SPA loading
 function initializePageRouter() {
+    // Prevent browser from automatically restoring scroll position during SPA transitions
+    if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+    }
+
     // 1. Hover prefetching (starts fetching target page as soon as a user hovers a link)
     document.addEventListener('mouseover', (e) => {
         const link = e.target.closest('a');

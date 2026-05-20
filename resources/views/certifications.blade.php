@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Certifications | {{ $profile['name'] }}</title>
+    <title>Certifications | {{ $profile['name'] }}</title>
     
     <!-- SEO Optimization -->
     <meta name="description" content="Verified professional developer certifications of {{ $profile['name'] }}.">
@@ -35,98 +35,88 @@
             font-family: 'Space Grotesk', 'Instrument Sans', sans-serif;
         }
         
-        /* Clean white card style exactly like Screenshot 2 */
-        .cert-card {
-            background: rgba(255, 255, 255, 0.6);
-            border: 1px solid rgba(0, 0, 0, 0.04);
+        .bento-card {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(229, 231, 235, 0.6);
             border-radius: 12px;
-            padding: 24px;
-            transition: all 0.2s ease;
-            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.02);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
         }
         
-        .dark .cert-card {
+        .dark .bento-card {
             background: rgba(22, 27, 46, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(46, 53, 79, 0.5);
             box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.3);
         }
         
-        .cert-card:hover {
-            border-color: rgba(0, 0, 0, 0.08);
-            box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.03);
+        .bento-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
         }
-        
-        .dark .cert-card:hover {
-            border-color: rgba(255, 255, 255, 0.12);
+
+        .dark .bento-card:hover {
             box-shadow: 0 10px 30px 0 rgba(99, 102, 241, 0.1);
+            border-color: rgba(99, 102, 241, 0.4);
         }
     </style>
 </head>
 <body class="bg-[#f9fafb] dark:bg-dark-bg text-[#111827] dark:text-dark-text min-h-screen transition-colors duration-300 relative overflow-x-hidden w-full selection:bg-indigo-500 selection:text-white">
 
     <!-- Background Decorative Blobs Container -->
-    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
-        <div class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-indigo-400/5 dark:bg-indigo-600/5 blur-[120px]"></div>
-        <div class="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-emerald-400/5 dark:bg-emerald-600/5 blur-[120px]"></div>
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0 hidden dark:block">
+        <div class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-indigo-600/5 blur-[120px]"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-emerald-600/5 blur-[120px]"></div>
     </div>
 
     <div id="app-container" class="max-w-4xl mx-auto px-4 pt-8 pb-4 relative z-10 flex flex-col min-h-screen">
 
-        <header class="mb-8 flex flex-col items-start gap-2.5">
-            <a href="/" class="inline-flex items-center gap-1.5 text-sm text-slate-700 dark:text-slate-300 hover:text-indigo-500 font-semibold transition-colors cursor-pointer" aria-label="Back to portfolio home">
-                <i class="fas fa-arrow-left text-xs"></i>
+        <!-- HEADER NAVIGATION -->
+        <header class="mb-8 flex flex-col items-start">
+            <a href="/" class="inline-flex items-center gap-1.5 text-xs text-foreground/60 hover:text-indigo-500 font-semibold transition-colors cursor-pointer" aria-label="Back to portfolio home">
+                <i class="fas fa-arrow-left text-[10px]"></i>
                 <span>Back to Home</span>
             </a>
-            <h1 class="text-xl md:text-2xl font-bold text-slate-950 dark:text-white display-font">All Certifications</h1>
+            <h1 class="text-2xl md:text-3xl font-bold text-black dark:text-white display-font mt-3">All Certifications</h1>
         </header>
 
-        <!-- CERTIFICATIONS SECTIONS -->
-        <main class="space-y-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
-                @foreach($all_certifications as $cert)
-                    <div class="rounded-xl p-5 bg-white/60 dark:bg-slate-900/40 subtle-border flex flex-col justify-between transition-all duration-300">
-                        <div class="space-y-4">
-                            <!-- Certificate Image Container -->
-                            <div class="w-full relative group/cert-img overflow-hidden rounded-lg subtle-border bg-slate-50 dark:bg-slate-950 flex items-center justify-center h-28">
-                                <img src="{{ $cert['image'] }}" alt="{{ $cert['title'] }}" class="max-w-[160px] max-h-full object-contain p-1 transition-transform duration-500 group-hover/cert-img:scale-105" />
-                                
-                                <!-- Hover Overlay to View Full Screen -->
-                                <a href="{{ $cert['url'] }}" target="_blank" class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/cert-img:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white font-semibold text-xs backdrop-blur-xs cursor-pointer">
-                                    <i class="fas fa-search-plus text-base"></i>
-                                    <span>View Full Certificate</span>
-                                </a>
-                            </div>
-
-                            <!-- Certificate Details -->
-                            <div class="space-y-2">
-                                <div class="flex items-start justify-between gap-3">
-                                    <div>
-                                        <h3 class="text-base md:text-lg font-bold text-slate-950 dark:text-white leading-tight display-font">
-                                            {{ $cert['title'] }}
-                                        </h3>
-                                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5 font-semibold">
-                                            {{ $cert['issuer'] }}
-                                        </p>
-                                    </div>
-                                    <span class="px-2 py-0.5 text-[9px] font-bold tracking-wider uppercase rounded-full bg-emerald-100 dark:bg-emerald-950/50 text-emerald-800 dark:text-emerald-300 flex-shrink-0">
-                                        Verified
-                                    </span>
-                                </div>
-                                <p class="text-xs text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
-                                    {{ $cert['description'] }}
-                                </p>
-                            </div>
+        <!-- CERTIFICATIONS GRID -->
+        <main class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            @foreach($all_certifications as $cert)
+                <a href="{{ $cert['url'] }}" target="_blank" class="block rounded-xl p-5 space-y-3 bg-white/60 dark:bg-slate-900/40 subtle-border subtle-border-hover transition-all duration-300 group hover:shadow-sm">
+                    <div class="space-y-1">
+                        <div class="flex items-start justify-between gap-3">
+                            <h3 class="text-base font-bold text-slate-950 dark:text-white transition-colors group-hover:text-indigo-500 dark:group-hover:text-indigo-400">
+                                {{ $cert['title'] }}
+                            </h3>
+                            <span class="px-2 py-0.5 text-[9px] font-bold tracking-wider uppercase rounded bg-emerald-100 dark:bg-emerald-950/50 text-emerald-800 dark:text-emerald-300 flex-shrink-0">
+                                Verified
+                            </span>
                         </div>
-
-                        <div class="pt-3 border-t border-slate-200/50 dark:border-slate-800/50 mt-4 flex items-center justify-start">
-                            <a href="{{ $cert['url'] }}" target="_blank" class="inline-flex items-center gap-1.5 text-xs font-bold text-slate-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                                <i class="fas fa-external-link-alt text-[10px]"></i>
-                                <span>Open credential document</span>
-                            </a>
-                        </div>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 font-semibold">
+                            {{ $cert['issuer'] }}
+                        </p>
+                        <p class="text-xs md:text-sm text-slate-700 dark:text-slate-300 leading-relaxed mt-1">
+                            {{ $cert['description'] }}
+                        </p>
                     </div>
-                @endforeach
-            </div>
+
+                    @if(!empty($cert['image']))
+                        <div class="flex items-center gap-3 pt-1">
+                            <div class="px-2.5 py-1 rounded bg-slate-50 dark:bg-slate-950/40 border border-slate-200/50 dark:border-slate-800/50">
+                                <img src="{{ $cert['image'] }}" alt="{{ $cert['issuer'] }}" class="h-6 max-w-[90px] object-contain p-0.5 transition-transform duration-500 group-hover:scale-105" />
+                            </div>
+                        </div>
+                    @endif
+
+                    <div class="pt-2 border-t border-slate-200/50 dark:border-slate-800/50 flex items-center justify-end">
+                        <span class="text-xs text-slate-500 dark:text-slate-400 group-hover:text-indigo-500 dark:group-hover:text-indigo-400 transition-colors flex items-center gap-1 font-semibold">
+                            <span>Open credential document</span>
+                            <i class="fas fa-external-link-alt text-[9px]"></i>
+                        </span>
+                    </div>
+                </a>
+            @endforeach
         </main>
 
         <!-- FOOTER -->
