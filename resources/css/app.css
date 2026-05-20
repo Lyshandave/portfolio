@@ -1,0 +1,243 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-display: 'Cal Sans', 'Instrument Sans', sans-serif;
+    
+    --color-dark-bg: #000000;
+    --color-dark-card: #161B2E;
+    --color-dark-card-border: #2E354F;
+    --color-dark-text: #F3F4F6;
+    --color-dark-muted: #9CA3AF;
+    
+    --color-light-bg: #F9FAFB;
+    --color-light-card: #FFFFFF;
+    --color-light-card-border: #E5E7EB;
+    --color-light-text: #111827;
+    --color-light-muted: #6B7280;
+    
+    --color-foreground: #111827;
+    --color-card: #FFFFFF;
+    --color-border: #E5E7EB;
+    
+    --color-accent-primary: #6366F1;
+    --color-accent-secondary: #10B981;
+    --color-accent-teal: #14B8A6;
+    --color-accent-violet: #8B5CF6;
+    --color-accent-rose: #F43F5E;
+    
+    --animate-float: float 6s ease-in-out infinite;
+    --animate-pulse-glow: pulse-glow 3s ease-in-out infinite;
+    --animate-shimmer: shimmer 2.5s infinite linear;
+    --animate-slide-infinite: slide-infinite 25s linear infinite;
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 0.6; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.05); }
+    }
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    @keyframes slide-infinite {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+}
+
+/* Dark mode overrides for semantic colors */
+:root.dark {
+    --color-foreground: #F3F4F6;
+    --color-card: #161B2E;
+    --color-border: #2E354F;
+}
+
+/* Custom Base Styles */
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+    body {
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+}
+
+/* Custom Utility Classes */
+@utility glass-dark {
+    background: rgba(22, 27, 46, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(46, 53, 79, 0.5);
+}
+
+@utility glass-light {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(229, 231, 235, 0.5);
+}
+
+@utility card-shimmer {
+    background-image: linear-gradient(
+        90deg, 
+        rgba(255, 255, 255, 0) 0%, 
+        rgba(255, 255, 255, 0.05) 20%, 
+        rgba(255, 255, 255, 0.1) 60%, 
+        rgba(255, 255, 255, 0) 100%
+    );
+    background-size: 200% 100%;
+}
+
+@utility glow-border-primary {
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.15);
+    border-color: rgba(99, 102, 241, 0.4);
+}
+
+@utility glow-border-emerald {
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.15);
+    border-color: rgba(16, 185, 129, 0.4);
+}
+
+/* Hide scrollbar but keep functionality */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Firefox Scrollbar Support */
+html {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(100, 116, 139, 0.55) rgba(0, 0, 0, 0.03);
+}
+:root.dark {
+    scrollbar-color: rgba(148, 163, 184, 0.55) rgba(255, 255, 255, 0.03);
+}
+
+/* Beautiful high-fidelity scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 9999px;
+}
+:root.dark ::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(100, 116, 139, 0.55);
+    border-radius: 9999px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+:root.dark ::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.55);
+    border-radius: 9999px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(100, 116, 139, 0.75);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+:root.dark ::-webkit-scrollbar-thumb:hover {
+    background: rgba(148, 163, 184, 0.75);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+/* Bento Card Premium Glassmorphic Styles */
+.bento-card {
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(229, 231, 235, 0.6);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+.dark .bento-card {
+    background: rgba(22, 27, 46, 0.6);
+    border: 1px solid rgba(46, 53, 79, 0.5);
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.3);
+}
+
+.bento-card:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+}
+
+.dark .bento-card:hover {
+    box-shadow: 0 10px 30px 0 rgba(99, 102, 241, 0.1);
+    border-color: rgba(99, 102, 241, 0.4);
+}
+
+/* Card Hover Shimmer Reflection Elements */
+.card-hover-shimmer-parent {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.card-hover-shimmer-parent .card-hover-shimmer {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(
+        120deg, 
+        rgba(255, 255, 255, 0) 30%, 
+        rgba(255, 255, 255, 0.15) 40%, 
+        rgba(255, 255, 255, 0.2) 50%, 
+        rgba(255, 255, 255, 0.15) 60%, 
+        rgba(255, 255, 255, 0) 70%
+    );
+    background-size: 200% 100%;
+    background-position: -200% 0;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.card-hover-shimmer-parent:hover .card-hover-shimmer {
+    animation: shimmer-effect 1.5s infinite linear;
+}
+
+@keyframes shimmer-effect {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+/* Custom highly subtle border system */
+.subtle-border {
+    border: 1px solid rgba(15, 23, 42, 0.22) !important;
+}
+.dark .subtle-border {
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+}
+.subtle-border-hover {
+    transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+.subtle-border-hover:hover {
+    border-color: rgba(99, 102, 241, 0.6) !important;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.08) !important;
+}
+.dark .subtle-border-hover:hover {
+    border-color: rgba(99, 102, 241, 0.8) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+}
+
+
