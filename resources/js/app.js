@@ -49,10 +49,10 @@ function initializeAnimations() {
         offset: 50
     });
 
-    // Force recalculate positions
+    // Force recalculate positions quickly
     setTimeout(() => {
         AOS.refresh();
-    }, 100);
+    }, 50);
 }
 
 // Ensure theme toggle and other scripts run as well
@@ -380,50 +380,24 @@ async function prefetchPage(url) {
     }
 }
 
-// Renders an elegant indigo loading bar at the top of the browser viewport
-function showProgressBar() {
-    let bar = document.getElementById('spa-progress-bar');
-    if (!bar) {
-        bar = document.createElement('div');
-        bar.id = 'spa-progress-bar';
-        bar.style.position = 'fixed';
-        bar.style.top = '0';
-        bar.style.left = '0';
-        bar.style.height = '3px';
-        bar.style.backgroundColor = '#4f46e5';
-        bar.style.zIndex = '99999';
-        bar.style.transition = 'width 0.4s cubic-bezier(0.08, 0.82, 0.17, 1), opacity 0.3s ease';
-        bar.style.width = '0%';
-        bar.style.opacity = '1';
-        document.body.appendChild(bar);
-    }
-    bar.style.opacity = '1';
-    bar.style.width = '0%';
-    requestAnimationFrame(() => {
-        bar.style.width = '75%';
-    });
-}
-
-function hideProgressBar() {
-    const bar = document.getElementById('spa-progress-bar');
-    if (!bar) return;
-    bar.style.width = '100%';
+// Proactive Cache Priming on site boot
+function primeCache() {
+    const ROUTES_TO_PREFETCH = ['/', '/tech-stack', '/projects', '/certifications'];
+    // Delay slightly to ensure initial paint remains completely unhindered
     setTimeout(() => {
-        bar.style.opacity = '0';
-        setTimeout(() => {
-            bar.style.width = '0%';
-        }, 300);
-    }, 150);
+        ROUTES_TO_PREFETCH.forEach(url => {
+            if (url !== window.location.pathname) {
+                prefetchPage(url);
+            }
+        });
+    }, 400);
 }
 
 // Primary routing function to handle instant page swapping
 async function navigateTo(url, pushState = true) {
     const path = new URL(url, window.location.origin).pathname;
     
-    // 1. Show the top progress bar
-    showProgressBar();
-
-    // 2. Obtain cached HTML or trigger prefetch instantly
+    // Obtain cached HTML or trigger prefetch instantly
     let html = pageCache.get(path);
     if (!html) {
         html = await prefetchPage(url);
@@ -435,26 +409,19 @@ async function navigateTo(url, pushState = true) {
         return;
     }
 
-    // 3. Smooth transition: fade container out
     const appContainer = document.getElementById('app-container');
-    if (appContainer) {
-        appContainer.style.opacity = '0';
-        appContainer.style.transform = 'translateY(8px)';
-        appContainer.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
-        await new Promise(resolve => setTimeout(resolve, 200));
-    }
-
-    // 4. Hide progress bar
-    hideProgressBar();
-
-    // 5. Swap the inner HTML content of the wrapper
     const parser = new DOMParser();
     const doc = parser.parseFromString(html, 'text/html');
     const newContainer = doc.getElementById('app-container');
     const newTitle = doc.querySelector('title')?.textContent;
 
     if (appContainer && newContainer) {
-        // Swap content
+        // Prepare snap styling (fast 120ms fade-in transition)
+        appContainer.style.opacity = '0.7';
+        appContainer.style.transform = 'translateY(4px)';
+        appContainer.style.transition = 'none';
+
+        // Swap content INSTANTLY
         appContainer.innerHTML = newContainer.innerHTML;
 
         // Update page title
@@ -467,18 +434,20 @@ async function navigateTo(url, pushState = true) {
             window.history.pushState({ url: path }, '', url);
         }
 
-        // Scroll gracefully to top
+        // Scroll instantly to top
         window.scrollTo(0, 0);
 
-        // Bring opacity back
-        appContainer.style.opacity = '1';
-        appContainer.style.transform = 'translateY(0)';
+        // Bring opacity back instantly with a super-fast 120ms animation
+        requestAnimationFrame(() => {
+            appContainer.style.transition = 'opacity 0.12s cubic-bezier(0.16, 1, 0.3, 1), transform 0.12s cubic-bezier(0.16, 1, 0.3, 1)';
+            appContainer.style.opacity = '1';
+            appContainer.style.transform = 'translateY(0)';
+        });
 
-        // 6. Re-initialize all dynamic libraries and UI elements
+        // Re-initialize all dynamic libraries and UI elements
         initializeAnimations();
         initializeOtherScripts();
     } else {
-        // Mismatch fallback
         window.location.href = url;
     }
 }
@@ -524,6 +493,9 @@ function initializePageRouter() {
     window.addEventListener('popstate', () => {
         navigateTo(window.location.pathname, false);
     });
+
+    // 4. Prime the cache for all pages immediately
+    primeCache();
 }
 
 // ----------------------------------------------------
