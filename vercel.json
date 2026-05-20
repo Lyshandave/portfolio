@@ -25,7 +25,9 @@
         }
     },
     "routes": [
-        { "handle": "filesystem" },
+        { "src": "/build/(.*)", "dest": "/build/$1" },
+        { "src": "/(css|js|images|profile-frames|card|certs)/(.*)", "dest": "/$1/$2" },
+        { "src": "/favicon\\.ico", "dest": "/favicon.ico" },
         { "src": "/(.*)", "dest": "/api/index.php" }
     ]
 }
