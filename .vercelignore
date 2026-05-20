@@ -1,0 +1,9 @@
+/vendor
+/node_modules
+/public/storage
+/public/hot
+.env
+.env.backup
+.env.production
+.git
+.github
