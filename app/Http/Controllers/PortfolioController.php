@@ -171,8 +171,8 @@ class PortfolioController extends Controller
                     'technologies' => ['Laravel', 'Vue.js', 'MySQL', 'Tailwind CSS'],
                     'image' => 'projects/ordering.png',
                     'github' => null,
-                    'demo' => 'https://order-system.lyshandave.com',
-                    'domain' => 'order-system.lyshandave.com',
+                    'demo' => 'https://ordering-system-xi.vercel.app',
+                    'domain' => 'ordering-system-xi.vercel.app',
                     'featured' => true,
                 ],
                 [
