@@ -61,5 +61,6 @@ createInertiaApp({
             initializeGlobalAnimations();
         });
     },
+    progress: false,
 });
 

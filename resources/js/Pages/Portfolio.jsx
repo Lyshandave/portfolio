@@ -255,6 +255,11 @@ export default function Portfolio(props) {
 
     // Animation & Script Setup
     useEffect(() => {
+        if (window.lenisInstance) {
+            window.lenisInstance.destroy();
+            window.lenisInstance = null;
+            document.documentElement.classList.remove('lenis', 'lenis-smooth');
+        }
         if (window.initializeGlobalAnimations) window.initializeGlobalAnimations();
     }, []);
 
@@ -328,6 +333,29 @@ export default function Portfolio(props) {
                 .display-font { font-family: 'Space Grotesk', 'Instrument Sans', sans-serif; }
                 .fade-in-section { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; will-change: opacity, transform; }
                 .fade-in-section.is-visible { opacity: 1; transform: translateY(0); }
+
+                /* CSS Scroll Snap */
+                html {
+                    scroll-snap-type: y mandatory;
+                    scroll-behavior: smooth;
+                }
+                .snap-section {
+                    scroll-snap-align: start;
+                    scroll-snap-stop: always;
+                    min-height: 100vh;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    box-sizing: border-box;
+                    padding-top: 1.5rem;
+                    padding-bottom: 1.5rem;
+                }
+                @media (max-width: 767px) {
+                    .snap-section {
+                        padding-top: 3.5rem;
+                        padding-bottom: 3.5rem;
+                    }
+                }
             `}} />
 
             {/* Background Decorative Blobs Container */}
@@ -336,334 +364,349 @@ export default function Portfolio(props) {
                 <div className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-emerald-400/10 blur-[120px]"></div>
             </div>
 
-            <div id="app-container" className="max-w-4xl mx-auto px-4 pt-8 pb-4 relative z-10 flex flex-col min-h-screen">
+            <div id="app-container" className="max-w-4xl mx-auto px-4 relative z-10 flex flex-col min-h-screen">
 
-                {/* PROFILE HERO SECTION */}
-                <section className="mb-8 fade-in-section is-visible">
-                    <div className="flex items-center gap-4 md:gap-6">
-                        <div className="relative shrink-0">
-                            <img alt={profile.name} fetchPriority="high" width="160" height="160" decoding="async" className="block dark:hidden rounded-lg w-32 h-32 md:w-40 md:h-40 object-cover border border-border/20 shadow-md" src="/profile-frames/profile-light.png" onError={(e) => { e.target.src = '/profile-frames/frame-000.png'; }} />
-                            <img alt={profile.name} fetchPriority="high" width="160" height="160" decoding="async" className="hidden dark:block rounded-lg w-32 h-32 md:w-40 md:h-40 object-cover border border-border/20 shadow-md" src="/profile-frames/profile-dark.png" onError={(e) => { e.target.src = '/profile-frames/frame-000.png'; }} />
-                            <div className="absolute inset-0 rounded-lg border-2 border-indigo-500/20 pointer-events-none"></div>
-                        </div>
+                {/* SECTION 1: HERO, ABOUT, & EXPERIENCE */}
+                <section className="snap-section">
+                    {/* PROFILE HERO SECTION */}
+                    <div className="mb-6 fade-in-section is-visible">
+                        <div className="flex items-center gap-4 md:gap-6">
+                            <div className="relative shrink-0">
+                                <img alt={profile.name} fetchPriority="high" width="160" height="160" decoding="async" className="block dark:hidden rounded-lg w-28 h-28 md:w-36 md:h-36 object-cover border border-border/20 shadow-md" src="/profile-frames/profile-light.png" onError={(e) => { e.target.src = '/profile-frames/frame-000.png'; }} />
+                                <img alt={profile.name} fetchPriority="high" width="160" height="160" decoding="async" className="hidden dark:block rounded-lg w-28 h-28 md:w-36 md:h-36 object-cover border border-border/20 shadow-md" src="/profile-frames/profile-dark.png" onError={(e) => { e.target.src = '/profile-frames/frame-000.png'; }} />
+                                <div className="absolute inset-0 rounded-lg border-2 border-indigo-500/20 pointer-events-none"></div>
+                            </div>
 
-                        <div className="flex-1 min-w-0">
-                            <div className="flex items-center justify-between gap-2">
-                                <div className="flex items-center gap-2">
-                                    <h1 className="text-xl md:text-3xl font-bold truncate display-font text-slate-900 dark:text-white">{profile.name}</h1>
-                                    <svg viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 shrink-0" aria-label="Verified user">
-                                        <path d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.14-1.897-.131-.634-.437-1.218-.882-1.687-.47-.445-1.053-.75-1.687-.882-.633-.13-1.29-.083-1.897.14-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.017-1.273.213-1.813.568s-.969.854-1.24 1.44c-.608-.223-1.267-.272-1.902-.14-.635.13-1.22.436-1.69.882-.445.47-.749 1.055-.878 1.688-.13.633-.08 1.29.144 1.896-.587.274-1.087.705-1.443 1.245-.356.54-.555 1.17-.574 1.817.02.647.218 1.276.574 1.817.356.54.856.972 1.443 1.245-.224.606-.274 1.263-.144 1.896.13.634.433 1.218.877 1.688.47.443 1.054.747 1.687.878.633.132 1.29.084 1.897-.136.274.586.705 1.084 1.246 1.439.54.354 1.17.551 1.816.569.647-.016 1.276-.213 1.817-.567s.972-.854 1.245-1.44c.604.239 1.266.296 1.903.164.636-.132 1.22-.447 1.68-.907.46-.46.776-1.044.908-1.681s.075-1.299-.165-1.903c.586-.274 1.084-.705 1.439-1.246.354-.54.551-1.17.569-1.816zM9.662 14.85l-3.429-3.428 1.293-1.302 2.072 2.072 4.4-4.794 1.347 1.246z" fill="#1d9bf0"></path>
+                            <div className="flex-1 min-w-0">
+                                <div className="flex items-center justify-between gap-2">
+                                    <div className="flex items-center gap-2">
+                                        <h1 className="text-xl md:text-3xl font-bold truncate display-font text-slate-900 dark:text-white">{profile.name}</h1>
+                                        <svg viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 shrink-0" aria-label="Verified user">
+                                            <path d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.14-1.897-.131-.634-.437-1.218-.882-1.687-.47-.445-1.053-.75-1.687-.882-.633-.13-1.29-.083-1.897.14-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.017-1.273.213-1.813.568s-.969.854-1.24 1.44c-.608-.223-1.267-.272-1.902-.14-.635.13-1.22.436-1.69.882-.445.47-.749 1.055-.878 1.688-.13.633-.08 1.29.144 1.896-.587.274-1.087.705-1.443 1.245-.356.54-.555 1.17-.574 1.817.02.647.218 1.276.574 1.817.356.54.856.972 1.443 1.245-.224.606-.274 1.263-.144 1.896.13.634.433 1.218.877 1.688.47.443 1.054.747 1.687.878.633.132 1.29.084 1.897-.136.274.586.705 1.084 1.246 1.439.54.354 1.17.551 1.816.569.647-.016 1.276-.213 1.817-.567s.972-.854 1.245-1.44c.604.239 1.266.296 1.903.164.636-.132 1.22-.447 1.68-.907.46-.46.776-1.044.908-1.681s.075-1.299-.165-1.903c.586-.274 1.084-.705 1.439-1.246.354-.54.551-1.17.569-1.816zM9.662 14.85l-3.429-3.428 1.293-1.302 2.072 2.072 4.4-4.794 1.347 1.246z" fill="#1d9bf0"></path>
+                                        </svg>
+                                    </div>
+
+                                    {/* Theme Toggle Button */}
+                                    <button 
+                                        onClick={() => setIsDark(!isDark)} 
+                                        className="relative inline-flex h-[28px] w-[54px] items-center rounded-[2px] transition-colors duration-300 focus:outline-none bg-[#cbd1d8] dark:bg-[#475569] shrink-0" 
+                                        aria-label="Toggle theme"
+                                    >
+                                        <div className="absolute left-[2px] flex h-[24px] w-[24px] items-center justify-center rounded-[2px] bg-white transition-transform duration-300 ease-in-out dark:translate-x-[26px]">
+                                            <svg className="h-[14px] w-[14px] text-slate-500 block dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                                            </svg>
+                                            <svg className="h-3 w-3 text-slate-500 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                                                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                                            </svg>
+                                        </div>
+                                    </button>
+                                </div>
+
+                                <p className="text-xs md:text-sm text-foreground/70 mt-1 flex items-center gap-1">
+                                    <svg className="w-3.5 h-3.5 shrink-0 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                                     </svg>
-                                </div>
-
-                                {/* Theme Toggle Button */}
-                                <button 
-                                    onClick={() => setIsDark(!isDark)} 
-                                    className="relative inline-flex h-[28px] w-[54px] items-center rounded-[2px] transition-colors duration-300 focus:outline-none bg-[#cbd1d8] dark:bg-[#475569] shrink-0" 
-                                    aria-label="Toggle theme"
-                                >
-                                    <div className="absolute left-[2px] flex h-[24px] w-[24px] items-center justify-center rounded-[2px] bg-white transition-transform duration-300 ease-in-out dark:translate-x-[26px]">
-                                        <svg className="h-[14px] w-[14px] text-slate-500 block dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                                        </svg>
-                                        <svg className="h-3 w-3 text-slate-500 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
-                                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
-                                        </svg>
-                                    </div>
-                                </button>
-                            </div>
-
-                            <p className="text-xs md:text-sm text-foreground/70 mt-1 flex items-center gap-1">
-                                <svg className="w-3.5 h-3.5 shrink-0 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                </svg>
-                                <span className="text-slate-700 dark:text-slate-300">{profile.location}</span>
-                            </p>
-
-                            <div className="flex items-center justify-between mt-2 flex-wrap gap-2">
-                                <p className="text-xs md:text-sm font-medium text-slate-800 dark:text-slate-200">
-                                    Computer Systems Technician <span className="text-indigo-500/70 font-semibold">\</span> Web Developer
+                                    <span className="text-slate-700 dark:text-slate-300">{profile.location}</span>
                                 </p>
-                            </div>
 
-                            {/* Call to Action Buttons */}
-                            <div className="flex flex-nowrap gap-2 mt-4">
-                                {speakingContact.map((contact, i) => {
-                                    if (contact.url.includes('calendly')) {
-                                        return (
-                                            <a key={i} target="_blank" rel="noopener noreferrer" className="inline-flex h-7 md:h-8 items-center rounded-lg bg-indigo-600 hover:bg-indigo-500 px-2.5 md:px-4 text-[10px] md:text-xs font-bold text-white gap-1 md:gap-1.5 cursor-pointer border-b-2 border-indigo-800 shadow-[0_3px_6px_rgba(79,70,229,0.25)] hover:shadow-[0_5px_10px_rgba(79,70,229,0.35)] transition-all duration-100 transform hover:-translate-y-0.5 active:translate-y-0 active:border-b-0 active:mt-[2px] whitespace-nowrap" href={contact.url}>
-                                                <i className="far fa-calendar-alt"></i>
-                                                <span>Schedule a Call</span>
-                                                <i className="fas fa-chevron-right text-[8px] md:text-[10px] opacity-75"></i>
-                                            </a>
-                                        );
-                                    }
-                                    if (contact.url.includes('mailto')) {
-                                        return (
-                                            <a key={i} className="inline-flex h-7 md:h-8 items-center rounded-lg bg-white dark:bg-slate-800 px-2.5 md:px-4 text-[10px] md:text-xs font-bold text-slate-800 dark:text-slate-100 gap-1 md:gap-1.5 cursor-pointer border border-slate-200 dark:border-slate-700 border-b-2 border-b-slate-300 dark:border-b-slate-900/80 shadow-[0_3px_6px_rgba(0,0,0,0.05)] hover:shadow-[0_5px_10px_rgba(0,0,0,0.08)] transition-all duration-100 transform hover:-translate-y-0.5 active:translate-y-0 active:border-b active:mt-px whitespace-nowrap" href={contact.url}>
-                                                <i className="far fa-envelope text-indigo-500"></i>
-                                                <span>Send Email</span>
-                                            </a>
-                                        );
-                                    }
-                                    return null;
-                                })}
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* BENTO GRID SYSTEM */}
-                <section className="grid grid-cols-1 md:grid-cols-6 gap-2">
-
-                    {/* ABOUT CARD */}
-                    <div className="bento-card p-5 col-span-1 md:col-span-4 md:col-start-1 md:row-start-1 space-y-3 group fade-in-section is-visible self-start rounded-xl border border-slate-200/60 dark:border-slate-800/80 bg-white/60 dark:bg-slate-900/40">
-                        <h2 className="text-base font-bold uppercase tracking-wider text-slate-900 dark:text-white flex items-center gap-1.5">
-                            <span>About</span>
-                        </h2>
-                        <div className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed space-y-4">
-                            {profile.about.map((paragraph, i) => <p key={i}>{paragraph}</p>)}
-                        </div>
-                    </div>
-
-                    {/* EXPERIENCE WIDGET */}
-                    <div className="bento-card p-5 col-span-1 md:col-span-2 md:col-start-5 md:row-start-1 md:row-span-3 space-y-3 group fade-in-section is-visible self-start rounded-xl border border-slate-200/60 dark:border-slate-800/80 bg-white/60 dark:bg-slate-900/40">
-                        <h2 className="text-lg font-bold text-black dark:text-white display-font">Experience</h2>
-                        <div id="experience-container" className="relative space-y-3 mt-2.5">
-                            <div className="absolute left-1.5 top-1.5 bottom-2 w-px bg-slate-200 dark:bg-slate-800"></div>
-                            {experience.map((exp, i) => (
-                                <div key={i} onClick={() => setActiveExpIndex(i)} className="relative pl-6 pb-2 last:pb-0 group/role experience-item cursor-pointer">
-                                    <div className={`timeline-marker absolute left-0 top-1.5 w-3 h-3 border-2 rounded-none ${activeExpIndex === i ? 'border-slate-900 bg-slate-900 dark:border-white dark:bg-white' : 'border-slate-300 bg-white dark:border-slate-700 dark:bg-slate-900'} transition-colors duration-200`}></div>
-                                    <div className="space-y-1">
-                                        <h3 className="text-xs md:text-sm font-bold leading-tight text-slate-900 dark:text-white transition-colors duration-200">{exp.role}</h3>
-                                        <div className="text-xs text-slate-700 dark:text-slate-300 font-medium leading-normal">{exp.company}</div>
-                                        <div className="pt-0.5">
-                                            <span className="inline-block font-mono text-[10px] px-1.5 py-0.5 border border-slate-300 dark:border-slate-700 bg-slate-100/50 dark:bg-slate-800/50 text-slate-800 dark:text-slate-200 font-semibold rounded-[2px] whitespace-nowrap">{exp.period}</span>
-                                        </div>
-                                    </div>
+                                <div className="flex items-center justify-between mt-2 flex-wrap gap-2">
+                                    <p className="text-xs md:text-sm font-medium text-slate-800 dark:text-slate-200">
+                                        Computer Systems Technician <span className="text-indigo-500/70 font-semibold">\</span> Web Developer
+                                    </p>
                                 </div>
-                            ))}
+
+                                {/* Call to Action Buttons */}
+                                <div className="flex flex-nowrap gap-2 mt-4">
+                                    {speakingContact.map((contact, i) => {
+                                        if (contact.url.includes('calendly')) {
+                                            return (
+                                                <a key={i} target="_blank" rel="noopener noreferrer" className="inline-flex h-7 md:h-8 items-center rounded-lg bg-indigo-600 hover:bg-indigo-500 px-2.5 md:px-4 text-[10px] md:text-xs font-bold text-white gap-1 md:gap-1.5 cursor-pointer border-b-2 border-indigo-800 shadow-[0_3px_6px_rgba(79,70,229,0.25)] hover:shadow-[0_5px_10px_rgba(79,70,229,0.35)] transition-all duration-100 transform hover:-translate-y-0.5 active:translate-y-0 active:border-b-0 active:mt-[2px] whitespace-nowrap" href={contact.url}>
+                                                    <i className="far fa-calendar-alt"></i>
+                                                    <span>Schedule a Call</span>
+                                                    <i className="fas fa-chevron-right text-[8px] md:text-[10px] opacity-75"></i>
+                                                </a>
+                                            );
+                                        }
+                                        if (contact.url.includes('mailto')) {
+                                            return (
+                                                <a key={i} className="inline-flex h-7 md:h-8 items-center rounded-lg bg-white dark:bg-slate-800 px-2.5 md:px-4 text-[10px] md:text-xs font-bold text-slate-800 dark:text-slate-100 gap-1 md:gap-1.5 cursor-pointer border border-slate-200 dark:border-slate-700 border-b-2 border-b-slate-300 dark:border-b-slate-900/80 shadow-[0_3px_6px_rgba(0,0,0,0.05)] hover:shadow-[0_5px_10px_rgba(0,0,0,0.08)] transition-all duration-100 transform hover:-translate-y-0.5 active:translate-y-0 active:border-b active:mt-px whitespace-nowrap" href={contact.url}>
+                                                    <i className="far fa-envelope text-indigo-500"></i>
+                                                    <span>Send Email</span>
+                                                </a>
+                                            );
+                                        }
+                                        return null;
+                                    })}
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    {/* TECH STACK CARD */}
-                    <div className="bento-card p-5 col-span-1 md:col-span-4 md:col-start-1 md:row-start-2 space-y-4 group fade-in-section is-visible self-start rounded-xl border border-slate-200/60 dark:border-slate-800/80 bg-white/60 dark:bg-slate-900/40">
-                        <div className="flex items-center justify-between">
-                            <h2 className="text-lg font-bold text-black dark:text-white display-font">Tech Stack</h2>
-                            <Link href="/tech-stack" prefetch="hover" id="tech-view-all" className="text-xs text-slate-600 dark:text-slate-400 hover:text-indigo-500 font-semibold cursor-pointer flex items-center gap-1 transition-all" aria-label="View all capabilities">
-                                <span>View All</span>
-                                <i className="fas fa-chevron-right text-[9px]"></i>
-                            </Link>
+                    <div className="grid grid-cols-1 md:grid-cols-6 gap-2">
+                        {/* ABOUT CARD */}
+                        <div className="bento-card p-5 col-span-1 md:col-span-4 space-y-3 group fade-in-section is-visible rounded-xl border border-slate-200/60 dark:border-slate-800/80 bg-white/60 dark:bg-slate-900/40">
+                            <h2 className="text-base font-bold uppercase tracking-wider text-slate-900 dark:text-white flex items-center gap-1.5">
+                                <span>About</span>
+                            </h2>
+                            <div className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed space-y-3">
+                                {profile.about.map((paragraph, i) => <p key={i}>{paragraph}</p>)}
+                            </div>
                         </div>
-                        <div id="tech-stack-container" className="space-y-5">
-                            {Object.entries(techStack).map(([category, skills]) => {
-                                if (!['Frontend', 'Backend'].includes(category)) return null;
-                                return (
-                                    <div key={category}>
-                                        <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-200 mb-2">{category}</h3>
-                                        <div className="flex flex-wrap gap-2 w-full">
-                                            {skills.map((skill, i) => (
-                                                <span key={i} className="text-[13px] font-medium text-slate-800 dark:text-slate-200 px-3 py-1.5 rounded bg-slate-100/50 dark:bg-slate-800/50 border border-slate-200/40 dark:border-slate-800/40">{skill.name}</span>
-                                            ))}
-                                        </div>
-                                    </div>
-                                );
-                            })}
-                        </div>
-                    </div>
 
-                    {/* RECENT PROJECTS */}
-                    <div className="bento-card p-5 col-span-1 md:col-span-4 md:col-start-1 md:row-start-3 space-y-4 group fade-in-section is-visible self-start rounded-xl border border-slate-200/60 dark:border-slate-800/80 bg-white/60 dark:bg-slate-900/40">
-                        <div className="flex items-center justify-between">
-                            <h2 className="text-lg font-bold text-black dark:text-white display-font">Recent Projects</h2>
-                            <Link href="/projects" prefetch="hover" id="projects-view-all" className="text-xs text-slate-600 dark:text-slate-400 hover:text-indigo-500 font-semibold cursor-pointer flex items-center gap-1 transition-all" aria-label="View all projects">
-                                <span>View All</span>
-                                <i className="fas fa-chevron-right text-[9px]"></i>
-                            </Link>
-                        </div>
-                        <div id="projects-container" className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            {projects.filter(p => p.featured).map((project, i) => (
-                                <a key={i} href={project.demo} target="_blank" className="block p-3.5 space-y-1.5 border border-slate-200/60 dark:border-slate-800/80 rounded-xl bg-white dark:bg-slate-900 hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 group">
-                                    <div>
-                                        <h3 className="text-sm md:text-base font-bold text-black dark:text-white transition-colors">{project.title}</h3>
-                                        <p className="text-xs text-slate-700 dark:text-slate-300 mt-0.5 leading-relaxed">{project.description}</p>
-                                    </div>
-                                </a>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* RECENT CERTIFICATIONS */}
-                    <div className="bento-card py-3.5 px-4 col-span-1 md:col-span-3 space-y-3 group fade-in-section is-visible rounded-xl border border-slate-200/60 dark:border-slate-800/80 bg-white/60 dark:bg-slate-900/40">
-                        <div className="flex items-center justify-between">
-                            <h2 className="text-base font-bold uppercase tracking-wider text-slate-900 dark:text-white flex items-center gap-1.5"><span>Certifications</span></h2>
-                            <Link href="/certifications" prefetch="hover" className="text-xs font-semibold text-slate-500 hover:text-indigo-500 transition-colors flex items-center gap-1">
-                                <span>View all</span>
-                                <i className="fas fa-chevron-right text-[8px]"></i>
-                            </Link>
-                        </div>
-                        <div id="certifications-container" className="space-y-3 mt-4">
-                            {certifications.map((cert, i) => (
-                                <a key={i} href={cert.credential_url || '#'} target="_blank" className="block py-2.5 px-3.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-slate-900/40 hover:bg-slate-50 dark:hover:bg-slate-900 transition-all duration-300 cursor-pointer">
-                                    <div className="flex items-center justify-between gap-2">
-                                        <div className="min-w-0">
-                                            <h3 className="text-xs md:text-sm font-bold truncate text-slate-900 dark:text-white">{cert.title}</h3>
-                                            <p className="text-[11px] text-slate-700 dark:text-slate-300 mt-0.5 font-semibold">{cert.issuer}</p>
-                                        </div>
-                                        <div className="flex items-center gap-1.5 shrink-0">
-                                            <span className="text-[9px] font-semibold text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded-full">Verified</span>
-                                            <i className="fas fa-external-link-alt text-[9px] text-slate-400"></i>
-                                        </div>
-                                    </div>
-                                </a>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* RECOMMENDATIONS SLIDER */}
-                    <div className="bento-card py-3.5 px-4 col-span-1 md:col-span-3 space-y-3 group overflow-hidden fade-in-section is-visible rounded-xl border border-slate-200/60 dark:border-slate-800/80 bg-white/60 dark:bg-slate-900/40">
-                        <h2 className="text-base font-bold uppercase tracking-wider text-slate-900 dark:text-white flex items-center gap-1.5"><span>Recommendations</span></h2>
-                        <div className="relative overflow-hidden w-full h-[135px] mt-1.5">
-                            <div 
-                                className="flex transition-transform duration-500 ease-out h-full" 
-                                style={{ transform: `translateX(-${activeTestimonialIndex * 100}%)`, width: '100%' }}
-                            >
-                                {recommendations.map((rec, i) => (
-                                    <div key={i} className="w-full shrink-0 flex flex-col justify-between h-full px-1">
-                                        <p className="text-[13px] leading-relaxed text-slate-700 dark:text-slate-300 font-serif italic line-clamp-4">&ldquo;{rec.text}&rdquo;</p>
-                                        <div className="mt-2 pt-2 border-t border-slate-200/50 dark:border-slate-800/50 flex items-center justify-between">
-                                            <div>
-                                                <p className="text-xs font-bold font-sans text-slate-900 dark:text-white">{rec.name}</p>
-                                                <p className="text-[10px] text-slate-500 dark:text-slate-400 font-sans mt-0.5">{rec.role} &bull; {rec.company}</p>
+                        {/* EXPERIENCE WIDGET */}
+                        <div className="bento-card p-5 col-span-1 md:col-span-2 space-y-3 group fade-in-section is-visible rounded-xl border border-slate-200/60 dark:border-slate-800/80 bg-white/60 dark:bg-slate-900/40">
+                            <h2 className="text-lg font-bold text-black dark:text-white display-font">Experience</h2>
+                            <div id="experience-container" className="relative space-y-3 mt-2">
+                                <div className="absolute left-1.5 top-1.5 bottom-2 w-px bg-slate-200 dark:bg-slate-800"></div>
+                                {experience.map((exp, i) => (
+                                    <div key={i} onClick={() => setActiveExpIndex(i)} className="relative pl-6 pb-2 last:pb-0 group/role experience-item cursor-pointer">
+                                        <div className={`timeline-marker absolute left-0 top-1.5 w-3 h-3 border-2 rounded-none ${activeExpIndex === i ? 'border-slate-900 bg-slate-900 dark:border-white dark:bg-white' : 'border-slate-300 bg-white dark:border-slate-700 dark:bg-slate-900'} transition-colors duration-200`}></div>
+                                        <div className="space-y-1">
+                                            <h3 className="text-xs md:text-sm font-bold leading-tight text-slate-900 dark:text-white transition-colors duration-200">{exp.role}</h3>
+                                            <div className="text-xs text-slate-700 dark:text-slate-300 font-medium leading-normal">{exp.company}</div>
+                                            <div className="pt-0.5">
+                                                <span className="inline-block font-mono text-[10px] px-1.5 py-0.5 border border-slate-300 dark:border-slate-700 bg-slate-100/50 dark:bg-slate-800/50 text-slate-800 dark:text-slate-200 font-semibold rounded-[2px] whitespace-nowrap">{exp.period}</span>
                                             </div>
                                         </div>
                                     </div>
                                 ))}
                             </div>
                         </div>
-                        <div className="flex items-center justify-between mt-2 pt-2 border-t border-slate-200/50 dark:border-slate-800/50">
-                            <div className="flex gap-1.5 items-center">
-                                {recommendations.map((_, i) => (
-                                    <button 
-                                        key={i}
-                                        onClick={() => setActiveTestimonialIndex(i)}
-                                        className={`w-2 h-2 rounded-full transition-all duration-300 ${activeTestimonialIndex === i ? 'bg-slate-900 dark:bg-white w-4' : 'bg-gray-300 dark:bg-gray-700'}`}
-                                        aria-label={`Go to slide ${i + 1}`}
-                                    />
-                                ))}
+                    </div>
+                </section>
+
+                {/* SECTION 2: TECH STACK & RECENT PROJECTS */}
+                <section className="snap-section">
+                    <div className="grid grid-cols-1 gap-2">
+                        {/* TECH STACK CARD */}
+                        <div className="bento-card p-5 space-y-4 group fade-in-section is-visible rounded-xl border border-slate-200/60 dark:border-slate-800/80 bg-white/60 dark:bg-slate-900/40">
+                            <div className="flex items-center justify-between">
+                                <h2 className="text-lg font-bold text-black dark:text-white display-font">Tech Stack</h2>
+                                <Link href="/tech-stack" prefetch="hover" id="tech-view-all" className="text-xs text-slate-600 dark:text-slate-400 hover:text-indigo-500 font-semibold cursor-pointer flex items-center gap-1 transition-all" aria-label="View all capabilities">
+                                    <span>View All</span>
+                                    <i className="fas fa-chevron-right text-[9px]"></i>
+                                </Link>
                             </div>
-                            <div className="flex gap-1">
-                                <button 
-                                    onClick={() => setActiveTestimonialIndex(prev => (prev - 1 + recommendations.length) % recommendations.length)} 
-                                    className="p-1.5 text-slate-600 hover:text-indigo-500 dark:text-slate-400 transition-all cursor-pointer" 
-                                    aria-label="Previous recommendation"
-                                >
-                                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"/></svg>
-                                </button>
-                                <button 
-                                    onClick={() => setActiveTestimonialIndex(prev => (prev + 1) % recommendations.length)} 
-                                    className="p-1.5 text-slate-600 hover:text-indigo-500 dark:text-slate-400 transition-all cursor-pointer" 
-                                    aria-label="Next recommendation"
-                                >
-                                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/></svg>
-                                </button>
+                            <div id="tech-stack-container" className="space-y-4">
+                                {Object.entries(techStack).map(([category, skills]) => {
+                                    if (!['Frontend', 'Backend'].includes(category)) return null;
+                                    return (
+                                        <div key={category}>
+                                            <h3 className="text-xs font-semibold text-slate-800 dark:text-slate-200 mb-1.5">{category}</h3>
+                                            <div className="flex flex-wrap gap-2 w-full">
+                                                {skills.map((skill, i) => (
+                                                    <span key={i} className="text-[12px] font-medium text-slate-800 dark:text-slate-200 px-2.5 py-1 rounded bg-slate-100/50 dark:bg-slate-800/50 border border-slate-200/40 dark:border-slate-800/40">{skill.name}</span>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        </div>
+
+                        {/* RECENT PROJECTS */}
+                        <div className="bento-card p-5 space-y-4 group fade-in-section is-visible rounded-xl border border-slate-200/60 dark:border-slate-800/80 bg-white/60 dark:bg-slate-900/40">
+                            <div className="flex items-center justify-between">
+                                <h2 className="text-lg font-bold text-black dark:text-white display-font">Recent Projects</h2>
+                                <Link href="/projects" prefetch="hover" id="projects-view-all" className="text-xs text-slate-600 dark:text-slate-400 hover:text-indigo-500 font-semibold cursor-pointer flex items-center gap-1 transition-all" aria-label="View all projects">
+                                    <span>View All</span>
+                                    <i className="fas fa-chevron-right text-[9px]"></i>
+                                </Link>
+                            </div>
+                            <div id="projects-container" className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                {projects.filter(p => p.featured).map((project, i) => (
+                                    <a key={i} href={project.demo} target="_blank" className="block p-3.5 space-y-1.5 border border-slate-200/60 dark:border-slate-800/80 rounded-xl bg-white dark:bg-slate-900 hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 group">
+                                        <div>
+                                            <h3 className="text-sm md:text-base font-bold text-black dark:text-white transition-colors">{project.title}</h3>
+                                            <p className="text-xs text-slate-700 dark:text-slate-300 mt-0.5 leading-relaxed">{project.description}</p>
+                                        </div>
+                                    </a>
+                                ))}
                             </div>
                         </div>
                     </div>
+                </section>
 
-                    {/* SOCIAL CONNECTIONS & SPEAKING */}
-                    <div className="bento-card p-5 col-span-1 md:col-span-6 space-y-4 group fade-in-section is-visible rounded-xl border border-slate-200/60 dark:border-slate-800/80 bg-white/60 dark:bg-slate-900/40">
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            {/* Social Links */}
-                            <div className="space-y-2 col-span-1 md:col-span-1 flex flex-col justify-between">
-                                <p className="text-xs text-foreground/60 uppercase font-bold tracking-wider">Social Links</p>
-                                <div className="gap-1.5 flex-1 justify-center flex flex-col">
-                                    {Object.entries(socialLinks).map(([platform, social]) => (
-                                        <a key={platform} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-2.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-200 group cursor-pointer" aria-label={`Visit ${platform} profile`} href={social.url}>
-                                            <div className="text-slate-600 dark:text-slate-300 transition-colors"><i className={`${social.icon} text-base`}></i></div>
-                                            <p className="text-xs font-bold text-slate-900 dark:text-white transition-colors">{platform}</p>
+                {/* SECTION 3: CERTIFICATIONS & RECOMMENDATIONS */}
+                <section className="snap-section">
+                    <div className="grid grid-cols-1 md:grid-cols-6 gap-2">
+                        {/* RECENT CERTIFICATIONS */}
+                        <div className="bento-card py-3.5 px-4 col-span-1 md:col-span-3 space-y-3 group fade-in-section is-visible rounded-xl border border-slate-200/60 dark:border-slate-800/80 bg-white/60 dark:bg-slate-900/40">
+                            <div className="flex items-center justify-between">
+                                <h2 className="text-base font-bold uppercase tracking-wider text-slate-900 dark:text-white flex items-center gap-1.5"><span>Certifications</span></h2>
+                                <Link href="/certifications" prefetch="hover" className="text-xs font-semibold text-slate-500 hover:text-indigo-500 transition-colors flex items-center gap-1">
+                                    <span>View all</span>
+                                    <i className="fas fa-chevron-right text-[8px]"></i>
+                                </Link>
+                            </div>
+                            <div id="certifications-container" className="space-y-2 mt-2">
+                                {certifications.slice(0, 3).map((cert, i) => (
+                                    <a key={i} href={cert.credential_url || '#'} target="_blank" className="block py-2 px-3 rounded-lg border border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-slate-900/40 hover:bg-slate-50 dark:hover:bg-slate-900 transition-all duration-300 cursor-pointer">
+                                        <div className="flex items-center justify-between gap-2">
+                                            <div className="min-w-0">
+                                                <h3 className="text-xs md:text-sm font-bold truncate text-slate-900 dark:text-white">{cert.title}</h3>
+                                                <p className="text-[11px] text-slate-700 dark:text-slate-300 mt-0.5 font-semibold">{cert.issuer}</p>
+                                            </div>
+                                            <div className="flex items-center gap-1.5 shrink-0">
+                                                <span className="text-[9px] font-semibold text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded-full">Verified</span>
+                                                <i className="fas fa-external-link-alt text-[9px] text-slate-400"></i>
+                                            </div>
+                                        </div>
+                                    </a>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* RECOMMENDATIONS SLIDER */}
+                        <div className="bento-card py-3.5 px-4 col-span-1 md:col-span-3 space-y-3 group overflow-hidden fade-in-section is-visible rounded-xl border border-slate-200/60 dark:border-slate-800/80 bg-white/60 dark:bg-slate-900/40">
+                            <h2 className="text-base font-bold uppercase tracking-wider text-slate-900 dark:text-white flex items-center gap-1.5"><span>Recommendations</span></h2>
+                            <div className="relative overflow-hidden w-full h-[120px] mt-1.5">
+                                <div 
+                                    className="flex transition-transform duration-500 ease-out h-full" 
+                                    style={{ transform: `translateX(-${activeTestimonialIndex * 100}%)`, width: '100%' }}
+                                >
+                                    {recommendations.map((rec, i) => (
+                                        <div key={i} className="w-full shrink-0 flex flex-col justify-between h-full px-1">
+                                            <p className="text-[13px] leading-relaxed text-slate-700 dark:text-slate-300 font-serif italic line-clamp-3">&ldquo;{rec.text}&rdquo;</p>
+                                            <div className="mt-1 pt-1.5 border-t border-slate-200/50 dark:border-slate-800/50 flex items-center justify-between">
+                                                <div>
+                                                    <p className="text-xs font-bold font-sans text-slate-900 dark:text-white">{rec.name}</p>
+                                                    <p className="text-[10px] text-slate-500 dark:text-slate-400 font-sans mt-0.5">{rec.role} &bull; {rec.company}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                            <div className="flex items-center justify-between mt-2 pt-2 border-t border-slate-200/50 dark:border-slate-800/50">
+                                <div className="flex gap-1.5 items-center">
+                                    {recommendations.map((_, i) => (
+                                        <button 
+                                            key={i}
+                                            onClick={() => setActiveTestimonialIndex(i)}
+                                            className={`w-2 h-2 rounded-full transition-all duration-300 ${activeTestimonialIndex === i ? 'bg-slate-900 dark:bg-white w-4' : 'bg-gray-300 dark:bg-gray-700'}`}
+                                            aria-label={`Go to slide ${i + 1}`}
+                                        />
+                                    ))}
+                                </div>
+                                <div className="flex gap-1">
+                                    <button 
+                                        onClick={() => setActiveTestimonialIndex(prev => (prev - 1 + recommendations.length) % recommendations.length)} 
+                                        className="p-1.5 text-slate-600 hover:text-indigo-500 dark:text-slate-400 transition-all cursor-pointer" 
+                                        aria-label="Previous recommendation"
+                                    >
+                                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"/></svg>
+                                    </button>
+                                    <button 
+                                        onClick={() => setActiveTestimonialIndex(prev => (prev + 1) % recommendations.length)} 
+                                        className="p-1.5 text-slate-600 hover:text-indigo-500 dark:text-slate-400 transition-all cursor-pointer" 
+                                        aria-label="Next recommendation"
+                                    >
+                                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* SECTION 4: SOCIALS, GALLERY & FOOTER */}
+                <section className="snap-section">
+                    <div className="grid grid-cols-1 gap-2">
+                        {/* SOCIAL CONNECTIONS & SPEAKING */}
+                        <div className="bento-card p-5 space-y-4 group fade-in-section is-visible rounded-xl border border-slate-200/60 dark:border-slate-800/80 bg-white/60 dark:bg-slate-900/40">
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                {/* Social Links */}
+                                <div className="space-y-2 col-span-1 md:col-span-1 flex flex-col justify-between">
+                                    <p className="text-xs text-foreground/60 uppercase font-bold tracking-wider">Social Links</p>
+                                    <div className="gap-1.5 flex-1 justify-center flex flex-col">
+                                        {Object.entries(socialLinks).map(([platform, social]) => (
+                                            <a key={platform} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-200 group cursor-pointer" aria-label={`Visit ${platform} profile`} href={social.url}>
+                                                <div className="text-slate-600 dark:text-slate-300 transition-colors"><i className={`${social.icon} text-base`}></i></div>
+                                                <p className="text-xs font-bold text-slate-900 dark:text-white transition-colors">{platform}</p>
+                                            </a>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* Speaking */}
+                                <div className="space-y-2 col-span-1 md:col-span-1 flex flex-col justify-between">
+                                    <p className="text-xs text-foreground/60 uppercase font-bold tracking-wider">Speaking</p>
+                                    <div className="p-3 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex flex-col justify-between h-full flex-1">
+                                        <p className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed font-medium">Available for guest keynotes, panels, and tech tutorials relating to generative AI architectures, Laravel frameworks, and operational MLOps infrastructure.</p>
+                                        <a className="text-xs font-bold text-slate-900 dark:text-white hover:underline inline-flex items-center gap-1 mt-2 transition-colors cursor-pointer" href="mailto:lyshandavet@gmail.com">
+                                            <span>Get in touch</span>
+                                            <i className="fas fa-arrow-right text-[9px]"></i>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                {/* Speaking Contacts */}
+                                <div className="space-y-1.5 col-span-1 md:col-span-1 flex flex-col justify-center">
+                                    {speakingContact.map((contact, i) => (
+                                        <a key={i} target="_blank" rel="noopener noreferrer" className="group p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-200 block cursor-pointer" href={contact.url}>
+                                            <div className="flex items-center gap-1.5 mb-0.5 text-slate-900 dark:text-slate-100">
+                                                {contact.url.includes('mailto') && (<><i className="far fa-envelope text-xs text-slate-500 dark:text-slate-400"></i><p className="text-[10px] text-slate-500 dark:text-slate-400 uppercase font-bold tracking-wide">EMAIL</p></>)}
+                                                {contact.url.includes('calendly') && (<><i className="far fa-calendar-alt text-xs text-slate-500 dark:text-slate-400"></i><p className="text-[10px] text-slate-500 dark:text-slate-400 uppercase font-bold tracking-wide">Consultation</p></>)}
+                                                {!contact.url.includes('mailto') && !contact.url.includes('calendly') && (<><i className="fas fa-globe text-xs text-slate-500 dark:text-slate-400"></i><p className="text-[10px] text-slate-500 dark:text-slate-400 uppercase font-bold tracking-wide">Technical Blog</p></>)}
+                                            </div>
+                                            <div className="flex items-center justify-between gap-1 mt-1">
+                                                <span className="text-xs font-bold text-slate-900 dark:text-white truncate">{contact.title}</span>
+                                                <i className="fas fa-chevron-right text-[8px] text-slate-500 transition-transform group-hover:translate-x-0.5"></i>
+                                            </div>
                                         </a>
                                     ))}
                                 </div>
                             </div>
+                        </div>
 
-                            {/* Speaking */}
-                            <div className="space-y-2 col-span-1 md:col-span-1 flex flex-col justify-between">
-                                <p className="text-xs text-foreground/60 uppercase font-bold tracking-wider">Speaking</p>
-                                <div className="p-3.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex flex-col justify-between h-full flex-1">
-                                    <p className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed font-medium">Available for guest keynotes, panels, and tech tutorials relating to generative AI architectures, Laravel frameworks, and operational MLOps infrastructure.</p>
-                                    <a className="text-xs font-bold text-slate-900 dark:text-white hover:underline inline-flex items-center gap-1 mt-3 transition-colors cursor-pointer" href="mailto:lyshandavet@gmail.com">
-                                        <span>Get in touch</span>
-                                        <i className="fas fa-arrow-right text-[9px]"></i>
-                                    </a>
+                        {/* GALLERY CAROUSEL */}
+                        <div className="bento-card p-5 space-y-3 group overflow-hidden fade-in-section is-visible rounded-xl border border-slate-200/60 dark:border-slate-800/80 bg-white/60 dark:bg-slate-900/40">
+                            <div className="flex items-center justify-between">
+                                <h2 className="text-base font-bold uppercase tracking-wider text-slate-900 dark:text-white flex items-center gap-1.5"><span>Gallery Highlights</span></h2>
+                                <span className="text-xs text-foreground/50 font-medium">Events &amp; Workspaces</span>
+                            </div>
+                            <div className="relative w-full overflow-hidden mt-2">
+                                <div 
+                                    className="flex gap-2 transition-transform duration-500 ease-out" 
+                                    style={{ transform: `translateX(-${galleryIndex * 50}%)`, width: '100%' }}
+                                >
+                                    {galleryImages.map((imgUrl, index) => (
+                                        <div 
+                                            key={index} 
+                                            onClick={() => setLightboxIndex(index)}
+                                            className="relative shrink-0 aspect-square overflow-hidden rounded-lg bg-foreground/5 border border-slate-200 dark:border-slate-800 hover:border-indigo-500/30 transition-all duration-200 group/image cursor-pointer w-[48%] sm:w-[31%] md:w-[19%]"
+                                        >
+                                            <img alt={`Gallery image ${index + 1}`} loading="lazy" decoding="async" className="object-cover w-full h-full transition-transform duration-300 group-hover/image:scale-105" src={imgUrl} />
+                                            <div className="absolute inset-0 bg-black/0 group-hover/image:bg-black/10 transition-colors duration-200"></div>
+                                        </div>
+                                    ))}
                                 </div>
-                            </div>
-
-                            {/* Speaking Contacts */}
-                            <div className="space-y-1.5 col-span-1 md:col-span-1 flex flex-col justify-center">
-                                {speakingContact.map((contact, i) => (
-                                    <a key={i} target="_blank" rel="noopener noreferrer" className="group p-2.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-200 block cursor-pointer" href={contact.url}>
-                                        <div className="flex items-center gap-1.5 mb-0.5 text-slate-900 dark:text-slate-100">
-                                            {contact.url.includes('mailto') && (<><i className="far fa-envelope text-xs text-slate-500 dark:text-slate-400"></i><p className="text-[10px] text-slate-500 dark:text-slate-400 uppercase font-bold tracking-wide">EMAIL</p></>)}
-                                            {contact.url.includes('calendly') && (<><i className="far fa-calendar-alt text-xs text-slate-500 dark:text-slate-400"></i><p className="text-[10px] text-slate-500 dark:text-slate-400 uppercase font-bold tracking-wide">Consultation</p></>)}
-                                            {!contact.url.includes('mailto') && !contact.url.includes('calendly') && (<><i className="fas fa-globe text-xs text-slate-500 dark:text-slate-400"></i><p className="text-[10px] text-slate-500 dark:text-slate-400 uppercase font-bold tracking-wide">Technical Blog</p></>)}
-                                        </div>
-                                        <div className="flex items-center justify-between gap-1 mt-1">
-                                            <span className="text-xs font-bold text-slate-900 dark:text-white truncate">{contact.title}</span>
-                                            <i className="fas fa-chevron-right text-[8px] text-slate-500 transition-transform group-hover:translate-x-0.5"></i>
-                                        </div>
-                                    </a>
-                                ))}
+                                <button 
+                                    onClick={() => setGalleryIndex(prev => Math.max(0, prev - 1))}
+                                    className="absolute left-1 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-white dark:bg-slate-900 text-slate-800 dark:text-white border border-slate-200 dark:border-slate-800 shadow-md hover:scale-110 transition-all duration-200 cursor-pointer" 
+                                    aria-label="Previous image"
+                                >
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"/></svg>
+                                </button>
+                                <button 
+                                    onClick={() => setGalleryIndex(prev => Math.min(galleryImages.length - 3, prev + 1))}
+                                    className="absolute right-1 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-white dark:bg-slate-900 text-slate-800 dark:text-white border border-slate-200 dark:border-slate-800 shadow-md hover:scale-110 transition-all duration-200 cursor-pointer" 
+                                    aria-label="Next image"
+                                >
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/></svg>
+                                </button>
                             </div>
                         </div>
                     </div>
 
-                    {/* GALLERY CAROUSEL */}
-                    <div className="bento-card p-5 col-span-1 md:col-span-6 space-y-3 group overflow-hidden fade-in-section is-visible rounded-xl border border-slate-200/60 dark:border-slate-800/80 bg-white/60 dark:bg-slate-900/40">
-                        <div className="flex items-center justify-between">
-                            <h2 className="text-base font-bold uppercase tracking-wider text-slate-900 dark:text-white flex items-center gap-1.5"><span>Gallery Highlights</span></h2>
-                            <span className="text-xs text-foreground/50 font-medium">Events &amp; Workspaces</span>
-                        </div>
-                        <div className="relative w-full overflow-hidden mt-3">
-                            <div 
-                                className="flex gap-2.5 transition-transform duration-500 ease-out" 
-                                style={{ transform: `translateX(-${galleryIndex * 50}%)`, width: '100%' }}
-                            >
-                                {galleryImages.map((imgUrl, index) => (
-                                    <div 
-                                        key={index} 
-                                        onClick={() => setLightboxIndex(index)}
-                                        className="relative shrink-0 aspect-square overflow-hidden rounded-lg bg-foreground/5 border border-slate-200 dark:border-slate-800 hover:border-indigo-500/30 transition-all duration-200 group/image cursor-pointer w-[48%] sm:w-[31%] md:w-[19%]"
-                                    >
-                                        <img alt={`Gallery image ${index + 1}`} loading="lazy" decoding="async" className="object-cover w-full h-full transition-transform duration-300 group-hover/image:scale-105" src={imgUrl} />
-                                        <div className="absolute inset-0 bg-black/0 group-hover/image:bg-black/10 transition-colors duration-200"></div>
-                                    </div>
-                                ))}
-                            </div>
-                            <button 
-                                onClick={() => setGalleryIndex(prev => Math.max(0, prev - 1))}
-                                className="absolute left-1 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-white dark:bg-slate-900 text-slate-800 dark:text-white border border-slate-200 dark:border-slate-800 shadow-md hover:scale-110 transition-all duration-200 cursor-pointer" 
-                                aria-label="Previous image"
-                            >
-                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"/></svg>
-                            </button>
-                            <button 
-                                onClick={() => setGalleryIndex(prev => Math.min(galleryImages.length - 3, prev + 1))}
-                                className="absolute right-1 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-white dark:bg-slate-900 text-slate-800 dark:text-white border border-slate-200 dark:border-slate-800 shadow-md hover:scale-110 transition-all duration-200 cursor-pointer" 
-                                aria-label="Next image"
-                            >
-                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/></svg>
-                            </button>
-                        </div>
-                    </div>
-
+                    {/* FOOTER */}
+                    <footer className="border-t border-slate-200 dark:border-slate-800 text-center mt-4 pt-3 pb-3">
+                        <p className="text-xs text-foreground/50">&copy; {currentYear} {profile.name}. All rights reserved.</p>
+                    </footer>
                 </section>
-
-                {/* FOOTER */}
-                <footer className="border-t border-slate-200 dark:border-slate-800 text-center" style={{ marginTop: '2.5rem', paddingTop: '2rem', paddingBottom: '2rem' }}>
-                    <p className="text-xs text-foreground/50">&copy; {currentYear} {profile.name}. All rights reserved.</p>
-                </footer>
             </div>
 
             {/* Lightbox Modal for Gallery */}
