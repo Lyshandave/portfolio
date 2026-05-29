@@ -3,52 +3,60 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class PortfolioController extends Controller
 {
     /**
      * Display the portfolio index page with Lyshan Dave's authentic structured data.
      *
-     * @return \Illuminate\View\View
-     */
-    /**
-     * Display the portfolio index page.
-     *
-     * @return \Illuminate\View\View
+     * @return \Inertia\Response
      */
     public function index()
     {
-        return view('portfolio', $this->getPortfolioData());
+        return Inertia::render('Portfolio', $this->getPortfolioData());
     }
 
     /**
      * Display the full Tech Stack page.
      *
-     * @return \Illuminate\View\View
+     * @return \Inertia\Response
      */
     public function techStack()
     {
-        return view('tech-stack', $this->getPortfolioData());
+        $data = $this->getPortfolioData();
+        return Inertia::render('TechStack', [
+            'profile' => $data['profile'],
+            'techStack' => $data['techStack'],
+        ]);
     }
 
     /**
      * Display the full Projects page.
      *
-     * @return \Illuminate\View\View
+     * @return \Inertia\Response
      */
     public function projects()
     {
-        return view('projects', $this->getPortfolioData());
+        $data = $this->getPortfolioData();
+        return Inertia::render('Projects', [
+            'profile' => $data['profile'],
+            'projects' => $data['projects'],
+        ]);
     }
 
     /**
      * Display the full Certifications page.
      *
-     * @return \Illuminate\View\View
+     * @return \Inertia\Response
      */
     public function certifications()
     {
-        return view('certifications', $this->getPortfolioData());
+        $data = $this->getPortfolioData();
+        return Inertia::render('Certifications', [
+            'profile' => $data['profile'],
+            'all_certifications' => $data['all_certifications'],
+        ]);
     }
 
     /**
@@ -320,9 +328,9 @@ class PortfolioController extends Controller
                     'url' => 'https://github.com/lyshandave',
                     'icon' => 'fab fa-github',
                 ],
-                'LinkedIn' => [
-                    'url' => 'https://www.linkedin.com/in/lyshan-dave-tomo-09166337b/',
-                    'icon' => 'fab fa-linkedin',
+                'Facebook' => [
+                    'url' => 'https://www.facebook.com/Dave062',
+                    'icon' => 'fab fa-facebook',
                 ],
                 'Instagram' => [
                     'url' => 'https://www.instagram.com/lyshan_dave/',
