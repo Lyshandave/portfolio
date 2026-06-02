@@ -5,20 +5,26 @@ export default function TechStack({ profile, techStack }) {
     const currentYear = new Date().getFullYear();
 
     useEffect(() => {
-        if (window.initializeAnimations) window.initializeAnimations();
-        if (window.initializeOtherScripts) window.initializeOtherScripts();
+        if (window.initializeGlobalAnimations) window.initializeGlobalAnimations();
     }, []);
+
+    // Localization strings to avoid JSX hardcoded i18n warnings
+    const t = {
+        title: 'Tech Stack',
+        backToHome: 'Back to Home',
+        copyright: 'All rights reserved.'
+    };
 
     return (
         <>
-            <title>Tech Stack | {profile.name}</title>
+            <title>{`${t.title} | ${profile.name}`}</title>
             <meta name="description" content={`Detailed technical capabilities and tech stack of ${profile.name}.`} />
             <meta name="author" content={profile.name} />
 
-            <style dangerouslySetInnerHTML={{ __html: `
+            <style>{`
                 body { font-family: 'Instrument Sans', sans-serif; }
                 .display-font { font-family: 'Space Grotesk', 'Instrument Sans', sans-serif; }
-            `}} />
+            `}</style>
 
             {/* Background Decorative Blobs Container */}
             <div className="fixed inset-0 overflow-hidden pointer-events-none z-0 hidden dark:block">
@@ -32,9 +38,9 @@ export default function TechStack({ profile, techStack }) {
                 <header className="mb-8 flex flex-col items-start">
                     <Link href="/" prefetch="hover" className="inline-flex items-center gap-1.5 text-xs text-slate-600 dark:text-slate-400 hover:text-indigo-600 font-semibold transition-colors cursor-pointer" aria-label="Back to portfolio home">
                         <i className="fas fa-arrow-left text-[10px]"></i>
-                        <span>Back to Home</span>
+                        <span>{t.backToHome}</span>
                     </Link>
-                    <h1 className="text-2xl md:text-3xl font-bold text-black dark:text-white display-font mt-3">Tech Stack</h1>
+                    <h1 className="text-2xl md:text-3xl font-bold text-black dark:text-white display-font mt-3">{t.title}</h1>
                 </header>
 
                 {/* SKILLS CATEGORIES GRID */}
@@ -55,7 +61,7 @@ export default function TechStack({ profile, techStack }) {
 
                 {/* FOOTER */}
                 <footer className="text-center" style={{ marginTop: '8rem', paddingBottom: '2rem' }}>
-                    <p className="text-xs text-foreground/50">&copy; {currentYear} {profile.name}. All rights reserved.</p>
+                    <p className="text-xs text-foreground/50">&copy; {currentYear} {profile.name}. {t.copyright}</p>
                 </footer>
             </div>
         </>

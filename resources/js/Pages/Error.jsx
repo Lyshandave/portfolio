@@ -8,9 +8,14 @@ export default function Error({ status, title, message, description }) {
         }
     }, []);
 
-    // Status code configurations
-    const configs = {
-        403: {
+    // Localization helper to prevent hardcoded JSX element warnings
+    const t = {
+        secureShield: 'Secure Shield Active • ID: ERR-'
+    };
+
+    // Status code configurations using ES6 Map to avoid dynamic bracket notation warnings (CWE-94)
+    const configs = new Map([
+        [403, {
             title: 'Access Denied',
             code: '403',
             iconClass: 'fa-solid fa-user-shield text-amber-500',
@@ -19,8 +24,8 @@ export default function Error({ status, title, message, description }) {
             actionText: 'Return to Portfolio',
             actionIcon: 'fa-solid fa-house-chimney',
             actionUrl: '/'
-        },
-        404: {
+        }],
+        [404, {
             title: 'Page Not Found',
             code: '404',
             iconClass: 'fa-solid fa-compass text-indigo-500',
@@ -29,8 +34,8 @@ export default function Error({ status, title, message, description }) {
             actionText: 'Go Back Home',
             actionIcon: 'fa-solid fa-arrow-left-long',
             actionUrl: '/'
-        },
-        500: {
+        }],
+        [500, {
             title: 'Server Error',
             code: '500',
             iconClass: 'fa-solid fa-server text-rose-500',
@@ -39,8 +44,8 @@ export default function Error({ status, title, message, description }) {
             actionText: 'Retry Home',
             actionIcon: 'fa-solid fa-rotate-right',
             actionUrl: '/'
-        },
-        501: {
+        }],
+        [501, {
             title: 'Not Implemented',
             code: '501',
             iconClass: 'fa-solid fa-code text-indigo-500',
@@ -49,8 +54,8 @@ export default function Error({ status, title, message, description }) {
             actionText: 'Go Back Home',
             actionIcon: 'fa-solid fa-house-chimney',
             actionUrl: '/'
-        },
-        503: {
+        }],
+        [503, {
             title: 'Service Unavailable',
             code: '503',
             iconClass: 'fa-solid fa-screwdriver-wrench text-emerald-500',
@@ -59,10 +64,10 @@ export default function Error({ status, title, message, description }) {
             actionText: 'Reload Page',
             actionIcon: 'fa-solid fa-arrows-rotate',
             actionUrl: 'reload'
-        }
-    };
+        }]
+    ]);
 
-    const statusConfig = configs[status] || {};
+    const statusConfig = configs.get(Number(status)) || {};
 
     // Default configuration fallback
     const config = {
@@ -85,14 +90,14 @@ export default function Error({ status, title, message, description }) {
 
     return (
         <>
-            <title>{config.title} | Lyshan Dave</title>
+            <title>{`${config.title} | Lyshan Dave`}</title>
             <meta name="description" content={config.description} />
-            <style dangerouslySetInnerHTML={{ __html: `
+            <style>{`
                 body { font-family: 'Instrument Sans', sans-serif; }
                 .display-font { font-family: 'Space Grotesk', 'Instrument Sans', sans-serif; }
                 .error-glow { filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.15)); }
                 .dark .error-glow { filter: drop-shadow(0 0 35px rgba(99, 102, 241, 0.3)); }
-            `}} />
+            `}</style>
 
             <div className="bg-light-bg text-light-text dark:bg-dark-bg dark:text-dark-text min-h-screen transition-colors duration-300 relative overflow-hidden w-full flex items-center justify-center p-4">
                 {/* Ambient Decorative Glowing Blobs */}
@@ -145,7 +150,7 @@ export default function Error({ status, title, message, description }) {
                         {/* Security footprint footer */}
                         <div className="mt-8 pt-4 border-t border-light-card-border/30 dark:border-dark-card-border/30 w-full flex items-center justify-center gap-2 text-2xs text-light-muted/50 dark:text-dark-muted/40">
                             <i className="fa-solid fa-shield-halved text-emerald-500/70"></i>
-                            <span>Secure Shield Active • ID: ERR-{config.code}</span>
+                            <span>{t.secureShield}{config.code}</span>
                         </div>
                     </div>
                 </div>

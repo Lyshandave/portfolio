@@ -5,8 +5,7 @@ export default function Projects({ profile, projects }) {
     const currentYear = new Date().getFullYear();
 
     useEffect(() => {
-        if (window.initializeAnimations) window.initializeAnimations();
-        if (window.initializeOtherScripts) window.initializeOtherScripts();
+        if (window.initializeGlobalAnimations) window.initializeGlobalAnimations();
     }, []);
 
     return (

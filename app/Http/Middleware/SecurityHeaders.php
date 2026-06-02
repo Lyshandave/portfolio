@@ -23,7 +23,22 @@ class SecurityHeaders
         $response->headers->set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
         $csp = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' data: https://cdnjs.cloudflare.com https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://en.wikipedia.org;";
         if (app()->environment('local')) {
-            $csp = "default-src 'self' http://localhost:5173 http://127.0.0.1:5173 ws://localhost:5173 ws://127.0.0.1:5173; script-src 'self' 'unsafe-inline' 'unsafe-eval' http://localhost:5173 http://127.0.0.1:5173; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com http://localhost:5173 http://127.0.0.1:5173; font-src 'self' data: https://cdnjs.cloudflare.com https://fonts.gstatic.com http://localhost:5173 http://127.0.0.1:5173; img-src 'self' data: https: http://localhost:5173 http://127.0.0.1:5173; connect-src 'self' https://en.wikipedia.org ws://localhost:5173 ws://127.0.0.1:5173 http://localhost:5173 http://127.0.0.1:5173;";
+            $viteOrigins = implode(' ', [
+                'http://localhost:5173',
+                'http://127.0.0.1:5173',
+                'ws://localhost:5173',
+                'ws://127.0.0.1:5173',
+                'http://localhost:5174',
+                'http://127.0.0.1:5174',
+                'ws://localhost:5174',
+                'ws://127.0.0.1:5174',
+                'http://localhost:5175',
+                'http://127.0.0.1:5175',
+                'ws://localhost:5175',
+                'ws://127.0.0.1:5175',
+            ]);
+
+            $csp = "default-src 'self' {$viteOrigins}; script-src 'self' 'unsafe-inline' 'unsafe-eval' {$viteOrigins}; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com {$viteOrigins}; font-src 'self' data: https://cdnjs.cloudflare.com https://fonts.gstatic.com {$viteOrigins}; img-src 'self' data: https: {$viteOrigins}; connect-src 'self' https://en.wikipedia.org {$viteOrigins};";
         }
         $response->headers->set('Content-Security-Policy', $csp);
         $response->headers->set('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
