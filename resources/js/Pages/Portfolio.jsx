@@ -6,12 +6,12 @@ function decodeHtmlEntities(str) {
     const entities = new Map([
         ['&amp;', '&'],
         ['&lt;', '<'],
-        ['&gt;', '>',
+        ['&gt;', '>'],
         ['&quot;', '"'],
         ['&#039;', "'"],
         ['&ndash;', '–'],
         ['&mdash;', '—']
-    ]]);
+    ]);
     return str.replace(/&[#\w]+;/g, match => entities.get(match) || match);
 }
 
@@ -30,7 +30,7 @@ function Chatbot() {
     const [messages, setMessages] = useState([
         {
             sender: 'bot',
-            text: 'Hi there! 👋 Thanks for visiting my website. Feel free to ask me anything about programming, web development, or my experiences in tech. Let me know how I can help!'
+            text: 'Salamat sa pagbisita sa website ko. Pwede mo akong tanungin tungkol sa programming, web development, o kahit anong karanasan ko sa tech. Sabihin mo lang kung paano ako makakatulong sa iyo ngayon.'
         }
     ]);
     const [inputValue, setInputValue] = useState('');
@@ -46,32 +46,37 @@ function Chatbot() {
 
     const getBotResponse = async (message) => {
         const msg = message.toLowerCase().trim();
-        if (msg.includes("hello") || msg.includes("hi") || msg.includes("hey") || msg.includes("uy")) return "Hello! 👋 Ako ang AI assistant ni Lyshan. Ano ang maitutulong ko sayo ngayon?";
-        if (msg.includes("kumusta") || msg.includes("kamusta") || msg.includes("how are you")) return "Okay naman ako, salamat sa pagtatanong! Handa akong sagutin ang mga tanong mo tungkol sa skills at projects ni Lyshan.";
-        if (msg.includes("sino ka") || msg.includes("who are you") || msg.includes("pangalan")) return "Ako ang virtual assistant ni Lyshan. Nandito ako para i-guide ka sa kanyang portfolio!";
-        if (msg.includes("sino si") || msg.includes("who is lyshan") || msg.includes("lyshan")) return "Si Lyshan Dave ay isang magaling na Computer Systems Technician at Web Developer mula sa Metro Manila.";
-        if (msg.includes("skill") || msg.includes("tech") || msg.includes("alam") || msg.includes("marunong") || msg.includes("language")) return "Marunong si Lyshan sa Frontend (React, Tailwind), Backend (Laravel, Node.js), pati na rin sa PC Troubleshooting at Networking.";
-        if (msg.includes("project") || msg.includes("gawa") || msg.includes("portfolio")) return "Nakagawa na siya ng Ordering System, Inventory System, at School Management System. Tingnan mo yung 'Projects' section sa taas!";
-        if (msg.includes("contact") || msg.includes("email") || msg.includes("hire") || msg.includes("usap") || msg.includes("number")) return "Pwede mong ma-contact si Lyshan sa lyshandavet@gmail.com o mag-schedule ng meeting gamit ang Calendly link sa footer.";
-        if (msg.includes("aral") || msg.includes("school") || msg.includes("education") || msg.includes("graduate") || msg.includes("college")) return "Nag-aral si Lyshan ng BS Computer Science at may certifications din siya from Cisco at TESDA (Computer Systems Servicing).";
-        if (msg.includes("work") || msg.includes("trabaho") || msg.includes("experience") || msg.includes("job")) return "May experience si Lyshan bilang Web Developer sa Core Technology & PocketDevs, at naging Computer Systems Servicing rin sa GCM Tech Services.";
-        if (msg.includes("thank") || msg.includes("salamat")) return "Walang anuman! Sabihin mo lang kung may kailangan ka pa.";
-        if (msg.includes("haha") || msg.includes("hehe") || msg.includes("lol")) return "Hehe! Nakakatuwa ba? Ano pang gusto mong malaman tungkol kay Lyshan?";
+        if (msg.includes("hello") || msg.includes("hi") || msg.includes("hey") || msg.includes("uy")) return "Uy, hello. Ako pala si Lyshan. Ano ang maitutulong ko sa iyo ngayon?";
+        if (msg.includes("kumusta") || msg.includes("kamusta") || msg.includes("how are you")) return "Mabuti naman ako, salamat sa pagtatanong. Handa akong sagutin ang mga tanong mo tungkol sa mga skills at projects ko.";
+        if (msg.includes("sino ka") || msg.includes("who are you") || msg.includes("pangalan")) return "Ako mismo si Lyshan Dave. Nandito ako para ibahagi ang mga naging karanasan at gawa ko sa tech.";
+        if (msg.includes("who is lyshan") || (msg.includes("sino si") && (msg.includes("lyshan") || msg.includes("dave"))) || msg === "lyshan" || msg === "lyshan dave") return "Ako si Lyshan Dave, isang Computer Systems Technician at Web Developer mula sa Metro Manila. Mahilig ako sa hardware, networks, at coding.";
+        if (msg.includes("skill") || msg.includes("tech") || msg.includes("alam") || msg.includes("marunong") || msg.includes("language")) return "May kaalaman at karanasan ako sa Frontend gaya ng React at Tailwind, pati sa Backend gamit ang Laravel at Node.js. May background din ako sa PC Troubleshooting at Networking.";
+        if (msg.includes("project") || msg.includes("gawa") || msg.includes("portfolio")) return "Ilan sa mga nagawa ko na ay ang Ordering System, Inventory System, at School Management System. Pwede mong tingnan ang Projects section sa itaas.";
+        if (msg.includes("contact") || msg.includes("email") || msg.includes("hire") || msg.includes("usap") || msg.includes("number")) return "Maaari mo akong ma-contact sa lyshandavet@gmail.com o mag-schedule ng maikling pag-usap gamit ang Calendly link sa footer.";
+        if (msg.includes("aral") || msg.includes("school") || msg.includes("education") || msg.includes("graduate") || msg.includes("college")) return "Nag-aral ako ng BS Computer Science at kumuha rin ng mga certifications mula sa Cisco (Networking Basics) at TESDA (Computer Systems Servicing).";
+        if (msg.includes("work") || msg.includes("trabaho") || msg.includes("experience") || msg.includes("job")) return "Naging Web Developer ako sa Core Technology & PocketDevs, at nagtrabaho rin sa Computer Systems Servicing sa GCM Tech Services.";
+        if (msg.includes("thank") || msg.includes("salamat")) return "Walang anuman. Sabihin mo lang sa akin kung may iba ka pang gustong itanong.";
+        if (msg.includes("haha") || msg.includes("hehe") || msg.includes("lol")) return "Hehe, salamat. May iba ka pang gustong malaman tungkol sa mga gawa o karanasan ko?";
         
         try {
-            const res = await fetch(`https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(message)}&utf8=&format=json&origin=*`);
-            const data = await res.json();
-            if (data.query.search && data.query.search.length > 0) {
-                const rawSnippet = data.query.search[0].snippet.replace(/(<([^>]+)>)/gi, "");
-                const cleanSnippet = decodeHtmlEntities(rawSnippet);
-                return `Ayon sa web: ${cleanSnippet}... Baka may iba ka pang tanong tungkol kay Lyshan?`;
+            const searchRes = await fetch(`https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(message)}&utf8=&format=json&origin=*`);
+            const searchData = await searchRes.json();
+            if (searchData.query.search && searchData.query.search.length > 0) {
+                const bestTitle = searchData.query.search[0].title;
+                const summaryRes = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(bestTitle)}`);
+                if (summaryRes.ok) {
+                    const summaryData = await summaryRes.json();
+                    if (summaryData.extract) {
+                        return `${summaryData.extract} May iba ka pa bang tanong para sa akin o tungkol sa portfolio ko?`;
+                    }
+                }
             }
         } catch (e) {}
 
         const fallbacks = [
-            "Pasensya na, hindi ko masyadong naintindihan. Pero alam mo ba na magaling si Lyshan sa Laravel at Networking?",
-            "Medyo out of scope 'yan sa ngayon! 😅 Gusto mo bang pag-usapan ang mga projects ni Lyshan?",
-            "Wala akong sagot diyan ngayon, pero pwede mong i-email si Lyshan kung gusto mong makipag-usap ng personal!"
+            "Pasensya na, hindi ko masyadong nakuha ang ibig mong sabihin. Pero kung tungkol sa Laravel o Networking ang gusto mong malaman, marami akong karanasan doon.",
+            "Medyo malayo na yata sa tech ang napag-uusapan natin. Gusto mo bang talakayin natin ang mga software projects o configurations na ginawa ko?",
+            "Wala akong sapat na detalye tungkol diyan ngayon, pero pwede mo akong i-email kung gusto mong magkausap tayo nang mas personal."
         ];
         // Use .at() to avoid bracket notation warnings (CWE-94)
         return fallbacks.at(Math.floor(Math.random() * fallbacks.length));
