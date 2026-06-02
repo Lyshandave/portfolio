@@ -3,6 +3,13 @@ import { useEffect } from 'react';
 
 export default function Projects({ profile, projects }) {
     const currentYear = new Date().getFullYear();
+    const t = {
+        pageTitle: 'Projects',
+        backToHome: 'Back to Home',
+        allProjects: 'All Projects',
+        visitSite: 'Visit site',
+        copyright: 'All rights reserved.'
+    };
 
     useEffect(() => {
         if (window.initializeGlobalAnimations) window.initializeGlobalAnimations();
@@ -10,14 +17,14 @@ export default function Projects({ profile, projects }) {
 
     return (
         <>
-            <title>Projects | {profile.name}</title>
+            <title>{t.pageTitle} | {profile.name}</title>
             <meta name="description" content={`All software development projects completed by ${profile.name}.`} />
             <meta name="author" content={profile.name} />
 
-            <style dangerouslySetInnerHTML={{ __html: `
+            <style>{`
                 body { font-family: 'Instrument Sans', sans-serif; }
                 .display-font { font-family: 'Space Grotesk', 'Instrument Sans', sans-serif; }
-            `}} />
+            `}</style>
 
             {/* Background Decorative Blobs Container */}
             <div className="fixed inset-0 overflow-hidden pointer-events-none z-0 hidden dark:block">
@@ -31,9 +38,9 @@ export default function Projects({ profile, projects }) {
                 <header className="mb-8 flex flex-col items-start">
                     <Link href="/" prefetch="hover" className="inline-flex items-center gap-1.5 text-xs text-foreground/60 hover:text-indigo-500 font-semibold transition-colors cursor-pointer" aria-label="Back to portfolio home">
                         <i className="fas fa-arrow-left text-[10px]"></i>
-                        <span>Back to Home</span>
+                        <span>{t.backToHome}</span>
                     </Link>
-                    <h1 className="text-2xl md:text-3xl font-bold text-black dark:text-white display-font mt-3">All Projects</h1>
+                    <h1 className="text-2xl md:text-3xl font-bold text-black dark:text-white display-font mt-3">{t.allProjects}</h1>
                 </header>
 
                 {/* PROJECTS GRID */}
@@ -51,7 +58,7 @@ export default function Projects({ profile, projects }) {
                             </div>
                             <div className="pt-2 border-t border-slate-200/50 dark:border-slate-800/50 flex items-center justify-end">
                                 <span className="text-xs text-slate-500 dark:text-slate-400 group-hover:text-indigo-500 dark:group-hover:text-indigo-400 transition-colors flex items-center gap-1 font-semibold">
-                                    <span>Visit site</span>
+                                    <span>{t.visitSite}</span>
                                     <i className="fas fa-external-link-alt text-[9px]"></i>
                                 </span>
                             </div>
@@ -61,7 +68,7 @@ export default function Projects({ profile, projects }) {
 
                 {/* FOOTER */}
                 <footer className="text-center" style={{ marginTop: '8rem', paddingBottom: '2rem' }}>
-                    <p className="text-xs text-foreground/50">&copy; {currentYear} {profile.name}. All rights reserved.</p>
+                    <p className="text-xs text-foreground/50">&copy; {currentYear} {profile.name}. {t.copyright}</p>
                 </footer>
             </div>
         </>

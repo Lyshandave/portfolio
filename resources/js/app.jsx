@@ -33,7 +33,7 @@ function initializeGlobalAnimations() {
         requestAnimationFrame(raf);
     }
 
-    const animatedElements = document.querySelectorAll('.bento-card, .cert-card, .project-card, header, footer, section, main > div, main > a, main > article');
+    const animatedElements = document.querySelectorAll('.bento-card, .cert-card, .project-card, [data-global-animate]');
     animatedElements.forEach(el => {
         el.classList.remove('fade-in-section', 'is-visible');
 

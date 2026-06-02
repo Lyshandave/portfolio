@@ -16,7 +16,7 @@ function decodeHtmlEntities(str) {
 }
 
 // Chatbot component embedded inside the Portfolio page
-function Chatbot({ profile }) {
+function Chatbot() {
     const t = {
         chatWithLyshan: 'Chat with Lyshan',
         online: 'Online',
@@ -35,6 +35,7 @@ function Chatbot({ profile }) {
     ]);
     const [inputValue, setInputValue] = useState('');
     const [isTyping, setIsTyping] = useState(false);
+    const [mobileViewportHeight, setMobileViewportHeight] = useState(null);
 
     const getAvatarUrl = () => {
         if (typeof document !== 'undefined') {
@@ -99,12 +100,37 @@ function Chatbot({ profile }) {
         }
     }, [messages, isTyping]);
 
+    useEffect(() => {
+        const updateMobileViewportHeight = () => {
+            if (typeof window === 'undefined') return;
+            if (window.innerWidth >= 640) {
+                setMobileViewportHeight(null);
+                return;
+            }
+            const viewportHeight = window.visualViewport?.height || window.innerHeight;
+            setMobileViewportHeight(viewportHeight);
+        };
+
+        updateMobileViewportHeight();
+        window.visualViewport?.addEventListener('resize', updateMobileViewportHeight);
+        window.visualViewport?.addEventListener('scroll', updateMobileViewportHeight);
+        window.addEventListener('resize', updateMobileViewportHeight);
+
+        return () => {
+            window.visualViewport?.removeEventListener('resize', updateMobileViewportHeight);
+            window.visualViewport?.removeEventListener('scroll', updateMobileViewportHeight);
+            window.removeEventListener('resize', updateMobileViewportHeight);
+        };
+    }, []);
+
+    const mobileChatHeight = mobileViewportHeight ? Math.max(280, mobileViewportHeight - 24) : undefined;
+
     return (
         <>
             {/* Chatbot Toggle Button */}
             <button 
                 onClick={() => setIsOpen(!isOpen)} 
-                className="fixed bottom-6 right-6 bg-[#111111] text-white px-4 py-2.5 rounded-lg shadow-xl flex items-center gap-2 hover:bg-black hover:-translate-y-1 transition-all duration-300 z-50 border border-white/10" 
+                className="fixed bottom-[calc(env(safe-area-inset-bottom)+1rem)] right-3 sm:right-6 bg-[#111111] text-white px-4 py-2.5 rounded-lg shadow-xl flex items-center gap-2 hover:bg-black hover:-translate-y-1 transition-all duration-300 z-50 border border-white/10" 
                 aria-label="Toggle chatbot"
             >
                 <i className={`fas ${isOpen ? 'fa-times' : 'fa-comment-dots'} text-[15px]`}></i>
@@ -112,7 +138,10 @@ function Chatbot({ profile }) {
             </button>
 
             {/* Chatbot Window */}
-            <div className={`fixed bottom-24 right-6 w-[380px] bg-white border border-slate-200 shadow-2xl z-50 flex flex-col transition-all duration-300 transform origin-bottom-right rounded-t-xl rounded-b-md ${isOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-10 pointer-events-none'}`}>
+            <div
+                className={`fixed inset-x-3 bottom-[calc(env(safe-area-inset-bottom)+0.75rem)] max-h-[calc(100dvh-1.5rem)] bg-white border border-slate-200 shadow-2xl z-50 flex flex-col transition-all duration-300 transform origin-bottom-right rounded-t-xl rounded-b-md sm:inset-x-auto sm:bottom-24 sm:right-6 sm:w-[380px] sm:max-h-none ${isOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-10 pointer-events-none'}`}
+                style={{ height: mobileChatHeight ? `min(${mobileChatHeight}px, calc(100dvh - 1.5rem))` : undefined }}
+            >
                 <div className="bg-white p-4 flex items-center justify-between border-b border-slate-200 rounded-t-xl">
                     <div className="flex items-center gap-3">
                         <div className="relative w-10 h-10 shrink-0">
@@ -127,7 +156,7 @@ function Chatbot({ profile }) {
                     <button onClick={() => setIsOpen(false)} className="text-slate-500 hover:text-slate-800 p-1 transition-colors"><i className="fas fa-times text-lg"></i></button>
                 </div>
                 
-                <div className="h-[380px] overflow-y-auto p-5 space-y-5 bg-[#f9f9f9]" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                <div className="min-h-0 flex-1 overflow-y-auto p-5 space-y-5 bg-[#f9f9f9] sm:h-[380px] sm:flex-none" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                     {messages.map((msg, index) => (
                         <div key={index} className={msg.sender === 'user' ? 'flex justify-end mt-4' : ''}>
                             {msg.sender === 'bot' && (
@@ -157,7 +186,7 @@ function Chatbot({ profile }) {
                     <div ref={messagesEndRef} />
                 </div>
 
-                <div className="p-4 bg-white border-t border-slate-200 rounded-b-md">
+                <div className="shrink-0 p-4 bg-white border-t border-slate-200 rounded-b-md">
                     <form onSubmit={handleSend} className="relative">
                         <div className="flex items-stretch gap-2 mb-2">
                             <input 
@@ -167,6 +196,7 @@ function Chatbot({ profile }) {
                                 placeholder={t.typeMessage} 
                                 className="w-full bg-white border border-slate-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-slate-400 placeholder:text-slate-400 text-slate-900" 
                                 autoComplete="off" 
+                                enterKeyHint="send"
                                 maxLength="1000" 
                             />
                             <button type="submit" className="w-10 h-[38px] flex items-center justify-center bg-slate-500 hover:bg-slate-600 text-white rounded shrink-0 transition-colors" aria-label="Send message"><i className="fas fa-arrow-right text-sm"></i></button>
@@ -763,14 +793,14 @@ export default function Portfolio(props) {
                     </button>
                     <button 
                         onClick={(e) => { e.stopPropagation(); setLightboxIndex(prev => (prev - 1 + galleryImages.length) % galleryImages.length); }}
-                        className="absolute left-4 md:left-8 text-white hover:text-slate-200 bg-white/10 hover:bg-white/20 rounded-full w-12 h-12 flex items-center justify-center transition-all cursor-pointer border border-white/10 shadow-lg" 
+                        className="absolute left-3 md:left-8 z-20 text-white hover:text-slate-200 bg-white/20 hover:bg-white/30 rounded-full w-11 h-11 md:w-12 md:h-12 flex items-center justify-center transition-all cursor-pointer border border-white/20 shadow-lg backdrop-blur" 
                         aria-label={t.prevImg}
                     >
                         <i className="fas fa-chevron-left text-lg"></i>
                     </button>
                     <button 
                         onClick={(e) => { e.stopPropagation(); setLightboxIndex(prev => (prev + 1) % galleryImages.length); }}
-                        className="absolute right-4 md:right-8 text-white hover:text-slate-200 bg-white/10 hover:bg-white/20 rounded-full w-12 h-12 flex items-center justify-center transition-all cursor-pointer border border-white/10 shadow-lg" 
+                        className="absolute right-3 md:right-8 z-20 text-white hover:text-slate-200 bg-white/20 hover:bg-white/30 rounded-full w-11 h-11 md:w-12 md:h-12 flex items-center justify-center transition-all cursor-pointer border border-white/20 shadow-lg backdrop-blur" 
                         aria-label={t.nextImg}
                     >
                         <i className="fas fa-chevron-right text-lg"></i>
@@ -789,7 +819,7 @@ export default function Portfolio(props) {
                 </div>
             )}
 
-            <Chatbot profile={profile} />
+            <Chatbot />
         </>
     );
 }
