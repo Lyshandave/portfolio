@@ -44,10 +44,10 @@ export default function Projects({ profile, projects }) {
                 </header>
 
                 {/* PROJECTS GRID */}
-                <main className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <main className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     {projects.map((project, i) => (
                         <div key={i} className="flex flex-col overflow-hidden rounded-xl bg-white/60 dark:bg-slate-900/40 subtle-border subtle-border-hover transition-all duration-300 group/project hover:shadow-lg">
-                            <Link href={`/projects/${project.slug}`} prefetch="hover" className="block relative aspect-video w-full overflow-hidden bg-slate-100 dark:bg-slate-800 cursor-pointer">
+                            <Link href={`/projects/${project.slug}`} prefetch="hover" className="block relative h-36 sm:h-44 w-full overflow-hidden bg-slate-100 dark:bg-slate-800 cursor-pointer">
                                 <img
                                     src={`/${project.image}`}
                                     alt={project.title}
@@ -58,7 +58,7 @@ export default function Projects({ profile, projects }) {
                             <div className="p-4 flex flex-col flex-grow justify-between space-y-3">
                                 <Link href={`/projects/${project.slug}`} prefetch="hover" className="block space-y-2 cursor-pointer">
                                     <h3 className="text-base font-bold text-slate-950 dark:text-white group-hover/project:text-indigo-500 transition-colors">{project.title}</h3>
-                                    <p className="text-xs md:text-sm text-slate-700 dark:text-slate-300 leading-relaxed line-clamp-3">{project.description}</p>
+                                    <p className="text-xs md:text-sm text-slate-700 dark:text-slate-300 leading-relaxed line-clamp-2">{project.description}</p>
                                 </Link>
                                 <div className="mt-3 flex items-center justify-between">
                                     <Link href={`/projects/${project.slug}`} prefetch="hover" className="text-xs font-semibold text-slate-500 hover:text-indigo-500 transition-colors cursor-pointer">
