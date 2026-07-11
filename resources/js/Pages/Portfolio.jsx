@@ -311,18 +311,23 @@ export default function Portfolio(props) {
 
     // Lightbox modal index state
     const [lightboxIndex, setLightboxIndex] = useState(null);
+    const [selectedCert, setSelectedCert] = useState(null);
 
-    // Keyboard controls for Lightbox
+    // Keyboard controls for Lightbox and Certificates Modal
     useEffect(() => {
-        if (lightboxIndex === null) return;
         const handleKeyDown = (e) => {
-            if (e.key === 'Escape') setLightboxIndex(null);
-            if (e.key === 'ArrowRight') setLightboxIndex(prev => (prev + 1) % galleryImages.length);
-            if (e.key === 'ArrowLeft') setLightboxIndex(prev => (prev - 1 + galleryImages.length) % galleryImages.length);
+            if (e.key === 'Escape') {
+                setLightboxIndex(null);
+                setSelectedCert(null);
+            }
+            if (lightboxIndex !== null) {
+                if (e.key === 'ArrowRight') setLightboxIndex(prev => (prev + 1) % galleryImages.length);
+                if (e.key === 'ArrowLeft') setLightboxIndex(prev => (prev - 1 + galleryImages.length) % galleryImages.length);
+            }
         };
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [lightboxIndex]);
+    }, [lightboxIndex, selectedCert]);
 
     // Animation & Script Setup
     useEffect(() => {
@@ -644,7 +649,7 @@ export default function Portfolio(props) {
                         </div>
                         <div id="certifications-container" className="space-y-3 mt-4">
                             {certifications.map((cert, i) => (
-                                <a key={i} href={cert.credential_url || '#'} target="_blank" className="block py-2.5 px-3.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-slate-900/40 hover:bg-slate-50 dark:hover:bg-slate-900 transition-all duration-300 cursor-pointer">
+                                <button key={i} onClick={() => setSelectedCert(cert.image)} className="w-full text-left block py-2.5 px-3.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-slate-900/40 hover:bg-slate-50 dark:hover:bg-slate-900 transition-all duration-300 cursor-pointer">
                                     <div className="flex items-center justify-between gap-2">
                                         <div className="min-w-0">
                                             <h3 className="text-xs md:text-sm font-bold truncate text-slate-900 dark:text-white">{cert.title}</h3>
@@ -652,10 +657,10 @@ export default function Portfolio(props) {
                                         </div>
                                         <div className="flex items-center gap-1.5 shrink-0">
                                             <span className="text-[9px] font-semibold text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded-full">{t.verified}</span>
-                                            <i className="fas fa-external-link-alt text-[9px] text-slate-400"></i>
+                                            <i className="fas fa-search-plus text-[10px] text-slate-400"></i>
                                         </div>
                                     </div>
-                                </a>
+                                </button>
                             ))}
                         </div>
                     </div>
@@ -808,6 +813,30 @@ export default function Portfolio(props) {
                     <p className="text-xs text-foreground/50">&copy; {currentYear} {profile.name}. {t.copyright}</p>
                 </footer>
             </div>
+
+            {/* Certificate Modal */}
+            {selectedCert && (
+                <div 
+                    className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 sm:p-8"
+                    onClick={() => setSelectedCert(null)}
+                >
+                    <div className="relative max-w-4xl w-full flex flex-col items-center" onClick={(e) => e.stopPropagation()}>
+                        <div className="w-full flex justify-end mb-4">
+                            <button 
+                                onClick={() => setSelectedCert(null)} 
+                                className="text-white flex items-center gap-2 font-bold hover:text-slate-300 transition-colors"
+                            >
+                                <i className="fas fa-times text-xl"></i> <span>Close</span>
+                            </button>
+                        </div>
+                        <img 
+                            src={selectedCert} 
+                            alt="Certificate Full View" 
+                            className="w-full max-h-[85vh] object-contain rounded-lg shadow-2xl" 
+                        />
+                    </div>
+                </div>
+            )}
 
             {/* Lightbox Modal for Gallery */}
             {lightboxIndex !== null && (
