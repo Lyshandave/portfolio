@@ -587,7 +587,7 @@ export default function Portfolio(props) {
                     </div>
 
                     {/* RECENT PROJECTS */}
-                    <div className="bento-card p-5 col-span-1 md:col-span-4 md:col-start-1 md:row-start-3 space-y-4 group fade-in-section is-visible self-start rounded-xl border border-slate-200/60 dark:border-slate-800/80 bg-white/60 dark:bg-slate-900/40">
+                    <div className="bento-card p-5 col-span-1 md:col-span-6 md:col-start-1 space-y-4 group fade-in-section is-visible self-start rounded-xl border border-slate-200/60 dark:border-slate-800/80 bg-white/60 dark:bg-slate-900/40">
                         <div className="flex items-center justify-between">
                             <h2 className="text-lg font-bold text-black dark:text-white display-font">{t.recentProjects}</h2>
                             <Link href="/projects" prefetch="hover" id="projects-view-all" className="text-xs text-slate-600 dark:text-slate-400 hover:text-indigo-500 font-semibold cursor-pointer flex items-center gap-1 transition-all" aria-label={t.viewProjects}>
@@ -595,12 +595,28 @@ export default function Portfolio(props) {
                                 <i className="fas fa-chevron-right text-[9px]"></i>
                             </Link>
                         </div>
-                        <div id="projects-container" className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div id="projects-container" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                             {projects.filter(p => p.featured).map((project, i) => (
-                                <a key={i} href={project.demo} target="_blank" className="block p-3.5 space-y-1.5 border border-slate-200/60 dark:border-slate-800/80 rounded-xl bg-white dark:bg-slate-900 hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 group">
-                                    <div>
-                                        <h3 className="text-sm md:text-base font-bold text-black dark:text-white transition-colors">{project.title}</h3>
-                                        <p className="text-xs text-slate-700 dark:text-slate-300 mt-0.5 leading-relaxed">{project.description}</p>
+                                <a key={i} href={project.demo} target="_blank" className="flex flex-col overflow-hidden border border-slate-200/60 dark:border-slate-800/80 rounded-xl bg-white dark:bg-slate-900 hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-lg transition-all duration-300 group">
+                                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100 dark:bg-slate-800">
+                                        <img 
+                                            src={`/${project.image}`} 
+                                            alt={project.title} 
+                                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                                            onError={(e) => { e.target.src = '/profile-frames/frame-000.png'; }}
+                                        />
+                                    </div>
+                                    <div className="p-4 flex flex-col flex-grow justify-between">
+                                        <div>
+                                            <h3 className="text-sm md:text-base font-bold text-slate-900 dark:text-white group-hover:text-indigo-500 transition-colors duration-200">{project.title}</h3>
+                                            <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed line-clamp-2">{project.description}</p>
+                                        </div>
+                                        <div className="mt-3 pt-2 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                                            <span className="text-[11px] font-semibold text-slate-500 group-hover:text-indigo-500 transition-colors flex items-center gap-1">
+                                                {project.demo.includes('github.com') ? 'View Source' : project.demo.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')}
+                                                <i className="fas fa-arrow-right text-[9px] transform group-hover:translate-x-0.5 transition-transform"></i>
+                                            </span>
+                                        </div>
                                     </div>
                                 </a>
                             ))}

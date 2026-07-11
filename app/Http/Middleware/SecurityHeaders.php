@@ -20,7 +20,9 @@ class SecurityHeaders
         // Security Headers
         $response->headers->set('X-Frame-Options', 'DENY');
         $response->headers->set('X-Content-Type-Options', 'nosniff');
+        $response->headers->set('X-XSS-Protection', '1; mode=block');
         $response->headers->set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
+        
         $csp = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' data: https://cdnjs.cloudflare.com https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://en.wikipedia.org;";
         if (app()->environment('local')) {
             $viteOrigins = implode(' ', [
@@ -40,9 +42,12 @@ class SecurityHeaders
 
             $csp = "default-src 'self' {$viteOrigins}; script-src 'self' 'unsafe-inline' 'unsafe-eval' {$viteOrigins}; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com {$viteOrigins}; font-src 'self' data: https://cdnjs.cloudflare.com https://fonts.gstatic.com {$viteOrigins}; img-src 'self' data: https: {$viteOrigins}; connect-src 'self' https://en.wikipedia.org {$viteOrigins};";
         }
+        
         $response->headers->set('Content-Security-Policy', $csp);
         $response->headers->set('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
         $response->headers->set('Referrer-Policy', 'strict-origin-when-cross-origin');
+        $response->headers->set('Cross-Origin-Opener-Policy', 'same-origin');
+        $response->headers->set('Cross-Origin-Resource-Policy', 'same-origin');
 
         return $response;
     }
