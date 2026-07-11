@@ -113,7 +113,7 @@ return [
             'subtitle' => 'A premium online ordering and food services system for Cafe Misto, designed to streamline customer ordering, payments, and checkout flows.',
             'description' => 'Online ordering system for efficient customer transactions and fast checkout.',
             'technologies' => ['Laravel', 'React', 'PostgreSQL', 'Tailwind CSS', 'Vite', 'FontAwesome', 'Gmail SMTP'],
-            'image' => 'projects/ordering.png',
+            'image' => 'project-images/ordering.png',
             'demo' => 'https://ordering-system-sigma.vercel.app/',
             'featured' => true,
             'overview' => [
@@ -140,7 +140,7 @@ return [
             'subtitle' => 'Sleek customer portal for ordering purified water gallons, tracking delivery, and managing subscriptions.',
             'description' => 'Online purified water ordering platform with gallon selections, scheduling, and billing.',
             'technologies' => ['Laravel', 'React', 'PostgreSQL', 'Tailwind CSS', 'Vite', 'FontAwesome'],
-            'image' => 'projects/inventory.png',
+            'image' => 'project-images/inventory.png',
             'demo' => 'https://pure-safe.vercel.app',
             'featured' => true,
             'overview' => [
@@ -167,7 +167,7 @@ return [
             'subtitle' => 'A comprehensive portal for tracking student profiles, enrollment pipelines, and academic grading sheets.',
             'description' => 'All-in-one administration portal for student records, enrollment, and grading.',
             'technologies' => ['Laravel', 'Vue.js', 'PostgreSQL', 'Tailwind CSS', 'Inertia.js', 'FullCalendar'],
-            'image' => 'projects/school.png',
+            'image' => 'project-images/school.png',
             'demo' => 'https://school-system.lyshandave.com',
             'featured' => true,
             'overview' => [
@@ -194,7 +194,7 @@ return [
             'subtitle' => 'A high-speed media downloader supporting MP4/MP3 downloads across YouTube, TikTok, Facebook, and Instagram.',
             'description' => 'Multi-platform downloader allowing users to easily convert and save videos/audio in high definition.',
             'technologies' => ['React', 'Node.js', 'Express', 'Tailwind CSS', 'FFmpeg', 'Vite'],
-            'image' => 'projects/grade-evaluation.png',
+            'image' => 'project-images/grade-evaluation.png',
             'demo' => 'https://streamgrab.vercel.app',
             'featured' => true,
             'overview' => [
@@ -221,7 +221,7 @@ return [
             'subtitle' => 'VLAN partition, IP phone setups, wireless access points, and DHCP/DNS server configurations.',
             'description' => 'Full office floor plan with department VLANs, IP phones, wireless APs, and DNS/DHCP/Mail servers.',
             'technologies' => ['Cisco Packet Tracer', 'Networking', 'VLAN', 'Servers'],
-            'image' => 'projects/office-network.png',
+            'image' => 'project-images/office-network.png',
             'demo' => null,
             'featured' => false,
             'overview' => [
@@ -248,7 +248,7 @@ return [
             'subtitle' => 'Hierarchical router structure with distribution switching and ASA firewall security policy rules.',
             'description' => '3-area hierarchical network with ISP, firewalls (550X), routers, and distribution/access layer switching.',
             'technologies' => ['Cisco Packet Tracer', 'Firewall (550X)', 'Routing & Switching', 'Network Security'],
-            'image' => 'projects/firewall-network.png',
+            'image' => 'project-images/firewall-network.png',
             'demo' => null,
             'featured' => false,
             'overview' => [
@@ -275,7 +275,7 @@ return [
             'subtitle' => 'Hierarchical triple building networking mapping with OSPF inter-branch routing policies.',
             'description' => 'Cisco Packet Tracer — multi-branch office with routers, switches, wireless APs, and inter-branch routing across 3 buildings.',
             'technologies' => ['Cisco Packet Tracer', 'Inter-Branch Routing', 'WLAN', 'OSPF'],
-            'image' => 'projects/multi-branch.png',
+            'image' => 'project-images/multi-branch.png',
             'demo' => null,
             'overview' => [
                 'Lead Developer' => 'Lyshan Dave',
