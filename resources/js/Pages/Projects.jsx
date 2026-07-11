@@ -44,7 +44,7 @@ export default function Projects({ profile, projects }) {
                 </header>
 
                 {/* PROJECTS GRID */}
-                <main className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <main className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                     {projects.map((project, i) => (
                         <div key={i} className="flex flex-col overflow-hidden rounded-xl bg-white/60 dark:bg-slate-900/40 subtle-border subtle-border-hover transition-all duration-300 group/project hover:shadow-lg">
                             <Link href={`/projects/${project.slug}`} prefetch="hover" className="block relative aspect-video w-full overflow-hidden bg-slate-100 dark:bg-slate-800 cursor-pointer">
