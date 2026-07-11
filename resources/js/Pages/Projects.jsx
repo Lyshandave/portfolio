@@ -48,19 +48,12 @@ export default function Projects({ profile, projects }) {
                     {projects.map((project, i) => (
                         <div key={i} className="flex flex-col overflow-hidden rounded-xl bg-white/60 dark:bg-slate-900/40 subtle-border subtle-border-hover transition-all duration-300 group/project hover:shadow-lg">
                             <Link href={`/projects/${project.slug}`} prefetch="hover" className="block relative aspect-[16/10] w-full overflow-hidden bg-slate-100 dark:bg-slate-800 cursor-pointer">
-                                <img 
-                                    src={`/${project.image}`} 
-                                    alt={project.title} 
-                                    className="w-full h-full object-cover group-hover/project:scale-105 transition-transform duration-500" 
-                                    onError={(e) => { 
-                                        e.target.style.display = 'none';
-                                        e.target.nextSibling.style.display = 'flex';
-                                    }}
+                                <img
+                                    src={`/${project.image}`}
+                                    alt={project.title}
+                                    className="w-full h-full object-cover group-hover/project:scale-105 transition-transform duration-500"
+                                    onError={(e) => { e.target.src = '/profile-frames/frame-000.png'; }}
                                 />
-                                <div className="absolute inset-0 hidden flex-col items-center justify-center bg-gradient-to-br from-indigo-500/10 to-purple-500/10 text-slate-400 dark:text-slate-650">
-                                    <i className="fas fa-image text-2xl mb-1 opacity-45"></i>
-                                    <span className="text-[10px] font-semibold uppercase tracking-wider">Preview Image</span>
-                                </div>
                             </Link>
                             <div className="p-5 flex flex-col flex-grow justify-between space-y-4">
                                 <Link href={`/projects/${project.slug}`} prefetch="hover" className="block space-y-2 cursor-pointer">
@@ -72,10 +65,10 @@ export default function Projects({ profile, projects }) {
                                         Case Study
                                     </Link>
                                     {project.demo && (
-                                        <a 
-                                            href={project.demo} 
-                                            target="_blank" 
-                                            rel="noopener noreferrer" 
+                                        <a
+                                            href={project.demo}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
                                             className="inline-flex h-8 items-center rounded-lg bg-indigo-600 hover:bg-indigo-500 px-4 text-xs font-bold text-white gap-1.5 cursor-pointer border-b-2 border-indigo-800 shadow-[0_2px_4px_rgba(79,70,229,0.15)] hover:shadow-[0_4px_8px_rgba(79,70,229,0.25)] transition-all duration-100 transform hover:-translate-y-0.5 active:translate-y-0 active:border-b-0 active:mt-[2px] whitespace-nowrap"
                                         >
                                             <span>Visit Site</span>

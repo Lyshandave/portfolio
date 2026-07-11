@@ -57,7 +57,7 @@ function Chatbot() {
         if (msg.includes("work") || msg.includes("trabaho") || msg.includes("experience") || msg.includes("job")) return "Naging Web Developer ako sa Core Technology & PocketDevs, at nagtrabaho rin sa Computer Systems Servicing sa GCM Tech Services.";
         if (msg.includes("thank") || msg.includes("salamat")) return "Walang anuman. Sabihin mo lang sa akin kung may iba ka pang gustong itanong.";
         if (msg.includes("haha") || msg.includes("hehe") || msg.includes("lol")) return "Hehe, salamat. May iba ka pang gustong malaman tungkol sa mga gawa o karanasan ko?";
-        
+
         try {
             const searchRes = await fetch(`https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(message)}&utf8=&format=json&origin=*`);
             const searchData = await searchRes.json();
@@ -71,7 +71,7 @@ function Chatbot() {
                     }
                 }
             }
-        } catch (e) {}
+        } catch (e) { }
 
         const fallbacks = [
             "Pasensya na, hindi ko masyadong nakuha ang ibig mong sabihin. Pero kung tungkol sa Laravel o Networking ang gusto mong malaman, marami akong karanasan doon.",
@@ -133,9 +133,9 @@ function Chatbot() {
     return (
         <>
             {/* Chatbot Toggle Button */}
-            <button 
-                onClick={() => setIsOpen(!isOpen)} 
-                className="fixed bottom-[calc(env(safe-area-inset-bottom)+1rem)] right-3 sm:right-6 bg-[#111111] text-white px-4 py-2.5 rounded-lg shadow-xl flex items-center gap-2 hover:bg-black hover:-translate-y-1 transition-all duration-300 z-50 border border-white/10" 
+            <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="fixed bottom-[calc(env(safe-area-inset-bottom)+1rem)] right-3 sm:right-6 bg-[#111111] text-white px-4 py-2.5 rounded-lg shadow-xl flex items-center gap-2 hover:bg-black hover:-translate-y-1 transition-all duration-300 z-50 border border-white/10"
                 aria-label="Toggle chatbot"
             >
                 <i className={`fas ${isOpen ? 'fa-times' : 'fa-comment-dots'} text-[15px]`}></i>
@@ -160,7 +160,7 @@ function Chatbot() {
                     </div>
                     <button onClick={() => setIsOpen(false)} className="text-slate-500 hover:text-slate-800 p-1 transition-colors"><i className="fas fa-times text-lg"></i></button>
                 </div>
-                
+
                 <div className="min-h-0 flex-1 overflow-y-auto p-5 space-y-5 bg-[#f9f9f9] sm:h-[380px] sm:flex-none" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                     {messages.map((msg, index) => (
                         <div key={index} className={msg.sender === 'user' ? 'flex justify-end mt-4' : ''}>
@@ -194,15 +194,15 @@ function Chatbot() {
                 <div className="shrink-0 p-4 bg-white border-t border-slate-200 rounded-b-md">
                     <form onSubmit={handleSend} className="relative">
                         <div className="flex items-stretch gap-2 mb-2">
-                            <input 
-                                type="text" 
+                            <input
+                                type="text"
                                 value={inputValue}
                                 onChange={(e) => setInputValue(e.target.value)}
-                                placeholder={t.typeMessage} 
-                                className="w-full bg-white border border-slate-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-slate-400 placeholder:text-slate-400 text-slate-900" 
-                                autoComplete="off" 
+                                placeholder={t.typeMessage}
+                                className="w-full bg-white border border-slate-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-slate-400 placeholder:text-slate-400 text-slate-900"
+                                autoComplete="off"
                                 enterKeyHint="send"
-                                maxLength="1000" 
+                                maxLength="1000"
                             />
                             <button type="submit" className="w-10 h-[38px] flex items-center justify-center bg-slate-500 hover:bg-slate-600 text-white rounded shrink-0 transition-colors" aria-label="Send message"><i className="fas fa-arrow-right text-sm"></i></button>
                         </div>
@@ -249,9 +249,9 @@ export default function Portfolio(props) {
     // Theme state
     const [isDark, setIsDark] = useState(() => {
         if (typeof window !== 'undefined') {
-            return document.documentElement.classList.contains('dark') || 
-                   localStorage.getItem('color-theme') === 'dark' ||
-                   (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            return document.documentElement.classList.contains('dark') ||
+                localStorage.getItem('color-theme') === 'dark' ||
+                (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
         }
         return false;
     });
@@ -338,8 +338,8 @@ export default function Portfolio(props) {
 
         async function syncPortfolio() {
             try {
-                const etag = document.querySelector('meta[name="x-portfolio-etag"]')?.getAttribute('content') 
-                    || localStorage.getItem(ETAG_KEY) 
+                const etag = document.querySelector('meta[name="x-portfolio-etag"]')?.getAttribute('content')
+                    || localStorage.getItem(ETAG_KEY)
                     || '';
                 const headers = { 'Accept': 'application/json' };
                 if (etag) headers['If-None-Match'] = etag;
@@ -470,9 +470,9 @@ export default function Portfolio(props) {
                                 </div>
 
                                 {/* Theme Toggle Button */}
-                                <button 
-                                    onClick={() => setIsDark(!isDark)} 
-                                    className="relative inline-flex h-[28px] w-[54px] items-center rounded-[2px] transition-colors duration-300 focus:outline-none bg-[#cbd1d8] dark:bg-[#475569] shrink-0" 
+                                <button
+                                    onClick={() => setIsDark(!isDark)}
+                                    className="relative inline-flex h-[28px] w-[54px] items-center rounded-[2px] transition-colors duration-300 focus:outline-none bg-[#cbd1d8] dark:bg-[#475569] shrink-0"
                                     aria-label={t.toggleTheme}
                                 >
                                     <div className="absolute left-[2px] flex h-[24px] w-[24px] items-center justify-center rounded-[2px] bg-white transition-transform duration-300 ease-in-out dark:translate-x-[26px]">
@@ -599,19 +599,12 @@ export default function Portfolio(props) {
                             {projects.filter(p => p.featured).slice(0, 3).map((project, i) => (
                                 <div key={i} className="flex flex-col overflow-hidden border border-slate-200/60 dark:border-slate-800/80 rounded-xl bg-white dark:bg-slate-900 hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-lg transition-all duration-300 group/project">
                                     <Link href={`/projects/${project.slug}`} prefetch="hover" className="block relative aspect-[16/10] w-full overflow-hidden bg-slate-100 dark:bg-slate-800 cursor-pointer">
-                                        <img 
-                                            src={`/${project.image}`} 
-                                            alt={project.title} 
-                                            className="w-full h-full object-cover group-hover/project:scale-105 transition-transform duration-500" 
-                                            onError={(e) => { 
-                                                e.target.style.display = 'none';
-                                                e.target.nextSibling.style.display = 'flex';
-                                            }}
+                                        <img
+                                            src={`/${project.image}`}
+                                            alt={project.title}
+                                            className="w-full h-full object-cover group-hover/project:scale-105 transition-transform duration-500"
+                                            onError={(e) => { e.target.src = '/profile-frames/frame-000.png'; }}
                                         />
-                                        <div className="absolute inset-0 hidden flex-col items-center justify-center bg-gradient-to-br from-indigo-500/10 to-purple-500/10 text-slate-400 dark:text-slate-650">
-                                            <i className="fas fa-image text-2xl mb-1 opacity-45"></i>
-                                            <span className="text-[10px] font-semibold uppercase tracking-wider">Preview Image</span>
-                                        </div>
                                     </Link>
                                     <div className="p-4 flex flex-col flex-grow justify-between">
                                         <Link href={`/projects/${project.slug}`} prefetch="hover" className="block space-y-1 cursor-pointer">
@@ -623,10 +616,10 @@ export default function Portfolio(props) {
                                                 Case Study
                                             </Link>
                                             {project.demo && (
-                                                <a 
-                                                    href={project.demo} 
-                                                    target="_blank" 
-                                                    rel="noopener noreferrer" 
+                                                <a
+                                                    href={project.demo}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
                                                     className="inline-flex h-7 items-center rounded-lg bg-indigo-600 hover:bg-indigo-500 px-3 text-[10px] font-bold text-white gap-1 cursor-pointer border-b-2 border-indigo-800 shadow-[0_2px_4px_rgba(79,70,229,0.15)] hover:shadow-[0_4px_8px_rgba(79,70,229,0.25)] transition-all duration-100 transform hover:-translate-y-0.5 active:translate-y-0 active:border-b-0 active:mt-[2px] whitespace-nowrap"
                                                 >
                                                     <span>Visit Site</span>
@@ -671,8 +664,8 @@ export default function Portfolio(props) {
                     <div className="bento-card py-3.5 px-4 col-span-1 md:col-span-3 space-y-3 group overflow-hidden fade-in-section is-visible rounded-xl border border-slate-200/60 dark:border-slate-800/80 bg-white/60 dark:bg-slate-900/40">
                         <h2 className="text-base font-bold uppercase tracking-wider text-slate-900 dark:text-white flex items-center gap-1.5"><span>{t.recommendations}</span></h2>
                         <div className="relative overflow-hidden w-full h-[135px] mt-1.5">
-                            <div 
-                                className="flex transition-transform duration-500 ease-out h-full" 
+                            <div
+                                className="flex transition-transform duration-500 ease-out h-full"
                                 style={{ transform: `translateX(-${activeTestimonialIndex * 100}%)`, width: '100%' }}
                             >
                                 {recommendations.map((rec, i) => (
@@ -691,7 +684,7 @@ export default function Portfolio(props) {
                         <div className="flex items-center justify-between mt-2 pt-2 border-t border-slate-200/50 dark:border-slate-800/50">
                             <div className="flex gap-1.5 items-center">
                                 {recommendations.map((_, i) => (
-                                    <button 
+                                    <button
                                         key={i}
                                         onClick={() => setActiveTestimonialIndex(i)}
                                         className={`w-2 h-2 rounded-full transition-all duration-300 ${activeTestimonialIndex === i ? 'bg-slate-900 dark:bg-white w-4' : 'bg-gray-300 dark:bg-gray-700'}`}
@@ -700,19 +693,19 @@ export default function Portfolio(props) {
                                 ))}
                             </div>
                             <div className="flex gap-1">
-                                <button 
-                                    onClick={() => setActiveTestimonialIndex(prev => (prev - 1 + recommendations.length) % recommendations.length)} 
-                                    className="p-1.5 text-slate-600 hover:text-indigo-500 dark:text-slate-400 transition-all cursor-pointer" 
+                                <button
+                                    onClick={() => setActiveTestimonialIndex(prev => (prev - 1 + recommendations.length) % recommendations.length)}
+                                    className="p-1.5 text-slate-600 hover:text-indigo-500 dark:text-slate-400 transition-all cursor-pointer"
                                     aria-label={t.prevRec}
                                 >
-                                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"/></svg>
+                                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
                                 </button>
-                                <button 
-                                    onClick={() => setActiveTestimonialIndex(prev => (prev + 1) % recommendations.length)} 
-                                    className="p-1.5 text-slate-600 hover:text-indigo-500 dark:text-slate-400 transition-all cursor-pointer" 
+                                <button
+                                    onClick={() => setActiveTestimonialIndex(prev => (prev + 1) % recommendations.length)}
+                                    className="p-1.5 text-slate-600 hover:text-indigo-500 dark:text-slate-400 transition-all cursor-pointer"
                                     aria-label={t.nextRec}
                                 >
-                                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/></svg>
+                                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" /></svg>
                                 </button>
                             </div>
                         </div>
@@ -772,13 +765,13 @@ export default function Portfolio(props) {
                             <span className="text-xs text-foreground/50 font-medium">{t.eventsWorkspaces}</span>
                         </div>
                         <div className="relative w-full overflow-hidden mt-3">
-                            <div 
-                                className="flex gap-2.5 transition-transform duration-500 ease-out" 
+                            <div
+                                className="flex gap-2.5 transition-transform duration-500 ease-out"
                                 style={{ transform: `translateX(-${galleryIndex * gallerySlidePercent}%)`, width: '100%' }}
                             >
                                 {galleryImages.map((imgUrl, index) => (
-                                    <div 
-                                        key={index} 
+                                    <div
+                                        key={index}
                                         onClick={() => setLightboxIndex(index)}
                                         className="relative shrink-0 aspect-square overflow-hidden rounded-lg bg-foreground/5 border border-slate-200 dark:border-slate-800 hover:border-indigo-500/30 transition-all duration-200 group/image cursor-pointer w-[48%] sm:w-[31%] md:w-[19%]"
                                     >
@@ -793,7 +786,7 @@ export default function Portfolio(props) {
                                     className="absolute left-1 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-white dark:bg-slate-900 text-slate-800 dark:text-white border border-slate-200 dark:border-slate-800 shadow-md hover:scale-110 transition-all duration-200 cursor-pointer"
                                     aria-label={t.prevImg}
                                 >
-                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"/></svg>
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
                                 </button>
                             )}
                             {canShowNextGalleryImage && (
@@ -802,7 +795,7 @@ export default function Portfolio(props) {
                                     className="absolute right-1 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-white dark:bg-slate-900 text-slate-800 dark:text-white border border-slate-200 dark:border-slate-800 shadow-md hover:scale-110 transition-all duration-200 cursor-pointer"
                                     aria-label={t.nextImg}
                                 >
-                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/></svg>
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" /></svg>
                                 </button>
                             )}
                         </div>
@@ -818,37 +811,37 @@ export default function Portfolio(props) {
 
             {/* Lightbox Modal for Gallery */}
             {lightboxIndex !== null && (
-                <div 
+                <div
                     onClick={() => setLightboxIndex(null)}
                     className="fixed inset-0 bg-slate-950/95 z-50 flex items-center justify-center transition-all duration-300 backdrop-blur-md"
                 >
-                    <button 
+                    <button
                         onClick={() => setLightboxIndex(null)}
-                        className="absolute top-6 right-6 text-white hover:text-red-400 transition-colors p-2.5 text-2xl cursor-pointer" 
+                        className="absolute top-6 right-6 text-white hover:text-red-400 transition-colors p-2.5 text-2xl cursor-pointer"
                         aria-label={t.closeImg}
                     >
                         <i className="fas fa-times"></i>
                     </button>
-                    <button 
+                    <button
                         onClick={(e) => { e.stopPropagation(); setLightboxIndex(prev => (prev - 1 + galleryImages.length) % galleryImages.length); }}
-                        className="absolute left-3 md:left-8 z-20 text-white hover:text-slate-200 bg-white/20 hover:bg-white/30 rounded-full w-11 h-11 md:w-12 md:h-12 flex items-center justify-center transition-all cursor-pointer border border-white/20 shadow-lg backdrop-blur" 
+                        className="absolute left-3 md:left-8 z-20 text-white hover:text-slate-200 bg-white/20 hover:bg-white/30 rounded-full w-11 h-11 md:w-12 md:h-12 flex items-center justify-center transition-all cursor-pointer border border-white/20 shadow-lg backdrop-blur"
                         aria-label={t.prevImg}
                     >
                         <i className="fas fa-chevron-left text-lg"></i>
                     </button>
-                    <button 
+                    <button
                         onClick={(e) => { e.stopPropagation(); setLightboxIndex(prev => (prev + 1) % galleryImages.length); }}
-                        className="absolute right-3 md:right-8 z-20 text-white hover:text-slate-200 bg-white/20 hover:bg-white/30 rounded-full w-11 h-11 md:w-12 md:h-12 flex items-center justify-center transition-all cursor-pointer border border-white/20 shadow-lg backdrop-blur" 
+                        className="absolute right-3 md:right-8 z-20 text-white hover:text-slate-200 bg-white/20 hover:bg-white/30 rounded-full w-11 h-11 md:w-12 md:h-12 flex items-center justify-center transition-all cursor-pointer border border-white/20 shadow-lg backdrop-blur"
                         aria-label={t.nextImg}
                     >
                         <i className="fas fa-chevron-right text-lg"></i>
                     </button>
-                    
+
                     <div className="max-w-[90%] max-h-[85%] flex flex-col items-center" onClick={(e) => e.stopPropagation()}>
-                        <img 
-                            src={galleryImages.at(lightboxIndex)} 
-                            alt={t.viewedImg} 
-                            className="max-w-full max-h-[75vh] object-contain rounded-lg shadow-2xl border border-white/10 transform scale-100 transition-transform duration-300" 
+                        <img
+                            src={galleryImages.at(lightboxIndex)}
+                            alt={t.viewedImg}
+                            className="max-w-full max-h-[75vh] object-contain rounded-lg shadow-2xl border border-white/10 transform scale-100 transition-transform duration-300"
                         />
                         <p className="text-white text-xs font-mono mt-4 tracking-wider uppercase bg-white/10 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/10 shadow-sm">
                             {t.highlight} {lightboxIndex + 1} {t.of} {galleryImages.length}
