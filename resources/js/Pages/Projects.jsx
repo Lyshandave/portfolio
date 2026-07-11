@@ -1,5 +1,5 @@
 import { Link } from '@inertiajs/react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function Projects({ profile, projects }) {
     const currentYear = new Date().getFullYear();
@@ -9,6 +9,22 @@ export default function Projects({ profile, projects }) {
         allProjects: 'All Projects',
         visitSite: 'Visit site',
         copyright: 'All rights reserved.'
+    };
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const projectsPerPage = 4;
+    
+    const indexOfLastProject = currentPage * projectsPerPage;
+    const indexOfFirstProject = indexOfLastProject - projectsPerPage;
+    const currentProjects = projects.slice(indexOfFirstProject, indexOfLastProject);
+    const totalPages = Math.ceil(projects.length / projectsPerPage);
+
+    const handlePrev = () => {
+        if (currentPage > 1) setCurrentPage(currentPage - 1);
+    };
+
+    const handleNext = () => {
+        if (currentPage < totalPages) setCurrentPage(currentPage + 1);
     };
 
     useEffect(() => {
@@ -44,45 +60,72 @@ export default function Projects({ profile, projects }) {
                 </header>
 
                 {/* PROJECTS GRID */}
-                <main className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    {projects.map((project, i) => (
-                        <div key={i} className="flex flex-col overflow-hidden rounded-xl bg-white/60 dark:bg-slate-900/40 subtle-border subtle-border-hover transition-all duration-300 group/project hover:shadow-lg">
-                            <Link href={`/projects/${project.slug}`} prefetch="hover" className="block relative h-36 sm:h-44 w-full overflow-hidden bg-slate-100 dark:bg-slate-800 cursor-pointer">
-                                <img
-                                    src={`/${project.image}`}
-                                    alt={project.title}
-                                    className="w-full h-full object-cover group-hover/project:scale-105 transition-transform duration-500"
-                                    onError={(e) => { e.target.onerror = null; e.target.style.display = 'none'; }}
-                                />
-                            </Link>
-                            <div className="p-4 flex flex-col flex-grow justify-between space-y-3">
-                                <Link href={`/projects/${project.slug}`} prefetch="hover" className="block space-y-2 cursor-pointer">
-                                    <h3 className="text-base font-bold text-slate-950 dark:text-white group-hover/project:text-indigo-500 transition-colors">{project.title}</h3>
-                                    <p className="text-xs md:text-sm text-slate-700 dark:text-slate-300 leading-relaxed line-clamp-2">{project.description}</p>
+                <main className="flex-1">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        {currentProjects.map((project, i) => (
+                            <div key={i} className="flex flex-col overflow-hidden rounded-xl bg-white/60 dark:bg-slate-900/40 subtle-border subtle-border-hover transition-all duration-300 group/project hover:shadow-lg">
+                                <Link href={`/projects/${project.slug}`} prefetch="hover" className="block relative h-36 sm:h-44 w-full overflow-hidden bg-slate-100 dark:bg-slate-800 cursor-pointer">
+                                    <img
+                                        src={`/${project.image}`}
+                                        alt={project.title}
+                                        className="w-full h-full object-cover group-hover/project:scale-105 transition-transform duration-500"
+                                        onError={(e) => { e.target.onerror = null; e.target.style.display = 'none'; }}
+                                    />
                                 </Link>
-                                <div className="mt-3 flex items-center justify-between">
-                                    <Link href={`/projects/${project.slug}`} prefetch="hover" className="text-xs font-semibold text-slate-500 hover:text-indigo-500 transition-colors cursor-pointer">
-                                        Case Study
+                                <div className="p-4 flex flex-col flex-grow justify-between space-y-3">
+                                    <Link href={`/projects/${project.slug}`} prefetch="hover" className="block space-y-2 cursor-pointer">
+                                        <h3 className="text-base font-bold text-slate-950 dark:text-white group-hover/project:text-indigo-500 transition-colors">{project.title}</h3>
+                                        <p className="text-xs md:text-sm text-slate-700 dark:text-slate-300 leading-relaxed line-clamp-2">{project.description}</p>
                                     </Link>
-                                    {project.demo && (
-                                        <a
-                                            href={project.demo}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="inline-flex h-8 items-center rounded-lg bg-indigo-600 hover:bg-indigo-500 px-4 text-xs font-bold text-white gap-1.5 cursor-pointer border-b-2 border-indigo-800 shadow-[0_2px_4px_rgba(79,70,229,0.15)] hover:shadow-[0_4px_8px_rgba(79,70,229,0.25)] transition-all duration-100 transform hover:-translate-y-0.5 active:translate-y-0 active:border-b-0 active:mt-[2px] whitespace-nowrap"
-                                        >
-                                            <span>Visit Site</span>
-                                            <i className="fas fa-chevron-right text-[8px] opacity-75"></i>
-                                        </a>
-                                    )}
+                                    <div className="mt-3 flex items-center justify-between">
+                                        <Link href={`/projects/${project.slug}`} prefetch="hover" className="text-xs font-semibold text-slate-500 hover:text-indigo-500 transition-colors cursor-pointer">
+                                            Case Study
+                                        </Link>
+                                        {project.demo && (
+                                            <a
+                                                href={project.demo}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="inline-flex h-8 items-center rounded-lg bg-indigo-600 hover:bg-indigo-500 px-4 text-xs font-bold text-white gap-1.5 cursor-pointer border-b-2 border-indigo-800 shadow-[0_2px_4px_rgba(79,70,229,0.15)] hover:shadow-[0_4px_8px_rgba(79,70,229,0.25)] transition-all duration-100 transform hover:-translate-y-0.5 active:translate-y-0 active:border-b-0 active:mt-[2px] whitespace-nowrap"
+                                            >
+                                                <span>Visit Site</span>
+                                                <i className="fas fa-chevron-right text-[8px] opacity-75"></i>
+                                            </a>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
+                        ))}
+                    </div>
+
+                    {/* PAGINATION */}
+                    {totalPages > 1 && (
+                        <div className="mt-10 mb-4 flex justify-center items-center gap-4">
+                            <button 
+                                onClick={handlePrev} 
+                                disabled={currentPage === 1}
+                                className={`w-10 h-10 flex items-center justify-center rounded-full border ${currentPage === 1 ? 'border-slate-200 text-slate-400 cursor-not-allowed dark:border-slate-800 dark:text-slate-600' : 'border-slate-300 text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800'} transition-colors cursor-pointer`}
+                                aria-label="Previous page"
+                            >
+                                <i className="fas fa-chevron-left text-sm"></i>
+                            </button>
+                            <span className="text-sm font-semibold text-slate-600 dark:text-slate-400">
+                                {currentPage} / {totalPages}
+                            </span>
+                            <button 
+                                onClick={handleNext} 
+                                disabled={currentPage === totalPages}
+                                className={`w-10 h-10 flex items-center justify-center rounded-full border ${currentPage === totalPages ? 'border-slate-200 text-slate-400 cursor-not-allowed dark:border-slate-800 dark:text-slate-600' : 'border-slate-300 text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800'} transition-colors cursor-pointer`}
+                                aria-label="Next page"
+                            >
+                                <i className="fas fa-chevron-right text-sm"></i>
+                            </button>
                         </div>
-                    ))}
+                    )}
                 </main>
 
                 {/* FOOTER */}
-                <footer className="text-center" style={{ marginTop: '8rem', paddingBottom: '2rem' }}>
+                <footer className="text-center mt-12 pb-8">
                     <p className="text-xs text-foreground/50">&copy; {currentYear} {profile.name}. {t.copyright}</p>
                 </footer>
             </div>
