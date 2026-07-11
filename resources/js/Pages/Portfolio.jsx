@@ -161,7 +161,7 @@ function Chatbot() {
                     <button onClick={() => setIsOpen(false)} className="text-slate-500 hover:text-slate-800 p-1 transition-colors"><i className="fas fa-times text-lg"></i></button>
                 </div>
 
-                <div className="min-h-0 flex-1 overflow-y-auto p-5 space-y-5 bg-[#f9f9f9] sm:h-[380px] sm:flex-none" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                <div data-lenis-prevent className="min-h-0 flex-1 overflow-y-auto no-scrollbar p-5 space-y-5 bg-[#f9f9f9] sm:h-[380px] sm:flex-none" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                     {messages.map((msg, index) => (
                         <div key={index} className={msg.sender === 'user' ? 'flex justify-end mt-4' : ''}>
                             {msg.sender === 'bot' && (
@@ -439,7 +439,9 @@ export default function Portfolio(props) {
                 .preload * { -webkit-transition: none !important; -moz-transition: none !important; -ms-transition: none !important; -o-transition: none !important; transition: none !important; }
                 html.lenis, html.lenis body { height: auto; }
                 .lenis.lenis-smooth { scroll-behavior: auto !important; }
-                .lenis.lenis-smooth [data-lenis-prevent] { overflow: clip; }
+                .lenis.lenis-smooth [data-lenis-prevent] { overflow: auto; }
+                .no-scrollbar::-webkit-scrollbar { display: none; }
+                .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
                 .lenis.lenis-stopped { overflow: hidden; }
                 .lenis.lenis-smooth iframe { pointer-events: none; }
                 body { font-family: 'Instrument Sans', sans-serif; }
