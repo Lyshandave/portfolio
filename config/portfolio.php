@@ -325,6 +325,21 @@ return [
                     ]
                 ],
                 [
+                    'title' => 'Customer: Accessories Shop Directory',
+                    'image' => 'project-images/puresafe_accessories.png',
+                    'features' => [
+                        ['title' => 'Spare Caps and Locks', 'text' => 'Add-ons and parts catalog enabling clients to buy replacement caps.', 'icon' => 'fas fa-cog'],
+                        ['title' => 'Heavy-Duty Stands', 'text' => 'Allows users to purchase durable vertical metal stands for holding multiple water containers.', 'icon' => 'fas fa-layer-group']
+                    ]
+                ],
+                [
+                    'title' => 'Customer: Water Dispensers Catalog',
+                    'image' => 'project-images/puresafe_dispenser.png',
+                    'features' => [
+                        ['title' => 'Tabletop & Standing Models', 'text' => 'Browse and order hot/cold water dispensers directly from the platform.', 'icon' => 'fas fa-blender-phone']
+                    ]
+                ],
+                [
                     'title' => 'Customer: Shopping Cart Management',
                     'image' => 'project-images/puresafe_cart.png',
                     'features' => [
