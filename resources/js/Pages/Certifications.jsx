@@ -49,7 +49,7 @@ export default function Certifications({ profile, all_certifications }) {
             <div id="app-container" className="max-w-5xl mx-auto px-4 pt-8 pb-4 relative z-10 flex flex-col min-h-screen">
 
                 <header className="mb-10 flex flex-col items-start gap-3">
-                    <Link href="/" prefetch={['mount', 'hover']} className="inline-flex items-center gap-1.5 text-sm text-slate-700 dark:text-slate-300 hover:text-indigo-500 font-semibold transition-colors cursor-pointer" aria-label="Back to portfolio home">
+                    <Link href="/#certifications-section" prefetch={['mount', 'hover']} className="inline-flex items-center gap-1.5 text-sm text-slate-700 dark:text-slate-300 hover:text-indigo-500 font-semibold transition-colors cursor-pointer" aria-label="Back to portfolio home">
                         <i className="fas fa-arrow-left text-xs"></i>
                         <span>{t.backToHome}</span>
                     </Link>
@@ -88,14 +88,6 @@ export default function Certifications({ profile, all_certifications }) {
                         onClick={() => setSelectedCert(null)}
                     >
                         <div className="relative max-w-4xl w-full flex flex-col items-center" onClick={(e) => e.stopPropagation()}>
-                            <div className="w-full flex justify-end mb-4">
-                                <button 
-                                    onClick={() => setSelectedCert(null)} 
-                                    className="text-white flex items-center gap-2 font-bold hover:text-slate-300 transition-colors"
-                                >
-                                    <i className="fas fa-times text-xl"></i> <span>Close</span>
-                                </button>
-                            </div>
                             <img 
                                 src={selectedCert} 
                                 alt="Certificate Full View" 
