@@ -113,7 +113,7 @@ return [
             'subtitle' => 'A premium online ordering and food services system for Cafe Misto, designed to streamline customer ordering, payments, and checkout flows.',
             'description' => 'Online ordering system for efficient customer transactions and fast checkout.',
             'technologies' => ['Laravel', 'React', 'PostgreSQL', 'Tailwind CSS', 'Vite', 'FontAwesome', 'Gmail SMTP'],
-            'image' => 'project-images/ordering.png',
+            'image' => 'project-images/ordering_detail.png',
             'demo' => 'https://ordering-system-sigma.vercel.app/',
             'github' => 'https://github.com/lyshandave/ordering-system',
             'featured' => true,
@@ -165,7 +165,7 @@ return [
                 // === CUSTOMER SIDE ===
                 [
                     'title' => 'Customer: Secure Authentication Gateway',
-                    'image' => 'project-images/ordering_login.jpg',
+                    'image' => 'project-images/ordering_login.png',
                     'features' => [
                         ['title' => 'Credential Validation', 'text' => 'Supports dual input parameters (Email or Phone) for user convenience.', 'icon' => 'fas fa-shield-alt'],
                         ['title' => 'Remember Me Utility', 'text' => 'Option to persist login sessions securely across browser instances.', 'icon' => 'fas fa-cookie-bite'],
@@ -174,16 +174,16 @@ return [
                 ],
                 [
                     'title' => 'Customer: Interactive Menu & Detail Panel',
-                    'image' => 'project-images/ordering_detail.jpg',
+                    'image' => 'project-images/ordering_detail.png',
                     'features' => [
                         ['title' => 'Menu Categories', 'text' => 'Categorized grid layout for Appetizers, Beverages, and Main Course items.', 'icon' => 'fas fa-th-list'],
-                        ['title' => 'Ingredients Visualization', 'text' => 'Displays graphic ingredient badges (e.g. Cabbage, Jalapeño) in the detail view.', 'icon' => 'fas fa-leaf'],
+                        ['title' => 'Ingredients Visualization', 'text' => 'Displays ingredient badges such as Falafel, Cabbage, Jalapeno, and Tortilla in the detail view.', 'icon' => 'fas fa-leaf'],
                         ['title' => 'Dynamic Customizer', 'text' => 'Handles quantity adjustments and dynamic pricing previews.', 'icon' => 'fas fa-sliders-h']
                     ]
                 ],
                 [
                     'title' => 'Customer: Slide-out Cart Management',
-                    'image' => 'project-images/ordering_cart.jpg',
+                    'image' => 'project-images/ordering_cart.png',
                     'features' => [
                         ['title' => 'Quantity Controls', 'text' => 'Inline increment and decrement selectors with instant price calculations.', 'icon' => 'fas fa-calculator'],
                         ['title' => 'Quick Items Removal', 'text' => 'One-click item deletion directly from the cart drawer.', 'icon' => 'fas fa-trash-alt'],
@@ -192,7 +192,7 @@ return [
                 ],
                 [
                     'title' => 'Customer: Structured Order Checkout',
-                    'image' => 'project-images/ordering_checkout.jpg',
+                    'image' => 'project-images/ordering_checkout.png',
                     'features' => [
                         ['title' => 'Encrypted Info Display', 'text' => 'Secures user phone details during checkout using masked digit sequences.', 'icon' => 'fas fa-user-lock'],
                         ['title' => 'Multi-Payment Options', 'text' => 'Supports Cash on Delivery (COD) and Credit Card payment methods.', 'icon' => 'fas fa-wallet'],
@@ -201,7 +201,7 @@ return [
                 ],
                 [
                     'title' => 'Customer: User Profile Settings Modal',
-                    'image' => 'project-images/ordering_profile.jpg',
+                    'image' => 'project-images/ordering_profile.png',
                     'features' => [
                         ['title' => 'Tabbed Dashboard Layout', 'text' => 'Easy navigation between Profile, Address, Order History, and Settings.', 'icon' => 'fas fa-user-cog'],
                         ['title' => 'Personal Info Manager', 'text' => 'Displays Full Name, Email, Contact Phone, and Primary Delivery Address.', 'icon' => 'fas fa-address-card']
@@ -316,6 +316,14 @@ return [
                     ]
                 ],
                 [
+                    'title' => 'Customer: Home Landing Experience',
+                    'image' => 'project-images/puresafe_banner.png',
+                    'features' => [
+                        ['title' => 'Hero Brand Message', 'text' => 'Introduces Pure Safe with a clean water-themed landing screen and clear product navigation.', 'icon' => 'fas fa-water'],
+                        ['title' => 'Customer Navigation', 'text' => 'Provides quick access to products, accessories, water dispensers, account controls, search, and cart.', 'icon' => 'fas fa-compass']
+                    ]
+                ],
+                [
                     'title' => 'Customer: Categorized Product & Accessories Directory',
                     'image' => 'project-images/puresafe_catalog.png',
                     'features' => [
@@ -337,14 +345,6 @@ return [
                     'image' => 'project-images/puresafe_dispenser.png',
                     'features' => [
                         ['title' => 'Tabletop & Standing Models', 'text' => 'Browse and order hot/cold water dispensers directly from the platform.', 'icon' => 'fas fa-blender-phone']
-                    ]
-                ],
-                [
-                    'title' => 'Customer: Shopping Cart Management',
-                    'image' => 'project-images/puresafe_cart.png',
-                    'features' => [
-                        ['title' => 'Order Summary Panel', 'text' => 'Shows item counts, dynamic shipping calculations (P50), and final grand totals.', 'icon' => 'fas fa-calculator'],
-                        ['title' => 'Inline Quantity Editors', 'text' => 'Increment, decrement, or remove water jugs dynamically.', 'icon' => 'fas fa-edit']
                     ]
                 ],
                 [
