@@ -47,7 +47,7 @@ export default function Projects({ profile, projects }) {
                 <main className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     {projects.map((project, i) => (
                         <div key={i} className="flex flex-col overflow-hidden rounded-xl bg-white/60 dark:bg-slate-900/40 subtle-border subtle-border-hover transition-all duration-300 group/project hover:shadow-lg">
-                            <Link href={`/projects/${project.slug}`} prefetch="hover" className="block relative aspect-[16/10] w-full overflow-hidden bg-slate-100 dark:bg-slate-800 cursor-pointer">
+                            <Link href={`/projects/${project.slug}`} prefetch="hover" className="block relative aspect-video w-full overflow-hidden bg-slate-100 dark:bg-slate-800 cursor-pointer">
                                 <img
                                     src={`/${project.image}`}
                                     alt={project.title}
@@ -55,7 +55,7 @@ export default function Projects({ profile, projects }) {
                                     onError={(e) => { e.target.src = '/profile-frames/frame-000.png'; }}
                                 />
                             </Link>
-                            <div className="p-5 flex flex-col flex-grow justify-between space-y-4">
+                            <div className="p-4 flex flex-col flex-grow justify-between space-y-3">
                                 <Link href={`/projects/${project.slug}`} prefetch="hover" className="block space-y-2 cursor-pointer">
                                     <h3 className="text-base font-bold text-slate-950 dark:text-white group-hover/project:text-indigo-500 transition-colors">{project.title}</h3>
                                     <p className="text-xs md:text-sm text-slate-700 dark:text-slate-300 leading-relaxed line-clamp-3">{project.description}</p>
