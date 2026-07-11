@@ -60,7 +60,7 @@ export default function Projects({ profile, projects }) {
                     <h1 className="text-2xl md:text-3xl font-bold text-black dark:text-white display-font mt-3">{t.allProjects}</h1>
                 </header>
 
-                <div className="flex-1">
+                <div className="flex flex-col flex-1">
                     {/* PROJECTS GRID */}
                     <main className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         {currentProjects.map((project, i) => (
@@ -126,7 +126,7 @@ export default function Projects({ profile, projects }) {
                 </div>
 
                 {/* FOOTER */}
-                <footer className="text-center mt-12 pb-8">
+                <footer className="text-center mt-auto pt-12 pb-8">
                     <p className="text-xs text-foreground/50">&copy; {currentYear} {profile.name}. {t.copyright}</p>
                 </footer>
             </div>
