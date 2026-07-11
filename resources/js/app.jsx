@@ -72,6 +72,24 @@ router.on('navigate', () => {
         if (window.initializeGlobalAnimations) {
             window.initializeGlobalAnimations();
         }
+        
+        // Handle SPA hash navigation
+        if (window.location.hash) {
+            setTimeout(() => {
+                try {
+                    const targetElement = document.querySelector(window.location.hash);
+                    if (targetElement) {
+                        if (window.lenisInstance) {
+                            window.lenisInstance.scrollTo(targetElement, { offset: -80, immediate: true });
+                        } else {
+                            targetElement.scrollIntoView({ behavior: 'instant', block: 'start' });
+                        }
+                    }
+                } catch (e) {
+                    // Ignore invalid selectors
+                }
+            }, 50);
+        }
     });
 });
 
