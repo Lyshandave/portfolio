@@ -11,13 +11,14 @@ export default function Projects({ profile, projects }) {
         copyright: 'All rights reserved.'
     };
 
+    const projectsArray = Array.isArray(projects) ? projects : Object.values(projects);
     const [currentPage, setCurrentPage] = useState(1);
     const projectsPerPage = 4;
     
     const indexOfLastProject = currentPage * projectsPerPage;
     const indexOfFirstProject = indexOfLastProject - projectsPerPage;
-    const currentProjects = projects.slice(indexOfFirstProject, indexOfLastProject);
-    const totalPages = Math.ceil(projects.length / projectsPerPage);
+    const currentProjects = projectsArray.slice(indexOfFirstProject, indexOfLastProject);
+    const totalPages = Math.ceil(projectsArray.length / projectsPerPage);
 
     const handlePrev = () => {
         if (currentPage > 1) setCurrentPage(currentPage - 1);
@@ -59,14 +60,14 @@ export default function Projects({ profile, projects }) {
                     <h1 className="text-2xl md:text-3xl font-bold text-black dark:text-white display-font mt-3">{t.allProjects}</h1>
                 </header>
 
-                {/* PROJECTS GRID */}
-                <main className="flex-1">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="flex-1">
+                    {/* PROJECTS GRID */}
+                    <main className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         {currentProjects.map((project, i) => (
                             <div key={i} className="flex flex-col overflow-hidden rounded-xl bg-white/60 dark:bg-slate-900/40 subtle-border subtle-border-hover transition-all duration-300 group/project hover:shadow-lg">
                                 <Link href={`/projects/${project.slug}`} prefetch="hover" className="block relative h-36 sm:h-44 w-full overflow-hidden bg-slate-100 dark:bg-slate-800 cursor-pointer">
                                     <img
-                                        src={`/${project.image}`}
+                                        src={project.image}
                                         alt={project.title}
                                         className="w-full h-full object-cover group-hover/project:scale-105 transition-transform duration-500"
                                         onError={(e) => { e.target.onerror = null; e.target.style.display = 'none'; }}
@@ -96,7 +97,7 @@ export default function Projects({ profile, projects }) {
                                 </div>
                             </div>
                         ))}
-                    </div>
+                    </main>
 
                     {/* PAGINATION */}
                     {totalPages > 1 && (
@@ -122,7 +123,7 @@ export default function Projects({ profile, projects }) {
                             </button>
                         </div>
                     )}
-                </main>
+                </div>
 
                 {/* FOOTER */}
                 <footer className="text-center mt-12 pb-8">
