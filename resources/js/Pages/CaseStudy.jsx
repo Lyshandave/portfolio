@@ -240,8 +240,43 @@ export default function CaseStudy({ profile, project }) {
 
                 {/* BOTTOM FULL-WIDTH GRID FOR OUTCOMES */}
                 {(project.results || project.lessons_learned || project.future_improvements) && (
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-6">
-                        
+                    <div className="space-y-6 mt-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            {/* LESSONS LEARNED */}
+                            {project.lessons_learned && (
+                                <div className="rounded-xl border border-slate-200/60 dark:border-slate-800/80 bg-white/60 dark:bg-slate-900/40 p-5 space-y-3.5 shadow-sm">
+                                    <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+                                        <i className="fas fa-graduation-cap text-indigo-500"></i> Lessons Learned
+                                    </h3>
+                                    <ul className="space-y-2">
+                                        {project.lessons_learned.map((les, i) => (
+                                            <li key={i} className="text-xs leading-relaxed text-slate-700 dark:text-slate-300 flex items-start gap-2">
+                                                <i className="fas fa-star text-[10px] text-indigo-500 mt-1 shrink-0"></i>
+                                                <span>{les}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
+
+                            {/* FUTURE IMPROVEMENTS */}
+                            {project.future_improvements && (
+                                <div className="rounded-xl border border-slate-200/60 dark:border-slate-800/80 bg-white/60 dark:bg-slate-900/40 p-5 space-y-3.5 shadow-sm">
+                                    <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+                                        <i className="fas fa-arrow-alt-circle-right text-purple-500"></i> Future Plans
+                                    </h3>
+                                    <ul className="space-y-2">
+                                        {project.future_improvements.map((imp, i) => (
+                                            <li key={i} className="text-xs leading-relaxed text-slate-700 dark:text-slate-300 flex items-start gap-2">
+                                                <i className="fas fa-chevron-right text-[8px] text-purple-500 mt-1.5 shrink-0"></i>
+                                                <span>{imp}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
+                        </div>
+
                         {/* RESULTS */}
                         {project.results && (
                             <div className="rounded-xl border border-slate-200/60 dark:border-slate-800/80 bg-white/60 dark:bg-slate-900/40 p-5 space-y-3.5 shadow-sm">
@@ -253,40 +288,6 @@ export default function CaseStudy({ profile, project }) {
                                         <li key={i} className="text-xs leading-relaxed text-slate-700 dark:text-slate-300 flex items-start gap-2">
                                             <i className="fas fa-check-circle text-[10px] text-emerald-500 mt-1 shrink-0"></i>
                                             <span>{res}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        )}
-
-                        {/* LESSONS LEARNED */}
-                        {project.lessons_learned && (
-                            <div className="rounded-xl border border-slate-200/60 dark:border-slate-800/80 bg-white/60 dark:bg-slate-900/40 p-5 space-y-3.5 shadow-sm">
-                                <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
-                                    <i className="fas fa-graduation-cap text-indigo-500"></i> Lessons Learned
-                                </h3>
-                                <ul className="space-y-2">
-                                    {project.lessons_learned.map((les, i) => (
-                                        <li key={i} className="text-xs leading-relaxed text-slate-700 dark:text-slate-300 flex items-start gap-2">
-                                            <i className="fas fa-star text-[10px] text-indigo-500 mt-1 shrink-0"></i>
-                                            <span>{les}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        )}
-
-                        {/* FUTURE IMPROVEMENTS */}
-                        {project.future_improvements && (
-                            <div className="rounded-xl border border-slate-200/60 dark:border-slate-800/80 bg-white/60 dark:bg-slate-900/40 p-5 space-y-3.5 shadow-sm">
-                                <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
-                                    <i className="fas fa-arrow-alt-circle-right text-purple-500"></i> Future Plans
-                                </h3>
-                                <ul className="space-y-2">
-                                    {project.future_improvements.map((imp, i) => (
-                                        <li key={i} className="text-xs leading-relaxed text-slate-700 dark:text-slate-300 flex items-start gap-2">
-                                            <i className="fas fa-chevron-right text-[8px] text-purple-500 mt-1.5 shrink-0"></i>
-                                            <span>{imp}</span>
                                         </li>
                                     ))}
                                 </ul>
