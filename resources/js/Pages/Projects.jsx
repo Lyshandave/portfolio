@@ -20,12 +20,26 @@ export default function Projects({ profile, projects }) {
     const currentProjects = projectsArray.slice(indexOfFirstProject, indexOfLastProject);
     const totalPages = Math.ceil(projectsArray.length / projectsPerPage);
 
+    const scrollToTop = () => {
+        if (window.lenisInstance) {
+            window.lenisInstance.scrollTo(0, { immediate: false, duration: 1.2 });
+        } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    };
+
     const handlePrev = () => {
-        if (currentPage > 1) setCurrentPage(currentPage - 1);
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+            scrollToTop();
+        }
     };
 
     const handleNext = () => {
-        if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+        if (currentPage < totalPages) {
+            setCurrentPage(currentPage + 1);
+            scrollToTop();
+        }
     };
 
     useEffect(() => {
@@ -61,7 +75,7 @@ export default function Projects({ profile, projects }) {
                 </header>
 
                 {/* PROJECTS GRID */}
-                <main className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <main className="grid grid-cols-1 sm:grid-cols-2 gap-6 flex-1 content-start">
                     {currentProjects.map((project, i) => (
                         <div key={project.slug} className="flex flex-col overflow-hidden rounded-xl bg-white/60 dark:bg-slate-900/40 subtle-border subtle-border-hover transition-all duration-300 group/project hover:shadow-lg">
                             <Link href={`/projects/${project.slug}`} prefetch="hover" className="block relative h-36 sm:h-44 w-full overflow-hidden bg-slate-100 dark:bg-slate-800 cursor-pointer">
