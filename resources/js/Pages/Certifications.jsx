@@ -48,33 +48,30 @@ export default function Certifications({ profile, all_certifications }) {
 
             <div id="app-container" className="max-w-5xl mx-auto px-4 pt-8 pb-4 relative z-10 flex flex-col min-h-screen">
 
-                <header className="mb-10 flex flex-col items-start gap-3">
-                    <Link href="/" prefetch={['mount', 'hover']} className="inline-flex items-center gap-1.5 text-sm text-slate-700 dark:text-slate-300 hover:text-indigo-500 font-semibold transition-colors cursor-pointer" aria-label="Back to portfolio home">
-                        <i className="fas fa-arrow-left text-xs"></i>
+                <header className="mb-8 flex flex-col items-start">
+                    <Link href="/" prefetch={['mount', 'hover']} className="inline-flex items-center gap-1.5 text-xs text-foreground/60 hover:text-indigo-500 font-semibold transition-colors cursor-pointer" aria-label="Back to portfolio home">
+                        <i className="fas fa-arrow-left text-[10px]"></i>
                         <span>{t.backToHome}</span>
                     </Link>
-                    <div className="space-y-2 mt-2">
-                        <h1 className="text-3xl md:text-4xl font-bold text-slate-950 dark:text-white display-font">Certifications</h1>
-                        <p className="text-sm md:text-base text-slate-500 dark:text-slate-400">Professional credentials and specialized training in Data Science, SQL, and AI.</p>
-                    </div>
+                    <h1 className="text-2xl md:text-3xl font-bold text-black dark:text-white display-font mt-3">Certifications</h1>
                 </header>
 
                 {/* CERTIFICATIONS SECTIONS */}
                 <main>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         {all_certifications.map((cert, i) => (
-                            <article key={i} className="group rounded-xl overflow-hidden bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 transition-all duration-300 hover:shadow-md hover:border-slate-200 dark:hover:border-slate-700">
+                            <article key={i} className="flex flex-col overflow-hidden rounded-xl bg-white/60 dark:bg-slate-900/40 subtle-border subtle-border-hover transition-all duration-300 group/cert hover:shadow-lg">
                                 <button 
                                     onClick={() => setSelectedCert(cert.image)}
-                                    className="w-full relative block h-64 bg-slate-50 dark:bg-slate-950/50 overflow-hidden cursor-pointer p-4 flex items-center justify-center border-b border-slate-50 dark:border-slate-800/50" 
+                                    className="w-full relative block h-64 sm:h-72 bg-slate-100 dark:bg-slate-800 overflow-hidden cursor-pointer p-0 flex items-center justify-center border-b border-slate-200 dark:border-slate-800" 
                                     aria-label={`View ${cert.title} certificate`}
                                 >
-                                    <img src={cert.image} alt={cert.title} className="max-w-full max-h-full object-contain transition-transform duration-500 group-hover:scale-[1.02]" />
+                                    <img src={cert.image} alt={cert.title} className="max-w-full max-h-full object-contain transition-transform duration-500 group-hover/cert:scale-[1.02] drop-shadow-md" />
                                 </button>
 
-                                <div className="p-6">
-                                    <h3 className="text-lg font-bold text-slate-950 dark:text-white leading-tight display-font mb-1">{cert.title}</h3>
-                                    <p className="text-sm text-slate-500 dark:text-slate-400">{cert.issuer} • {cert.year || new Date().getFullYear()}</p>
+                                <div className="p-5 flex flex-col flex-grow justify-between space-y-2">
+                                    <h3 className="text-base font-bold text-slate-950 dark:text-white leading-tight display-font group-hover/cert:text-indigo-500 transition-colors">{cert.title}</h3>
+                                    <p className="text-xs md:text-sm text-slate-700 dark:text-slate-300">{cert.issuer} • {cert.year || new Date().getFullYear()}</p>
                                 </div>
                             </article>
                         ))}
