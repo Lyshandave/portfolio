@@ -64,10 +64,10 @@ export default function Projects({ profile, projects }) {
                     {/* PROJECTS GRID */}
                     <main className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         {currentProjects.map((project, i) => (
-                            <div key={i} className="flex flex-col overflow-hidden rounded-xl bg-white/60 dark:bg-slate-900/40 subtle-border subtle-border-hover transition-all duration-300 group/project hover:shadow-lg">
+                            <div key={project.slug} className="flex flex-col overflow-hidden rounded-xl bg-white/60 dark:bg-slate-900/40 subtle-border subtle-border-hover transition-all duration-300 group/project hover:shadow-lg">
                                 <Link href={`/projects/${project.slug}`} prefetch="hover" className="block relative h-36 sm:h-44 w-full overflow-hidden bg-slate-100 dark:bg-slate-800 cursor-pointer">
                                     <img
-                                        src={project.image}
+                                        src={`/${project.image}`}
                                         alt={project.title}
                                         className="w-full h-full object-cover group-hover/project:scale-105 transition-transform duration-500"
                                         onError={(e) => { e.target.onerror = null; e.target.style.display = 'none'; }}
