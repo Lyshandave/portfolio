@@ -44,7 +44,7 @@ export default function TechStack({ profile, techStack }) {
                 </header>
 
                 {/* SKILLS CATEGORIES GRID */}
-                <main className="space-y-4">
+                <main className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {Object.entries(techStack).map(([category, skills]) => (
                         <div key={category} className="rounded-xl p-5 space-y-4 bg-white/60 dark:bg-slate-900/40 subtle-border">
                             <h2 className="text-lg md:text-xl font-bold text-black dark:text-white display-font">{category}</h2>
