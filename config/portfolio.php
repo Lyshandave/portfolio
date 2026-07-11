@@ -135,30 +135,30 @@ return [
             ]
         ],
         [
-            'title' => 'Inventory System',
-            'slug' => 'inventory-system',
-            'subtitle' => 'Real-time inventory and stock tracking platform with advanced charts, graphs, and alert metrics.',
-            'description' => 'Real-time stock tracking and inventory management solution.',
-            'technologies' => ['Node.js', 'Express', 'PostgreSQL', 'React', 'Chart.js', 'Tailwind CSS'],
+            'title' => 'PureSafe',
+            'slug' => 'puresafe',
+            'subtitle' => 'Sleek customer portal for ordering purified water gallons, tracking delivery, and managing subscriptions.',
+            'description' => 'Online purified water ordering platform with gallon selections, scheduling, and billing.',
+            'technologies' => ['Laravel', 'React', 'PostgreSQL', 'Tailwind CSS', 'Vite', 'FontAwesome'],
             'image' => 'projects/inventory.png',
-            'demo' => 'https://inventory.lyshandave.com',
+            'demo' => 'https://pure-safe.vercel.app',
             'featured' => true,
             'overview' => [
                 'Lead Developer' => 'Lyshan Dave',
-                'Architecture' => 'REST API / SPA',
-                'Type' => 'Inventory Dashboard',
-                'Collaboration' => 'Independent Project'
+                'Architecture' => 'MVC / Decoupled',
+                'Type' => 'Web Platform',
+                'Collaboration' => 'Family Business'
             ],
             'objectives' => [
-                ['title' => 'Real-Time Stock Alerts', 'text' => 'Implement WebSocket or polling mechanics to notify administrative users when product quantities cross custom low threshold limits.'],
-                ['title' => 'Audit Logging', 'text' => 'Track every single stock movement, edit, and replenishment with detailed employee timestamps.'],
-                ['title' => 'Simple Search & Filter', 'text' => 'Ensure database search queries resolve instantly under 100ms for large catalogs with over 10,000 items.']
+                ['title' => 'Streamlined Ordering', 'text' => 'Fast ordering system for customers to select gallon types, dynamic quantities, and request deliveries.'],
+                ['title' => 'Delivery Tracking', 'text' => 'Coordinates routes and details delivery parameters for drivers and operators.'],
+                ['title' => 'Household Reminders', 'text' => 'Allows households to set up weekly or bi-weekly automated refilling reminders and tasks.']
             ],
             'key_features' => [
-                ['title' => 'Stock Monitoring', 'text' => 'Provides visual indicator badges for optimal, low, and out-of-stock items at a single glance.', 'icon' => 'fas fa-boxes'],
-                ['title' => 'Low-Stock Alerts', 'text' => 'Generates push alerts and triggers automatic email summaries to supplier representatives.', 'icon' => 'fas fa-exclamation-triangle'],
-                ['title' => 'Interactive Charts', 'text' => 'Interactive line and bar charts showing historical demand trends and seasonal product spikes.', 'icon' => 'fas fa-chart-line'],
-                ['title' => 'CSV Export', 'text' => 'Quick export mechanism allowing managers to download compliance inventory worksheets in one click.', 'icon' => 'fas fa-file-csv']
+                ['title' => 'Product Catalog', 'text' => 'Sleek selection of purified water types, dispenser units, and accessories.', 'icon' => 'fas fa-tint'],
+                ['title' => 'Smart Billing', 'text' => 'Automated calculation of dynamic delivery charges and empty container deposits.', 'icon' => 'fas fa-receipt'],
+                ['title' => 'Order History', 'text' => 'Customer dashboard showing past deliveries, active invoices, and current status.', 'icon' => 'fas fa-history'],
+                ['title' => 'SMS Reminders', 'text' => 'Automated delivery notifications showing dispatch status and dynamic ETAs.', 'icon' => 'fas fa-sms']
             ]
         ],
         [
@@ -189,30 +189,30 @@ return [
             ]
         ],
         [
-            'title' => 'Grade-Evaluation',
-            'slug' => 'grade-evaluation',
-            'subtitle' => 'An analytical engine designed to calculate student performance metrics, GPA distributions, and performance graphs.',
-            'description' => 'Automated student academic grade evaluation and performance analysis system.',
-            'technologies' => ['Python', 'Django', 'PostgreSQL', 'React', 'Chart.js', 'Tailwind CSS'],
+            'title' => 'StreamGrab',
+            'slug' => 'streamgrab',
+            'subtitle' => 'A high-speed media downloader supporting MP4/MP3 downloads across YouTube, TikTok, Facebook, and Instagram.',
+            'description' => 'Multi-platform downloader allowing users to easily convert and save videos/audio in high definition.',
+            'technologies' => ['React', 'Node.js', 'Express', 'Tailwind CSS', 'FFmpeg', 'Vite'],
             'image' => 'projects/grade-evaluation.png',
-            'demo' => 'https://grade-evaluation.lyshandave.com',
+            'demo' => 'https://streamgrab.vercel.app',
             'featured' => true,
             'overview' => [
                 'Lead Developer' => 'Lyshan Dave',
-                'Architecture' => 'MVC Pattern',
-                'Type' => 'Academic Evaluator',
-                'Collaboration' => 'Independent Project'
+                'Architecture' => 'REST API / SPA',
+                'Type' => 'Media Tool',
+                'Collaboration' => 'Open Source'
             ],
             'objectives' => [
-                ['title' => 'Automatic Grade Calculation', 'text' => 'Program logical algorithms that translate scores to standard GPAs using dynamic weight formulas.'],
-                ['title' => 'Performance Analysis Charts', 'text' => 'Display student growth, standard deviation, and class performance comparisons using beautiful analytics UI.'],
-                ['title' => 'GPA Distribution Tracking', 'text' => 'Allow counselors to segment student populations into honors categories based on cumulative grade point averages.']
+                ['title' => 'High-Speed Extraction', 'text' => 'Optimize multi-threaded streams to parse and convert videos under 5 seconds.'],
+                ['title' => 'Multi-Platform Compatibility', 'text' => 'Ensure extractor engines support downloading links from TikTok, Facebook, IG, and YouTube.'],
+                ['title' => 'Lossless Audio Extraction', 'text' => 'Provide crystal clear MP3 conversions at 320kbps with proper metadata tags.']
             ],
             'key_features' => [
-                ['title' => 'GPA Calculation', 'text' => 'Instant calculation engine that processes grades across various units and semester formats.', 'icon' => 'fas fa-calculator'],
-                ['title' => 'Grade Distributions', 'text' => 'Interactive analytics showing standard bell curves of class grades for professors and department heads.', 'icon' => 'fas fa-chart-bar'],
-                ['title' => 'Academic Performance Charts', 'text' => 'Personal dashboards where students can trace their GPA trajectory over multiple years.', 'icon' => 'fas fa-chart-area'],
-                ['title' => 'PDF Report Cards', 'text' => 'Clean print CSS style allowing instant generation of official PDF semester report sheets.', 'icon' => 'fas fa-file-pdf']
+                ['title' => 'URL Parser', 'text' => 'Smart link analyzer that automatically detects the host platform and retrieves raw CDN streams.', 'icon' => 'fas fa-link'],
+                ['title' => 'Quality Selector', 'text' => 'Select and download media in various formats: MP4 videos (1080p, 720p) or MP3 audio.', 'icon' => 'fas fa-sliders-h'],
+                ['title' => 'Fast Conversion', 'text' => 'FFmpeg background integration that compiles and packages media file formats in real-time.', 'icon' => 'fas fa-bolt'],
+                ['title' => 'Clean Interface', 'text' => 'Minimalist modern layout centered around a single paste-and-go input bar.', 'icon' => 'fas fa-desktop']
             ]
         ],
         [
