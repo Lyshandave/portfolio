@@ -26,7 +26,7 @@
     },
     "routes": [
         { "src": "/build/(.*)", "dest": "/build/$1" },
-        { "src": "/(css|js|images|profile-frames|card|certs|projects)/(.*)", "dest": "/$1/$2" },
+        { "src": "/(css|js|images|profile-frames|card|certs|project-images)/(.*)", "dest": "/$1/$2" },
         { "src": "/favicon\\.ico", "dest": "/favicon.ico" },
         { "src": "/(.*)", "dest": "/api/index.php" }
     ]
