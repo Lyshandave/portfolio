@@ -9,6 +9,7 @@ Route::middleware(['throttle:60,1'])->group(function () {
     Route::get('/', [PortfolioController::class, 'index']);
     Route::get('/tech-stack', [PortfolioController::class, 'techStack']);
     Route::get('/projects', [PortfolioController::class, 'projects']);
+    Route::get('/projects/{slug}', [PortfolioController::class, 'caseStudy']);
     Route::get('/certifications', [PortfolioController::class, 'certifications']);
     Route::get('/api/v1/portfolio-data', [PortfolioApiController::class, 'getData']);
 });

@@ -598,18 +598,32 @@ export default function Portfolio(props) {
                         <div id="projects-container" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                             {projects.filter(p => p.featured).slice(0, 3).map((project, i) => (
                                 <div key={i} className="flex flex-col overflow-hidden border border-slate-200/60 dark:border-slate-800/80 rounded-xl bg-white dark:bg-slate-900 hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-lg transition-all duration-300 group/project">
-                                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100 dark:bg-slate-800">
+                                    <Link href={`/projects/${project.slug}`} prefetch="hover" className="block relative aspect-[16/10] w-full overflow-hidden bg-slate-100 dark:bg-slate-800 cursor-pointer">
                                         <img 
                                             src={`/${project.image}`} 
                                             alt={project.title} 
                                             className="w-full h-full object-cover group-hover/project:scale-105 transition-transform duration-500" 
                                             onError={(e) => { e.target.src = '/profile-frames/frame-000.png'; }}
                                         />
-                                    </div>
+                                    </Link>
                                     <div className="p-4 flex flex-col flex-grow justify-between">
-                                        <div>
+                                        <Link href={`/projects/${project.slug}`} prefetch="hover" className="block space-y-1 cursor-pointer">
                                             <h3 className="text-sm md:text-base font-bold text-slate-900 dark:text-white group-hover/project:text-indigo-500 transition-colors duration-200">{project.title}</h3>
                                             <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed line-clamp-2">{project.description}</p>
+                                        </Link>
+                                        <div className="mt-4 pt-3 border-t border-slate-150 dark:border-slate-800/80 flex items-center justify-between">
+                                            <Link href={`/projects/${project.slug}`} prefetch="hover" className="text-[11px] font-semibold text-slate-500 hover:text-indigo-500 transition-colors cursor-pointer">
+                                                Case Study
+                                            </Link>
+                                            <a 
+                                                href={project.demo} 
+                                                target="_blank" 
+                                                rel="noopener noreferrer" 
+                                                className="inline-flex h-7 items-center rounded-lg bg-indigo-600 hover:bg-indigo-500 px-3 text-[10px] font-bold text-white gap-1 cursor-pointer border-b-2 border-indigo-800 shadow-[0_2px_4px_rgba(79,70,229,0.15)] hover:shadow-[0_4px_8px_rgba(79,70,229,0.25)] transition-all duration-100 transform hover:-translate-y-0.5 active:translate-y-0 active:border-b-0 active:mt-[2px] whitespace-nowrap"
+                                            >
+                                                <span>Visit Site</span>
+                                                <i className="fas fa-chevron-right text-[8px] opacity-75"></i>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>

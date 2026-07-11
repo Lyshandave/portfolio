@@ -109,38 +109,115 @@ return [
     'projects' => [
         [
             'title' => 'Ordering System',
+            'slug' => 'ordering-system',
+            'subtitle' => 'A premium online ordering and food services system for Cafe Misto, designed to streamline customer ordering, payments, and checkout flows.',
             'description' => 'Online ordering system for efficient customer transactions and fast checkout.',
-            'technologies' => ['Laravel', 'Vue.js', 'PostgreSQL', 'Tailwind CSS'],
+            'technologies' => ['Laravel', 'React', 'PostgreSQL', 'Tailwind CSS', 'Vite', 'FontAwesome', 'Gmail SMTP'],
             'image' => 'projects/ordering.png',
             'demo' => 'https://ordering-system-sigma.vercel.app/',
             'featured' => true,
+            'overview' => [
+                'Lead Developer' => 'Lyshan Dave',
+                'Architecture' => 'MVC / Decoupled',
+                'Type' => 'Web Platform',
+                'Collaboration' => 'Independent Project'
+            ],
+            'objectives' => [
+                ['title' => 'Seamless User Experience', 'text' => 'Develop an intuitive cafe dashboard where users can quickly select beverage options, configure sizes, and make additions.'],
+                ['title' => 'Operational Efficiency', 'text' => 'Optimize inventory consumption rates and checkout pipelines to reduce wait times to under 30 seconds.'],
+                ['title' => 'Secure Authentications', 'text' => 'Protect customer information and transactions using state-of-the-art authentication guards and HTTPS scheme enforcement.']
+            ],
+            'key_features' => [
+                ['title' => 'User Experience', 'text' => 'The login interface features a "Remember Me" option and password visibility toggle for enhanced usability.', 'icon' => 'fas fa-mug-hot'],
+                ['title' => 'Automated Identification', 'text' => 'Generates unique customer tracking numbers and custom invoices upon order completion.', 'icon' => 'fas fa-barcode'],
+                ['title' => 'Secure Recovery', 'text' => 'Secure password reset links sent exclusively to verified email addresses with real-time feedback warnings.', 'icon' => 'fas fa-key'],
+                ['title' => 'Welcome Notifications', 'text' => 'Triggers an automated welcome email with verification links for all newly registered accounts.', 'icon' => 'fas fa-envelope']
+            ]
         ],
         [
             'title' => 'Inventory System',
+            'slug' => 'inventory-system',
+            'subtitle' => 'Real-time inventory and stock tracking platform with advanced charts, graphs, and alert metrics.',
             'description' => 'Real-time stock tracking and inventory management solution.',
-            'technologies' => ['Node.js', 'Express', 'PostgreSQL', 'React'],
+            'technologies' => ['Node.js', 'Express', 'PostgreSQL', 'React', 'Chart.js', 'Tailwind CSS'],
             'image' => 'projects/inventory.png',
             'demo' => 'https://inventory.lyshandave.com',
             'featured' => true,
+            'overview' => [
+                'Lead Developer' => 'Lyshan Dave',
+                'Architecture' => 'REST API / SPA',
+                'Type' => 'Inventory Dashboard',
+                'Collaboration' => 'Independent Project'
+            ],
+            'objectives' => [
+                ['title' => 'Real-Time Stock Alerts', 'text' => 'Implement WebSocket or polling mechanics to notify administrative users when product quantities cross custom low threshold limits.'],
+                ['title' => 'Audit Logging', 'text' => 'Track every single stock movement, edit, and replenishment with detailed employee timestamps.'],
+                ['title' => 'Simple Search & Filter', 'text' => 'Ensure database search queries resolve instantly under 100ms for large catalogs with over 10,000 items.']
+            ],
+            'key_features' => [
+                ['title' => 'Stock Monitoring', 'text' => 'Provides visual indicator badges for optimal, low, and out-of-stock items at a single glance.', 'icon' => 'fas fa-boxes'],
+                ['title' => 'Low-Stock Alerts', 'text' => 'Generates push alerts and triggers automatic email summaries to supplier representatives.', 'icon' => 'fas fa-exclamation-triangle'],
+                ['title' => 'Interactive Charts', 'text' => 'Interactive line and bar charts showing historical demand trends and seasonal product spikes.', 'icon' => 'fas fa-chart-line'],
+                ['title' => 'CSV Export', 'text' => 'Quick export mechanism allowing managers to download compliance inventory worksheets in one click.', 'icon' => 'fas fa-file-csv']
+            ]
         ],
         [
             'title' => 'School Management System',
+            'slug' => 'school-management-system',
+            'subtitle' => 'A comprehensive portal for tracking student profiles, enrollment pipelines, and academic grading sheets.',
             'description' => 'All-in-one administration portal for student records, enrollment, and grading.',
-            'technologies' => ['Laravel', 'Vue.js', 'PostgreSQL', 'Tailwind CSS'],
+            'technologies' => ['Laravel', 'Vue.js', 'PostgreSQL', 'Tailwind CSS', 'Inertia.js', 'FullCalendar'],
             'image' => 'projects/school.png',
             'demo' => 'https://school-system.lyshandave.com',
             'featured' => true,
+            'overview' => [
+                'Lead Developer' => 'Lyshan Dave',
+                'Architecture' => 'Independent Refactor',
+                'Type' => 'School Admin Portal',
+                'Collaboration' => 'Academic System'
+            ],
+            'objectives' => [
+                ['title' => 'Centralized Records Management', 'text' => 'Consolidate student details, transcripts, contact details, and parent contact cards in one secure database.'],
+                ['title' => 'Automated Enrollment Workflows', 'text' => 'Transition traditional paper forms to digital registration wizards with automatic section and class assigning.'],
+                ['title' => 'Class Schedule Coordination', 'text' => 'Prevent scheduling conflicts for instructors, classrooms, and courses through overlapping checking algorithms.']
+            ],
+            'key_features' => [
+                ['title' => 'Student Records', 'text' => 'Searchable directories hosting student information cards, tuition structures, and advisor notes.', 'icon' => 'fas fa-user-graduate'],
+                ['title' => 'Schedule Calendar', 'text' => 'Interactive school calendar displaying holidays, midterm schedules, and customized course times.', 'icon' => 'fas fa-calendar-alt'],
+                ['title' => 'Academic Grading Sheets', 'text' => 'Provides professors with secure input tables to calculate exam averages and semester grades.', 'icon' => 'fas fa-edit'],
+                ['title' => 'Automated Reports', 'text' => 'Export tools to generate and compile university-wide transcripts and population distribution reports.', 'icon' => 'fas fa-file-alt']
+            ]
         ],
         [
             'title' => 'Grade-Evaluation',
+            'slug' => 'grade-evaluation',
+            'subtitle' => 'An analytical engine designed to calculate student performance metrics, GPA distributions, and performance graphs.',
             'description' => 'Automated student academic grade evaluation and performance analysis system.',
-            'technologies' => ['Python', 'Django', 'PostgreSQL', 'React'],
+            'technologies' => ['Python', 'Django', 'PostgreSQL', 'React', 'Chart.js', 'Tailwind CSS'],
             'image' => 'projects/grade-evaluation.png',
             'demo' => 'https://grade-evaluation.lyshandave.com',
             'featured' => true,
+            'overview' => [
+                'Lead Developer' => 'Lyshan Dave',
+                'Architecture' => 'MVC Pattern',
+                'Type' => 'Academic Evaluator',
+                'Collaboration' => 'Independent Project'
+            ],
+            'objectives' => [
+                ['title' => 'Automatic Grade Calculation', 'text' => 'Program logical algorithms that translate scores to standard GPAs using dynamic weight formulas.'],
+                ['title' => 'Performance Analysis Charts', 'text' => 'Display student growth, standard deviation, and class performance comparisons using beautiful analytics UI.'],
+                ['title' => 'GPA Distribution Tracking', 'text' => 'Allow counselors to segment student populations into honors categories based on cumulative grade point averages.']
+            ],
+            'key_features' => [
+                ['title' => 'GPA Calculation', 'text' => 'Instant calculation engine that processes grades across various units and semester formats.', 'icon' => 'fas fa-calculator'],
+                ['title' => 'Grade Distributions', 'text' => 'Interactive analytics showing standard bell curves of class grades for professors and department heads.', 'icon' => 'fas fa-chart-bar'],
+                ['title' => 'Academic Performance Charts', 'text' => 'Personal dashboards where students can trace their GPA trajectory over multiple years.', 'icon' => 'fas fa-chart-area'],
+                ['title' => 'PDF Report Cards', 'text' => 'Clean print CSS style allowing instant generation of official PDF semester report sheets.', 'icon' => 'fas fa-file-pdf']
+            ]
         ],
         [
             'title' => 'Office Floor Plan Network',
+            'slug' => 'office-floor-plan-network',
             'description' => 'Full office floor plan with department VLANs, IP phones, wireless APs, and DNS/DHCP/Mail servers.',
             'technologies' => ['Cisco Packet Tracer', 'Networking', 'VLAN', 'Servers'],
             'image' => 'projects/office-network.png',
@@ -149,6 +226,7 @@ return [
         ],
         [
             'title' => 'Multi-Area Network with Firewall',
+            'slug' => 'multi-area-network-with-firewall',
             'description' => '3-area hierarchical network with ISP, firewalls (550X), routers, and distribution/access layer switching.',
             'technologies' => ['Cisco Packet Tracer', 'Firewall (550X)', 'Routing & Switching', 'Network Security'],
             'image' => 'projects/firewall-network.png',
@@ -157,6 +235,7 @@ return [
         ],
         [
             'title' => 'Multi-Branch Office Network',
+            'slug' => 'multi-branch-office-network',
             'description' => 'Cisco Packet Tracer — multi-branch office with routers, switches, wireless APs, and inter-branch routing across 3 buildings.',
             'technologies' => ['Cisco Packet Tracer', 'Inter-Branch Routing', 'WLAN', 'OSPF'],
             'image' => 'projects/multi-branch.png',

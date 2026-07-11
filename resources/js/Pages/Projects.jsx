@@ -46,35 +46,36 @@ export default function Projects({ profile, projects }) {
                 {/* PROJECTS GRID */}
                 <main className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     {projects.map((project, i) => (
-                        <a key={i} href={project.demo} target="_blank" className="flex flex-col overflow-hidden rounded-xl bg-white/60 dark:bg-slate-900/40 subtle-border subtle-border-hover transition-all duration-300 group hover:shadow-lg">
-                            <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100 dark:bg-slate-800">
+                        <div key={i} className="flex flex-col overflow-hidden rounded-xl bg-white/60 dark:bg-slate-900/40 subtle-border subtle-border-hover transition-all duration-300 group/project hover:shadow-lg">
+                            <Link href={`/projects/${project.slug}`} prefetch="hover" className="block relative aspect-[16/10] w-full overflow-hidden bg-slate-100 dark:bg-slate-800 cursor-pointer">
                                 <img 
                                     src={`/${project.image}`} 
                                     alt={project.title} 
-                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                                    className="w-full h-full object-cover group-hover/project:scale-105 transition-transform duration-500" 
                                     onError={(e) => { e.target.src = '/profile-frames/frame-000.png'; }}
                                 />
-                            </div>
+                            </Link>
                             <div className="p-5 flex flex-col flex-grow justify-between space-y-4">
-                                <div className="space-y-2">
-                                    <h3 className="text-base font-bold text-slate-950 dark:text-white group-hover:text-indigo-500 transition-colors">{project.title}</h3>
+                                <Link href={`/projects/${project.slug}`} prefetch="hover" className="block space-y-2 cursor-pointer">
+                                    <h3 className="text-base font-bold text-slate-950 dark:text-white group-hover/project:text-indigo-500 transition-colors">{project.title}</h3>
                                     <p className="text-xs md:text-sm text-slate-700 dark:text-slate-300 leading-relaxed line-clamp-3">{project.description}</p>
-                                </div>
-                                <div className="space-y-3">
-                                    <div className="flex flex-wrap gap-1.5">
-                                        {project.technologies.map((tech, j) => (
-                                            <span key={j} className="px-2 py-0.5 text-[11px] font-semibold rounded bg-slate-100 dark:bg-slate-800/80 subtle-border text-slate-700 dark:text-slate-300">{tech}</span>
-                                        ))}
-                                    </div>
-                                    <div className="pt-3 border-t border-slate-200/50 dark:border-slate-800/50 flex items-center justify-end">
-                                        <span className="text-xs text-slate-500 dark:text-slate-400 group-hover:text-indigo-500 dark:group-hover:text-indigo-400 transition-colors flex items-center gap-1 font-semibold">
-                                            <span>{t.visitSite}</span>
-                                            <i className="fas fa-external-link-alt text-[9px]"></i>
-                                        </span>
-                                    </div>
+                                </Link>
+                                <div className="pt-3 border-t border-slate-200/50 dark:border-slate-800/50 flex items-center justify-between">
+                                    <Link href={`/projects/${project.slug}`} prefetch="hover" className="text-xs font-semibold text-slate-500 hover:text-indigo-500 transition-colors cursor-pointer">
+                                        Case Study
+                                    </Link>
+                                    <a 
+                                        href={project.demo} 
+                                        target="_blank" 
+                                        rel="noopener noreferrer" 
+                                        className="inline-flex h-8 items-center rounded-lg bg-indigo-600 hover:bg-indigo-500 px-4 text-xs font-bold text-white gap-1.5 cursor-pointer border-b-2 border-indigo-800 shadow-[0_2px_4px_rgba(79,70,229,0.15)] hover:shadow-[0_4px_8px_rgba(79,70,229,0.25)] transition-all duration-100 transform hover:-translate-y-0.5 active:translate-y-0 active:border-b-0 active:mt-[2px] whitespace-nowrap"
+                                    >
+                                        <span>Visit Site</span>
+                                        <i className="fas fa-chevron-right text-[8px] opacity-75"></i>
+                                    </a>
                                 </div>
                             </div>
-                        </a>
+                        </div>
                     ))}
                 </main>
 

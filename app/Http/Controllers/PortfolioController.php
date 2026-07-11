@@ -60,6 +60,27 @@ class PortfolioController extends Controller
     }
 
     /**
+     * Display the case study page for a specific project.
+     *
+     * @param string $slug
+     * @return \Inertia\Response
+     */
+    public function caseStudy($slug)
+    {
+        $data = $this->getPortfolioData();
+        $project = collect($data['projects'])->firstWhere('slug', $slug);
+
+        if (!$project) {
+            abort(404);
+        }
+
+        return Inertia::render('CaseStudy', [
+            'profile' => $data['profile'],
+            'project' => $project,
+        ]);
+    }
+
+    /**
      * Get Lyshan Dave's authentic structured portfolio data.
      *
      * @return array
