@@ -611,7 +611,7 @@ export default function Portfolio(props) {
                                             <h3 className="text-sm md:text-base font-bold text-slate-900 dark:text-white group-hover/project:text-indigo-500 transition-colors duration-200">{project.title}</h3>
                                             <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed line-clamp-2">{project.description}</p>
                                         </Link>
-                                        <div className="mt-4 pt-3 border-t border-slate-150 dark:border-slate-800/80 flex items-center justify-between">
+                                        <div className="mt-3 flex items-center justify-between">
                                             <Link href={`/projects/${project.slug}`} prefetch="hover" className="text-[11px] font-semibold text-slate-500 hover:text-indigo-500 transition-colors cursor-pointer">
                                                 Case Study
                                             </Link>

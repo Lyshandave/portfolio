@@ -60,7 +60,7 @@ export default function Projects({ profile, projects }) {
                                     <h3 className="text-base font-bold text-slate-950 dark:text-white group-hover/project:text-indigo-500 transition-colors">{project.title}</h3>
                                     <p className="text-xs md:text-sm text-slate-700 dark:text-slate-300 leading-relaxed line-clamp-3">{project.description}</p>
                                 </Link>
-                                <div className="pt-3 border-t border-slate-200/50 dark:border-slate-800/50 flex items-center justify-between">
+                                <div className="mt-3 flex items-center justify-between">
                                     <Link href={`/projects/${project.slug}`} prefetch="hover" className="text-xs font-semibold text-slate-500 hover:text-indigo-500 transition-colors cursor-pointer">
                                         Case Study
                                     </Link>
