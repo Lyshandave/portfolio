@@ -64,15 +64,17 @@ export default function Projects({ profile, projects }) {
                                     <Link href={`/projects/${project.slug}`} prefetch="hover" className="text-xs font-semibold text-slate-500 hover:text-indigo-500 transition-colors cursor-pointer">
                                         Case Study
                                     </Link>
-                                    <a 
-                                        href={project.demo} 
-                                        target="_blank" 
-                                        rel="noopener noreferrer" 
-                                        className="inline-flex h-8 items-center rounded-lg bg-indigo-600 hover:bg-indigo-500 px-4 text-xs font-bold text-white gap-1.5 cursor-pointer border-b-2 border-indigo-800 shadow-[0_2px_4px_rgba(79,70,229,0.15)] hover:shadow-[0_4px_8px_rgba(79,70,229,0.25)] transition-all duration-100 transform hover:-translate-y-0.5 active:translate-y-0 active:border-b-0 active:mt-[2px] whitespace-nowrap"
-                                    >
-                                        <span>Visit Site</span>
-                                        <i className="fas fa-chevron-right text-[8px] opacity-75"></i>
-                                    </a>
+                                    {project.demo && (
+                                        <a 
+                                            href={project.demo} 
+                                            target="_blank" 
+                                            rel="noopener noreferrer" 
+                                            className="inline-flex h-8 items-center rounded-lg bg-indigo-600 hover:bg-indigo-500 px-4 text-xs font-bold text-white gap-1.5 cursor-pointer border-b-2 border-indigo-800 shadow-[0_2px_4px_rgba(79,70,229,0.15)] hover:shadow-[0_4px_8px_rgba(79,70,229,0.25)] transition-all duration-100 transform hover:-translate-y-0.5 active:translate-y-0 active:border-b-0 active:mt-[2px] whitespace-nowrap"
+                                        >
+                                            <span>Visit Site</span>
+                                            <i className="fas fa-chevron-right text-[8px] opacity-75"></i>
+                                        </a>
+                                    )}
                                 </div>
                             </div>
                         </div>

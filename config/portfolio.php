@@ -218,28 +218,82 @@ return [
         [
             'title' => 'Office Floor Plan Network',
             'slug' => 'office-floor-plan-network',
+            'subtitle' => 'VLAN partition, IP phone setups, wireless access points, and DHCP/DNS server configurations.',
             'description' => 'Full office floor plan with department VLANs, IP phones, wireless APs, and DNS/DHCP/Mail servers.',
             'technologies' => ['Cisco Packet Tracer', 'Networking', 'VLAN', 'Servers'],
             'image' => 'projects/office-network.png',
-            'demo' => 'https://drive.google.com/drive/folders/PLACEHOLDER_GDRIVE_LINK',
+            'demo' => null,
             'featured' => false,
+            'overview' => [
+                'Lead Developer' => 'Lyshan Dave',
+                'Architecture' => 'Cisco Packet Tracer',
+                'Type' => 'LAN Layout',
+                'Collaboration' => 'Academic Project'
+            ],
+            'objectives' => [
+                ['title' => 'Secure Department Separation', 'text' => 'Partition offices into distinct VLANs to protect accounting and HR resources from public/guest networks.'],
+                ['title' => 'IP Phone Integration', 'text' => 'Setup Voice VLANs and DHCP options to automate Cisco IP phone IP allocation and dial configurations.'],
+                ['title' => 'Central Server Resources', 'text' => 'Provision DNS, DHCP, and mail servers locally to handle department requests without external web reliance.']
+            ],
+            'key_features' => [
+                ['title' => 'VLAN Partitioning', 'text' => 'Configured separate broadcast domains to isolate department traffic and maximize network bandwidth.', 'icon' => 'fas fa-network-wired'],
+                ['title' => 'Centralized DHCP/DNS', 'text' => 'Dynamic host configuration protocols ensuring immediate connectivity for newly connected devices.', 'icon' => 'fas fa-server'],
+                ['title' => 'IP Voice setups', 'text' => 'Dedicated VoIP networks configured to ensure high call quality and minimum latency.', 'icon' => 'fas fa-phone'],
+                ['title' => 'Wireless Coverage', 'text' => 'Strategic placements of WAPs to guarantee seamless wireless roaming throughout the building floor.', 'icon' => 'fas fa-wifi']
+            ]
         ],
         [
             'title' => 'Multi-Area Network with Firewall',
             'slug' => 'multi-area-network-with-firewall',
+            'subtitle' => 'Hierarchical router structure with distribution switching and ASA firewall security policy rules.',
             'description' => '3-area hierarchical network with ISP, firewalls (550X), routers, and distribution/access layer switching.',
             'technologies' => ['Cisco Packet Tracer', 'Firewall (550X)', 'Routing & Switching', 'Network Security'],
             'image' => 'projects/firewall-network.png',
-            'demo' => 'https://drive.google.com/drive/folders/PLACEHOLDER_GDRIVE_LINK',
+            'demo' => null,
             'featured' => false,
+            'overview' => [
+                'Lead Developer' => 'Lyshan Dave',
+                'Architecture' => 'Cisco Packet Tracer',
+                'Type' => 'Secure Network',
+                'Collaboration' => 'Academic Project'
+            ],
+            'objectives' => [
+                ['title' => 'Robust Edge Security', 'text' => 'Implement Cisco ASA 5505/5506 firewalls to block unauthorized inbound requests while securing outbound employee traffic.'],
+                ['title' => 'Logical Routing Configuration', 'text' => 'Set up strict static routes and access lists (ACLs) to manage traffic flows between different logical security zones.'],
+                ['title' => 'Redundant Connection Links', 'text' => 'Configure dual ISP lines and etherchannels to guarantee failover switches operate under 2 seconds.']
+            ],
+            'key_features' => [
+                ['title' => 'ASA Firewall Integration', 'text' => 'Equipped the network edge with stateful packet inspection firewalls and strict security rule sets.', 'icon' => 'fas fa-shield-alt'],
+                ['title' => 'OSPF Dynamic Routing', 'text' => 'Configured multi-area OSPF routing protocols to automate routing tables across distribution routers.', 'icon' => 'fas fa-route'],
+                ['title' => 'Redundant Links', 'text' => 'Configured EtherChannel groupings and Spanning Tree protocols to provide automatic link redundancy.', 'icon' => 'fas fa-link'],
+                ['title' => 'DMZ Zone Configuration', 'text' => 'Isolated public-facing web servers in a Demilitarized Zone, separating them from core intranet servers.', 'icon' => 'fas fa-lock']
+            ]
         ],
         [
             'title' => 'Multi-Branch Office Network',
             'slug' => 'multi-branch-office-network',
+            'subtitle' => 'Hierarchical triple building networking mapping with OSPF inter-branch routing policies.',
             'description' => 'Cisco Packet Tracer — multi-branch office with routers, switches, wireless APs, and inter-branch routing across 3 buildings.',
             'technologies' => ['Cisco Packet Tracer', 'Inter-Branch Routing', 'WLAN', 'OSPF'],
             'image' => 'projects/multi-branch.png',
-            'demo' => 'https://drive.google.com/drive/folders/PLACEHOLDER_GDRIVE_LINK',
+            'demo' => null,
+            'overview' => [
+                'Lead Developer' => 'Lyshan Dave',
+                'Architecture' => 'Cisco Packet Tracer',
+                'Type' => 'Multi-Branch Network',
+                'Collaboration' => 'Academic Project'
+            ],
+            'objectives' => [
+                ['title' => 'Fast Inter-Branch Connectivity', 'text' => 'Configure hierarchical OSPF routing configurations to sync networking paths between 3 branch buildings.'],
+                ['title' => 'Wireless Roaming', 'text' => 'Deploy wireless controllers (WLCs) to ensure corporate laptops roam without losing connection between buildings.'],
+                ['title' => 'Local Service Redundancy', 'text' => 'Maintain backup DNS and DHCP routers locally in each building to guarantee local subnet uptime.']
+            ],
+            'key_features' => [
+                ['title' => 'OSPF Routing', 'text' => 'Configured open shortest path first routing to optimize WAN bandwidth and minimize hop count.', 'icon' => 'fas fa-random'],
+                ['title' => 'Wireless AP setups', 'text' => 'Corporate SSID mapping with lightweight access points controlled by central wireless controllers.', 'icon' => 'fas fa-wifi'],
+                ['title' => 'Local Subnet DHCP', 'text' => 'Configured routers as local DHCP agents to supply unique IP scopes and lease limits.', 'icon' => 'fas fa-server'],
+                ['title' => 'Multi-Building Map', 'text' => 'Logical mapping of three separate corporate sites connecting through a centralized service provider link.', 'icon' => 'fas fa-map-marked-alt']
+            ]
         ],
     ],
 

@@ -21,6 +21,7 @@ export default function CaseStudy({ profile, project }) {
         if (lowerTech.includes('python')) return 'fab fa-python text-blue-400';
         if (lowerTech.includes('postgres') || lowerTech.includes('sql') || lowerTech.includes('db')) return 'fas fa-database text-slate-500';
         if (lowerTech.includes('tailwind')) return 'fab fa-css3-alt text-teal-400';
+        if (lowerTech.includes('cisco') || lowerTech.includes('packet')) return 'fas fa-network-wired text-blue-500';
         return 'fas fa-check-circle text-indigo-500';
     };
 
@@ -55,15 +56,17 @@ export default function CaseStudy({ profile, project }) {
                             <h1 className="text-2xl md:text-4xl font-bold text-slate-900 dark:text-white display-font">{project.title}</h1>
                             <p className="text-sm md:text-base text-slate-600 dark:text-slate-400 leading-relaxed font-medium">{project.subtitle || project.description}</p>
                         </div>
-                        <a 
-                            href={project.demo} 
-                            target="_blank" 
-                            rel="noopener noreferrer" 
-                            className="inline-flex h-9 items-center justify-center rounded-lg bg-indigo-600 hover:bg-indigo-500 px-4 text-xs font-bold text-white gap-1.5 cursor-pointer border-b-2 border-indigo-800 shadow-[0_3px_6px_rgba(79,70,229,0.25)] hover:shadow-[0_5px_10px_rgba(79,70,229,0.35)] transition-all duration-100 transform hover:-translate-y-0.5 active:translate-y-0 active:border-b-0 active:mt-[2px] whitespace-nowrap self-start sm:self-center"
-                        >
-                            <i className="fas fa-external-link-alt text-[10px]"></i>
-                            <span>Visit Site</span>
-                        </a>
+                        {project.demo && (
+                            <a 
+                                href={project.demo} 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className="inline-flex h-9 items-center justify-center rounded-lg bg-indigo-600 hover:bg-indigo-500 px-4 text-xs font-bold text-white gap-1.5 cursor-pointer border-b-2 border-indigo-800 shadow-[0_3px_6px_rgba(79,70,229,0.25)] hover:shadow-[0_5px_10px_rgba(79,70,229,0.35)] transition-all duration-100 transform hover:-translate-y-0.5 active:translate-y-0 active:border-b-0 active:mt-[2px] whitespace-nowrap self-start sm:self-center"
+                            >
+                                <i className="fas fa-external-link-alt text-[10px]"></i>
+                                <span>Visit Site</span>
+                            </a>
+                        )}
                     </div>
                 </header>
 
@@ -143,8 +146,15 @@ export default function CaseStudy({ profile, project }) {
                                     src={`/${project.image}`} 
                                     alt={project.title} 
                                     className="w-full h-full object-cover" 
-                                    onError={(e) => { e.target.src = '/profile-frames/frame-000.png'; }}
+                                    onError={(e) => { 
+                                        e.target.style.display = 'none';
+                                        e.target.nextSibling.style.display = 'flex';
+                                    }}
                                 />
+                                <div className="absolute inset-0 hidden flex-col items-center justify-center bg-gradient-to-br from-indigo-500/10 to-purple-500/10 text-slate-400 dark:text-slate-650">
+                                    <i className="fas fa-network-wired text-4xl mb-2 text-indigo-500/40"></i>
+                                    <span className="text-xs font-semibold uppercase tracking-wider">{project.title} Showcase</span>
+                                </div>
                             </div>
 
                             {/* DYNAMIC HIGHLIGHTS LIST */}
@@ -157,7 +167,7 @@ export default function CaseStudy({ profile, project }) {
                                             </div>
                                             <div className="space-y-0.5">
                                                 <h4 className="text-xs md:text-sm font-bold text-slate-900 dark:text-white">{feat.title}</h4>
-                                                <p className="text-[11px] leading-relaxed text-slate-650 dark:text-slate-450">{feat.text}</p>
+                                                <p className="text-[11px] leading-relaxed text-slate-605 dark:text-slate-450">{feat.text}</p>
                                             </div>
                                         </div>
                                     ))}

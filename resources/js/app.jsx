@@ -10,6 +10,7 @@ import ErrorPage from './Pages/Error.jsx';
 import Portfolio from './Pages/Portfolio.jsx';
 import Projects from './Pages/Projects.jsx';
 import TechStack from './Pages/TechStack.jsx';
+import CaseStudy from './Pages/CaseStudy.jsx';
 
 // Initialize global animations
 function initializeGlobalAnimations() {
@@ -84,6 +85,8 @@ createInertiaApp({
         switch (name) {
             case 'Certifications':
                 return Certifications;
+            case 'CaseStudy':
+                return CaseStudy;
             case 'Error':
                 return ErrorPage;
             case 'Portfolio':
