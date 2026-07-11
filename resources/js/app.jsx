@@ -107,8 +107,5 @@ createInertiaApp({
             initializeGlobalAnimations();
         });
     },
-    progress: {
-        color: '#6366f1',
-        showSpinner: true,
-    },
+    progress: false,
 });

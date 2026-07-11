@@ -36,7 +36,7 @@ export default function TechStack({ profile, techStack }) {
 
                 {/* HEADER NAVIGATION */}
                 <header className="mb-8 flex flex-col items-start">
-                    <Link href="/" prefetch="hover" className="inline-flex items-center gap-1.5 text-xs text-slate-600 dark:text-slate-400 hover:text-indigo-500 font-bold transition-all cursor-pointer px-3 py-1.5 rounded-lg bg-slate-100/50 hover:bg-indigo-50 dark:bg-slate-800/40 dark:hover:bg-indigo-950/20 border border-slate-200/50 dark:border-slate-700/50" aria-label="Back to portfolio home">
+                    <Link href="/" className="inline-flex items-center gap-1.5 text-xs text-slate-600 dark:text-slate-400 hover:text-indigo-600 font-semibold transition-colors cursor-pointer" aria-label="Back to portfolio home">
                         <i className="fas fa-arrow-left text-[10px]"></i>
                         <span>{t.backToHome}</span>
                     </Link>
