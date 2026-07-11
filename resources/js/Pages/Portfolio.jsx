@@ -603,8 +603,15 @@ export default function Portfolio(props) {
                                             src={`/${project.image}`} 
                                             alt={project.title} 
                                             className="w-full h-full object-cover group-hover/project:scale-105 transition-transform duration-500" 
-                                            onError={(e) => { e.target.src = '/profile-frames/frame-000.png'; }}
+                                            onError={(e) => { 
+                                                e.target.style.display = 'none';
+                                                e.target.nextSibling.style.display = 'flex';
+                                            }}
                                         />
+                                        <div className="absolute inset-0 hidden flex-col items-center justify-center bg-gradient-to-br from-indigo-500/10 to-purple-500/10 text-slate-400 dark:text-slate-650">
+                                            <i className="fas fa-image text-2xl mb-1 opacity-45"></i>
+                                            <span className="text-[10px] font-semibold uppercase tracking-wider">Preview Image</span>
+                                        </div>
                                     </Link>
                                     <div className="p-4 flex flex-col flex-grow justify-between">
                                         <Link href={`/projects/${project.slug}`} prefetch="hover" className="block space-y-1 cursor-pointer">
