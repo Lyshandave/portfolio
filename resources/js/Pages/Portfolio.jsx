@@ -331,7 +331,7 @@ export default function Portfolio(props) {
 
     // Sync loop for database caching updates
     useEffect(() => {
-        const SYNC_API = '/api/v1/portfolio-data';
+        const SYNC_API = '/api-data/v1/portfolio-data';
         const CACHE_KEY = 'portfolio_data_cache';
         const ETAG_KEY = 'portfolio_data_etag';
         const SYNC_INTERVAL = 30000;
@@ -455,8 +455,8 @@ export default function Portfolio(props) {
                 <section className="mb-8 fade-in-section is-visible">
                     <div className="flex items-center gap-4 md:gap-6">
                         <div className="relative shrink-0">
-                            <img alt={profile.name} fetchPriority="high" width="160" height="160" decoding="async" className="block dark:hidden rounded-lg w-32 h-32 md:w-40 md:h-40 object-cover border border-border/20 shadow-md" src="/profile-frames/profile-light.png" onError={(e) => { e.target.src = '/profile-frames/frame-000.png'; }} />
-                            <img alt={profile.name} fetchPriority="high" width="160" height="160" decoding="async" className="hidden dark:block rounded-lg w-32 h-32 md:w-40 md:h-40 object-cover border border-border/20 shadow-md" src="/profile-frames/profile-dark.png" onError={(e) => { e.target.src = '/profile-frames/frame-000.png'; }} />
+                            <img alt={profile.name} fetchPriority="high" width="160" height="160" decoding="async" className="block dark:hidden rounded-lg w-32 h-32 md:w-40 md:h-40 object-cover border border-border/20 shadow-md" src="/profile-frames/profile-light.png" onError={(e) => { e.target.onerror = null; e.target.style.display = 'none'; }} />
+                            <img alt={profile.name} fetchPriority="high" width="160" height="160" decoding="async" className="hidden dark:block rounded-lg w-32 h-32 md:w-40 md:h-40 object-cover border border-border/20 shadow-md" src="/profile-frames/profile-dark.png" onError={(e) => { e.target.onerror = null; e.target.style.display = 'none'; }} />
                             <div className="absolute inset-0 rounded-lg border-2 border-indigo-500/20 pointer-events-none"></div>
                         </div>
 
@@ -603,7 +603,7 @@ export default function Portfolio(props) {
                                             src={`/${project.image}`}
                                             alt={project.title}
                                             className="w-full h-full object-cover group-hover/project:scale-105 transition-transform duration-500"
-                                            onError={(e) => { e.target.src = '/profile-frames/frame-000.png'; }}
+                                            onError={(e) => { e.target.onerror = null; e.target.style.display = 'none'; }}
                                         />
                                     </Link>
                                     <div className="p-4 flex flex-col flex-grow justify-between">

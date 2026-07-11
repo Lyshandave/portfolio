@@ -11,7 +11,7 @@ Route::middleware(['throttle:60,1'])->group(function () {
     Route::get('/projects', [PortfolioController::class, 'projects']);
     Route::get('/projects/{slug}', [PortfolioController::class, 'caseStudy']);
     Route::get('/certifications', [PortfolioController::class, 'certifications']);
-    Route::get('/api/v1/portfolio-data', [PortfolioApiController::class, 'getData']);
+    Route::get('/api-data/v1/portfolio-data', [PortfolioApiController::class, 'getData']);
 });
 
 // Secure developer error page previews (only available in local/testing environments)

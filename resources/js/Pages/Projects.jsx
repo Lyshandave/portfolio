@@ -52,7 +52,7 @@ export default function Projects({ profile, projects }) {
                                     src={`/${project.image}`}
                                     alt={project.title}
                                     className="w-full h-full object-cover group-hover/project:scale-105 transition-transform duration-500"
-                                    onError={(e) => { e.target.src = '/profile-frames/frame-000.png'; }}
+                                    onError={(e) => { e.target.onerror = null; e.target.style.display = 'none'; }}
                                 />
                             </Link>
                             <div className="p-4 flex flex-col flex-grow justify-between space-y-3">
