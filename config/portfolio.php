@@ -165,7 +165,7 @@ return [
                 // === CUSTOMER SIDE ===
                 [
                     'title' => 'Customer: Secure Authentication Gateway',
-                    'image' => 'project-images/ordering.png',
+                    'image' => 'project-images/ordering_login.jpg',
                     'features' => [
                         ['title' => 'Credential Validation', 'text' => 'Supports dual input parameters (Email or Phone) for user convenience.', 'icon' => 'fas fa-shield-alt'],
                         ['title' => 'Remember Me Utility', 'text' => 'Option to persist login sessions securely across browser instances.', 'icon' => 'fas fa-cookie-bite'],
@@ -174,7 +174,7 @@ return [
                 ],
                 [
                     'title' => 'Customer: Interactive Menu & Detail Panel',
-                    'image' => 'project-images/ordering.png',
+                    'image' => 'project-images/ordering_detail.jpg',
                     'features' => [
                         ['title' => 'Menu Categories', 'text' => 'Categorized grid layout for Appetizers, Beverages, and Main Course items.', 'icon' => 'fas fa-th-list'],
                         ['title' => 'Ingredients Visualization', 'text' => 'Displays graphic ingredient badges (e.g. Cabbage, Jalapeño) in the detail view.', 'icon' => 'fas fa-leaf'],
@@ -183,7 +183,7 @@ return [
                 ],
                 [
                     'title' => 'Customer: Slide-out Cart Management',
-                    'image' => 'project-images/ordering.png',
+                    'image' => 'project-images/ordering_cart.jpg',
                     'features' => [
                         ['title' => 'Quantity Controls', 'text' => 'Inline increment and decrement selectors with instant price calculations.', 'icon' => 'fas fa-calculator'],
                         ['title' => 'Quick Items Removal', 'text' => 'One-click item deletion directly from the cart drawer.', 'icon' => 'fas fa-trash-alt'],
@@ -192,7 +192,7 @@ return [
                 ],
                 [
                     'title' => 'Customer: Structured Order Checkout',
-                    'image' => 'project-images/ordering.png',
+                    'image' => 'project-images/ordering_checkout.jpg',
                     'features' => [
                         ['title' => 'Encrypted Info Display', 'text' => 'Secures user phone details during checkout using masked digit sequences.', 'icon' => 'fas fa-user-lock'],
                         ['title' => 'Multi-Payment Options', 'text' => 'Supports Cash on Delivery (COD) and Credit Card payment methods.', 'icon' => 'fas fa-wallet'],
@@ -201,7 +201,7 @@ return [
                 ],
                 [
                     'title' => 'Customer: User Profile Settings Modal',
-                    'image' => 'project-images/ordering.png',
+                    'image' => 'project-images/ordering_profile.jpg',
                     'features' => [
                         ['title' => 'Tabbed Dashboard Layout', 'text' => 'Easy navigation between Profile, Address, Order History, and Settings.', 'icon' => 'fas fa-user-cog'],
                         ['title' => 'Personal Info Manager', 'text' => 'Displays Full Name, Email, Contact Phone, and Primary Delivery Address.', 'icon' => 'fas fa-address-card']
