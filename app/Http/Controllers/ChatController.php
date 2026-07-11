@@ -70,13 +70,23 @@ class ChatController extends Controller
 
         // Build Gemini API payload
         $contents = [];
+        $expectedRole = 'user'; // Gemini requires conversation history to start with a 'user' turn
         
-        // Add conversation history
         foreach ($history as $chat) {
-            $contents[] = [
-                'role' => $chat['sender'] === 'user' ? 'user' : 'model',
-                'parts' => [['text' => $chat['text']]]
-            ];
+            $role = $chat['sender'] === 'user' ? 'user' : 'model';
+            if ($role === $expectedRole) {
+                $contents[] = [
+                    'role' => $role,
+                    'parts' => [['text' => $chat['text']]]
+                ];
+                // Toggle expected role to alternate
+                $expectedRole = ($expectedRole === 'user') ? 'model' : 'user';
+            }
+        }
+        
+        // If the history ends with a 'user' message, pop it because our new message is 'user'
+        if ($expectedRole === 'model' && !empty($contents)) {
+            array_pop($contents);
         }
 
         // Append current message
