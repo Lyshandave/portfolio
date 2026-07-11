@@ -60,13 +60,13 @@ export default function Certifications({ profile, all_certifications }) {
                 </header>
 
                 {/* CERTIFICATIONS SECTIONS */}
-                <main>
+                <main className="flex-1">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         {all_certifications.map((cert, i) => (
                             <article key={i} className="group rounded-xl overflow-hidden bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 transition-all duration-300 hover:shadow-md hover:border-slate-200 dark:hover:border-slate-700">
                                 <button 
                                     onClick={() => setSelectedCert(cert.image)}
-                                    className="w-full relative block h-48 bg-slate-50 dark:bg-slate-950/50 overflow-hidden cursor-pointer flex items-center justify-center border-b border-slate-50 dark:border-slate-800/50" 
+                                    className="w-full relative block h-56 bg-slate-50 dark:bg-slate-950/50 overflow-hidden cursor-pointer flex items-center justify-center border-b border-slate-50 dark:border-slate-800/50" 
                                     aria-label={`View ${cert.title} certificate`}
                                 >
                                     <img src={cert.image} alt={cert.title} className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]" />
@@ -106,7 +106,7 @@ export default function Certifications({ profile, all_certifications }) {
                 )}
 
                 {/* FOOTER */}
-                <footer className="text-center" style={{ marginTop: '8rem', paddingBottom: '2rem' }}>
+                <footer className="text-center mt-12 pb-8">
                     <p className="text-xs text-foreground/50">&copy; {currentYear} {profile.name}. {t.copyright}</p>
                 </footer>
             </div>
