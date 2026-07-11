@@ -68,17 +68,6 @@ export default function CaseStudy({ profile, project }) {
                                     <span>Visit Site</span>
                                 </a>
                             )}
-                            {project.github && (
-                                <a 
-                                    href={project.github} 
-                                    target="_blank" 
-                                    rel="noopener noreferrer" 
-                                    className="inline-flex h-9 items-center justify-center rounded-lg bg-slate-800 hover:bg-slate-700 px-4 text-xs font-bold text-white gap-1.5 cursor-pointer border-b-2 border-slate-950 shadow-[0_3px_6px_rgba(0,0,0,0.15)] hover:shadow-[0_5px_10px_rgba(0,0,0,0.25)] transition-all duration-100 transform hover:-translate-y-0.5 active:translate-y-0 active:border-b-0 active:mt-[2px] whitespace-nowrap"
-                                >
-                                    <i className="fab fa-github text-[12px]"></i>
-                                    <span>Repository</span>
-                                </a>
-                            )}
                         </div>
                     </div>
                 </header>
@@ -302,6 +291,34 @@ export default function CaseStudy({ profile, project }) {
                                     ))}
                                 </ul>
                             </div>
+                        )}
+                    </div>
+                )}
+
+                {/* BOTTOM PROJECT LINKS */}
+                {(project.demo || project.github) && (
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8 border-t border-slate-200/60 dark:border-slate-800/80 mt-10">
+                        {project.demo && (
+                            <a 
+                                href={project.demo} 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className="inline-flex h-10 items-center justify-center rounded-lg bg-indigo-600 hover:bg-indigo-500 px-6 text-sm font-bold text-white gap-2 cursor-pointer border-b-2 border-indigo-800 shadow-[0_3px_6px_rgba(79,70,229,0.25)] hover:shadow-[0_5px_10px_rgba(79,70,229,0.35)] transition-all duration-100 transform hover:-translate-y-0.5 active:translate-y-0 active:border-b-0 active:mt-[2px] whitespace-nowrap"
+                            >
+                                <i className="fas fa-external-link-alt text-xs"></i>
+                                <span>Visit Live Demo</span>
+                            </a>
+                        )}
+                        {project.github && (
+                            <a 
+                                href={project.github} 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className="inline-flex h-10 items-center justify-center rounded-lg bg-slate-800 hover:bg-slate-700 px-6 text-sm font-bold text-white gap-2 cursor-pointer border-b-2 border-slate-950 shadow-[0_3px_6px_rgba(0,0,0,0.15)] hover:shadow-[0_5px_10px_rgba(0,0,0,0.25)] transition-all duration-100 transform hover:-translate-y-0.5 active:translate-y-0 active:border-b-0 active:mt-[2px] whitespace-nowrap"
+                            >
+                                <i className="fab fa-github text-base"></i>
+                                <span>View GitHub Repository</span>
+                            </a>
                         )}
                     </div>
                 )}
