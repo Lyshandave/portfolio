@@ -101,6 +101,24 @@ export default function CaseStudy({ profile, project }) {
                                 ))}
                             </div>
                         </div>
+
+                        {/* KEY FEATURES CARD */}
+                        {project.key_features && (
+                            <div className="rounded-xl border border-slate-200/60 dark:border-slate-800/80 bg-white/60 dark:bg-slate-900/40 p-5 space-y-4 shadow-sm">
+                                <h2 className="text-xs font-bold uppercase tracking-wider text-slate-400">Key Features</h2>
+                                <div className="space-y-3">
+                                    {project.key_features.map((feat, i) => (
+                                        <div key={i} className="flex items-start gap-2.5">
+                                            <i className={`${feat.icon || 'fas fa-check-circle'} text-indigo-500 mt-0.5 text-xs shrink-0`}></i>
+                                            <div>
+                                                <h3 className="text-xs font-bold text-slate-900 dark:text-white">{feat.title}</h3>
+                                                <p className="text-[10px] leading-relaxed text-slate-500 dark:text-slate-400">{feat.text}</p>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
                     </div>
 
                     {/* RIGHT COLUMN: OBJECTIVES & INTERACTIVE SHOWCASE */}
@@ -156,23 +174,6 @@ export default function CaseStudy({ profile, project }) {
                                     <span className="text-xs font-semibold uppercase tracking-wider">{project.title} Showcase</span>
                                 </div>
                             </div>
-
-                            {/* DYNAMIC HIGHLIGHTS LIST */}
-                            {project.key_features && (
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                                    {project.key_features.map((feat, i) => (
-                                        <div key={i} className="flex items-start gap-3 p-3 rounded-lg border border-slate-100 dark:border-slate-800 bg-white/30 dark:bg-slate-950/20">
-                                            <div className="w-8 h-8 rounded-lg bg-indigo-50 dark:bg-indigo-950/50 flex items-center justify-center shrink-0 border border-indigo-100/50 dark:border-indigo-900/30">
-                                                <i className={`${feat.icon || 'fas fa-cube'} text-xs text-indigo-600 dark:text-indigo-400`}></i>
-                                            </div>
-                                            <div className="space-y-0.5">
-                                                <h4 className="text-xs md:text-sm font-bold text-slate-900 dark:text-white">{feat.title}</h4>
-                                                <p className="text-[11px] leading-relaxed text-slate-605 dark:text-slate-450">{feat.text}</p>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
                         </div>
                     </div>
                 </main>
