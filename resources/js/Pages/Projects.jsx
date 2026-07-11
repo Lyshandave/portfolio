@@ -53,7 +53,7 @@ export default function Projects({ profile, projects }) {
 
                 {/* HEADER NAVIGATION */}
                 <header className="mb-8 flex flex-col items-start">
-                    <Link href="/" prefetch="hover" className="inline-flex items-center gap-1.5 text-xs text-foreground/60 hover:text-indigo-500 font-semibold transition-colors cursor-pointer" aria-label="Back to portfolio home">
+                    <Link href="/" prefetch={['mount', 'hover']} className="inline-flex items-center gap-1.5 text-xs text-foreground/60 hover:text-indigo-500 font-semibold transition-colors cursor-pointer" aria-label="Back to portfolio home">
                         <i className="fas fa-arrow-left text-[10px]"></i>
                         <span>{t.backToHome}</span>
                     </Link>
