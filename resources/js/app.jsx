@@ -36,8 +36,6 @@ function initializeGlobalAnimations() {
 
     const animatedElements = document.querySelectorAll('.bento-card, .cert-card, .project-card, [data-global-animate]');
     animatedElements.forEach(el => {
-        el.classList.remove('fade-in-section', 'is-visible');
-
         if (!el.hasAttribute('data-aos')) {
             el.setAttribute('data-aos', 'fade-up');
         }
@@ -52,7 +50,7 @@ function initializeGlobalAnimations() {
         anchorPlacement: 'top-bottom',
     });
 
-    AOS.refreshHard();
+    AOS.refresh();
 }
 
 window.initializeGlobalAnimations = initializeGlobalAnimations;
@@ -71,7 +69,6 @@ function scrollToPageTop() {
 
 router.on('navigate', () => {
     requestAnimationFrame(() => {
-        scrollToPageTop();
         if (window.initializeGlobalAnimations) {
             window.initializeGlobalAnimations();
         }
