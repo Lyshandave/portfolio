@@ -56,17 +56,30 @@ export default function CaseStudy({ profile, project }) {
                             <h1 className="text-2xl md:text-4xl font-bold text-slate-900 dark:text-white display-font">{project.title}</h1>
                             <p className="text-sm md:text-base text-slate-600 dark:text-slate-400 leading-relaxed font-medium">{project.subtitle || project.description}</p>
                         </div>
-                        {project.demo && (
-                            <a 
-                                href={project.demo} 
-                                target="_blank" 
-                                rel="noopener noreferrer" 
-                                className="inline-flex h-9 items-center justify-center rounded-lg bg-indigo-600 hover:bg-indigo-500 px-4 text-xs font-bold text-white gap-1.5 cursor-pointer border-b-2 border-indigo-800 shadow-[0_3px_6px_rgba(79,70,229,0.25)] hover:shadow-[0_5px_10px_rgba(79,70,229,0.35)] transition-all duration-100 transform hover:-translate-y-0.5 active:translate-y-0 active:border-b-0 active:mt-[2px] whitespace-nowrap self-start sm:self-center"
-                            >
-                                <i className="fas fa-external-link-alt text-[10px]"></i>
-                                <span>Visit Site</span>
-                            </a>
-                        )}
+                        <div className="flex flex-wrap gap-2 self-start sm:self-center">
+                            {project.demo && (
+                                <a 
+                                    href={project.demo} 
+                                    target="_blank" 
+                                    rel="noopener noreferrer" 
+                                    className="inline-flex h-9 items-center justify-center rounded-lg bg-indigo-600 hover:bg-indigo-500 px-4 text-xs font-bold text-white gap-1.5 cursor-pointer border-b-2 border-indigo-800 shadow-[0_3px_6px_rgba(79,70,229,0.25)] hover:shadow-[0_5px_10px_rgba(79,70,229,0.35)] transition-all duration-100 transform hover:-translate-y-0.5 active:translate-y-0 active:border-b-0 active:mt-[2px] whitespace-nowrap"
+                                >
+                                    <i className="fas fa-external-link-alt text-[10px]"></i>
+                                    <span>Visit Site</span>
+                                </a>
+                            )}
+                            {project.github && (
+                                <a 
+                                    href={project.github} 
+                                    target="_blank" 
+                                    rel="noopener noreferrer" 
+                                    className="inline-flex h-9 items-center justify-center rounded-lg bg-slate-800 hover:bg-slate-700 px-4 text-xs font-bold text-white gap-1.5 cursor-pointer border-b-2 border-slate-950 shadow-[0_3px_6px_rgba(0,0,0,0.15)] hover:shadow-[0_5px_10px_rgba(0,0,0,0.25)] transition-all duration-100 transform hover:-translate-y-0.5 active:translate-y-0 active:border-b-0 active:mt-[2px] whitespace-nowrap"
+                                >
+                                    <i className="fab fa-github text-[12px]"></i>
+                                    <span>Repository</span>
+                                </a>
+                            )}
+                        </div>
                     </div>
                 </header>
 
@@ -80,6 +93,12 @@ export default function CaseStudy({ profile, project }) {
                         <div className="rounded-xl border border-slate-200/60 dark:border-slate-800/80 bg-white/60 dark:bg-slate-900/40 p-5 space-y-4 shadow-sm">
                             <h2 className="text-xs font-bold uppercase tracking-wider text-slate-400">Project Overview</h2>
                             <div className="divide-y divide-slate-100 dark:divide-slate-800/80">
+                                {project.my_role && (
+                                    <div className="py-2.5 flex items-start justify-between text-xs md:text-sm">
+                                        <span className="font-semibold text-slate-500 dark:text-slate-400">My Role</span>
+                                        <span className="font-bold text-slate-900 dark:text-white text-right max-w-[150px]">{project.my_role}</span>
+                                    </div>
+                                )}
                                 {Object.entries(project.overview || {}).map(([key, value]) => (
                                     <div key={key} className="py-2.5 flex items-center justify-between text-xs md:text-sm">
                                         <span className="font-semibold text-slate-500 dark:text-slate-400">{key}</span>
@@ -91,7 +110,7 @@ export default function CaseStudy({ profile, project }) {
 
                         {/* TECH STACK CARD */}
                         <div className="rounded-xl border border-slate-200/60 dark:border-slate-800/80 bg-white/60 dark:bg-slate-900/40 p-5 space-y-4 shadow-sm">
-                            <h2 className="text-xs font-bold uppercase tracking-wider text-slate-400">Tech Stack</h2>
+                            <h2 className="text-xs font-bold uppercase tracking-wider text-slate-400">Tech Used</h2>
                             <div className="grid grid-cols-2 gap-2">
                                 {project.technologies.map((tech, i) => (
                                     <div key={i} className="flex items-center gap-2 p-2 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-150 dark:border-slate-800/80">
@@ -124,6 +143,17 @@ export default function CaseStudy({ profile, project }) {
                     {/* RIGHT COLUMN: OBJECTIVES & INTERACTIVE SHOWCASE */}
                     <div className="md:col-span-2 space-y-6">
                         
+                        {/* PROBLEM STATEMENT */}
+                        {project.problem && (
+                            <div className="rounded-xl border border-slate-200/60 dark:border-slate-800/80 bg-white/60 dark:bg-slate-900/40 p-6 space-y-3 shadow-sm">
+                                <h2 className="text-lg font-bold text-slate-900 dark:text-white display-font flex items-center gap-2">
+                                    <i className="fas fa-exclamation-circle text-indigo-500"></i>
+                                    <span>Problem Statement</span>
+                                </h2>
+                                <p className="text-xs md:text-sm leading-relaxed text-slate-750 dark:text-slate-300">{project.problem}</p>
+                            </div>
+                        )}
+
                         {/* SYSTEM OBJECTIVES */}
                         {project.objectives && (
                             <div className="rounded-xl border border-slate-200/60 dark:border-slate-800/80 bg-white/60 dark:bg-slate-900/40 p-6 space-y-4 shadow-sm">
@@ -144,7 +174,7 @@ export default function CaseStudy({ profile, project }) {
                                         return (
                                             <div key={i} className={`p-4 rounded-xl border ${bgColors[i % 3]} space-y-1.5`}>
                                                 <h3 className={`text-xs md:text-sm font-bold ${textColors[i % 3]}`}>{obj.title}</h3>
-                                                <p className="text-[11px] leading-relaxed text-slate-650 dark:text-slate-400">{obj.text}</p>
+                                                <p className="text-[11px] leading-relaxed text-slate-600 dark:text-slate-400">{obj.text}</p>
                                             </div>
                                         );
                                     })}
@@ -169,18 +199,116 @@ export default function CaseStudy({ profile, project }) {
                                         e.target.nextSibling.style.display = 'flex';
                                     }}
                                 />
-                                <div className="absolute inset-0 hidden flex-col items-center justify-center bg-gradient-to-br from-indigo-500/10 to-purple-500/10 text-slate-400 dark:text-slate-650">
+                                <div className="absolute inset-0 hidden flex-col items-center justify-center bg-gradient-to-br from-indigo-500/10 to-purple-500/10 text-slate-400 dark:text-slate-655">
                                     <i className="fas fa-network-wired text-4xl mb-2 text-indigo-500/40"></i>
                                     <span className="text-xs font-semibold uppercase tracking-wider">{project.title} Showcase</span>
                                 </div>
                             </div>
                         </div>
+
+                        {/* CHALLENGES & SOLUTION */}
+                        {(project.challenges || project.solution) && (
+                            <div className="rounded-xl border border-slate-200/60 dark:border-slate-800/80 bg-white/60 dark:bg-slate-900/40 p-6 space-y-4 shadow-sm">
+                                <h2 className="text-lg font-bold text-slate-900 dark:text-white display-font">Challenges & Solution</h2>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    {project.challenges && (
+                                        <div className="p-4 rounded-xl border border-red-100 dark:border-red-950/40 bg-red-50/20 dark:bg-red-950/10 space-y-1.5">
+                                            <h3 className="text-xs md:text-sm font-bold text-red-800 dark:text-red-400 flex items-center gap-1.5">
+                                                <i className="fas fa-tools"></i> Key Challenges
+                                            </h3>
+                                            <p className="text-[11px] md:text-xs leading-relaxed text-slate-700 dark:text-slate-350">{project.challenges}</p>
+                                        </div>
+                                    )}
+                                    {project.solution && (
+                                        <div className="p-4 rounded-xl border border-emerald-100 dark:border-emerald-950/40 bg-emerald-50/20 dark:bg-emerald-950/10 space-y-1.5">
+                                            <h3 className="text-xs md:text-sm font-bold text-emerald-800 dark:text-emerald-400 flex items-center gap-1.5">
+                                                <i className="fas fa-lightbulb"></i> Applied Solution
+                                            </h3>
+                                            <p className="text-[11px] md:text-xs leading-relaxed text-slate-700 dark:text-slate-350">{project.solution}</p>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        )}
+
+                        {/* DEVELOPMENT PROCESS */}
+                        {project.development_process && (
+                            <div className="rounded-xl border border-slate-200/60 dark:border-slate-800/80 bg-white/60 dark:bg-slate-900/40 p-6 space-y-4 shadow-sm">
+                                <h2 className="text-lg font-bold text-slate-900 dark:text-white display-font">Development Process</h2>
+                                <div className="relative border-l-2 border-indigo-500/20 dark:border-indigo-500/10 pl-5 ml-2.5 space-y-5">
+                                    {project.development_process.map((step, i) => (
+                                        <div key={i} className="relative">
+                                            <div className="absolute -left-[27px] top-1 w-3 h-3 rounded-full bg-indigo-500 border-2 border-white dark:border-slate-950"></div>
+                                            <span className="inline-block font-mono text-[9px] px-1.5 py-0.5 border border-indigo-150 dark:border-indigo-900/50 bg-indigo-50/50 dark:bg-indigo-950/30 text-indigo-700 dark:text-indigo-300 font-bold rounded mb-1">Step 0{i+1}</span>
+                                            <div className="text-xs md:text-sm font-bold text-slate-800 dark:text-slate-200">{step}</div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </main>
 
+                {/* BOTTOM FULL-WIDTH GRID FOR OUTCOMES */}
+                {(project.results || project.lessons_learned || project.future_improvements) && (
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-6">
+                        
+                        {/* RESULTS */}
+                        {project.results && (
+                            <div className="rounded-xl border border-slate-200/60 dark:border-slate-800/80 bg-white/60 dark:bg-slate-900/40 p-5 space-y-3.5 shadow-sm">
+                                <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+                                    <i className="fas fa-chart-line text-emerald-500"></i> Results
+                                </h3>
+                                <ul className="space-y-2">
+                                    {project.results.map((res, i) => (
+                                        <li key={i} className="text-xs leading-relaxed text-slate-700 dark:text-slate-300 flex items-start gap-2">
+                                            <i className="fas fa-check-circle text-[10px] text-emerald-500 mt-1 shrink-0"></i>
+                                            <span>{res}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+
+                        {/* LESSONS LEARNED */}
+                        {project.lessons_learned && (
+                            <div className="rounded-xl border border-slate-200/60 dark:border-slate-800/80 bg-white/60 dark:bg-slate-900/40 p-5 space-y-3.5 shadow-sm">
+                                <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+                                    <i className="fas fa-graduation-cap text-indigo-500"></i> Lessons Learned
+                                </h3>
+                                <ul className="space-y-2">
+                                    {project.lessons_learned.map((les, i) => (
+                                        <li key={i} className="text-xs leading-relaxed text-slate-700 dark:text-slate-300 flex items-start gap-2">
+                                            <i className="fas fa-star text-[10px] text-indigo-500 mt-1 shrink-0"></i>
+                                            <span>{les}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+
+                        {/* FUTURE IMPROVEMENTS */}
+                        {project.future_improvements && (
+                            <div className="rounded-xl border border-slate-200/60 dark:border-slate-800/80 bg-white/60 dark:bg-slate-900/40 p-5 space-y-3.5 shadow-sm">
+                                <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+                                    <i className="fas fa-arrow-alt-circle-right text-purple-500"></i> Future Plans
+                                </h3>
+                                <ul className="space-y-2">
+                                    {project.future_improvements.map((imp, i) => (
+                                        <li key={i} className="text-xs leading-relaxed text-slate-700 dark:text-slate-300 flex items-start gap-2">
+                                            <i className="fas fa-chevron-right text-[8px] text-purple-500 mt-1.5 shrink-0"></i>
+                                            <span>{imp}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+                    </div>
+                )}
+
                 {/* FOOTER */}
                 <footer className="text-center" style={{ marginTop: '8rem', paddingBottom: '2rem' }}>
-                    <p className="text-xs text-slate-450">&copy; {currentYear} {profile.name}. All rights reserved.</p>
+                    <p className="text-xs text-slate-400">&copy; {currentYear} {profile.name}. All rights reserved.</p>
                 </footer>
             </div>
         </>

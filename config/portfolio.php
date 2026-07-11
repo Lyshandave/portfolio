@@ -115,13 +115,18 @@ return [
             'technologies' => ['Laravel', 'React', 'PostgreSQL', 'Tailwind CSS', 'Vite', 'FontAwesome', 'Gmail SMTP'],
             'image' => 'project-images/ordering.png',
             'demo' => 'https://ordering-system-sigma.vercel.app/',
+            'github' => 'https://github.com/lyshandave/ordering-system',
             'featured' => true,
+            'my_role' => 'Full-stack Developer & Database Designer',
             'overview' => [
                 'Lead Developer' => 'Lyshan Dave',
                 'Architecture' => 'MVC / Decoupled',
                 'Type' => 'Web Platform',
                 'Collaboration' => 'Independent Project'
             ],
+            'problem' => 'Manual ordering and cashier tracking at Cafe Misto caused long queues, delays during peak hours, and human errors in paper-based transaction logs.',
+            'challenges' => 'Implementing real-time SMTP-based password recovery and building secure login auth guards while maintaining low response latency.',
+            'solution' => 'Decoupled frontend/backend routing, built custom Laravel auth controllers, integrated secure SMTP email services, and implemented optimized Eloquent queries.',
             'objectives' => [
                 ['title' => 'Seamless User Experience', 'text' => 'Develop an intuitive cafe dashboard where users can quickly select beverage options, configure sizes, and make additions.'],
                 ['title' => 'Operational Efficiency', 'text' => 'Optimize inventory consumption rates and checkout pipelines to reduce wait times to under 30 seconds.'],
@@ -132,6 +137,29 @@ return [
                 ['title' => 'Automated Identification', 'text' => 'Generates unique customer tracking numbers and custom invoices upon order completion.', 'icon' => 'fas fa-barcode'],
                 ['title' => 'Secure Recovery', 'text' => 'Secure password reset links sent exclusively to verified email addresses with real-time feedback warnings.', 'icon' => 'fas fa-key'],
                 ['title' => 'Welcome Notifications', 'text' => 'Triggers an automated welcome email with verification links for all newly registered accounts.', 'icon' => 'fas fa-envelope']
+            ],
+            'development_process' => [
+                'Research & Wireframing',
+                'Database Schema Design & Normalization',
+                'Backend API Development (Laravel & Postgres)',
+                'Frontend Component Implementation (React & Tailwind)',
+                'SMTP Service & Auth Testing',
+                'Deployment & Environment Sync'
+            ],
+            'results' => [
+                'Successfully deployed to Vercel production hosting.',
+                'Reduced transaction processing time to under 30 seconds.',
+                'Digitized all customer transaction logs, eliminating paper invoices.'
+            ],
+            'lessons_learned' => [
+                'Mastered secure token-based user verification pathways.',
+                'Improved understanding of decoupled React-Laravel routing structures.',
+                'Optimized query performance for relational database systems.'
+            ],
+            'future_improvements' => [
+                'Integration of local payment gateways (GCash, Maya).',
+                'Real-time inventory alerts using websockets.',
+                'Analytics dashboard for cafe administrators.'
             ]
         ],
         [
@@ -142,13 +170,18 @@ return [
             'technologies' => ['Laravel', 'React', 'PostgreSQL', 'Tailwind CSS', 'Vite', 'FontAwesome'],
             'image' => 'project-images/inventory.png',
             'demo' => 'https://pure-safe.vercel.app',
+            'github' => 'https://github.com/lyshandave/puresafe',
             'featured' => true,
+            'my_role' => 'Full-stack Developer & Database Designer',
             'overview' => [
                 'Lead Developer' => 'Lyshan Dave',
                 'Architecture' => 'MVC / Decoupled',
                 'Type' => 'Web Platform',
                 'Collaboration' => 'Family Business'
             ],
+            'problem' => 'Household water delivery orders were traditionally managed via messy chat threads, causing delivery delays, lost orders, and inaccurate empty container records.',
+            'challenges' => 'Calculating dynamic billing with empty container deposit offsets, and organizing order schedules based on address sub-regions.',
+            'solution' => 'Designed a dynamic cart logic that subtracts empty container deposits and grouped customer schedules by geographic zones.',
             'objectives' => [
                 ['title' => 'Streamlined Ordering', 'text' => 'Fast ordering system for customers to select gallon types, dynamic quantities, and request deliveries.'],
                 ['title' => 'Delivery Tracking', 'text' => 'Coordinates routes and details delivery parameters for drivers and operators.'],
@@ -159,6 +192,29 @@ return [
                 ['title' => 'Smart Billing', 'text' => 'Automated calculation of dynamic delivery charges and empty container deposits.', 'icon' => 'fas fa-receipt'],
                 ['title' => 'Order History', 'text' => 'Customer dashboard showing past deliveries, active invoices, and current status.', 'icon' => 'fas fa-history'],
                 ['title' => 'SMS Reminders', 'text' => 'Automated delivery notifications showing dispatch status and dynamic ETAs.', 'icon' => 'fas fa-sms']
+            ],
+            'development_process' => [
+                'Customer Journey Mapping',
+                'Database Modeling for Subscriptions & Orders',
+                'API Integration for Cart Calculations',
+                'UI Implementation with Dark Mode Support',
+                'Simulated Billing and Route Testing',
+                'Deployment'
+            ],
+            'results' => [
+                'Created a centralized customer dashboard for water refilling.',
+                'Automated calculations of empty gallon return balances.',
+                'Streamlined delivery coordinates for dispatchers.'
+            ],
+            'lessons_learned' => [
+                'Deepened skills in complex React state-management (cart & deposits).',
+                'Learned how to group relational database queries for delivery zones.',
+                'Enhanced UI responsiveness for mobile users ordering on the go.'
+            ],
+            'future_improvements' => [
+                'Integration with Twilio SMS Gateway for automated status dispatches.',
+                'Interactive map pins for delivery routes.',
+                'Driver companion mobile layout.'
             ]
         ],
         [
@@ -169,13 +225,18 @@ return [
             'technologies' => ['Laravel', 'Vue.js', 'PostgreSQL', 'Tailwind CSS', 'Inertia.js', 'FullCalendar'],
             'image' => 'project-images/school.png',
             'demo' => 'https://school-system.lyshandave.com',
+            'github' => 'https://github.com/lyshandave/school-management-system',
             'featured' => true,
+            'my_role' => 'Full-stack Developer & Database Designer',
             'overview' => [
                 'Lead Developer' => 'Lyshan Dave',
                 'Architecture' => 'Independent Refactor',
                 'Type' => 'School Admin Portal',
                 'Collaboration' => 'Academic System'
             ],
+            'problem' => 'Paper enrollment systems and manual grade computation sheets caused administrative backlogs, data entry duplication, and course/classroom booking conflicts.',
+            'challenges' => 'Preventing schedule overlaps for instructors and classrooms while keeping the grade computation matrix fast and responsive.',
+            'solution' => 'Developed database-level overlap queries and built high-performance Vue.js grid components for calculating grade averages in real-time.',
             'objectives' => [
                 ['title' => 'Centralized Records Management', 'text' => 'Consolidate student details, transcripts, contact details, and parent contact cards in one secure database.'],
                 ['title' => 'Automated Enrollment Workflows', 'text' => 'Transition traditional paper forms to digital registration wizards with automatic section and class assigning.'],
@@ -186,6 +247,29 @@ return [
                 ['title' => 'Schedule Calendar', 'text' => 'Interactive school calendar displaying holidays, midterm schedules, and customized course times.', 'icon' => 'fas fa-calendar-alt'],
                 ['title' => 'Academic Grading Sheets', 'text' => 'Provides professors with secure input tables to calculate exam averages and semester grades.', 'icon' => 'fas fa-edit'],
                 ['title' => 'Automated Reports', 'text' => 'Export tools to generate and compile university-wide transcripts and population distribution reports.', 'icon' => 'fas fa-file-alt']
+            ],
+            'development_process' => [
+                'Requirements Analysis & Interviewing Admin Staff',
+                'Relational Database Normalization (3NF)',
+                'API Development with Laravel Resource Collections',
+                'Inertia.js Integration with Vue Components',
+                'Schedule Overlap Validation Setup',
+                'Testing & Local Server Deployment'
+            ],
+            'results' => [
+                'Consolidated school records into a secure central database.',
+                'Reduced registration processing times from hours to minutes.',
+                'Eliminated scheduling overlaps for classrooms and courses.'
+            ],
+            'lessons_learned' => [
+                'Gained expertise in Vue.js and Inertia.js data hydration routing.',
+                'Learned how to solve complex database locking & collision errors.',
+                'Understood the value of user testing with actual administrators.'
+            ],
+            'future_improvements' => [
+                'Student/Parent grades portal with SMS alerts.',
+                'Digital payment integrations for tuition fees.',
+                'Automated section allocation based on academic performance.'
             ]
         ],
         [
@@ -196,13 +280,18 @@ return [
             'technologies' => ['React', 'Node.js', 'Express', 'Tailwind CSS', 'FFmpeg', 'Vite'],
             'image' => 'project-images/grade-evaluation.png',
             'demo' => 'https://streamgrab.vercel.app',
+            'github' => 'https://github.com/lyshandave/streamgrab',
             'featured' => true,
+            'my_role' => 'Full-stack Developer',
             'overview' => [
                 'Lead Developer' => 'Lyshan Dave',
                 'Architecture' => 'REST API / SPA',
                 'Type' => 'Media Tool',
                 'Collaboration' => 'Open Source'
             ],
+            'problem' => 'Most online video downloaders are bloated with intrusive ads, redirect popups, malware risks, and have very slow file compilation pipelines.',
+            'challenges' => 'Piping streaming data chunks in real-time, executing background FFmpeg processes, and clean up temporary files to avoid server storage blockages.',
+            'solution' => 'Built an async queue worker for FFmpeg tasks, and created automated cron routines that delete temp files immediately after download completion.',
             'objectives' => [
                 ['title' => 'High-Speed Extraction', 'text' => 'Optimize multi-threaded streams to parse and convert videos under 5 seconds.'],
                 ['title' => 'Multi-Platform Compatibility', 'text' => 'Ensure extractor engines support downloading links from TikTok, Facebook, IG, and YouTube.'],
@@ -213,6 +302,29 @@ return [
                 ['title' => 'Quality Selector', 'text' => 'Select and download media in various formats: MP4 videos (1080p, 720p) or MP3 audio.', 'icon' => 'fas fa-sliders-h'],
                 ['title' => 'Fast Conversion', 'text' => 'FFmpeg background integration that compiles and packages media file formats in real-time.', 'icon' => 'fas fa-bolt'],
                 ['title' => 'Clean Interface', 'text' => 'Minimalist modern layout centered around a single paste-and-go input bar.', 'icon' => 'fas fa-desktop']
+            ],
+            'development_process' => [
+                'Scraper & Extraction API Investigation',
+                'Node.js Server Setup with Express & Async Queues',
+                'FFmpeg Path Mapping & Stream Piping Configuration',
+                'React Frontend & Download Progress Bar Sync',
+                'Temp File Cleanup Scheduler Integration',
+                'Production Vercel Serverless Sync'
+            ],
+            'results' => [
+                'Created a completely ad-free, secure downloading gateway.',
+                'Achieved conversion times under 5 seconds for medium-sized clips.',
+                'Maintained 100% temporary file cleanup success, preventing server storage leaks.'
+            ],
+            'lessons_learned' => [
+                'Learned how to pipe streams dynamically in Node.js.',
+                'Familiarized with background threading and process spawning.',
+                'Learned how to handle serverless hosting timeouts.'
+            ],
+            'future_improvements' => [
+                'Batch playlist downloading configurations.',
+                'Dedicated browser extension integration.',
+                'Support for high-definition 4K rendering.'
             ]
         ],
         [
@@ -223,13 +335,18 @@ return [
             'technologies' => ['Cisco Packet Tracer', 'Networking', 'VLAN', 'Servers'],
             'image' => 'project-images/office-network.png',
             'demo' => null,
+            'github' => null,
             'featured' => false,
+            'my_role' => 'Network Engineer',
             'overview' => [
                 'Lead Developer' => 'Lyshan Dave',
                 'Architecture' => 'Cisco Packet Tracer',
                 'Type' => 'LAN Layout',
                 'Collaboration' => 'Academic Project'
             ],
+            'problem' => 'An office network without department separation faces security risks (e.g., guest networks accessing HR records), IP conflict delays, and lacked voice service support.',
+            'challenges' => 'Designing an efficient IP subnetting plan, separating voice and data traffic, and deploying centralized DHCP/DNS resources.',
+            'solution' => 'Configured distinct VLANs for departments, mapped Voice VLANs for IP phones, and provisioned servers for automated IP and name resolution.',
             'objectives' => [
                 ['title' => 'Secure Department Separation', 'text' => 'Partition offices into distinct VLANs to protect accounting and HR resources from public/guest networks.'],
                 ['title' => 'IP Phone Integration', 'text' => 'Setup Voice VLANs and DHCP options to automate Cisco IP phone IP allocation and dial configurations.'],
@@ -240,6 +357,29 @@ return [
                 ['title' => 'Centralized DHCP/DNS', 'text' => 'Dynamic host configuration protocols ensuring immediate connectivity for newly connected devices.', 'icon' => 'fas fa-server'],
                 ['title' => 'IP Voice setups', 'text' => 'Dedicated VoIP networks configured to ensure high call quality and minimum latency.', 'icon' => 'fas fa-phone'],
                 ['title' => 'Wireless Coverage', 'text' => 'Strategic placements of WAPs to guarantee seamless wireless roaming throughout the building floor.', 'icon' => 'fas fa-wifi']
+            ],
+            'development_process' => [
+                'Office Floor Plan Requirements Gathering',
+                'IP Subnet Design & Subnet Mask Calculations',
+                'Switch Port Allocation & VLAN Configuration',
+                'DHCP Helper Address & Voice VLAN Mapping',
+                'DNS & Local Mail Server Setup',
+                'Ping & Communication Pathway Verification'
+            ],
+            'results' => [
+                'Successfully modeled a fully working multi-department network.',
+                'IP phones configured to automatically register and place local calls.',
+                'Secure guest access provided without access to local private networks.'
+            ],
+            'lessons_learned' => [
+                'Deepened comprehension of dynamic host configuration protocols.',
+                'Mastered Inter-VLAN routing using router-on-a-stick configurations.',
+                'Learned how to configure voice QoS over switch configurations.'
+            ],
+            'future_improvements' => [
+                'Deploy ASA Firewalls at the network edge.',
+                'Implement HSRP for gateway redundancy.',
+                'Integrate SNMP for active device monitoring.'
             ]
         ],
         [
@@ -250,13 +390,18 @@ return [
             'technologies' => ['Cisco Packet Tracer', 'Firewall (550X)', 'Routing & Switching', 'Network Security'],
             'image' => 'project-images/firewall-network.png',
             'demo' => null,
+            'github' => null,
             'featured' => false,
+            'my_role' => 'Network Security Engineer',
             'overview' => [
                 'Lead Developer' => 'Lyshan Dave',
                 'Architecture' => 'Cisco Packet Tracer',
                 'Type' => 'Secure Network',
                 'Collaboration' => 'Academic Project'
             ],
+            'problem' => 'Large enterprise networks require dynamic routing and firewall policies to block security attacks and isolate public-facing web resources.',
+            'challenges' => 'Configuring Cisco ASA 5505/5506 security rules, routing dynamic traffic over multiple OSPF areas, and setting up DMZ regions.',
+            'solution' => 'Deployed firewall policies with strict ACL profiles, configured multi-area OSPF routing, and isolated public servers inside a dedicated DMZ.',
             'objectives' => [
                 ['title' => 'Robust Edge Security', 'text' => 'Implement Cisco ASA 5505/5506 firewalls to block unauthorized inbound requests while securing outbound employee traffic.'],
                 ['title' => 'Logical Routing Configuration', 'text' => 'Set up strict static routes and access lists (ACLs) to manage traffic flows between different logical security zones.'],
@@ -267,6 +412,29 @@ return [
                 ['title' => 'OSPF Dynamic Routing', 'text' => 'Configured multi-area OSPF routing protocols to automate routing tables across distribution routers.', 'icon' => 'fas fa-route'],
                 ['title' => 'Redundant Links', 'text' => 'Configured EtherChannel groupings and Spanning Tree protocols to provide automatic link redundancy.', 'icon' => 'fas fa-link'],
                 ['title' => 'DMZ Zone Configuration', 'text' => 'Isolated public-facing web servers in a Demilitarized Zone, separating them from core intranet servers.', 'icon' => 'fas fa-lock']
+            ],
+            'development_process' => [
+                'Network Security Threat Modeling',
+                'OSPF Area Allocation Design',
+                'Switch Layer EtherChannel Grouping',
+                'Cisco ASA Interface Security Level Assignment',
+                'Static NAT & ACL Policy Rule Configurations',
+                'Simulated Ping Sweep & Attack Pathway Testing'
+            ],
+            'results' => [
+                'OSPF converged routing tables automatically across all areas.',
+                'Firewalls filtered unauthorized pings while allowing HTTP traffic.',
+                'Redundant connections handled simulated link breakdowns under 2 seconds.'
+            ],
+            'lessons_learned' => [
+                'Learned how stateful firewalls handle traffic inspection.',
+                'Understood multi-area OSPF route advertisement parameters.',
+                'Learned how to set up EtherChannel load balancing.'
+            ],
+            'future_improvements' => [
+                'Setup VPN tunnels for remote office connections.',
+                'Implement dynamic NAT overload for public IP mapping.',
+                'Upgrade routers to support BGP dynamic routing.'
             ]
         ],
         [
@@ -277,12 +445,18 @@ return [
             'technologies' => ['Cisco Packet Tracer', 'Inter-Branch Routing', 'WLAN', 'OSPF'],
             'image' => 'project-images/multi-branch.png',
             'demo' => null,
+            'github' => null,
+            'featured' => false,
+            'my_role' => 'Network Engineer',
             'overview' => [
                 'Lead Developer' => 'Lyshan Dave',
                 'Architecture' => 'Cisco Packet Tracer',
                 'Type' => 'Multi-Branch Network',
                 'Collaboration' => 'Academic Project'
             ],
+            'problem' => 'Multi-site corporations require seamless connection links to sync data across physical locations, and central controllers to manage multiple wireless access points.',
+            'challenges' => 'Configuring dynamic routing over WAN connections and mapping wireless profiles across multiple lightweight access points.',
+            'solution' => 'Implemented WAN connections using OSPF routing and deployed Centralized Wireless LAN Controllers (WLCs) for dynamic AP management.',
             'objectives' => [
                 ['title' => 'Fast Inter-Branch Connectivity', 'text' => 'Configure hierarchical OSPF routing configurations to sync networking paths between 3 branch buildings.'],
                 ['title' => 'Wireless Roaming', 'text' => 'Deploy wireless controllers (WLCs) to ensure corporate laptops roam without losing connection between buildings.'],
@@ -293,6 +467,29 @@ return [
                 ['title' => 'Wireless AP setups', 'text' => 'Corporate SSID mapping with lightweight access points controlled by central wireless controllers.', 'icon' => 'fas fa-wifi'],
                 ['title' => 'Local Subnet DHCP', 'text' => 'Configured routers as local DHCP agents to supply unique IP scopes and lease limits.', 'icon' => 'fas fa-server'],
                 ['title' => 'Multi-Building Map', 'text' => 'Logical mapping of three separate corporate sites connecting through a centralized service provider link.', 'icon' => 'fas fa-map-marked-alt']
+            ],
+            'development_process' => [
+                'Branch Connection Requirements Gathering',
+                'IP Address Scheme Layout Mapping',
+                'WAN Serial Interface Configuration',
+                'OSPF Routing Advertisements Deployment',
+                'Wireless WLC & Lightweight AP Association Setup',
+                'Connectivity & Roaming Failure Tests'
+            ],
+            'results' => [
+                'Dynamic WAN routes connected physical branches together.',
+                'WAP roaming verified with active laptop ping tests.',
+                'Subnet DHCP scopes resolved IP leases successfully.'
+            ],
+            'lessons_learned' => [
+                'Learned how WLCs distribute wireless configuration profiles.',
+                'Mastered OSPF area routing and WAN configuration standards.',
+                'Enhanced network diagnostic skills using route tracking commands.'
+            ],
+            'future_improvements' => [
+                'Deploy VPN protocols (IPsec) to encrypt branch data packets.',
+                'Set up BGP routing for multi-home ISP configurations.',
+                'Implement QoS profiles for priority video conference routing.'
             ]
         ],
     ],
