@@ -44,17 +44,15 @@ function initializeGlobalAnimations() {
     });
 
     AOS.init({
-        duration: 800,
-        easing: 'ease-out-cubic',
-        once: false,
-        mirror: true,
-        offset: 50,
+        duration: 400,
+        easing: 'ease-out',
+        once: true,
+        mirror: false,
+        offset: 10,
         anchorPlacement: 'top-bottom',
     });
 
-    setTimeout(() => {
-        AOS.refreshHard();
-    }, 50);
+    AOS.refreshHard();
 }
 
 window.initializeGlobalAnimations = initializeGlobalAnimations;
