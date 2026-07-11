@@ -846,19 +846,12 @@ export default function Portfolio(props) {
                     className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 sm:p-8"
                     onClick={() => setSelectedCert(null)}
                 >
-                    <div className="relative max-w-4xl w-full flex flex-col items-center" onClick={(e) => e.stopPropagation()}>
-                        <div className="w-full flex justify-end mb-4">
-                            <button 
-                                onClick={() => setSelectedCert(null)} 
-                                className="text-white flex items-center gap-2 font-bold hover:text-slate-300 transition-colors"
-                            >
-                                <i className="fas fa-times text-xl"></i> <span>Close</span>
-                            </button>
-                        </div>
+                    <div className="relative max-w-4xl w-full flex flex-col items-center">
                         <img 
                             src={selectedCert} 
                             alt="Certificate Full View" 
-                            className="w-full max-h-[85vh] object-contain rounded-lg shadow-2xl" 
+                            className="w-full max-h-[85vh] object-contain rounded-lg shadow-2xl cursor-pointer" 
+                            onClick={() => setSelectedCert(null)}
                         />
                     </div>
                 </div>

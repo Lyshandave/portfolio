@@ -87,11 +87,12 @@ export default function Certifications({ profile, all_certifications }) {
                         className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 sm:p-8"
                         onClick={() => setSelectedCert(null)}
                     >
-                        <div className="relative max-w-4xl w-full flex flex-col items-center" onClick={(e) => e.stopPropagation()}>
+                        <div className="relative max-w-4xl w-full flex flex-col items-center">
                             <img 
                                 src={selectedCert} 
                                 alt="Certificate Full View" 
-                                className="w-full max-h-[85vh] object-contain rounded-lg shadow-2xl" 
+                                className="w-full max-h-[85vh] object-contain rounded-lg shadow-2xl cursor-pointer" 
+                                onClick={() => setSelectedCert(null)}
                             />
                         </div>
                     </div>
