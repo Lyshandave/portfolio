@@ -160,6 +160,93 @@ return [
                 'Integration of local payment gateways (GCash, Maya).',
                 'Real-time inventory alerts using websockets.',
                 'Analytics dashboard for cafe administrators.'
+            ],
+            'showcase_sections' => [
+                [
+                    'title' => 'Customer: Secure Authentication Gateway',
+                    'image' => 'project-images/ordering.png',
+                    'features' => [
+                        ['title' => 'Credential Validation', 'text' => 'Supports dual input parameters (Email or Phone) for user convenience.', 'icon' => 'fas fa-shield-alt'],
+                        ['title' => 'Remember Me Utility', 'text' => 'Option to persist login sessions securely across browser instances.', 'icon' => 'fas fa-cookie-bite'],
+                        ['title' => 'Google OAuth Integration', 'text' => 'Provides single sign-on access using Google Accounts.', 'icon' => 'fab fa-google']
+                    ]
+                ],
+                [
+                    'title' => 'Customer: Interactive Menu & Detail Panel',
+                    'image' => 'project-images/ordering.png',
+                    'features' => [
+                        ['title' => 'Menu Categories', 'text' => 'Categorized grid layout for Appetizers, Beverages, and Main Course items.', 'icon' => 'fas fa-th-list'],
+                        ['title' => 'Ingredients Visualization', 'text' => 'Displays graphic ingredient badges (e.g. Cabbage, Jalapeño) in the detail view.', 'icon' => 'fas fa-leaf'],
+                        ['title' => 'Dynamic Customizer', 'text' => 'Handles quantity adjustments and dynamic pricing previews.', 'icon' => 'fas fa-sliders-h']
+                    ]
+                ],
+                [
+                    'title' => 'Customer: Slide-out Cart Management',
+                    'image' => 'project-images/ordering.png',
+                    'features' => [
+                        ['title' => 'Quantity Controls', 'text' => 'Inline increment and decrement selectors with instant price calculations.', 'icon' => 'fas fa-calculator'],
+                        ['title' => 'Quick Items Removal', 'text' => 'One-click item deletion directly from the cart drawer.', 'icon' => 'fas fa-trash-alt'],
+                        ['title' => 'Tax & Subtotal Estimates', 'text' => 'Real-time calculation displaying subtotal and computed sales tax (8%).', 'icon' => 'fas fa-percentage']
+                    ]
+                ],
+                [
+                    'title' => 'Customer: Structured Order Checkout',
+                    'image' => 'project-images/ordering.png',
+                    'features' => [
+                        ['title' => 'Encrypted Info Display', 'text' => 'Secures user phone details during checkout using masked digit sequences.', 'icon' => 'fas fa-user-lock'],
+                        ['title' => 'Multi-Payment Options', 'text' => 'Supports Cash on Delivery (COD) and Credit Card payment methods.', 'icon' => 'fas fa-wallet'],
+                        ['title' => 'Address Coordinates', 'text' => 'Shows clear delivery address fields mapped to user profile records.', 'icon' => 'fas fa-map-marker-alt']
+                    ]
+                ],
+                [
+                    'title' => 'Customer: User Profile Settings Modal',
+                    'image' => 'project-images/ordering.png',
+                    'features' => [
+                        ['title' => 'Tabbed Dashboard Layout', 'text' => 'Easy navigation between Profile, Address, Order History, and Settings.', 'icon' => 'fas fa-user-cog'],
+                        ['title' => 'Personal Info Manager', 'text' => 'Displays Full Name, Email, Contact Phone, and Primary Delivery Address.', 'icon' => 'fas fa-address-card']
+                    ]
+                ],
+                [
+                    'title' => 'Admin: Dashboard & Revenue Analytics',
+                    'image' => 'project-images/ordering.png',
+                    'features' => [
+                        ['title' => 'Revenue Momentum Chart', 'text' => 'Visualizes earnings curves generated from live orders over time.', 'icon' => 'fas fa-chart-line'],
+                        ['title' => 'Active Orders KPI Tracker', 'text' => 'Aggregates Total Revenue, Total Orders, Active Orders, and Product Count.', 'icon' => 'fas fa-tachometer-alt'],
+                        ['title' => 'Order Flow Bar Graph', 'text' => 'Presents order volumes classified by active states (preparing, on the way, delivered).', 'icon' => 'fas fa-chart-bar']
+                    ]
+                ],
+                [
+                    'title' => 'Admin: Real-time Order Operations Manager',
+                    'image' => 'project-images/ordering.png',
+                    'features' => [
+                        ['title' => 'Status Update Panel', 'text' => 'Single-click dropdown controls to mark orders as Processing, On the Way, Delivered, or Cancelled.', 'icon' => 'fas fa-edit'],
+                        ['title' => 'Consolidated Order Table', 'text' => 'Detailed records showing Order ID, Customer Name, Item Summary, and Total Price.', 'icon' => 'fas fa-list-alt']
+                    ]
+                ],
+                [
+                    'title' => 'Admin: Inventory & Product Catalog Editor',
+                    'image' => 'project-images/ordering.png',
+                    'features' => [
+                        ['title' => 'Add/Edit Product Wizards', 'text' => 'Admin tools to create, edit, or delete items from the menu.', 'icon' => 'fas fa-plus-circle'],
+                        ['title' => 'Detailed Meta Data Cards', 'text' => 'Shows item status (Active/Inactive), rating stars, ingredients count, and price.', 'icon' => 'fas fa-info-circle']
+                    ]
+                ],
+                [
+                    'title' => 'Admin: Customer Lifetime Value Directory',
+                    'image' => 'project-images/ordering.png',
+                    'features' => [
+                        ['title' => 'Customer Details Table', 'text' => 'Displays registered name, email, phone, and dynamic status flags.', 'icon' => 'fas fa-users'],
+                        ['title' => 'Spending Aggregator', 'text' => 'Tracks total lifetime spending and total order counts per client profile.', 'icon' => 'fas fa-dollar-sign']
+                    ]
+                ],
+                [
+                    'title' => 'Admin: Business Performance & Reports Generator',
+                    'image' => 'project-images/ordering.png',
+                    'features' => [
+                        ['title' => 'Status Allocation Chart', 'text' => 'Pie/donut distribution chart showing the percentage of delivered vs. active orders.', 'icon' => 'fas fa-chart-pie'],
+                        ['title' => 'Daily Sales Performance', 'text' => 'Tracks gross revenues, units sold, and menu coverage indicators.', 'icon' => 'fas fa-calendar-day']
+                    ]
+                ]
             ]
         ],
         [
@@ -215,6 +302,60 @@ return [
                 'Integration with Twilio SMS Gateway for automated status dispatches.',
                 'Interactive map pins for delivery routes.',
                 'Driver companion mobile layout.'
+            ],
+            'showcase_sections' => [
+                [
+                    'title' => 'Customer: Secure Authentication Gateway',
+                    'image' => 'project-images/inventory.png',
+                    'features' => [
+                        ['title' => 'Sign In Modal', 'text' => 'Welcome Back modal interface prompting for email and password credential entries.', 'icon' => 'fas fa-sign-in-alt'],
+                        ['title' => 'Google SSO Integration', 'text' => 'Allows fast authorization using active Google profile sessions.', 'icon' => 'fab fa-google'],
+                        ['title' => 'Secure Signup Gateway', 'text' => 'Direct path for new customers to configure primary delivery accounts.', 'icon' => 'fas fa-user-plus']
+                    ]
+                ],
+                [
+                    'title' => 'Customer: Categorized Product & Accessories Directory',
+                    'image' => 'project-images/inventory.png',
+                    'features' => [
+                        ['title' => 'Categorized Drops', 'text' => 'Dropdown selectors separating Bottled Water, Round Containers, Family Bundles, and Slim Containers.', 'icon' => 'fas fa-chevron-down'],
+                        ['title' => 'Equipment & Dispensers', 'text' => 'Catalog grid for automatic water pumps, heavy-duty jug stands, and electronic water dispensers.', 'icon' => 'fas fa-blender-phone'],
+                        ['title' => 'Direct Add to Cart', 'text' => 'One-click item addition with live counts syncing to the main navigation header.', 'icon' => 'fas fa-shopping-basket']
+                    ]
+                ],
+                [
+                    'title' => 'Customer: Shopping Cart Management',
+                    'image' => 'project-images/inventory.png',
+                    'features' => [
+                        ['title' => 'Order Summary Panel', 'text' => 'Shows item counts, dynamic shipping calculations (P50), and final grand totals.', 'icon' => 'fas fa-calculator'],
+                        ['title' => 'Inline Quantity Editors', 'text' => 'Increment, decrement, or remove water jugs dynamically.', 'icon' => 'fas fa-edit']
+                    ]
+                ],
+                [
+                    'title' => 'Customer: Order Checkout & Payment Wizard',
+                    'image' => 'project-images/inventory.png',
+                    'features' => [
+                        ['title' => 'Profile Delivery Address', 'text' => 'Displays active delivery markers, contact details, and client addresses.', 'icon' => 'fas fa-map-marker-alt'],
+                        ['title' => 'Promo Code Engine', 'text' => 'Includes apply controls for coupon discount calculations.', 'icon' => 'fas fa-tag'],
+                        ['title' => 'Flexible Payment Choices', 'text' => 'Supports Cash on Delivery (COD), Credit Card, and Wallet & Points systems.', 'icon' => 'fas fa-wallet']
+                    ]
+                ],
+                [
+                    'title' => 'Customer: User Profile Dashboard',
+                    'image' => 'project-images/inventory.png',
+                    'features' => [
+                        ['title' => 'Sidebar Navigation List', 'text' => 'Fast switches between Profile, Addresses, Favorites, Orders, Notifications, and Subscriptions.', 'icon' => 'fas fa-list-ul'],
+                        ['title' => 'Recent Orders Tracking', 'text' => 'List of past order codes showing dynamic status badges (Delivered/Pending) and total values.', 'icon' => 'fas fa-receipt'],
+                        ['title' => 'Personal Information Card', 'text' => 'Presents full name, active email coordinates, and user phone numbers with edit wizard controls.', 'icon' => 'fas fa-user-edit']
+                    ]
+                ],
+                [
+                    'title' => 'Customer: Corporate Services & Contacts',
+                    'image' => 'project-images/inventory.png',
+                    'features' => [
+                        ['title' => 'Our Services', 'text' => 'Dedicated cards highlighting multi-stage reverse osmosis filtration processes.', 'icon' => 'fas fa-concierge-bell'],
+                        ['title' => 'Quick Contact Directory', 'text' => 'Clear layout of verified phone coordinates, email channels, and physical warehouse addresses.', 'icon' => 'fas fa-map-marked-alt']
+                    ]
+                ]
             ]
         ],
         [
@@ -270,6 +411,31 @@ return [
                 'Student/Parent grades portal with SMS alerts.',
                 'Digital payment integrations for tuition fees.',
                 'Automated section allocation based on academic performance.'
+            ],
+            'showcase_sections' => [
+                [
+                    'title' => 'Portal: Administrator Dashboard & Records',
+                    'image' => 'project-images/school.png',
+                    'features' => [
+                        ['title' => 'Centralized Student Directory', 'text' => 'Consolidates student transcripts, tuition balances, and academic histories in a searchable index.', 'icon' => 'fas fa-id-card'],
+                        ['title' => 'Enrollment Wizard Pipeline', 'text' => 'Digital registration wizards that auto-assign sections and course materials to enrolling students.', 'icon' => 'fas fa-user-plus']
+                    ]
+                ],
+                [
+                    'title' => 'Portal: Academic Grading Sheets',
+                    'image' => 'project-images/school.png',
+                    'features' => [
+                        ['title' => 'Professors Grading Grids', 'text' => 'Secure professor tables that compile exam results and automatically calculate semester GPA averages.', 'icon' => 'fas fa-table'],
+                        ['title' => 'Report Card Exporters', 'text' => 'Generates and downloads print-ready PDF transcript documents.', 'icon' => 'fas fa-file-pdf']
+                    ]
+                ],
+                [
+                    'title' => 'Portal: Interactive Schedule Coordinator',
+                    'image' => 'project-images/school.png',
+                    'features' => [
+                        ['title' => 'Calendar Overlap Validator', 'text' => 'Algorithmic checks that prevent instructor, classroom, and course time scheduling conflicts.', 'icon' => 'fas fa-calendar-times']
+                    ]
+                ]
             ]
         ],
         [
@@ -325,6 +491,32 @@ return [
                 'Batch playlist downloading configurations.',
                 'Dedicated browser extension integration.',
                 'Support for high-definition 4K rendering.'
+            ],
+            'showcase_sections' => [
+                [
+                    'title' => 'System Module: Link Extractor & Language Gateway',
+                    'image' => 'project-images/grade-evaluation.png',
+                    'features' => [
+                        ['title' => 'One-Click Extraction Input', 'text' => 'Paste-and-go URL bar with a quick "Paste" button to quickly grab streaming URLs.', 'icon' => 'fas fa-paste'],
+                        ['title' => 'Multi-Language Localization', 'text' => 'Searchable language selection dropdown supporting 18 international languages (e.g. English, Chinese, Arabic, French).', 'icon' => 'fas fa-language'],
+                        ['title' => 'Auto Platform Detection', 'text' => 'Instantly identifies stream origins from YouTube, TikTok, or Facebook links.', 'icon' => 'fas fa-search-plus']
+                    ]
+                ],
+                [
+                    'title' => 'System Module: Feature Highlights & Workflow Timelines',
+                    'image' => 'project-images/grade-evaluation.png',
+                    'features' => [
+                        ['title' => 'Feature Specifications', 'text' => 'Showcases key performance indicators (Fast Downloads, Multi-Platform, No Registration).', 'icon' => 'fas fa-layer-group'],
+                        ['title' => 'Three-Step Guides', 'text' => 'Clean visual instructions detailing (1) Paste URL, (2) Choose Format (MP4/MP3), and (3) Download files.', 'icon' => 'fas fa-route']
+                    ]
+                ],
+                [
+                    'title' => 'System Module: FAQ Accordion Panel',
+                    'image' => 'project-images/grade-evaluation.png',
+                    'features' => [
+                        ['title' => 'Interactive Accordions', 'text' => 'Smooth dropdown cards addressing common usage questions (e.g. video quality formats, system safety, account registration requirements).', 'icon' => 'fas fa-question-circle']
+                    ]
+                ]
             ]
         ],
         [
@@ -380,6 +572,31 @@ return [
                 'Deploy ASA Firewalls at the network edge.',
                 'Implement HSRP for gateway redundancy.',
                 'Integrate SNMP for active device monitoring.'
+            ],
+            'showcase_sections' => [
+                [
+                    'title' => 'Subsystem: VLAN Segregation & Security',
+                    'image' => 'project-images/office-network.png',
+                    'features' => [
+                        ['title' => 'Broadcast Domain Partitioning', 'text' => 'Isolates department subnet traffic (HR, Accounting) to prevent unauthorized private file access.', 'icon' => 'fas fa-network-wired'],
+                        ['title' => 'Secure IP Subnetting Scheme', 'text' => 'Optimized address allocation maps ensuring dynamic scalability per department.', 'icon' => 'fas fa-project-diagram']
+                    ]
+                ],
+                [
+                    'title' => 'Subsystem: Centralized Server Services',
+                    'image' => 'project-images/office-network.png',
+                    'features' => [
+                        ['title' => 'Central Server Provisioning', 'text' => 'Hosts local DNS directory lookups, DHCP address pools, and private SMTP mail services.', 'icon' => 'fas fa-server']
+                    ]
+                ],
+                [
+                    'title' => 'Subsystem: VoIP & Wireless AP Configurations',
+                    'image' => 'project-images/office-network.png',
+                    'features' => [
+                        ['title' => 'Voice Traffic Prioritization', 'text' => 'Quality of Service (QoS) configurations prioritizing VoIP packets to ensure clear IP phone calls.', 'icon' => 'fas fa-phone-alt'],
+                        ['title' => 'Lightweight Wireless APs', 'text' => 'SSID configurations enabling seamless wireless roaming across the office floor.', 'icon' => 'fas fa-wifi']
+                    ]
+                ]
             ]
         ],
         [
@@ -435,6 +652,30 @@ return [
                 'Setup VPN tunnels for remote office connections.',
                 'Implement dynamic NAT overload for public IP mapping.',
                 'Upgrade routers to support BGP dynamic routing.'
+            ],
+            'showcase_sections' => [
+                [
+                    'title' => 'Subsystem: Edge Security & ASA Firewall Routing',
+                    'image' => 'project-images/firewall-network.png',
+                    'features' => [
+                        ['title' => 'ASA Stateful Inspection', 'text' => 'Firewall policy configurations blocking external pings while securing outbound network requests.', 'icon' => 'fas fa-shield-alt'],
+                        ['title' => 'Security Level Allocations', 'text' => 'Configures strict Access Control Lists (ACLs) to manage traffic crossing network borders.', 'icon' => 'fas fa-lock']
+                    ]
+                ],
+                [
+                    'title' => 'Subsystem: Dynamic OSPF Routing',
+                    'image' => 'project-images/firewall-network.png',
+                    'features' => [
+                        ['title' => 'Multi-Area OSPF Convergence', 'text' => 'Dynamically advertises and updates routing tables across multiple router nodes.', 'icon' => 'fas fa-route']
+                    ]
+                ],
+                [
+                    'title' => 'Subsystem: Isolated Demilitarized Zone (DMZ)',
+                    'image' => 'project-images/firewall-network.png',
+                    'features' => [
+                        ['title' => 'DMZ Server Isolation', 'text' => 'Separates public-facing HTTP web servers from sensitive intranet file systems.', 'icon' => 'fas fa-server']
+                    ]
+                ]
             ]
         ],
         [
@@ -490,6 +731,29 @@ return [
                 'Deploy VPN protocols (IPsec) to encrypt branch data packets.',
                 'Set up BGP routing for multi-home ISP configurations.',
                 'Implement QoS profiles for priority video conference routing.'
+            ],
+            'showcase_sections' => [
+                [
+                    'title' => 'Subsystem: Inter-Branch WAN Dynamic Routing',
+                    'image' => 'project-images/multi-branch.png',
+                    'features' => [
+                        ['title' => 'OSPF WAN Routing', 'text' => 'Configures path optimizations to link three physical building subnets over provider serial lines.', 'icon' => 'fas fa-project-diagram']
+                    ]
+                ],
+                [
+                    'title' => 'Subsystem: WLC-Managed Wireless Association',
+                    'image' => 'project-images/multi-branch.png',
+                    'features' => [
+                        ['title' => 'Centralized WLC Association', 'text' => 'Pipes lightweight access point configurations dynamically from a central Wireless LAN Controller.', 'icon' => 'fas fa-wifi']
+                    ]
+                ],
+                [
+                    'title' => 'Subsystem: Gateway Redundancy & Recovery',
+                    'image' => 'project-images/multi-branch.png',
+                    'features' => [
+                        ['title' => 'Fast Link Recovery Protocols', 'text' => 'EtherChannel bundling and failover route pathways designed to restore down connections in under 2 seconds.', 'icon' => 'fas fa-link']
+                    ]
+                ]
             ]
         ],
     ],

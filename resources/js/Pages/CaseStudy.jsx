@@ -3,10 +3,19 @@ import { useEffect, useState } from 'react';
 
 export default function CaseStudy({ profile, project }) {
     const currentYear = new Date().getFullYear();
-    const [isImageFullscreen, setIsImageFullscreen] = useState(false);
+    const [selectedShowcaseImage, setSelectedShowcaseImage] = useState(null);
 
     useEffect(() => {
         if (window.initializeGlobalAnimations) window.initializeGlobalAnimations();
+    }, []);
+
+    // Close modal on escape key
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.key === 'Escape') setSelectedShowcaseImage(null);
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
     }, []);
 
     // Helper to render icon for tech stacks or standard items if needed
@@ -172,34 +181,77 @@ export default function CaseStudy({ profile, project }) {
                             </div>
                         )}
 
-                        {/* SCREENSHOT & SHOWCASE SECTION */}
-                        <div className="rounded-xl border border-slate-200/60 dark:border-slate-800/80 bg-white/60 dark:bg-slate-900/40 p-6 space-y-6 shadow-sm">
-                            <div className="space-y-1.5">
-                                <h2 className="text-lg font-bold text-slate-900 dark:text-white display-font">Application Showcase</h2>
-                                <p className="text-xs text-slate-500 dark:text-slate-400">Interactive live screen captures and operational highlights.</p>
+                        {/* DYNAMIC SHOWCASE SECTIONS */}
+                        {project.showcase_sections && project.showcase_sections.length > 0 && (
+                            <div className="space-y-6">
+                                {project.showcase_sections.map((sect, sIdx) => (
+                                    <div key={sIdx} className="rounded-xl border border-slate-200/60 dark:border-slate-800/80 bg-white/60 dark:bg-slate-900/40 p-6 space-y-6 shadow-sm">
+                                        <div className="flex items-center gap-2">
+                                            <div className="w-1.5 h-6 bg-indigo-500 rounded-full"></div>
+                                            <h2 className="text-base md:text-lg font-bold text-slate-900 dark:text-white display-font">{sect.title}</h2>
+                                        </div>
+                                        
+                                        <div 
+                                            className="relative aspect-[16/10] w-full overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-950 shadow-md cursor-pointer"
+                                            onClick={() => setSelectedShowcaseImage(sect.image)}
+                                        >
+                                            <img 
+                                                src={sect.image.startsWith('/') ? sect.image : `/${sect.image}`} 
+                                                alt={sect.title} 
+                                                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" 
+                                                onError={(e) => { 
+                                                    e.target.style.display = 'none';
+                                                    if (e.target.parentElement.nextSibling) {
+                                                        e.target.parentElement.nextSibling.style.display = 'flex';
+                                                    }
+                                                }}
+                                            />
+                                            <div className="absolute inset-0 hidden flex-col items-center justify-center bg-gradient-to-br from-indigo-500/10 to-purple-500/10 text-slate-400 dark:text-slate-600 pointer-events-none">
+                                                <i className="fas fa-network-wired text-4xl mb-2 text-indigo-500/40"></i>
+                                                <span className="text-xs font-semibold uppercase tracking-wider">{sect.title}</span>
+                                            </div>
+                                        </div>
+
+                                        {sect.features && sect.features.length > 0 && (
+                                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-slate-100 dark:border-slate-800/85">
+                                                {sect.features.map((feat, fIdx) => (
+                                                    <div key={fIdx} className="flex items-start gap-3 p-3 rounded-lg bg-slate-50/50 dark:bg-slate-950/20 border border-slate-100/80 dark:border-slate-800/50 hover:border-slate-200 dark:hover:border-slate-700 transition-colors">
+                                                        <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-indigo-50 dark:bg-indigo-950/50 text-indigo-500 shrink-0">
+                                                            <i className={feat.icon || 'fas fa-check-circle'}></i>
+                                                        </span>
+                                                        <div className="space-y-0.5">
+                                                            <h4 className="text-xs md:text-sm font-bold text-slate-950 dark:text-white leading-snug">{feat.title}</h4>
+                                                            <p className="text-[10px] md:text-xs leading-relaxed text-slate-500 dark:text-slate-400">{feat.text}</p>
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </div>
+                                ))}
                             </div>
-                            
-                            <div 
-                                className="relative aspect-[16/10] w-full overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-950 shadow-md cursor-pointer"
-                                onClick={() => setIsImageFullscreen(true)}
-                            >
-                                <img 
-                                    src={`/${project.image}`} 
-                                    alt={project.title} 
-                                    className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" 
-                                    onError={(e) => { 
-                                        e.target.style.display = 'none';
-                                        if (e.target.parentElement.nextSibling) {
-                                            e.target.parentElement.nextSibling.style.display = 'flex';
-                                        }
-                                    }}
-                                />
-                                <div className="absolute inset-0 hidden flex-col items-center justify-center bg-gradient-to-br from-indigo-500/10 to-purple-500/10 text-slate-400 dark:text-slate-655 pointer-events-none">
-                                    <i className="fas fa-network-wired text-4xl mb-2 text-indigo-500/40"></i>
-                                    <span className="text-xs font-semibold uppercase tracking-wider">{project.title} Showcase</span>
+                        )}
+
+                        {(!project.showcase_sections || project.showcase_sections.length === 0) && (
+                            /* SCREENSHOT & SHOWCASE SECTION FALLBACK */
+                            <div className="rounded-xl border border-slate-200/60 dark:border-slate-800/80 bg-white/60 dark:bg-slate-900/40 p-6 space-y-6 shadow-sm">
+                                <div className="space-y-1.5">
+                                    <h2 className="text-lg font-bold text-slate-900 dark:text-white display-font">Application Showcase</h2>
+                                    <p className="text-xs text-slate-500 dark:text-slate-400">Interactive live screen captures and operational highlights.</p>
+                                </div>
+                                
+                                <div 
+                                    className="relative aspect-[16/10] w-full overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-950 shadow-md cursor-pointer"
+                                    onClick={() => setSelectedShowcaseImage(project.image)}
+                                >
+                                    <img 
+                                        src={`/${project.image}`} 
+                                        alt={project.title} 
+                                        className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" 
+                                    />
                                 </div>
                             </div>
-                        </div>
+                        )}
 
                         {/* CHALLENGES & SOLUTION */}
                         {(project.challenges || project.solution) && (
@@ -309,13 +361,13 @@ export default function CaseStudy({ profile, project }) {
             </div>
 
             {/* FULLSCREEN IMAGE MODAL */}
-            {isImageFullscreen && (
+            {selectedShowcaseImage && (
                 <div 
                     className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 sm:p-8 backdrop-blur-sm cursor-zoom-out"
-                    onClick={() => setIsImageFullscreen(false)}
+                    onClick={() => setSelectedShowcaseImage(null)}
                 >
                     <img 
-                        src={`/${project.image}`} 
+                        src={selectedShowcaseImage.startsWith('http') || selectedShowcaseImage.startsWith('/') ? selectedShowcaseImage : `/${selectedShowcaseImage}`} 
                         alt={project.title} 
                         className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
                     />
