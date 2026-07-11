@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\PortfolioApiController;
+use App\Http\Controllers\ChatController;
 
 // Apply High Security & Anti-DDoS Rate Limiting (60 requests per minute per IP)
 Route::middleware(['throttle:60,1'])->group(function () {
@@ -12,6 +13,7 @@ Route::middleware(['throttle:60,1'])->group(function () {
     Route::get('/projects/{slug}', [PortfolioController::class, 'caseStudy']);
     Route::get('/certifications', [PortfolioController::class, 'certifications']);
     Route::get('/api-data/v1/portfolio-data', [PortfolioApiController::class, 'getData']);
+    Route::post('/api/chat', [ChatController::class, 'chat']);
 });
 
 // Secure developer error page previews (only available in local/testing environments)

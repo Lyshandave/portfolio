@@ -87,15 +87,38 @@ function Chatbot() {
         const trimVal = inputValue.trim();
         if (!trimVal) return;
 
+        const currentHistory = [...messages];
+
         setMessages(prev => [...prev, { sender: 'user', text: trimVal }]);
         setInputValue('');
         setIsTyping(true);
 
-        setTimeout(async () => {
+        try {
+            const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+            const response = await fetch('/api/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': csrfToken || '',
+                },
+                body: JSON.stringify({
+                    message: trimVal,
+                    history: currentHistory
+                })
+            });
+
+            if (response.ok) {
+                const resData = await response.json();
+                setIsTyping(false);
+                setMessages(prev => [...prev, { sender: 'bot', text: resData.reply }]);
+            } else {
+                throw new Error('Server response not ok');
+            }
+        } catch (err) {
             const botResp = await getBotResponse(trimVal);
             setIsTyping(false);
             setMessages(prev => [...prev, { sender: 'bot', text: botResp }]);
-        }, 800 + Math.random() * 1000);
+        }
     };
 
     const messagesEndRef = useRef(null);
