@@ -1,8 +1,9 @@
 import { Link } from '@inertiajs/react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function Certifications({ profile, all_certifications }) {
     const currentYear = new Date().getFullYear();
+    const [selectedCert, setSelectedCert] = useState(null);
 
     useEffect(() => {
         if (window.initializeGlobalAnimations) window.initializeGlobalAnimations();
@@ -18,6 +19,15 @@ export default function Certifications({ profile, all_certifications }) {
         openDoc: 'Open credential document',
         copyright: `All rights reserved.`
     };
+
+    // Close modal on escape key
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.key === 'Escape') setSelectedCert(null);
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, []);
 
     return (
         <>
@@ -38,53 +48,62 @@ export default function Certifications({ profile, all_certifications }) {
 
             <div id="app-container" className="max-w-5xl mx-auto px-4 pt-8 pb-4 relative z-10 flex flex-col min-h-screen">
 
-                <header className="mb-8 flex flex-col items-start gap-3">
+                <header className="mb-10 flex flex-col items-start gap-3">
                     <Link href="/" prefetch="hover" className="inline-flex items-center gap-1.5 text-sm text-slate-700 dark:text-slate-300 hover:text-indigo-500 font-semibold transition-colors cursor-pointer" aria-label="Back to portfolio home">
                         <i className="fas fa-arrow-left text-xs"></i>
                         <span>{t.backToHome}</span>
                     </Link>
-                    <div className="space-y-1">
-                        <h1 className="text-2xl md:text-3xl font-bold text-slate-950 dark:text-white display-font">{t.title}</h1>
-                        <p className="text-sm text-slate-600 dark:text-slate-400 font-medium">{t.subtitle}</p>
+                    <div className="space-y-2 mt-2">
+                        <h1 className="text-3xl md:text-4xl font-bold text-slate-950 dark:text-white display-font">Certifications</h1>
+                        <p className="text-sm md:text-base text-slate-500 dark:text-slate-400">Professional credentials and specialized training in Data Science, SQL, and AI.</p>
                     </div>
                 </header>
 
                 {/* CERTIFICATIONS SECTIONS */}
                 <main>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         {all_certifications.map((cert, i) => (
-                            <article key={i} className="group rounded-xl overflow-hidden bg-white/70 dark:bg-slate-900/50 subtle-border transition-all duration-300 hover:shadow-lg hover:shadow-slate-200/50 dark:hover:shadow-black/30">
-                                <a href={cert.url} target="_blank" className="relative block h-44 bg-slate-50 dark:bg-slate-950 border-b border-slate-200/70 dark:border-slate-800/80 overflow-hidden" aria-label={`View ${cert.title} certificate`}>
-                                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(99,102,241,0.08),transparent_45%)]"></div>
-                                    <img src={cert.image} alt={cert.title} className="relative mx-auto h-full max-w-[78%] object-contain py-4 transition-transform duration-500 group-hover:scale-[1.03]" />
-                                    <div className="absolute inset-0 bg-slate-950/0 group-hover:bg-slate-950/35 transition-colors flex items-center justify-center">
-                                        <span className="opacity-0 group-hover:opacity-100 transition-opacity inline-flex items-center gap-2 rounded bg-white px-3 py-2 text-xs font-bold text-slate-950 shadow-sm">
-                                            <i className="fas fa-search-plus text-base"></i>
-                                            <span>{t.viewFull}</span>
-                                        </span>
-                                    </div>
-                                </a>
+                            <article key={i} className="group rounded-xl overflow-hidden bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 transition-all duration-300 hover:shadow-md hover:border-slate-200 dark:hover:border-slate-700">
+                                <button 
+                                    onClick={() => setSelectedCert(cert.image)}
+                                    className="w-full relative block h-64 bg-slate-50 dark:bg-slate-950/50 overflow-hidden cursor-pointer p-4 flex items-center justify-center border-b border-slate-50 dark:border-slate-800/50" 
+                                    aria-label={`View ${cert.title} certificate`}
+                                >
+                                    <img src={cert.image} alt={cert.title} className="max-w-full max-h-full object-contain transition-transform duration-500 group-hover:scale-[1.02]" />
+                                </button>
 
-                                <div className="p-5">
-                                    <div className="flex items-start justify-between gap-4">
-                                        <div className="min-w-0">
-                                            <h3 className="text-base md:text-lg font-bold text-slate-950 dark:text-white leading-tight display-font">{cert.title}</h3>
-                                            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 font-semibold">{cert.issuer}</p>
-                                        </div>
-                                        <span className="px-2.5 py-1 text-[9px] font-bold tracking-wider uppercase rounded-full bg-emerald-100 dark:bg-emerald-950/50 text-emerald-800 dark:text-emerald-300 shrink-0">{t.verified}</span>
-                                    </div>
-
-                                    <div className="mt-5 pt-4 border-t border-slate-200/60 dark:border-slate-800/70">
-                                        <a href={cert.url} target="_blank" className="inline-flex items-center gap-2 text-xs font-bold text-slate-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                                            <span>{t.openDoc}</span>
-                                            <i className="fas fa-arrow-right text-[10px] transition-transform group-hover:translate-x-0.5"></i>
-                                        </a>
-                                    </div>
+                                <div className="p-6">
+                                    <h3 className="text-lg font-bold text-slate-950 dark:text-white leading-tight display-font mb-1">{cert.title}</h3>
+                                    <p className="text-sm text-slate-500 dark:text-slate-400">{cert.issuer} • {cert.year || new Date().getFullYear()}</p>
                                 </div>
                             </article>
                         ))}
                     </div>
                 </main>
+
+                {/* MODAL */}
+                {selectedCert && (
+                    <div 
+                        className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 sm:p-8"
+                        onClick={() => setSelectedCert(null)}
+                    >
+                        <div className="relative max-w-4xl w-full flex flex-col items-center" onClick={(e) => e.stopPropagation()}>
+                            <div className="w-full flex justify-end mb-4">
+                                <button 
+                                    onClick={() => setSelectedCert(null)} 
+                                    className="text-white flex items-center gap-2 font-bold hover:text-slate-300 transition-colors"
+                                >
+                                    <i className="fas fa-times text-xl"></i> <span>Close</span>
+                                </button>
+                            </div>
+                            <img 
+                                src={selectedCert} 
+                                alt="Certificate Full View" 
+                                className="w-full max-h-[85vh] object-contain rounded-lg shadow-2xl" 
+                            />
+                        </div>
+                    </div>
+                )}
 
                 {/* FOOTER */}
                 <footer className="text-center" style={{ marginTop: '8rem', paddingBottom: '2rem' }}>
