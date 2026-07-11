@@ -5,8 +5,8 @@ use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\PortfolioApiController;
 use App\Http\Controllers\ChatController;
 
-// Apply High Security & Anti-DDoS Rate Limiting (60 requests per minute per IP)
-Route::middleware(['throttle:60,1'])->group(function () {
+// Apply High Security & Anti-DDoS Rate Limiting (500 requests per minute per IP)
+Route::middleware(['throttle:500,1'])->group(function () {
     Route::get('/', [PortfolioController::class, 'index']);
     Route::get('/tech-stack', [PortfolioController::class, 'techStack']);
     Route::get('/projects', [PortfolioController::class, 'projects']);

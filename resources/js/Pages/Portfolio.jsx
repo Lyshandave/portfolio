@@ -594,7 +594,7 @@ export default function Portfolio(props) {
                     <div className="bento-card p-5 col-span-1 md:col-span-4 md:col-start-1 md:row-start-2 space-y-4 group fade-in-section is-visible self-start rounded-xl border border-slate-200/60 dark:border-slate-800/80 bg-white/60 dark:bg-slate-900/40">
                         <div className="flex items-center justify-between">
                             <h2 className="text-lg font-bold text-black dark:text-white display-font">{t.techStackTitle}</h2>
-                            <Link href="/tech-stack" id="tech-view-all" className="text-xs text-slate-600 dark:text-slate-400 hover:text-indigo-500 font-semibold cursor-pointer flex items-center gap-1 transition-all" aria-label={t.viewCapabilities}>
+                            <Link href="/tech-stack" prefetch="hover" id="tech-view-all" className="text-xs text-slate-600 dark:text-slate-400 hover:text-indigo-500 font-semibold cursor-pointer flex items-center gap-1 transition-all" aria-label={t.viewCapabilities}>
                                 <span>{t.viewAll}</span>
                                 <i className="fas fa-chevron-right text-[9px]"></i>
                             </Link>
@@ -620,7 +620,7 @@ export default function Portfolio(props) {
                     <div className="bento-card p-5 col-span-1 md:col-span-6 md:col-start-1 space-y-4 group fade-in-section is-visible self-start rounded-xl border border-slate-200/60 dark:border-slate-800/80 bg-white/60 dark:bg-slate-900/40">
                         <div className="flex items-center justify-between">
                             <h2 className="text-lg font-bold text-black dark:text-white display-font">{t.recentProjects}</h2>
-                            <Link href="/projects" id="projects-view-all" className="text-xs text-slate-600 dark:text-slate-400 hover:text-indigo-500 font-semibold cursor-pointer flex items-center gap-1 transition-all" aria-label={t.viewProjects}>
+                            <Link href="/projects" prefetch="hover" id="projects-view-all" className="text-xs text-slate-600 dark:text-slate-400 hover:text-indigo-500 font-semibold cursor-pointer flex items-center gap-1 transition-all" aria-label={t.viewProjects}>
                                 <span>{t.viewAll}</span>
                                 <i className="fas fa-chevron-right text-[9px]"></i>
                             </Link>
@@ -628,7 +628,7 @@ export default function Portfolio(props) {
                         <div id="projects-container" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                             {projects.filter(p => p.featured).slice(0, 3).map((project, i) => (
                                 <div key={i} className="flex flex-col overflow-hidden border border-slate-200/60 dark:border-slate-800/80 rounded-xl bg-white dark:bg-slate-900 hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-lg transition-all duration-300 group/project">
-                                    <Link href={`/projects/${project.slug}`} className="block relative aspect-[16/10] w-full overflow-hidden bg-slate-100 dark:bg-slate-800 cursor-pointer">
+                                    <Link href={`/projects/${project.slug}`} prefetch="hover" className="block relative aspect-[16/10] w-full overflow-hidden bg-slate-100 dark:bg-slate-800 cursor-pointer">
                                         <img
                                             src={`/${project.image}`}
                                             alt={project.title}
@@ -637,12 +637,12 @@ export default function Portfolio(props) {
                                         />
                                     </Link>
                                     <div className="p-4 flex flex-col flex-grow justify-between">
-                                        <Link href={`/projects/${project.slug}`} className="block space-y-1 cursor-pointer">
+                                        <Link href={`/projects/${project.slug}`} prefetch="hover" className="block space-y-1 cursor-pointer">
                                             <h3 className="text-sm md:text-base font-bold text-slate-900 dark:text-white group-hover/project:text-indigo-500 transition-colors duration-200">{project.title}</h3>
                                             <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed line-clamp-2">{project.description}</p>
                                         </Link>
                                         <div className="mt-3 flex items-center justify-between">
-                                            <Link href={`/projects/${project.slug}`} className="text-[11px] font-semibold text-slate-500 hover:text-indigo-500 transition-colors cursor-pointer">
+                                            <Link href={`/projects/${project.slug}`} prefetch="hover" className="text-[11px] font-semibold text-slate-500 hover:text-indigo-500 transition-colors cursor-pointer">
                                                 Case Study
                                             </Link>
                                             {project.demo && (
@@ -667,7 +667,7 @@ export default function Portfolio(props) {
                     <div className="bento-card py-3.5 px-4 col-span-1 md:col-span-3 space-y-3 group fade-in-section is-visible rounded-xl border border-slate-200/60 dark:border-slate-800/80 bg-white/60 dark:bg-slate-900/40">
                         <div className="flex items-center justify-between">
                             <h2 className="text-base font-bold uppercase tracking-wider text-slate-900 dark:text-white flex items-center gap-1.5"><span>{t.certifications}</span></h2>
-                            <Link href="/certifications" className="text-xs font-semibold text-slate-500 hover:text-indigo-500 transition-colors flex items-center gap-1">
+                            <Link href="/certifications" prefetch="hover" className="text-xs font-semibold text-slate-500 hover:text-indigo-500 transition-colors flex items-center gap-1">
                                 <span>{t.viewAllLower}</span>
                                 <i className="fas fa-chevron-right text-[8px]"></i>
                             </Link>

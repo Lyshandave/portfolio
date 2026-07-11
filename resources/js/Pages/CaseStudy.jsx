@@ -47,7 +47,7 @@ export default function CaseStudy({ profile, project }) {
                 
                 {/* HEADER NAVIGATION */}
                 <header className="mb-8 flex flex-col items-start">
-                    <Link href="/projects" className="inline-flex items-center gap-1.5 text-xs text-slate-500 hover:text-indigo-500 font-semibold transition-colors cursor-pointer" aria-label="Back to projects">
+                    <Link href="/projects" prefetch="hover" className="inline-flex items-center gap-1.5 text-xs text-slate-500 hover:text-indigo-500 font-semibold transition-colors cursor-pointer" aria-label="Back to projects">
                         <i className="fas fa-arrow-left text-[10px]"></i>
                         <span>View All Projects</span>
                     </Link>
