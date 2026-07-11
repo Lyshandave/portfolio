@@ -44,23 +44,35 @@ export default function Projects({ profile, projects }) {
                 </header>
 
                 {/* PROJECTS GRID */}
-                <main className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <main className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     {projects.map((project, i) => (
-                        <a key={i} href={project.demo} target="_blank" className="block rounded-xl p-5 space-y-3 bg-white/60 dark:bg-slate-900/40 subtle-border subtle-border-hover transition-all duration-300 group hover:shadow-sm">
-                            <div className="space-y-1">
-                                <h3 className="text-base font-bold text-slate-950 dark:text-white transition-colors">{project.title}</h3>
-                                <p className="text-xs md:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">{project.description}</p>
+                        <a key={i} href={project.demo} target="_blank" className="flex flex-col overflow-hidden rounded-xl bg-white/60 dark:bg-slate-900/40 subtle-border subtle-border-hover transition-all duration-300 group hover:shadow-lg">
+                            <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100 dark:bg-slate-800">
+                                <img 
+                                    src={`/${project.image}`} 
+                                    alt={project.title} 
+                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                                    onError={(e) => { e.target.src = '/profile-frames/frame-000.png'; }}
+                                />
                             </div>
-                            <div className="flex flex-wrap gap-1.5 pt-1">
-                                {project.technologies.map((tech, j) => (
-                                    <span key={j} className="px-2 py-0.5 text-[11px] font-semibold rounded bg-slate-100 dark:bg-slate-800/80 subtle-border text-slate-700 dark:text-slate-300">{tech}</span>
-                                ))}
-                            </div>
-                            <div className="pt-2 border-t border-slate-200/50 dark:border-slate-800/50 flex items-center justify-end">
-                                <span className="text-xs text-slate-500 dark:text-slate-400 group-hover:text-indigo-500 dark:group-hover:text-indigo-400 transition-colors flex items-center gap-1 font-semibold">
-                                    <span>{t.visitSite}</span>
-                                    <i className="fas fa-external-link-alt text-[9px]"></i>
-                                </span>
+                            <div className="p-5 flex flex-col flex-grow justify-between space-y-4">
+                                <div className="space-y-2">
+                                    <h3 className="text-base font-bold text-slate-950 dark:text-white group-hover:text-indigo-500 transition-colors">{project.title}</h3>
+                                    <p className="text-xs md:text-sm text-slate-700 dark:text-slate-300 leading-relaxed line-clamp-3">{project.description}</p>
+                                </div>
+                                <div className="space-y-3">
+                                    <div className="flex flex-wrap gap-1.5">
+                                        {project.technologies.map((tech, j) => (
+                                            <span key={j} className="px-2 py-0.5 text-[11px] font-semibold rounded bg-slate-100 dark:bg-slate-800/80 subtle-border text-slate-700 dark:text-slate-300">{tech}</span>
+                                        ))}
+                                    </div>
+                                    <div className="pt-3 border-t border-slate-200/50 dark:border-slate-800/50 flex items-center justify-end">
+                                        <span className="text-xs text-slate-500 dark:text-slate-400 group-hover:text-indigo-500 dark:group-hover:text-indigo-400 transition-colors flex items-center gap-1 font-semibold">
+                                            <span>{t.visitSite}</span>
+                                            <i className="fas fa-external-link-alt text-[9px]"></i>
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                         </a>
                     ))}

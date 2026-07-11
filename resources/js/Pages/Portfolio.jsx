@@ -595,30 +595,24 @@ export default function Portfolio(props) {
                                 <i className="fas fa-chevron-right text-[9px]"></i>
                             </Link>
                         </div>
-                        <div id="projects-container" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                            {projects.filter(p => p.featured).map((project, i) => (
-                                <a key={i} href={project.demo} target="_blank" className="flex flex-col overflow-hidden border border-slate-200/60 dark:border-slate-800/80 rounded-xl bg-white dark:bg-slate-900 hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-lg transition-all duration-300 group">
+                        <div id="projects-container" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                            {projects.filter(p => p.featured).slice(0, 3).map((project, i) => (
+                                <div key={i} className="flex flex-col overflow-hidden border border-slate-200/60 dark:border-slate-800/80 rounded-xl bg-white dark:bg-slate-900 hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-lg transition-all duration-300 group/project">
                                     <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100 dark:bg-slate-800">
                                         <img 
                                             src={`/${project.image}`} 
                                             alt={project.title} 
-                                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                                            className="w-full h-full object-cover group-hover/project:scale-105 transition-transform duration-500" 
                                             onError={(e) => { e.target.src = '/profile-frames/frame-000.png'; }}
                                         />
                                     </div>
                                     <div className="p-4 flex flex-col flex-grow justify-between">
                                         <div>
-                                            <h3 className="text-sm md:text-base font-bold text-slate-900 dark:text-white group-hover:text-indigo-500 transition-colors duration-200">{project.title}</h3>
+                                            <h3 className="text-sm md:text-base font-bold text-slate-900 dark:text-white group-hover/project:text-indigo-500 transition-colors duration-200">{project.title}</h3>
                                             <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed line-clamp-2">{project.description}</p>
                                         </div>
-                                        <div className="mt-3 pt-2 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                                            <span className="text-[11px] font-semibold text-slate-500 group-hover:text-indigo-500 transition-colors flex items-center gap-1">
-                                                {project.demo.includes('github.com') ? 'View Source' : project.demo.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')}
-                                                <i className="fas fa-arrow-right text-[9px] transform group-hover:translate-x-0.5 transition-transform"></i>
-                                            </span>
-                                        </div>
                                     </div>
-                                </a>
+                                </div>
                             ))}
                         </div>
                     </div>
