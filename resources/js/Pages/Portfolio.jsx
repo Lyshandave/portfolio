@@ -649,7 +649,7 @@ export default function Portfolio(props) {
                         </div>
                         <div id="certifications-container" className="space-y-3 mt-4">
                             {certifications.map((cert, i) => (
-                                <button key={i} onClick={() => setSelectedCert(cert.image)} className="w-full text-left block py-2.5 px-3.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-slate-900/40 hover:bg-slate-50 dark:hover:bg-slate-900 transition-all duration-300 cursor-pointer">
+                                <button key={i} onClick={() => setSelectedCert(cert.credential_url)} className="w-full text-left block py-2.5 px-3.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-slate-900/40 hover:bg-slate-50 dark:hover:bg-slate-900 transition-all duration-300 cursor-pointer">
                                     <div className="flex items-center justify-between gap-2">
                                         <div className="min-w-0">
                                             <h3 className="text-xs md:text-sm font-bold truncate text-slate-900 dark:text-white">{cert.title}</h3>
