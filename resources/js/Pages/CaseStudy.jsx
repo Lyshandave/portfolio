@@ -1,8 +1,9 @@
 import { Link } from '@inertiajs/react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function CaseStudy({ profile, project }) {
     const currentYear = new Date().getFullYear();
+    const [isImageFullscreen, setIsImageFullscreen] = useState(false);
 
     useEffect(() => {
         if (window.initializeGlobalAnimations) window.initializeGlobalAnimations();
@@ -178,26 +179,21 @@ export default function CaseStudy({ profile, project }) {
                                 <p className="text-xs text-slate-500 dark:text-slate-400">Interactive live screen captures and operational highlights.</p>
                             </div>
                             
-                            <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-950 shadow-md group">
-                                <a href={`/${project.image}`} target="_blank" rel="noopener noreferrer" className="block w-full h-full cursor-pointer">
-                                    <img 
-                                        src={`/${project.image}`} 
-                                        alt={project.title} 
-                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
-                                        onError={(e) => { 
-                                            e.target.style.display = 'none';
-                                            if (e.target.parentElement.nextSibling) {
-                                                e.target.parentElement.nextSibling.style.display = 'flex';
-                                            }
-                                        }}
-                                    />
-                                    <div className="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                        <div className="bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-xl flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-                                            <i className="fas fa-expand text-indigo-600 dark:text-indigo-400 text-sm"></i>
-                                            <span className="text-xs font-bold text-slate-800 dark:text-slate-200">View Full Image</span>
-                                        </div>
-                                    </div>
-                                </a>
+                            <div 
+                                className="relative aspect-[16/10] w-full overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-950 shadow-md cursor-pointer"
+                                onClick={() => setIsImageFullscreen(true)}
+                            >
+                                <img 
+                                    src={`/${project.image}`} 
+                                    alt={project.title} 
+                                    className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" 
+                                    onError={(e) => { 
+                                        e.target.style.display = 'none';
+                                        if (e.target.parentElement.nextSibling) {
+                                            e.target.parentElement.nextSibling.style.display = 'flex';
+                                        }
+                                    }}
+                                />
                                 <div className="absolute inset-0 hidden flex-col items-center justify-center bg-gradient-to-br from-indigo-500/10 to-purple-500/10 text-slate-400 dark:text-slate-655 pointer-events-none">
                                     <i className="fas fa-network-wired text-4xl mb-2 text-indigo-500/40"></i>
                                     <span className="text-xs font-semibold uppercase tracking-wider">{project.title} Showcase</span>
@@ -311,6 +307,20 @@ export default function CaseStudy({ profile, project }) {
                     <p className="text-xs text-slate-400">&copy; {currentYear} {profile.name}. All rights reserved.</p>
                 </footer>
             </div>
+
+            {/* FULLSCREEN IMAGE MODAL */}
+            {isImageFullscreen && (
+                <div 
+                    className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 sm:p-8 backdrop-blur-sm cursor-zoom-out"
+                    onClick={() => setIsImageFullscreen(false)}
+                >
+                    <img 
+                        src={`/${project.image}`} 
+                        alt={project.title} 
+                        className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+                    />
+                </div>
+            )}
         </>
     );
 }
