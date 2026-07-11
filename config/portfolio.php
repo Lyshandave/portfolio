@@ -162,9 +162,10 @@ return [
                 'Analytics dashboard for cafe administrators.'
             ],
             'showcase_sections' => [
+                // === CUSTOMER SIDE ===
                 [
                     'title' => 'Customer: Secure Authentication Gateway',
-                    'image' => 'project-images/ordering.png',
+                    'image' => 'project-images/ordering_login.jpg',
                     'features' => [
                         ['title' => 'Credential Validation', 'text' => 'Supports dual input parameters (Email or Phone) for user convenience.', 'icon' => 'fas fa-shield-alt'],
                         ['title' => 'Remember Me Utility', 'text' => 'Option to persist login sessions securely across browser instances.', 'icon' => 'fas fa-cookie-bite'],
@@ -173,7 +174,7 @@ return [
                 ],
                 [
                     'title' => 'Customer: Interactive Menu & Detail Panel',
-                    'image' => 'project-images/ordering.png',
+                    'image' => 'project-images/ordering_detail.jpg',
                     'features' => [
                         ['title' => 'Menu Categories', 'text' => 'Categorized grid layout for Appetizers, Beverages, and Main Course items.', 'icon' => 'fas fa-th-list'],
                         ['title' => 'Ingredients Visualization', 'text' => 'Displays graphic ingredient badges (e.g. Cabbage, Jalapeño) in the detail view.', 'icon' => 'fas fa-leaf'],
@@ -182,7 +183,7 @@ return [
                 ],
                 [
                     'title' => 'Customer: Slide-out Cart Management',
-                    'image' => 'project-images/ordering.png',
+                    'image' => 'project-images/ordering_cart.jpg',
                     'features' => [
                         ['title' => 'Quantity Controls', 'text' => 'Inline increment and decrement selectors with instant price calculations.', 'icon' => 'fas fa-calculator'],
                         ['title' => 'Quick Items Removal', 'text' => 'One-click item deletion directly from the cart drawer.', 'icon' => 'fas fa-trash-alt'],
@@ -191,7 +192,7 @@ return [
                 ],
                 [
                     'title' => 'Customer: Structured Order Checkout',
-                    'image' => 'project-images/ordering.png',
+                    'image' => 'project-images/ordering_checkout.jpg',
                     'features' => [
                         ['title' => 'Encrypted Info Display', 'text' => 'Secures user phone details during checkout using masked digit sequences.', 'icon' => 'fas fa-user-lock'],
                         ['title' => 'Multi-Payment Options', 'text' => 'Supports Cash on Delivery (COD) and Credit Card payment methods.', 'icon' => 'fas fa-wallet'],
@@ -200,15 +201,16 @@ return [
                 ],
                 [
                     'title' => 'Customer: User Profile Settings Modal',
-                    'image' => 'project-images/ordering.png',
+                    'image' => 'project-images/ordering_profile.jpg',
                     'features' => [
                         ['title' => 'Tabbed Dashboard Layout', 'text' => 'Easy navigation between Profile, Address, Order History, and Settings.', 'icon' => 'fas fa-user-cog'],
                         ['title' => 'Personal Info Manager', 'text' => 'Displays Full Name, Email, Contact Phone, and Primary Delivery Address.', 'icon' => 'fas fa-address-card']
                     ]
                 ],
+                // === ADMIN SIDE ===
                 [
                     'title' => 'Admin: Dashboard & Revenue Analytics',
-                    'image' => 'project-images/ordering.png',
+                    'image' => 'project-images/ordering_admin_dashboard.png',
                     'features' => [
                         ['title' => 'Revenue Momentum Chart', 'text' => 'Visualizes earnings curves generated from live orders over time.', 'icon' => 'fas fa-chart-line'],
                         ['title' => 'Active Orders KPI Tracker', 'text' => 'Aggregates Total Revenue, Total Orders, Active Orders, and Product Count.', 'icon' => 'fas fa-tachometer-alt'],
@@ -217,7 +219,7 @@ return [
                 ],
                 [
                     'title' => 'Admin: Real-time Order Operations Manager',
-                    'image' => 'project-images/ordering.png',
+                    'image' => 'project-images/ordering_admin_orders.png',
                     'features' => [
                         ['title' => 'Status Update Panel', 'text' => 'Single-click dropdown controls to mark orders as Processing, On the Way, Delivered, or Cancelled.', 'icon' => 'fas fa-edit'],
                         ['title' => 'Consolidated Order Table', 'text' => 'Detailed records showing Order ID, Customer Name, Item Summary, and Total Price.', 'icon' => 'fas fa-list-alt']
@@ -225,7 +227,7 @@ return [
                 ],
                 [
                     'title' => 'Admin: Inventory & Product Catalog Editor',
-                    'image' => 'project-images/ordering.png',
+                    'image' => 'project-images/ordering_admin_products.png',
                     'features' => [
                         ['title' => 'Add/Edit Product Wizards', 'text' => 'Admin tools to create, edit, or delete items from the menu.', 'icon' => 'fas fa-plus-circle'],
                         ['title' => 'Detailed Meta Data Cards', 'text' => 'Shows item status (Active/Inactive), rating stars, ingredients count, and price.', 'icon' => 'fas fa-info-circle']
@@ -233,7 +235,7 @@ return [
                 ],
                 [
                     'title' => 'Admin: Customer Lifetime Value Directory',
-                    'image' => 'project-images/ordering.png',
+                    'image' => 'project-images/ordering_admin_customers.png',
                     'features' => [
                         ['title' => 'Customer Details Table', 'text' => 'Displays registered name, email, phone, and dynamic status flags.', 'icon' => 'fas fa-users'],
                         ['title' => 'Spending Aggregator', 'text' => 'Tracks total lifetime spending and total order counts per client profile.', 'icon' => 'fas fa-dollar-sign']
@@ -241,7 +243,7 @@ return [
                 ],
                 [
                     'title' => 'Admin: Business Performance & Reports Generator',
-                    'image' => 'project-images/ordering.png',
+                    'image' => 'project-images/ordering_admin_reports.png',
                     'features' => [
                         ['title' => 'Status Allocation Chart', 'text' => 'Pie/donut distribution chart showing the percentage of delivered vs. active orders.', 'icon' => 'fas fa-chart-pie'],
                         ['title' => 'Daily Sales Performance', 'text' => 'Tracks gross revenues, units sold, and menu coverage indicators.', 'icon' => 'fas fa-calendar-day']
@@ -306,7 +308,7 @@ return [
             'showcase_sections' => [
                 [
                     'title' => 'Customer: Secure Authentication Gateway',
-                    'image' => 'project-images/inventory.png',
+                    'image' => 'project-images/puresafe_login.png',
                     'features' => [
                         ['title' => 'Sign In Modal', 'text' => 'Welcome Back modal interface prompting for email and password credential entries.', 'icon' => 'fas fa-sign-in-alt'],
                         ['title' => 'Google SSO Integration', 'text' => 'Allows fast authorization using active Google profile sessions.', 'icon' => 'fab fa-google'],
@@ -315,7 +317,7 @@ return [
                 ],
                 [
                     'title' => 'Customer: Categorized Product & Accessories Directory',
-                    'image' => 'project-images/inventory.png',
+                    'image' => 'project-images/puresafe_catalog.png',
                     'features' => [
                         ['title' => 'Categorized Drops', 'text' => 'Dropdown selectors separating Bottled Water, Round Containers, Family Bundles, and Slim Containers.', 'icon' => 'fas fa-chevron-down'],
                         ['title' => 'Equipment & Dispensers', 'text' => 'Catalog grid for automatic water pumps, heavy-duty jug stands, and electronic water dispensers.', 'icon' => 'fas fa-blender-phone'],
@@ -324,7 +326,7 @@ return [
                 ],
                 [
                     'title' => 'Customer: Shopping Cart Management',
-                    'image' => 'project-images/inventory.png',
+                    'image' => 'project-images/puresafe_cart.png',
                     'features' => [
                         ['title' => 'Order Summary Panel', 'text' => 'Shows item counts, dynamic shipping calculations (P50), and final grand totals.', 'icon' => 'fas fa-calculator'],
                         ['title' => 'Inline Quantity Editors', 'text' => 'Increment, decrement, or remove water jugs dynamically.', 'icon' => 'fas fa-edit']
@@ -332,7 +334,7 @@ return [
                 ],
                 [
                     'title' => 'Customer: Order Checkout & Payment Wizard',
-                    'image' => 'project-images/inventory.png',
+                    'image' => 'project-images/puresafe_checkout.png',
                     'features' => [
                         ['title' => 'Profile Delivery Address', 'text' => 'Displays active delivery markers, contact details, and client addresses.', 'icon' => 'fas fa-map-marker-alt'],
                         ['title' => 'Promo Code Engine', 'text' => 'Includes apply controls for coupon discount calculations.', 'icon' => 'fas fa-tag'],
@@ -341,7 +343,7 @@ return [
                 ],
                 [
                     'title' => 'Customer: User Profile Dashboard',
-                    'image' => 'project-images/inventory.png',
+                    'image' => 'project-images/puresafe_profile.png',
                     'features' => [
                         ['title' => 'Sidebar Navigation List', 'text' => 'Fast switches between Profile, Addresses, Favorites, Orders, Notifications, and Subscriptions.', 'icon' => 'fas fa-list-ul'],
                         ['title' => 'Recent Orders Tracking', 'text' => 'List of past order codes showing dynamic status badges (Delivered/Pending) and total values.', 'icon' => 'fas fa-receipt'],
@@ -350,7 +352,7 @@ return [
                 ],
                 [
                     'title' => 'Customer: Corporate Services & Contacts',
-                    'image' => 'project-images/inventory.png',
+                    'image' => 'project-images/puresafe_about.png',
                     'features' => [
                         ['title' => 'Our Services', 'text' => 'Dedicated cards highlighting multi-stage reverse osmosis filtration processes.', 'icon' => 'fas fa-concierge-bell'],
                         ['title' => 'Quick Contact Directory', 'text' => 'Clear layout of verified phone coordinates, email channels, and physical warehouse addresses.', 'icon' => 'fas fa-map-marked-alt']
@@ -495,7 +497,7 @@ return [
             'showcase_sections' => [
                 [
                     'title' => 'System Module: Link Extractor & Language Gateway',
-                    'image' => 'project-images/grade-evaluation.png',
+                    'image' => 'project-images/streamgrab_home.png',
                     'features' => [
                         ['title' => 'One-Click Extraction Input', 'text' => 'Paste-and-go URL bar with a quick "Paste" button to quickly grab streaming URLs.', 'icon' => 'fas fa-paste'],
                         ['title' => 'Multi-Language Localization', 'text' => 'Searchable language selection dropdown supporting 18 international languages (e.g. English, Chinese, Arabic, French).', 'icon' => 'fas fa-language'],
@@ -504,7 +506,7 @@ return [
                 ],
                 [
                     'title' => 'System Module: Feature Highlights & Workflow Timelines',
-                    'image' => 'project-images/grade-evaluation.png',
+                    'image' => 'project-images/streamgrab_workflow.png',
                     'features' => [
                         ['title' => 'Feature Specifications', 'text' => 'Showcases key performance indicators (Fast Downloads, Multi-Platform, No Registration).', 'icon' => 'fas fa-layer-group'],
                         ['title' => 'Three-Step Guides', 'text' => 'Clean visual instructions detailing (1) Paste URL, (2) Choose Format (MP4/MP3), and (3) Download files.', 'icon' => 'fas fa-route']
@@ -512,7 +514,7 @@ return [
                 ],
                 [
                     'title' => 'System Module: FAQ Accordion Panel',
-                    'image' => 'project-images/grade-evaluation.png',
+                    'image' => 'project-images/streamgrab_faq.png',
                     'features' => [
                         ['title' => 'Interactive Accordions', 'text' => 'Smooth dropdown cards addressing common usage questions (e.g. video quality formats, system safety, account registration requirements).', 'icon' => 'fas fa-question-circle']
                     ]
