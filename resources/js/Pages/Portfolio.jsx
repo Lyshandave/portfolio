@@ -40,10 +40,10 @@ function Chatbot() {
     const getAvatarUrl = () => {
         if (typeof document !== "undefined") {
             return document.documentElement.classList.contains("dark")
-                ? "/profile-frames/profile-dark.png"
-                : "/profile-frames/profile-light.png";
+                ? "/profile-frames/profile-dark-v2.png"
+                : "/profile-frames/profile-light-v2.png";
         }
-        return "/profile-frames/profile-light.png";
+        return "/profile-frames/profile-light-v2.png";
     };
 
     const getBotResponse = async (message) => {
@@ -342,7 +342,7 @@ function Chatbot() {
                             ].join(" ")}
                         >
                             <img
-                                src="/profile-frames/profile-light.png"
+                                src="/profile-frames/profile-light-v2.png"
                                 alt="Lyshan"
                                 className={[
                                     "block",
@@ -354,7 +354,7 @@ function Chatbot() {
                                 ].join(" ")}
                             />
                             <img
-                                src="/profile-frames/profile-dark.png"
+                                src="/profile-frames/profile-dark-v2.png"
                                 alt="Lyshan"
                                 className={[
                                     "hidden",
@@ -1017,7 +1017,7 @@ export default function Portfolio(props) {
                                     "border-border/20",
                                     "shadow-md",
                                 ].join(" ")}
-                                src="/profile-frames/profile-light.png"
+                                src="/profile-frames/profile-light-v2.png"
                                 onError={(e) => {
                                     e.target.onerror = null;
                                     e.target.style.display = "none";
@@ -1042,7 +1042,7 @@ export default function Portfolio(props) {
                                     "border-border/20",
                                     "shadow-md",
                                 ].join(" ")}
-                                src="/profile-frames/profile-dark.png"
+                                src="/profile-frames/profile-dark-v2.png"
                                 onError={(e) => {
                                     e.target.onerror = null;
                                     e.target.style.display = "none";
