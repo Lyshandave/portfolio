@@ -4,6 +4,18 @@ import { useEffect, useState } from "react";
 export default function CaseStudy({ profile, project }) {
     const currentYear = new Date().getFullYear();
     const [selectedShowcaseImage, setSelectedShowcaseImage] = useState(null);
+    const getProjectsHref = () => {
+        if (typeof window === "undefined") return "/projects";
+
+        const fromPage = Number.parseInt(
+            new URLSearchParams(window.location.search).get("fromPage"),
+            10,
+        );
+
+        return Number.isInteger(fromPage) && fromPage > 1
+            ? `/projects?page=${fromPage}`
+            : "/projects";
+    };
 
     useEffect(() => {
         if (window.initializeGlobalAnimations)
@@ -120,7 +132,7 @@ export default function CaseStudy({ profile, project }) {
                     )}
                 >
                     <Link
-                        href="/projects"
+                        href={getProjectsHref()}
                         prefetch={["mount", "hover"]}
                         className={[
                             "inline-flex",

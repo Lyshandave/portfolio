@@ -14,7 +14,18 @@ export default function Projects({ profile, projects }) {
     const projectsArray = Array.isArray(projects)
         ? projects
         : Object.values(projects);
-    const [currentPage, setCurrentPage] = useState(1);
+    const getInitialPage = () => {
+        if (typeof window === "undefined") return 1;
+
+        const page = Number.parseInt(
+            new URLSearchParams(window.location.search).get("page"),
+            10,
+        );
+
+        return Number.isInteger(page) && page > 0 ? page : 1;
+    };
+
+    const [currentPage, setCurrentPage] = useState(getInitialPage);
     const projectsPerPage = 4;
 
     const indexOfLastProject = currentPage * projectsPerPage;
@@ -24,6 +35,9 @@ export default function Projects({ profile, projects }) {
         indexOfLastProject,
     );
     const totalPages = Math.ceil(projectsArray.length / projectsPerPage);
+    const projectPageQuery = currentPage > 1 ? `?fromPage=${currentPage}` : "";
+
+    const getProjectHref = (slug) => `/projects/${slug}${projectPageQuery}`;
 
     const scrollToTop = () => {
         if (window.lenisInstance) {
@@ -38,14 +52,14 @@ export default function Projects({ profile, projects }) {
 
     const handlePrev = () => {
         if (currentPage > 1) {
-            setCurrentPage(currentPage - 1);
+            setCurrentPage((page) => page - 1);
             scrollToTop();
         }
     };
 
     const handleNext = () => {
         if (currentPage < totalPages) {
-            setCurrentPage(currentPage + 1);
+            setCurrentPage((page) => page + 1);
             scrollToTop();
         }
     };
@@ -54,6 +68,26 @@ export default function Projects({ profile, projects }) {
         if (window.initializeGlobalAnimations)
             window.initializeGlobalAnimations();
     }, []);
+
+    useEffect(() => {
+        if (totalPages > 0 && currentPage > totalPages) {
+            setCurrentPage(totalPages);
+        }
+    }, [currentPage, totalPages]);
+
+    useEffect(() => {
+        if (typeof window === "undefined") return;
+
+        const url = new URL(window.location.href);
+
+        if (currentPage > 1) {
+            url.searchParams.set("page", currentPage);
+        } else {
+            url.searchParams.delete("page");
+        }
+
+        window.history.replaceState(window.history.state, "", url);
+    }, [currentPage]);
 
     return (
         <>
@@ -200,7 +234,7 @@ export default function Projects({ profile, projects }) {
                             ].join(" ")}
                         >
                             <Link
-                                href={`/projects/${project.slug}`}
+                                href={getProjectHref(project.slug)}
                                 prefetch="hover"
                                 className={[
                                     "block",
@@ -242,7 +276,7 @@ export default function Projects({ profile, projects }) {
                                 ].join(" ")}
                             >
                                 <Link
-                                    href={`/projects/${project.slug}`}
+                                    href={getProjectHref(project.slug)}
                                     prefetch="hover"
                                     className={[
                                         "block",
@@ -284,7 +318,7 @@ export default function Projects({ profile, projects }) {
                                     ].join(" ")}
                                 >
                                     <Link
-                                        href={`/projects/${project.slug}`}
+                                        href={getProjectHref(project.slug)}
                                         prefetch="hover"
                                         className={[
                                             "text-xs",
