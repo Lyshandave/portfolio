@@ -77,11 +77,11 @@ class ChatController extends Controller
             $context .= "- Title: " . ($cert['title'] ?? '') . " from " . ($cert['issuer'] ?? '') . " (" . ($cert['date'] ?? '') . ")\n";
         }
 
-        $systemInstruction = "You are Lyshan Dave's personal AI Assistant, representing Lyshan Dave (AI / Software Engineer / Content Creator). You must act as if you are his real-life personal assistant or Lyshan himself (written from a close, personal, and highly human perspective). Speak naturally, conversationally, and warmly like a friendly developer. Avoid dry, robotic, or overly formal corporate language. Use casual formatting, micro-expressions, or friendly tone where appropriate.\n\n";
+        $systemInstruction = "You are Lyshan Dave's personal AI Assistant, representing Lyshan Dave (AI / Software Engineer / Content Creator). Speak naturally, conversationally, and warmly like a friendly human developer. Avoid dry, robotic, or overly formal corporate language.\n\n";
         $systemInstruction .= "CRITICAL INSTRUCTIONS:\n";
-        $systemInstruction .= "1. RESPONSE LANGUAGE: You must reply in the EXACT SAME language that the user used. If the user asks in English, reply in natural English. If the user asks in Tagalog, reply in natural conversational Tagalog. If they use Taglish (mixed English and Tagalog), reply in natural Taglish. Do not be overly formal in Tagalog; speak like a local Filipino developer.\n";
+        $systemInstruction .= "1. RESPONSE LANGUAGE (STRICT): You MUST detect the language of the user's LATEST message (the very last message) and reply in that EXACT same language. If the user's last message is in English, you MUST reply in English. If it is in Tagalog, reply in conversational Tagalog. If it is in Taglish, reply in Taglish. Do not let previous chat history override the language of the latest query.\n";
         $systemInstruction .= "2. ABOUT LYSHAN: Answer questions about Lyshan Dave's projects, technical skills (React, Laravel, CSS, etc.), experiences (Core Technology, GCM Tech Services, AICS), certifications (TESDA, Cisco), education, and contact details accurately using the provided context.\n";
-        $systemInstruction .= "3. HANDLING OUT-OF-TOPIC QUESTIONS: If the user asks general, out-of-topic questions (e.g. asking for coding assistance, explaining programming concepts, general facts, science, math, history, writing code, debugging, or personal developer questions), you MUST answer them fully, accurately, and helpful using your general knowledge as a large language model. Do not refuse, do not say you only answer portfolio questions, and do not say you are offline. Answer them directly and naturally in the user's language. If it is relevant, you can briefly/smoothly connect it back to Lyshan's projects or skills, but prioritize giving a direct, complete, and helpful answer first.\n";
+        $systemInstruction .= "3. HANDLING OUT-OF-TOPIC QUESTIONS (STRICT): If the user asks general, out-of-topic questions (e.g., 'who is the president of the philippines', 'how to write a binary search', history, science, math, coding problems, etc.), you MUST answer their question directly, fully, and accurately using your general knowledge. Do NOT ignore the question, do NOT reply with a generic greeting, and do NOT refuse. Answer it directly. Respond in the same language as their query.\n";
         $systemInstruction .= "4. DO NOT mention that you are an AI, Google, Gemini, or a large language model. You are Lyshan Dave's dedicated assistant.\n\n";
         $systemInstruction .= "Here is the complete context about Lyshan Dave:\n" . $context;
 
@@ -149,22 +149,34 @@ class ChatController extends Controller
     {
         $msg = strtolower($message);
         
-        // Check language of input
-        $isTagalog = preg_match('/(ako|si|ano|salamat|kumusta|kamusta|may|ang|mga|sa|nila|ito|diyan)/i', $msg);
+        // Exact word matching to avoid partial matches (e.g. "philippines" containing "hi")
+        $words = preg_split('/\s+/', $msg);
+        
+        $isTagalog = false;
+        $tagalogKeywords = ['ako', 'si', 'ano', 'salamat', 'kumusta', 'kamusta', 'may', 'ang', 'mga', 'sa', 'nila', 'ito', 'diyan'];
+        foreach ($words as $word) {
+            $cleanWord = trim($word, '?,.!');
+            if (in_array($cleanWord, $tagalogKeywords)) {
+                $isTagalog = true;
+                break;
+            }
+        }
+
+        $cleanWords = array_map(fn($w) => trim($w, '?,.!'), $words);
 
         if ($isTagalog) {
-            if (str_contains($msg, 'hello') || str_contains($msg, 'hi') || str_contains($msg, 'uy')) {
+            if (array_intersect(['hello', 'hi', 'uy', 'helo'], $cleanWords)) {
                 return "Uy, hello! Ako pala si Lyshan. Ano ang maitutulong ko sa iyo ngayon?";
             }
-            if (str_contains($msg, 'skills') || str_contains($msg, 'marunong') || str_contains($msg, 'tech')) {
+            if (array_intersect(['skills', 'marunong', 'tech', 'kakayahan'], $cleanWords)) {
                 return "May kaalaman at karanasan ako sa Frontend gaya ng React at Tailwind, pati sa Backend gamit ang Laravel at Node.js.";
             }
             return "Pasensya na, medyo offline ako ngayon. Mag-iwan ka na lang ng mensahe sa email ko sa lyshandavet@gmail.com!";
         } else {
-            if (str_contains($msg, 'hello') || str_contains($msg, 'hi') || str_contains($msg, 'hey')) {
+            if (array_intersect(['hello', 'hi', 'hey', 'helo'], $cleanWords)) {
                 return "Hello there! I'm Lyshan's AI Assistant. How can I help you today?";
             }
-            if (str_contains($msg, 'skills') || str_contains($msg, 'tech') || str_contains($msg, 'know')) {
+            if (array_intersect(['skills', 'tech', 'know', 'capabilities'], $cleanWords)) {
                 return "I have experience with Frontend technologies like React and Tailwind CSS, as well as Backend with Laravel and Node.js.";
             }
             return "Sorry, I am currently offline. Please send an email directly to lyshandavet@gmail.com!";
