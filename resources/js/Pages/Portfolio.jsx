@@ -48,73 +48,36 @@ function Chatbot() {
 
     const getBotResponse = async (message) => {
         const msg = message.toLowerCase().trim();
-        if (
-            msg.includes("hello") ||
-            msg.includes("hi") ||
-            msg.includes("hey") ||
-            msg.includes("uy")
-        )
-            return "Uy, hello. Ako pala si Lyshan. Ano ang maitutulong ko sa iyo ngayon?";
-        if (
-            msg.includes("kumusta") ||
-            msg.includes("kamusta") ||
-            msg.includes("how are you")
-        )
+        const words = msg.split(/\s+/).map(w => w.replace(/[?,.!]/g, ""));
+        
+        const hasWord = (list) => list.some(w => words.includes(w));
+
+        if (hasWord(["hello", "hi", "hey", "uy", "helo"]))
+            return "Uy, hello! Ako pala si Lyshan. Ano ang maitutulong ko sa iyo ngayon?";
+        if (hasWord(["kumusta", "kamusta", "how"]))
             return "Mabuti naman ako, salamat sa pagtatanong. Handa akong sagutin ang mga tanong mo tungkol sa mga skills at projects ko.";
-        if (
-            msg.includes("sino ka") ||
-            msg.includes("who are you") ||
-            msg.includes("pangalan")
-        )
+        if (hasWord(["sino", "who", "pangalan", "name"]) && hasWord(["ka", "you"]))
             return "Ako mismo si Lyshan Dave. Nandito ako para ibahagi ang mga naging karanasan at gawa ko sa tech.";
         if (
             msg.includes("who is lyshan") ||
-            (msg.includes("sino si") &&
-                (msg.includes("lyshan") || msg.includes("dave"))) ||
+            (msg.includes("sino si") && (msg.includes("lyshan") || msg.includes("dave"))) ||
             msg === "lyshan" ||
             msg === "lyshan dave"
         )
             return "Ako si Lyshan Dave, isang Computer Systems Technician at Web Developer mula sa Metro Manila. Mahilig ako sa hardware, networks, at coding.";
-        if (
-            msg.includes("skill") ||
-            msg.includes("tech") ||
-            msg.includes("alam") ||
-            msg.includes("marunong") ||
-            msg.includes("language")
-        )
+        if (hasWord(["skill", "skills", "tech", "alam", "marunong", "language", "languages"]))
             return "May kaalaman at karanasan ako sa Frontend gaya ng React at Tailwind, pati sa Backend gamit ang Laravel at Node.js. May background din ako sa PC Troubleshooting at Networking.";
-        if (
-            msg.includes("project") ||
-            msg.includes("gawa") ||
-            msg.includes("portfolio")
-        )
+        if (hasWord(["project", "projects", "gawa", "portfolio"]))
             return "Ilan sa mga nagawa ko na ay ang Ordering System, Inventory System, at School Management System. Pwede mong tingnan ang Projects section sa itaas.";
-        if (
-            msg.includes("contact") ||
-            msg.includes("email") ||
-            msg.includes("hire") ||
-            msg.includes("usap") ||
-            msg.includes("number")
-        )
+        if (hasWord(["contact", "email", "hire", "usap", "number", "email", "phone"]))
             return "Maaari mo akong ma-contact sa lyshandavet@gmail.com o mag-schedule ng maikling pag-usap gamit ang Calendly link sa footer.";
-        if (
-            msg.includes("aral") ||
-            msg.includes("school") ||
-            msg.includes("education") ||
-            msg.includes("graduate") ||
-            msg.includes("college")
-        )
+        if (hasWord(["aral", "school", "education", "graduate", "college", "course", "degree"]))
             return "Nag-aral ako ng BS Computer Science at kumuha rin ng mga certifications mula sa Cisco (Networking Basics) at TESDA (Computer Systems Servicing).";
-        if (
-            msg.includes("work") ||
-            msg.includes("trabaho") ||
-            msg.includes("experience") ||
-            msg.includes("job")
-        )
+        if (hasWord(["work", "trabaho", "experience", "job", "jobs"]))
             return "Naging Web Developer ako sa Core Technology & PocketDevs, at nagtrabaho rin sa Computer Systems Servicing sa GCM Tech Services.";
-        if (msg.includes("thank") || msg.includes("salamat"))
+        if (hasWord(["thank", "thanks", "salamat"]))
             return "Walang anuman. Sabihin mo lang sa akin kung may iba ka pang gustong itanong.";
-        if (msg.includes("haha") || msg.includes("hehe") || msg.includes("lol"))
+        if (hasWord(["haha", "hehe", "lol", "lmao"]))
             return "Hehe, salamat. May iba ka pang gustong malaman tungkol sa mga gawa o karanasan ko?";
 
         try {
@@ -141,7 +104,6 @@ function Chatbot() {
             "Medyo malayo na yata sa tech ang napag-uusapan natin. Gusto mo bang talakayin natin ang mga software projects o configurations na ginawa ko?",
             "Wala akong sapat na detalye tungkol diyan ngayon, pero pwede mo akong i-email kung gusto mong magkausap tayo nang mas personal.",
         ];
-        // Use .at() to avoid bracket notation warnings (CWE-94)
         return fallbacks.at(Math.floor(Math.random() * fallbacks.length));
     };
 
