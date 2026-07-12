@@ -34,7 +34,7 @@ function initializeGlobalAnimations() {
         requestAnimationFrame(raf);
     }
 
-    const animatedElements = document.querySelectorAll('.bento-card, .cert-card, .project-card, [data-global-animate]');
+    const animatedElements = document.querySelectorAll('.cert-card, .project-card, [data-global-animate]');
     animatedElements.forEach(el => {
         if (!el.hasAttribute('data-aos')) {
             el.setAttribute('data-aos', 'fade-up');

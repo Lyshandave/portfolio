@@ -946,9 +946,7 @@ export default function Portfolio(props) {
                 ].join(" ")}
             >
                 {/* PROFILE HERO SECTION */}
-                <section
-                    className={["mb-8"].join(" ")} data-aos="fade-up"
-                >
+                <section className={["mb-8"].join(" ")}>
                     <div
                         className={[
                             "flex",
