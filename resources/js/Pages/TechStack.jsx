@@ -130,12 +130,11 @@ export default function TechStack({ profile, techStack }) {
                     </h1>
                 </header>
 
-                {/* SKILLS CATEGORIES GRID */}
                 <main
                     className={[
                         "grid",
                         "grid-cols-1",
-                        "md:grid-cols-2",
+                        "sm:grid-cols-2",
                         "gap-4",
                     ].join(" ")}
                 >
@@ -149,6 +148,10 @@ export default function TechStack({ profile, techStack }) {
                                 "bg-white/60",
                                 "dark:bg-slate-900/40",
                                 "subtle-border",
+                                "subtle-border-hover",
+                                "transition-all",
+                                "duration-300",
+                                "hover:shadow-lg",
                             ].join(" ")}
                         >
                             <h2

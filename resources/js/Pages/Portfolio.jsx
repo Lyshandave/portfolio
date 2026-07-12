@@ -3007,23 +3007,6 @@ export default function Portfolio(props) {
                     ].join(" ")}
                 >
                     <button
-                        onClick={() => setLightboxIndex(null)}
-                        className={[
-                            "absolute",
-                            "top-6",
-                            "right-6",
-                            "text-white",
-                            "hover:text-red-400",
-                            "transition-colors",
-                            "p-2.5",
-                            "text-2xl",
-                            "cursor-pointer",
-                        ].join(" ")}
-                        aria-label={t.closeImg}
-                    >
-                        <i className={["fas", "fa-times"].join(" ")}></i>
-                    </button>
-                    <button
                         onClick={(e) => {
                             e.stopPropagation();
                             setLightboxIndex(
@@ -3115,8 +3098,9 @@ export default function Portfolio(props) {
                             "flex",
                             "flex-col",
                             "items-center",
+                            "cursor-pointer",
                         ].join(" ")}
-                        onClick={(e) => e.stopPropagation()}
+                        onClick={() => setLightboxIndex(null)}
                     >
                         <img
                             src={galleryImages.at(lightboxIndex)}
