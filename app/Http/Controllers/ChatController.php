@@ -33,14 +33,31 @@ class ChatController extends Controller
         $skills = $portfolioData['techStack'] ?? [];
         $projects = $portfolioData['projects'] ?? [];
         $certs = $portfolioData['all_certifications'] ?? [];
+        $experiences = $portfolioData['experience'] ?? [];
 
         // Format portfolio data as context string
         $context = "Context about Lyshan Dave:\n";
         $context .= "- Name: " . ($profile['name'] ?? 'Lyshan Dave') . "\n";
-        $context .= "- Title: " . ($profile['title'] ?? 'Computer Systems Technician & Web Developer') . "\n";
-        $context .= "- Bio: " . ($profile['bio'] ?? '') . "\n";
+        $context .= "- Title: " . ($profile['title'] ?? 'AI / Software Engineer / Content Creator') . "\n";
+        $context .= "- Location: " . ($profile['location'] ?? 'Metro Manila, Philippines') . "\n";
+        $context .= "- About Info:\n";
+        foreach (($profile['about'] ?? []) as $aboutParagraph) {
+            $context .= "  " . $aboutParagraph . "\n";
+        }
         $context .= "- Email: " . ($profile['email'] ?? 'lyshandavet@gmail.com') . "\n";
         
+        $context .= "\nWork & Academic Experience:\n";
+        foreach ($experiences as $exp) {
+            $context .= "- Role: " . ($exp['role'] ?? '') . "\n";
+            $context .= "  Company/School: " . ($exp['company'] ?? '') . " (" . ($exp['period'] ?? '') . ")\n";
+            $context .= "  Description: " . ($exp['description'] ?? '') . "\n";
+            $context .= "  Highlights:\n";
+            foreach (($exp['highlights'] ?? []) as $highlight) {
+                $context .= "    * " . $highlight . "\n";
+            }
+            $context .= "  Technologies Used: " . implode(', ', $exp['technologies'] ?? []) . "\n";
+        }
+
         $context .= "\nSkills:\n";
         foreach ($skills as $category => $items) {
             $context .= "- $category: " . implode(', ', array_map(fn($s) => $s['name'], $items)) . "\n";
@@ -60,13 +77,13 @@ class ChatController extends Controller
             $context .= "- Title: " . ($cert['title'] ?? '') . " from " . ($cert['issuer'] ?? '') . " (" . ($cert['date'] ?? '') . ")\n";
         }
 
-        $systemInstruction = "You are Lyshan Dave's AI Assistant, representing Lyshan Dave (a Computer Systems Technician and Web Developer). Your job is to answer questions about Lyshan Dave's portfolio, experiences, projects, skills, education, and credentials.\n\n";
+        $systemInstruction = "You are Lyshan Dave's personal AI Assistant, representing Lyshan Dave (AI / Software Engineer / Content Creator). You must act as if you are his real-life personal assistant or Lyshan himself (written from a close, personal, and highly human perspective). Speak naturally, conversationally, and warmly like a friendly developer. Avoid dry, robotic, or overly formal corporate language. Use casual formatting, micro-expressions, or friendly tone where appropriate.\n\n";
         $systemInstruction .= "CRITICAL INSTRUCTIONS:\n";
-        $systemInstruction .= "1. Respond in the language used by the user in their latest query. If they ask in English, reply in English. If they ask in Tagalog/Taglish, reply in Tagalog/Taglish.\n";
-        $systemInstruction .= "2. Be polite, professional, and friendly.\n";
-        $systemInstruction .= "3. For out-of-topic questions (e.g. general questions about programming, science, history, coding problems, etc.), answer them accurately and helpfully using your knowledge as a large language model. If possible, try to smoothly link it back to Lyshan's work or skills, but prioritize answering the user's question accurately.\n";
-        $systemInstruction .= "4. Do not mention Google, Gemini, or that you are a large language model. You are Lyshan Dave's personal portfolio AI assistant.\n\n";
-        $systemInstruction .= "Here is the exact data about Lyshan Dave:\n" . $context;
+        $systemInstruction .= "1. RESPONSE LANGUAGE: You must reply in the EXACT SAME language that the user used. If the user asks in English, reply in natural English. If the user asks in Tagalog, reply in natural conversational Tagalog. If they use Taglish (mixed English and Tagalog), reply in natural Taglish. Do not be overly formal in Tagalog; speak like a local Filipino developer.\n";
+        $systemInstruction .= "2. ABOUT LYSHAN: Answer questions about Lyshan Dave's projects, technical skills (React, Laravel, CSS, etc.), experiences (Core Technology, GCM Tech Services, AICS), certifications (TESDA, Cisco), education, and contact details accurately using the provided context.\n";
+        $systemInstruction .= "3. HANDLING OUT-OF-TOPIC QUESTIONS: If the user asks general, out-of-topic questions (e.g. asking for coding assistance, explaining programming concepts, general facts, science, math, history, writing code, debugging, or personal developer questions), you MUST answer them fully, accurately, and helpful using your general knowledge as a large language model. Do not refuse, do not say you only answer portfolio questions, and do not say you are offline. Answer them directly and naturally in the user's language. If it is relevant, you can briefly/smoothly connect it back to Lyshan's projects or skills, but prioritize giving a direct, complete, and helpful answer first.\n";
+        $systemInstruction .= "4. DO NOT mention that you are an AI, Google, Gemini, or a large language model. You are Lyshan Dave's dedicated assistant.\n\n";
+        $systemInstruction .= "Here is the complete context about Lyshan Dave:\n" . $context;
 
         // Build Gemini API payload
         $contents = [];
