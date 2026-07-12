@@ -112,7 +112,7 @@ return [
             'slug' => 'ordering-system',
             'subtitle' => 'A premium online ordering and food services system for Cafe Misto, designed to streamline customer ordering, payments, and checkout flows.',
             'description' => 'Online ordering system for efficient customer transactions and fast checkout.',
-            'technologies' => ['Laravel', 'React', 'TypeScript', 'PostgreSQL', 'Tailwind CSS', 'Vite', 'FontAwesome', 'Gmail SMTP'],
+            'technologies' => ['React', 'TypeScript', 'Node.js', 'Express', 'PostgreSQL', 'Tailwind CSS', 'Vite', 'FontAwesome', 'Gmail SMTP'],
             'image' => 'project-images/ordering_detail.png',
             'demo' => 'https://ordering-system-sigma.vercel.app/',
             'github' => 'https://github.com/lyshandave/ordering-system',
@@ -126,14 +126,14 @@ return [
             ],
             'problem' => 'Manual ordering and cashier tracking at Cafe Misto caused long queues, delays during peak hours, and human errors in paper-based transaction logs.',
             'challenges' => 'Implementing real-time SMTP-based password recovery and building secure login auth guards while maintaining low response latency.',
-            'solution' => 'Decoupled frontend/backend routing, built custom Laravel auth controllers, integrated secure SMTP email services, and implemented optimized Eloquent queries.',
+            'solution' => 'Decoupled frontend/backend routing, built custom Express auth controllers, integrated secure SMTP email services, and implemented optimized database queries.',
             'objectives' => [
                 ['title' => 'Seamless User Experience', 'text' => 'Develop an intuitive cafe dashboard where users can quickly select beverage options, configure sizes, and make additions.'],
                 ['title' => 'Operational Efficiency', 'text' => 'Optimize inventory consumption rates and checkout pipelines to reduce wait times to under 30 seconds.'],
                 ['title' => 'Secure Authentications', 'text' => 'Protect customer information and transactions using state-of-the-art authentication guards and HTTPS scheme enforcement.']
             ],
             'key_features' => [
-                ['title' => 'User Experience', 'text' => 'The login interface features a "Remember Me" option and password visibility toggle for enhanced usability.', 'icon' => 'fas fa-mug-hot'],
+                ['title' => 'User Experience', 'text' => 'The login interface features a \"Remember Me\" option and password visibility toggle for enhanced usability.', 'icon' => 'fas fa-mug-hot'],
                 ['title' => 'Automated Identification', 'text' => 'Generates unique customer tracking numbers and custom invoices upon order completion.', 'icon' => 'fas fa-barcode'],
                 ['title' => 'Secure Recovery', 'text' => 'Secure password reset links sent exclusively to verified email addresses with real-time feedback warnings.', 'icon' => 'fas fa-key'],
                 ['title' => 'Welcome Notifications', 'text' => 'Triggers an automated welcome email with verification links for all newly registered accounts.', 'icon' => 'fas fa-envelope']
@@ -141,7 +141,7 @@ return [
             'development_process' => [
                 'Research & Wireframing',
                 'Database Schema Design & Normalization',
-                'Backend API Development (Laravel & Postgres)',
+                'Backend API Development (Node.js & Postgres)',
                 'Frontend Component Implementation (React & Tailwind)',
                 'SMTP Service & Auth Testing',
                 'Deployment & Environment Sync'
@@ -153,7 +153,7 @@ return [
             ],
             'lessons_learned' => [
                 'Mastered secure token-based user verification pathways.',
-                'Improved understanding of decoupled React-Laravel routing structures.',
+                'Improved understanding of decoupled React-Node routing structures.',
                 'Optimized query performance for relational database systems.'
             ],
             'future_improvements' => [
@@ -380,7 +380,7 @@ return [
             'slug' => 'school-management-system',
             'subtitle' => 'A comprehensive portal for tracking student profiles, enrollment pipelines, and academic grading sheets.',
             'description' => 'All-in-one administration portal for student records, enrollment, and grading.',
-            'technologies' => ['Laravel', 'Vue.js', 'PostgreSQL', 'Tailwind CSS', 'Inertia.js', 'FullCalendar'],
+            'technologies' => ['Vue.js', 'Node.js', 'Express', 'PostgreSQL', 'Tailwind CSS', 'FullCalendar'],
             'image' => 'project-images/school.png',
             'demo' => 'https://school-system.lyshandave.com',
             'github' => 'https://github.com/lyshandave/school-management-system',
@@ -409,8 +409,8 @@ return [
             'development_process' => [
                 'Requirements Analysis & Interviewing Admin Staff',
                 'Relational Database Normalization (3NF)',
-                'API Development with Laravel Resource Collections',
-                'Inertia.js Integration with Vue Components',
+                'API Development with Express REST API Endpoints',
+                'Routing Integration with Vue Components',
                 'Schedule Overlap Validation Setup',
                 'Testing & Local Server Deployment'
             ],
