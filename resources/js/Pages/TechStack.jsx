@@ -142,6 +142,7 @@ export default function TechStack({ profile, techStack }) {
                         <div
                             key={category}
                             className={[
+                                "bento-card",
                                 "rounded-xl",
                                 "p-5",
                                 "space-y-4",

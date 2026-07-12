@@ -156,6 +156,7 @@ export default function Certifications({ profile, all_certifications }) {
                             <article
                                 key={i}
                                 className={[
+                                    "cert-card",
                                     "flex",
                                     "flex-col",
                                     "overflow-hidden",

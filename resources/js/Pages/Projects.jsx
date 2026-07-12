@@ -219,6 +219,7 @@ export default function Projects({ profile, projects }) {
                         <div
                             key={project.slug}
                             className={[
+                                "project-card",
                                 "flex",
                                 "flex-col",
                                 "overflow-hidden",
