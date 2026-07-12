@@ -539,10 +539,10 @@ return [
         [
             'title' => 'Office Floor Plan Network',
             'slug' => 'office-floor-plan-network',
-            'subtitle' => 'VLAN partition, IP phone setups, wireless access points, and DHCP/DNS server configurations.',
-            'description' => 'Full office floor plan with department VLANs, IP phones, wireless APs, and DNS/DHCP/Mail servers.',
-            'technologies' => ['Cisco Packet Tracer', 'Networking', 'VLAN', 'Servers'],
-            'image' => 'project-images/office-network.png',
+            'subtitle' => 'VLAN partition, AAA authentication, IP phone setups, wireless access points, and DHCP/DNS server configurations.',
+            'description' => 'Full office floor plan with routed branches, department VLANs, AAA servers, IP phones, wireless APs, and DNS/DHCP/Mail services.',
+            'technologies' => ['Cisco Packet Tracer', 'Networking', 'VLAN', 'VoIP', 'TACACS+', 'RADIUS', 'Servers'],
+            'image' => 'project-images/office_topology.png',
             'demo' => null,
             'github' => null,
             'featured' => false,
@@ -553,18 +553,18 @@ return [
                 'Type' => 'LAN Layout',
                 'Collaboration' => 'Academic Project'
             ],
-            'problem' => 'An office network without department separation faces security risks (e.g., guest networks accessing HR records), IP conflict delays, and lacked voice service support.',
-            'challenges' => 'Designing an efficient IP subnetting plan, separating voice and data traffic, and deploying centralized DHCP/DNS resources.',
-            'solution' => 'Configured distinct VLANs for departments, mapped Voice VLANs for IP phones, and provisioned servers for automated IP and name resolution.',
+            'problem' => 'An office network without department separation faces security risks (e.g., guest networks accessing HR records), IP conflict delays, unmanaged router access, and lacked voice service support.',
+            'challenges' => 'Designing an efficient IP subnetting plan, separating voice and data traffic, deploying centralized DHCP/DNS resources, and validating secure branch-to-branch communication.',
+            'solution' => 'Configured distinct VLANs for departments, mapped Voice VLANs for IP phones, provisioned TACACS+/RADIUS authentication, and verified connectivity through ping and call tests.',
             'objectives' => [
                 ['title' => 'Secure Department Separation', 'text' => 'Partition offices into distinct VLANs to protect accounting and HR resources from public/guest networks.'],
                 ['title' => 'IP Phone Integration', 'text' => 'Setup Voice VLANs and DHCP options to automate Cisco IP phone IP allocation and dial configurations.'],
-                ['title' => 'Central Server Resources', 'text' => 'Provision DNS, DHCP, and mail servers locally to handle department requests without external web reliance.']
+                ['title' => 'Central Server Resources', 'text' => 'Provision DNS, DHCP, mail, TACACS+, and RADIUS services to support routing, authentication, and office operations.']
             ],
             'key_features' => [
                 ['title' => 'VLAN Partitioning', 'text' => 'Configured separate broadcast domains to isolate department traffic and maximize network bandwidth.', 'icon' => 'fas fa-network-wired'],
-                ['title' => 'Centralized DHCP/DNS', 'text' => 'Dynamic host configuration protocols ensuring immediate connectivity for newly connected devices.', 'icon' => 'fas fa-server'],
-                ['title' => 'IP Voice setups', 'text' => 'Dedicated VoIP networks configured to ensure high call quality and minimum latency.', 'icon' => 'fas fa-phone'],
+                ['title' => 'Centralized Services', 'text' => 'DNS, mail, TACACS+, and RADIUS servers support name resolution, messaging, and secured network access.', 'icon' => 'fas fa-server'],
+                ['title' => 'IP Voice Setups', 'text' => 'Dedicated VoIP networks configured to ensure high call quality and minimum latency.', 'icon' => 'fas fa-phone'],
                 ['title' => 'Wireless Coverage', 'text' => 'Strategic placements of WAPs to guarantee seamless wireless roaming throughout the building floor.', 'icon' => 'fas fa-wifi']
             ],
             'development_process' => [
@@ -572,18 +572,18 @@ return [
                 'IP Subnet Design & Subnet Mask Calculations',
                 'Switch Port Allocation & VLAN Configuration',
                 'DHCP Helper Address & Voice VLAN Mapping',
-                'DNS & Local Mail Server Setup',
-                'Ping & Communication Pathway Verification'
+                'DNS, Mail, TACACS+ & RADIUS Server Setup',
+                'Ping, AAA & IP Phone Call Verification'
             ],
             'results' => [
                 'Successfully modeled a fully working multi-department network.',
-                'IP phones configured to automatically register and place local calls.',
-                'Secure guest access provided without access to local private networks.'
+                'IP phones and IP Communicator clients successfully placed local extension calls.',
+                'TACACS+ and RADIUS server records configured for secure branch authentication.'
             ],
             'lessons_learned' => [
                 'Deepened comprehension of dynamic host configuration protocols.',
                 'Mastered Inter-VLAN routing using router-on-a-stick configurations.',
-                'Learned how to configure voice QoS over switch configurations.'
+                'Learned how to configure voice QoS and AAA authentication across routed branches.'
             ],
             'future_improvements' => [
                 'Deploy ASA Firewalls at the network edge.',
@@ -592,26 +592,43 @@ return [
             ],
             'showcase_sections' => [
                 [
-                    'title' => 'Subsystem: VLAN Segregation & Security',
-                    'image' => 'project-images/office-network.png',
+                    'title' => 'Network Plan: Complete Office Topology',
+                    'image' => 'project-images/office_topology.png',
                     'features' => [
-                        ['title' => 'Broadcast Domain Partitioning', 'text' => 'Isolates department subnet traffic (HR, Accounting) to prevent unauthorized private file access.', 'icon' => 'fas fa-network-wired'],
-                        ['title' => 'Secure IP Subnetting Scheme', 'text' => 'Optimized address allocation maps ensuring dynamic scalability per department.', 'icon' => 'fas fa-project-diagram']
+                        ['title' => 'Full Branch Layout', 'text' => 'Maps four routed branch routers, access switches, servers, wired PCs, wireless clients, printers, and IP phones in one topology.', 'icon' => 'fas fa-project-diagram'],
+                        ['title' => 'Service Placement Plan', 'text' => 'Positions DNS, mail, web, TACACS+, and RADIUS resources where branch devices can reach them through the routed core.', 'icon' => 'fas fa-server']
                     ]
                 ],
                 [
-                    'title' => 'Subsystem: Centralized Server Services',
-                    'image' => 'project-images/office-network.png',
+                    'title' => 'Validation Plan: End-to-End Connectivity Tests',
+                    'image' => 'project-images/office_ping_tests.png',
                     'features' => [
-                        ['title' => 'Central Server Provisioning', 'text' => 'Hosts local DNS directory lookups, DHCP address pools, and private SMTP mail services.', 'icon' => 'fas fa-server']
+                        ['title' => 'Cross-Branch Reachability', 'text' => 'Ping tests confirm packets are sent and received successfully across separate routed subnets.', 'icon' => 'fas fa-terminal'],
+                        ['title' => 'Zero Packet Loss', 'text' => 'Connectivity checks show successful replies with 0% packet loss between tested office endpoints.', 'icon' => 'fas fa-check-circle']
                     ]
                 ],
                 [
-                    'title' => 'Subsystem: VoIP & Wireless AP Configurations',
-                    'image' => 'project-images/office-network.png',
+                    'title' => 'Security Plan: TACACS+ & RADIUS AAA Servers',
+                    'image' => 'project-images/office_aaa_servers.png',
                     'features' => [
-                        ['title' => 'Voice Traffic Prioritization', 'text' => 'Quality of Service (QoS) configurations prioritizing VoIP packets to ensure clear IP phone calls.', 'icon' => 'fas fa-phone-alt'],
-                        ['title' => 'Lightweight Wireless APs', 'text' => 'SSID configurations enabling seamless wireless roaming across the office floor.', 'icon' => 'fas fa-wifi']
+                        ['title' => 'Router Authentication Records', 'text' => 'TACACS+ and RADIUS client entries bind branch routers to shared authentication secrets.', 'icon' => 'fas fa-user-shield'],
+                        ['title' => 'Centralized Admin Accounts', 'text' => 'User setup records provide controlled administrative login credentials for network device access.', 'icon' => 'fas fa-key']
+                    ]
+                ],
+                [
+                    'title' => 'Voice Plan: Cisco IP Phone Extension Calls',
+                    'image' => 'project-images/office_ip_phones.png',
+                    'features' => [
+                        ['title' => 'Registered Extensions', 'text' => 'Cisco IP phones place and receive internal calls between configured office extensions.', 'icon' => 'fas fa-phone-alt'],
+                        ['title' => 'Voice VLAN Operation', 'text' => 'Voice endpoints validate the IP phone addressing and call routing design inside the office branches.', 'icon' => 'fas fa-network-wired']
+                    ]
+                ],
+                [
+                    'title' => 'Voice Plan: IP Communicator Call Verification',
+                    'image' => 'project-images/office_ip_communicator.png',
+                    'features' => [
+                        ['title' => 'Softphone Connectivity', 'text' => 'Desktop IP Communicator clients verify extension dialing from user devices.', 'icon' => 'fas fa-headset'],
+                        ['title' => 'Two-Way Call Flow', 'text' => 'Connected call screens confirm successful call setup between branch softphone users.', 'icon' => 'fas fa-phone-volume']
                     ]
                 ]
             ]
@@ -622,7 +639,7 @@ return [
             'subtitle' => 'Hierarchical router structure with distribution switching and ASA firewall security policy rules.',
             'description' => '3-area hierarchical network with ISP, firewalls (550X), routers, and distribution/access layer switching.',
             'technologies' => ['Cisco Packet Tracer', 'Firewall (550X)', 'Routing & Switching', 'Network Security'],
-            'image' => 'project-images/firewall-network.png',
+            'image' => 'project-images/firewall_topology.png',
             'demo' => null,
             'github' => null,
             'featured' => false,
@@ -672,23 +689,23 @@ return [
             ],
             'showcase_sections' => [
                 [
-                    'title' => 'Subsystem: Edge Security & ASA Firewall Routing',
-                    'image' => 'project-images/firewall-network.png',
+                    'title' => 'Network Plan: Complete MPLS & Firewall Topology',
+                    'image' => 'project-images/firewall_topology.png',
                     'features' => [
-                        ['title' => 'ASA Stateful Inspection', 'text' => 'Firewall policy configurations blocking external pings while securing outbound network requests.', 'icon' => 'fas fa-shield-alt'],
-                        ['title' => 'Security Level Allocations', 'text' => 'Configures strict Access Control Lists (ACLs) to manage traffic crossing network borders.', 'icon' => 'fas fa-lock']
+                        ['title' => 'MPLS Core Layout', 'text' => 'Central ISP/MPLS routing connects branch routers and data center WAN edges across multiple routed subnets.', 'icon' => 'fas fa-project-diagram'],
+                        ['title' => 'ASA Firewall Placement', 'text' => 'ASA devices sit between WAN routers and core switches to enforce protected data-center access.', 'icon' => 'fas fa-shield-alt']
                     ]
                 ],
                 [
                     'title' => 'Subsystem: Dynamic OSPF Routing',
-                    'image' => 'project-images/firewall-network.png',
+                    'image' => 'project-images/firewall_topology.png',
                     'features' => [
                         ['title' => 'Multi-Area OSPF Convergence', 'text' => 'Dynamically advertises and updates routing tables across multiple router nodes.', 'icon' => 'fas fa-route']
                     ]
                 ],
                 [
                     'title' => 'Subsystem: Isolated Demilitarized Zone (DMZ)',
-                    'image' => 'project-images/firewall-network.png',
+                    'image' => 'project-images/firewall_topology.png',
                     'features' => [
                         ['title' => 'DMZ Server Isolation', 'text' => 'Separates public-facing HTTP web servers from sensitive intranet file systems.', 'icon' => 'fas fa-server']
                     ]
