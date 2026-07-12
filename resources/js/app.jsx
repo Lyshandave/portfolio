@@ -44,8 +44,8 @@ function initializeGlobalAnimations() {
     AOS.init({
         duration: 400,
         easing: 'ease-out',
-        once: true,
-        mirror: false,
+        once: false,
+        mirror: true,
         offset: 10,
         anchorPlacement: 'top-bottom',
     });
