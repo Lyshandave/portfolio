@@ -265,6 +265,7 @@ export default function CaseStudy({ profile, project }) {
                         {/* PROJECT OVERVIEW CARD */}
                         <div
                             className={[
+                                "case-study-card",
                                 "rounded-xl",
                                 "border",
                                 "border-slate-200/60",
@@ -368,6 +369,7 @@ export default function CaseStudy({ profile, project }) {
                         {/* TECH STACK CARD */}
                         <div
                             className={[
+                                "case-study-card",
                                 "rounded-xl",
                                 "border",
                                 "border-slate-200/60",
@@ -441,6 +443,7 @@ export default function CaseStudy({ profile, project }) {
                         {project.key_features && (
                             <div
                                 className={[
+                                    "case-study-card",
                                     "rounded-xl",
                                     "border",
                                     "border-slate-200/60",
@@ -518,6 +521,7 @@ export default function CaseStudy({ profile, project }) {
                         {project.problem && (
                             <div
                                 className={[
+                                    "case-study-card",
                                     "rounded-xl",
                                     "border",
                                     "border-slate-200/60",
@@ -568,6 +572,7 @@ export default function CaseStudy({ profile, project }) {
                         {project.objectives && (
                             <div
                                 className={[
+                                    "case-study-card",
                                     "rounded-xl",
                                     "border",
                                     "border-slate-200/60",
@@ -657,6 +662,7 @@ export default function CaseStudy({ profile, project }) {
                                             <div
                                                 key={sIdx}
                                                 className={[
+                                                    "case-study-card",
                                                     "rounded-xl",
                                                     "border",
                                                     "border-slate-200/60",
@@ -908,6 +914,7 @@ export default function CaseStudy({ profile, project }) {
                             /* SCREENSHOT & SHOWCASE SECTION FALLBACK */
                             <div
                                 className={[
+                                    "case-study-card",
                                     "rounded-xl",
                                     "border",
                                     "border-slate-200/60",
@@ -982,6 +989,7 @@ export default function CaseStudy({ profile, project }) {
                         {(project.challenges || project.solution) && (
                             <div
                                 className={[
+                                    "case-study-card",
                                     "rounded-xl",
                                     "border",
                                     "border-slate-200/60",
@@ -1112,6 +1120,7 @@ export default function CaseStudy({ profile, project }) {
                         {project.development_process && (
                             <div
                                 className={[
+                                    "case-study-card",
                                     "rounded-xl",
                                     "border",
                                     "border-slate-200/60",
@@ -1223,6 +1232,7 @@ export default function CaseStudy({ profile, project }) {
                                     {project.lessons_learned && (
                                         <div
                                             className={[
+                                                "case-study-card",
                                                 "rounded-xl",
                                                 "border",
                                                 "border-slate-200/60",
@@ -1296,6 +1306,7 @@ export default function CaseStudy({ profile, project }) {
                                     {project.future_improvements && (
                                         <div
                                             className={[
+                                                "case-study-card",
                                                 "rounded-xl",
                                                 "border",
                                                 "border-slate-200/60",
@@ -1370,6 +1381,7 @@ export default function CaseStudy({ profile, project }) {
                                 {project.results && (
                                     <div
                                         className={[
+                                            "case-study-card",
                                             "rounded-xl",
                                             "border",
                                             "border-slate-200/60",
