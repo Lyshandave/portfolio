@@ -113,10 +113,10 @@ class ChatController extends Controller
         ];
 
         try {
-            // Using gemini-2.5-flash which is free, fast, and very accurate
+            // Using gemini-2.0-flash which is the current recommended fast model
             $response = Http::withHeaders([
                 'Content-Type' => 'application/json',
-            ])->post("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={$apiKey}", [
+            ])->post("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={$apiKey}", [
                 'contents' => $contents,
                 'systemInstruction' => [
                     'parts' => [['text' => $systemInstruction]]
