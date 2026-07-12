@@ -41,6 +41,14 @@ function initializeGlobalAnimations() {
         }
     });
 
+    const refreshAnimations = () => {
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                AOS.refreshHard();
+            });
+        });
+    };
+
     if (!window.aosInitialized) {
         AOS.init({
             duration: 280,
@@ -53,10 +61,11 @@ function initializeGlobalAnimations() {
             debounceDelay: 50,
         });
         window.aosInitialized = true;
+        refreshAnimations();
         return;
     }
 
-    AOS.refreshHard();
+    refreshAnimations();
 }
 
 window.initializeGlobalAnimations = initializeGlobalAnimations;
