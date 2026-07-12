@@ -16,12 +16,12 @@ import CaseStudy from './Pages/CaseStudy.jsx';
 function initializeGlobalAnimations() {
     if (!window.lenisInstance) {
         window.lenisInstance = new Lenis({
-            duration: 1.2,
+            duration: 0.75,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             direction: 'vertical',
             gestureDirection: 'vertical',
             smooth: true,
-            mouseMultiplier: 1.1,
+            mouseMultiplier: 1,
             smoothTouch: false,
             touchMultiplier: 1.5,
             infinite: false,
@@ -41,16 +41,22 @@ function initializeGlobalAnimations() {
         }
     });
 
-    AOS.init({
-        duration: 400,
-        easing: 'ease-out',
-        once: false,
-        mirror: true,
-        offset: 10,
-        anchorPlacement: 'top-bottom',
-    });
+    if (!window.aosInitialized) {
+        AOS.init({
+            duration: 280,
+            easing: 'ease-out-cubic',
+            once: false,
+            mirror: false,
+            offset: 30,
+            anchorPlacement: 'top-bottom',
+            throttleDelay: 60,
+            debounceDelay: 50,
+        });
+        window.aosInitialized = true;
+        return;
+    }
 
-    AOS.refresh();
+    AOS.refreshHard();
 }
 
 window.initializeGlobalAnimations = initializeGlobalAnimations;
