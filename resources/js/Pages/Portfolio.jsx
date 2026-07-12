@@ -889,8 +889,8 @@ export default function Portfolio(props) {
                 .lenis.lenis-smooth iframe { pointer-events: none; }
                 body { font-family: 'Instrument Sans', sans-serif; }
                 .display-font { font-family: 'Space Grotesk', 'Instrument Sans', sans-serif; }
-                .fade-in-section { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; will-change: opacity, transform; }
-                .fade-in-section.is-visible { opacity: 1; transform: translateY(0); }
+                
+                
             `}</style>
 
             {/* Background Decorative Blobs Container */}
@@ -947,9 +947,7 @@ export default function Portfolio(props) {
             >
                 {/* PROFILE HERO SECTION */}
                 <section
-                    className={["mb-8", "fade-in-section", "is-visible"].join(
-                        " ",
-                    )}
+                    className={["mb-8"].join(" ")} data-aos="fade-up"
                 >
                     <div
                         className={[
@@ -1363,8 +1361,6 @@ export default function Portfolio(props) {
                             "md:row-start-1",
                             "space-y-3",
                             "group",
-                            "fade-in-section",
-                            "is-visible",
                             "self-start",
                             "rounded-xl",
                             "border",
@@ -1416,8 +1412,6 @@ export default function Portfolio(props) {
                             "md:row-span-3",
                             "space-y-3",
                             "group",
-                            "fade-in-section",
-                            "is-visible",
                             "self-start",
                             "rounded-xl",
                             "border",
@@ -1553,8 +1547,6 @@ export default function Portfolio(props) {
                             "md:row-start-2",
                             "space-y-4",
                             "group",
-                            "fade-in-section",
-                            "is-visible",
                             "self-start",
                             "rounded-xl",
                             "border",
@@ -1678,8 +1670,6 @@ export default function Portfolio(props) {
                             "md:col-start-1",
                             "space-y-4",
                             "group",
-                            "fade-in-section",
-                            "is-visible",
                             "self-start",
                             "rounded-xl",
                             "border",
@@ -1929,8 +1919,6 @@ export default function Portfolio(props) {
                             "md:col-span-3",
                             "space-y-3",
                             "group",
-                            "fade-in-section",
-                            "is-visible",
                             "rounded-xl",
                             "border",
                             "border-slate-200/60",
@@ -2087,8 +2075,6 @@ export default function Portfolio(props) {
                             "space-y-3",
                             "group",
                             "overflow-hidden",
-                            "fade-in-section",
-                            "is-visible",
                             "rounded-xl",
                             "border",
                             "border-slate-200/60",
@@ -2321,8 +2307,6 @@ export default function Portfolio(props) {
                             "md:col-span-6",
                             "space-y-4",
                             "group",
-                            "fade-in-section",
-                            "is-visible",
                             "rounded-xl",
                             "border",
                             "border-slate-200/60",
@@ -2679,8 +2663,6 @@ export default function Portfolio(props) {
                             "space-y-3",
                             "group",
                             "overflow-hidden",
-                            "fade-in-section",
-                            "is-visible",
                             "rounded-xl",
                             "border",
                             "border-slate-200/60",
